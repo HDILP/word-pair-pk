@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+extract_words.py
+word-pair-pk-todo.md
+.vercel/
