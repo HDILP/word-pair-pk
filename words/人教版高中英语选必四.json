@@ -120,11 +120,6 @@
           "unit": "Unit 1 Science Fiction"
         },
         {
-          "en": "on a...basis",
-          "zh": "",
-          "unit": "Unit 1 Science Fiction"
-        },
-        {
           "en": "calculate",
           "zh": "v. 计算；估计；计划；核算；预测；【化】计算，推算；【航】计算",
           "unit": "Unit 1 Science Fiction"
@@ -328,41 +323,6 @@
           "en": "overstatement",
           "zh": "n. 夸大；夸张",
           "unit": "Unit 1 Science Fiction"
-        },
-        {
-          "en": "Isaac Asimov",
-          "zh": "",
-          "unit": "Unit 1 Science Fiction"
-        },
-        {
-          "en": "Larry Belmont",
-          "zh": "",
-          "unit": "Unit 1 Science Fiction"
-        },
-        {
-          "en": "Claire",
-          "zh": "",
-          "unit": "Unit 1 Science Fiction"
-        },
-        {
-          "en": "Gladys Claffern",
-          "zh": "",
-          "unit": "Unit 1 Science Fiction"
-        },
-        {
-          "en": "Braille",
-          "zh": "",
-          "unit": "Unit 1 Science Fiction"
-        },
-        {
-          "en": "The Three-Body Problem",
-          "zh": "",
-          "unit": "Unit 1 Science Fiction"
-        },
-        {
-          "en": "Hugo Award",
-          "zh": "",
-          "unit": "Unit 1 Science Fiction"
         }
       ]
     },
@@ -382,11 +342,6 @@
         {
           "en": "political",
           "zh": "adj. 政治的；政府的；党派的；关心政治的",
-          "unit": "Unit 2 Iconic Attractions"
-        },
-        {
-          "en": "didgeridoo",
-          "zh": "",
           "unit": "Unit 2 Iconic Attractions"
         },
         {
@@ -427,11 +382,6 @@
         {
           "en": "herb",
           "zh": "n. 草本植物；药草；香草；大麻",
-          "unit": "Unit 2 Iconic Attractions"
-        },
-        {
-          "en": "dim sim",
-          "zh": "",
           "unit": "Unit 2 Iconic Attractions"
         },
         {
@@ -500,11 +450,6 @@
           "unit": "Unit 2 Iconic Attractions"
         },
         {
-          "en": "kayaking",
-          "zh": "",
-          "unit": "Unit 2 Iconic Attractions"
-        },
-        {
           "en": "peak season",
           "zh": "phr. 旺季；高峰季节",
           "unit": "Unit 2 Iconic Attractions"
@@ -555,33 +500,8 @@
           "unit": "Unit 2 Iconic Attractions"
         },
         {
-          "en": "geyser",
-          "zh": "",
-          "unit": "Unit 2 Iconic Attractions"
-        },
-        {
-          "en": "sulphuric pool",
-          "zh": "",
-          "unit": "Unit 2 Iconic Attractions"
-        },
-        {
-          "en": "manuka honey",
-          "zh": "",
-          "unit": "Unit 2 Iconic Attractions"
-        },
-        {
-          "en": "bungee jumping",
-          "zh": "",
-          "unit": "Unit 2 Iconic Attractions"
-        },
-        {
           "en": "a flock of",
           "zh": "adj. 一群（羊或鸟）；许多",
-          "unit": "Unit 2 Iconic Attractions"
-        },
-        {
-          "en": "geothermal park",
-          "zh": "",
           "unit": "Unit 2 Iconic Attractions"
         },
         {
@@ -682,61 +602,6 @@
         {
           "en": "grand",
           "zh": "adj. 壮丽的，宏伟的，宏大的；重大的；主要的；傲慢的；大的；  n. 一千美元；大钢琴",
-          "unit": "Unit 2 Iconic Attractions"
-        },
-        {
-          "en": "Aborigine",
-          "zh": "",
-          "unit": "Unit 2 Iconic Attractions"
-        },
-        {
-          "en": "Sydney",
-          "zh": "",
-          "unit": "Unit 2 Iconic Attractions"
-        },
-        {
-          "en": "Bondi Beach",
-          "zh": "",
-          "unit": "Unit 2 Iconic Attractions"
-        },
-        {
-          "en": "Chiang Mai",
-          "zh": "",
-          "unit": "Unit 2 Iconic Attractions"
-        },
-        {
-          "en": "the Bay of Islands",
-          "zh": "",
-          "unit": "Unit 2 Iconic Attractions"
-        },
-        {
-          "en": "the haka",
-          "zh": "",
-          "unit": "Unit 2 Iconic Attractions"
-        },
-        {
-          "en": "Edmonds",
-          "zh": "",
-          "unit": "Unit 2 Iconic Attractions"
-        },
-        {
-          "en": "Felicity",
-          "zh": "",
-          "unit": "Unit 2 Iconic Attractions"
-        },
-        {
-          "en": "Tasmanian devil",
-          "zh": "",
-          "unit": "Unit 2 Iconic Attractions"
-        },
-        {
-          "en": "Tasmania",
-          "zh": "",
-          "unit": "Unit 2 Iconic Attractions"
-        },
-        {
-          "en": "duck-billed platypus",
-          "zh": "",
           "unit": "Unit 2 Iconic Attractions"
         }
       ]
@@ -957,41 +822,6 @@
         {
           "en": "arrest",
           "zh": "v. 逮捕，拘留；中止；吸引；  n. 逮捕，拘留；阻止",
-          "unit": "Unit 3 Sea Exploration"
-        },
-        {
-          "en": "Marco Polo",
-          "zh": "",
-          "unit": "Unit 3 Sea Exploration"
-        },
-        {
-          "en": "Columbus",
-          "zh": "",
-          "unit": "Unit 3 Sea Exploration"
-        },
-        {
-          "en": "Ceylon",
-          "zh": "",
-          "unit": "Unit 3 Sea Exploration"
-        },
-        {
-          "en": "Churchill",
-          "zh": "",
-          "unit": "Unit 3 Sea Exploration"
-        },
-        {
-          "en": "Ferdinand Magellan",
-          "zh": "",
-          "unit": "Unit 3 Sea Exploration"
-        },
-        {
-          "en": "Zac Sunderland",
-          "zh": "",
-          "unit": "Unit 3 Sea Exploration"
-        },
-        {
-          "en": "Robin Lee Graham",
-          "zh": "",
           "unit": "Unit 3 Sea Exploration"
         }
       ]
@@ -1295,33 +1125,8 @@
           "unit": "Unit 4 Sharing"
         },
         {
-          "en": "pray that",
-          "zh": "",
-          "unit": "Unit 4 Sharing"
-        },
-        {
           "en": "hypothetical",
           "zh": "adj. 假设的，假定的",
-          "unit": "Unit 4 Sharing"
-        },
-        {
-          "en": "Papua New Guinea",
-          "zh": "",
-          "unit": "Unit 4 Sharing"
-        },
-        {
-          "en": "Ghana",
-          "zh": "",
-          "unit": "Unit 4 Sharing"
-        },
-        {
-          "en": "Congo",
-          "zh": "",
-          "unit": "Unit 4 Sharing"
-        },
-        {
-          "en": "Panama",
-          "zh": "",
           "unit": "Unit 4 Sharing"
         }
       ]
@@ -1447,11 +1252,6 @@
         {
           "en": "estate",
           "zh": "n. 地产；住宅；庄园；（面上有大片建筑物的）土地；个人财产，遗产；工业区；住宅区",
-          "unit": "Unit 5 Launching Your Career"
-        },
-        {
-          "en": "(real) estate agent",
-          "zh": "",
           "unit": "Unit 5 Launching Your Career"
         },
         {
@@ -1637,26 +1437,6 @@
         {
           "en": "acquire",
           "zh": "v.  （通过努力、能力）获得；学到；得到；购得；患上（疾病）",
-          "unit": "Unit 5 Launching Your Career"
-        },
-        {
-          "en": "Marie Curie",
-          "zh": "",
-          "unit": "Unit 5 Launching Your Career"
-        },
-        {
-          "en": "The Communist Manifesto",
-          "zh": "",
-          "unit": "Unit 5 Launching Your Career"
-        },
-        {
-          "en": "Olivia",
-          "zh": "",
-          "unit": "Unit 5 Launching Your Career"
-        },
-        {
-          "en": "PETS",
-          "zh": "",
           "unit": "Unit 5 Launching Your Career"
         }
       ]

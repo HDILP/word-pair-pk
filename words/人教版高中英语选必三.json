@@ -40,11 +40,6 @@
           "unit": "Unit 1 Art"
         },
         {
-          "en": "two-dimensional",
-          "zh": "",
-          "unit": "Unit 1 Art"
-        },
-        {
           "en": "dimension",
           "zh": "n. 维，维度；尺寸；尺度；方面；规模；范围；【财】维度，方面；【物】维度；【航】尺寸",
           "unit": "Unit 1 Art"
@@ -147,11 +142,6 @@
         {
           "en": "subsequent",
           "zh": "adj. 随后的；后来的；之后的；【化】在...之后",
-          "unit": "Unit 1 Art"
-        },
-        {
-          "en": "Cubism",
-          "zh": "",
           "unit": "Unit 1 Art"
         },
         {
@@ -355,78 +345,8 @@
           "unit": "Unit 1 Art"
         },
         {
-          "en": "Giotto di Bondone",
-          "zh": "",
-          "unit": "Unit 1 Art"
-        },
-        {
           "en": "the Renaissance",
           "zh": "n. 文艺复兴",
-          "unit": "Unit 1 Art"
-        },
-        {
-          "en": "Masaccio",
-          "zh": "",
-          "unit": "Unit 1 Art"
-        },
-        {
-          "en": "Leonardo da Vinci",
-          "zh": "",
-          "unit": "Unit 1 Art"
-        },
-        {
-          "en": "Michelangelo",
-          "zh": "",
-          "unit": "Unit 1 Art"
-        },
-        {
-          "en": "Raphael",
-          "zh": "",
-          "unit": "Unit 1 Art"
-        },
-        {
-          "en": "Rembrandt",
-          "zh": "",
-          "unit": "Unit 1 Art"
-        },
-        {
-          "en": "Claude Monet",
-          "zh": "",
-          "unit": "Unit 1 Art"
-        },
-        {
-          "en": "Renoir",
-          "zh": "",
-          "unit": "Unit 1 Art"
-        },
-        {
-          "en": "Picasso",
-          "zh": "",
-          "unit": "Unit 1 Art"
-        },
-        {
-          "en": "Giverny",
-          "zh": "",
-          "unit": "Unit 1 Art"
-        },
-        {
-          "en": "Tadpoles Searching for Mother",
-          "zh": "",
-          "unit": "Unit 1 Art"
-        },
-        {
-          "en": "The Cowboy's Flute",
-          "zh": "",
-          "unit": "Unit 1 Art"
-        },
-        {
-          "en": "Feeling from Mountain and Water",
-          "zh": "",
-          "unit": "Unit 1 Art"
-        },
-        {
-          "en": "Clearing After Snow on a Mountain Pass",
-          "zh": "",
           "unit": "Unit 1 Art"
         }
       ]
@@ -697,16 +617,6 @@
         {
           "en": "absorb",
           "zh": "v. 吸收；吸引……的注意；理解，掌握；承受；消减，缓解；使并入；吞并；同化；【化】吸收（液体、光、热等）；【物】吸收；【航】吸收",
-          "unit": "Unit 2 Healthy Lifestyle"
-        },
-        {
-          "en": "Aristotle",
-          "zh": "",
-          "unit": "Unit 2 Healthy Lifestyle"
-        },
-        {
-          "en": "People's Liberation Army (PLA)",
-          "zh": "",
           "unit": "Unit 2 Healthy Lifestyle"
         }
       ]
@@ -1002,21 +912,6 @@
         {
           "en": "agenda",
           "zh": "n. 议程，议程表；议事日程；（潜在的）动机（此时常与hidden连用）",
-          "unit": "Unit 3 Environmental Protection"
-        },
-        {
-          "en": "Norway",
-          "zh": "",
-          "unit": "Unit 3 Environmental Protection"
-        },
-        {
-          "en": "Svalbard",
-          "zh": "",
-          "unit": "Unit 3 Environmental Protection"
-        },
-        {
-          "en": "Hurricane Katrina",
-          "zh": "",
           "unit": "Unit 3 Environmental Protection"
         }
       ]
@@ -1327,66 +1222,6 @@
         {
           "en": "Confucianism",
           "zh": "n. 孔子学说；儒家（学说）",
-          "unit": "Unit 4 Adversity and Courage"
-        },
-        {
-          "en": "Ernest Shackleton",
-          "zh": "",
-          "unit": "Unit 4 Adversity and Courage"
-        },
-        {
-          "en": "Perce Blackborow",
-          "zh": "",
-          "unit": "Unit 4 Adversity and Courage"
-        },
-        {
-          "en": "Antarctica",
-          "zh": "",
-          "unit": "Unit 4 Adversity and Courage"
-        },
-        {
-          "en": "the Antarctic",
-          "zh": "",
-          "unit": "Unit 4 Adversity and Courage"
-        },
-        {
-          "en": "the South Pole",
-          "zh": "",
-          "unit": "Unit 4 Adversity and Courage"
-        },
-        {
-          "en": "South Georgia Island",
-          "zh": "",
-          "unit": "Unit 4 Adversity and Courage"
-        },
-        {
-          "en": "Frank Wild",
-          "zh": "",
-          "unit": "Unit 4 Adversity and Courage"
-        },
-        {
-          "en": "Thomas Orde-Lees",
-          "zh": "",
-          "unit": "Unit 4 Adversity and Courage"
-        },
-        {
-          "en": "Frank Worsley",
-          "zh": "",
-          "unit": "Unit 4 Adversity and Courage"
-        },
-        {
-          "en": "Tom Crean",
-          "zh": "",
-          "unit": "Unit 4 Adversity and Courage"
-        },
-        {
-          "en": "Hubert Hudson",
-          "zh": "",
-          "unit": "Unit 4 Adversity and Courage"
-        },
-        {
-          "en": "Lionel Greenstreet",
-          "zh": "",
           "unit": "Unit 4 Adversity and Courage"
         }
       ]
@@ -1732,46 +1567,6 @@
         {
           "en": "prejudice",
           "zh": "n. 偏见，成见；损害，侵害；【法】对合法权益损害；  vt. 使抱有偏见",
-          "unit": "Unit 5 Poems"
-        },
-        {
-          "en": "Shakespeare",
-          "zh": "",
-          "unit": "Unit 5 Poems"
-        },
-        {
-          "en": "The Crescent Moon",
-          "zh": "",
-          "unit": "Unit 5 Poems"
-        },
-        {
-          "en": "Tagore",
-          "zh": "",
-          "unit": "Unit 5 Poems"
-        },
-        {
-          "en": "Elizabeth Barrett Browning",
-          "zh": "",
-          "unit": "Unit 5 Poems"
-        },
-        {
-          "en": "Robert Browning",
-          "zh": "",
-          "unit": "Unit 5 Poems"
-        },
-        {
-          "en": "the Victorian era",
-          "zh": "",
-          "unit": "Unit 5 Poems"
-        },
-        {
-          "en": "Sonnets from the Portuguese",
-          "zh": "",
-          "unit": "Unit 5 Poems"
-        },
-        {
-          "en": "Langston Hughes",
-          "zh": "",
           "unit": "Unit 5 Poems"
         }
       ]
