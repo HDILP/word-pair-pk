@@ -206,48 +206,128 @@
     }
 
     .book-item {
+      display: block;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .book-item + .book-item {
+      margin-top: 4px;
+    }
+    .book-header {
       display: flex;
       align-items: center;
-      gap: 14px;
-      padding: 14px 16px;
-      border-radius: 10px;
+      gap: 12px;
+      padding: 12px 16px;
       cursor: pointer;
-      transition: background 0.15s;
-      min-height: 52px;
+      transition: background 0.15s ease;
+      min-height: 48px;
+      user-select: none;
+      border-radius: 10px;
     }
-    .book-item:hover {
-      background: #fafafa;
+    .book-header:hover {
+      background: #f0f0ec;
     }
-    .book-item:active {
-      background: #f0f0f0;
+    .book-header:active {
+      background: #e8e8e4;
     }
-
+    .book-arrow {
+      font-size: 12px;
+      color: #aaa;
+      transition: transform 0.2s ease;
+      width: 16px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .book-arrow.expanded {
+      transform: rotate(90deg);
+    }
     .book-checkbox {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       border: 2px solid #ccc;
       border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      transition: all 0.15s;
-      font-size: 14px;
-      color: #fff;
+      transition: all 0.15s ease;
+      font-weight: 700;
     }
     .book-checkbox.checked {
       background: var(--primary);
       border-color: var(--primary);
+      color: #fff;
     }
-
+    .book-checkbox.indet {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+    .book-checkbox.indet::after {
+      content: '';
+      width: 10px;
+      height: 2px;
+      background: #fff;
+      border-radius: 1px;
+    }
     .book-name {
       flex: 1;
       font-size: 15px;
       font-weight: 500;
     }
     .book-count {
-      font-size: 13px;
       color: var(--text-secondary);
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    /* Unit 子项 */
+    .unit-list {
+      padding: 0 0 4px 40px;
+    }
+    .unit-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s ease;
+      min-height: 36px;
+      user-select: none;
+    }
+    .unit-item:hover {
+      background: #f5f5f0;
+    }
+    .unit-item:active {
+      background: #ecece6;
+    }
+    .unit-checkbox {
+      width: 18px;
+      height: 18px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .unit-checkbox.checked {
+      background: var(--secondary);
+      border-color: var(--secondary);
+      color: #fff;
+    }
+    .unit-name {
+      flex: 1;
+      font-size: 14px;
+    }
+    .unit-count {
+      color: var(--text-secondary);
+      font-size: 12px;
+      flex-shrink: 0;
     }
 
     .select-summary {
@@ -748,9 +828,8 @@
       .word-select-view .card {
         padding: 16px 14px;
       }
-      .book-item {
+      .book-header {
         padding: 10px 12px;
-        gap: 10px;
         min-height: 44px;
       }
       .book-name {
@@ -763,6 +842,27 @@
         width: 20px;
         height: 20px;
         font-size: 12px;
+      }
+      .book-arrow {
+        font-size: 11px;
+      }
+      .unit-list {
+        padding: 0 0 2px 32px;
+      }
+      .unit-item {
+        padding: 6px 10px;
+        min-height: 32px;
+      }
+      .unit-checkbox {
+        width: 16px;
+        height: 16px;
+        font-size: 10px;
+      }
+      .unit-name {
+        font-size: 13px;
+      }
+      .unit-count {
+        font-size: 11px;
       }
       .select-summary {
         flex-direction: column;
@@ -965,13 +1065,29 @@
               v-for="(book, idx) in books"
               :key="idx"
               class="book-item"
-              @click="toggleBook(idx)"
             >
-              <div class="book-checkbox" :class="{checked: book._checked}">
-                <span v-if="book._checked">✓</span>
+              <div class="book-header" @click="toggleExpand(idx)">
+                <span class="book-arrow" :class="{expanded: book._expanded}">▶</span>
+                <div class="book-checkbox" :class="{checked: allUnitsChecked(book), indet: someUnitsChecked(book) && !allUnitsChecked(book)}" @click.stop="toggleBook(idx)">
+                  <span v-if="allUnitsChecked(book)">✓</span>
+                </div>
+                <span class="book-name">{{ book.name }}</span>
+                <span class="book-count">{{ getWordCount(book) }} 词</span>
               </div>
-              <span class="book-name">{{ book.name }}</span>
-              <span class="book-count">{{ getWordCount(book) }} 词</span>
+              <div v-if="book._expanded" class="unit-list">
+                <div
+                  v-for="(unit, ui) in book.units"
+                  :key="ui"
+                  class="unit-item"
+                  @click="toggleUnit(idx, ui)"
+                >
+                  <div class="unit-checkbox" :class="{checked: unit._checked}">
+                    <span v-if="unit._checked">✓</span>
+                  </div>
+                  <span class="unit-name">{{ unit.name }}</span>
+                  <span class="unit-count">{{ (unit.words || []).length }} 词</span>
+                </div>
+              </div>
             </div>
           </div>
           <div class="select-batch">
@@ -1244,7 +1360,9 @@
         selectedWordCount() {
           let count = 0;
           for (const b of this.books) {
-            if (b._checked) count += this.getWordCount(b);
+            for (const u of (b.units || [])) {
+              if (u._checked) count += (u.words || []).length;
+            }
           }
           return count;
         },
@@ -1288,22 +1406,41 @@
         // ===== 词表选择 =====
         initBooks() {
           this.books = ALL_WORDS_DATA.books.map(b => {
-            // 标准化: 支持旧格式(words) 和新格式(units)
-            // 你把词按 unit 整理好后，把 words 换成 units 数组即可
             if (!b.units) {
               b.units = [{ name: "全部", words: b.words || [] }];
             }
-            return { ...b, _checked: true };
+            b._expanded = true;
+            for (const u of b.units) u._checked = true;
+            return { ...b };
           });
         },
+        toggleExpand(idx) {
+          this.books[idx]._expanded = !this.books[idx]._expanded;
+        },
         toggleBook(idx) {
-          this.books[idx]._checked = !this.books[idx]._checked;
+          const book = this.books[idx];
+          const allChecked = (book.units || []).every(u => u._checked);
+          for (const u of (book.units || [])) u._checked = !allChecked;
+        },
+        toggleUnit(bookIdx, unitIdx) {
+          const unit = this.books[bookIdx].units[unitIdx];
+          unit._checked = !unit._checked;
+        },
+        allUnitsChecked(book) {
+          return (book.units || []).length > 0 && (book.units || []).every(u => u._checked);
+        },
+        someUnitsChecked(book) {
+          return (book.units || []).some(u => u._checked);
         },
         selectAll() {
-          for (const b of this.books) b._checked = true;
+          for (const b of this.books) {
+            for (const u of (b.units || [])) u._checked = true;
+          }
         },
         deselectAll() {
-          for (const b of this.books) b._checked = false;
+          for (const b of this.books) {
+            for (const u of (b.units || [])) u._checked = false;
+          }
         },
 
         // ===== 开始游戏 =====
@@ -1311,9 +1448,11 @@
           const selectedWords = [];
           let bookName = '';
           for (const b of this.books) {
-            if (b._checked) {
-              selectedWords.push(...this.getBookWords(b));
-              if (!bookName) bookName = b.name;
+            for (const u of (b.units || [])) {
+              if (u._checked) {
+                selectedWords.push(...(u.words || []));
+                if (!bookName) bookName = b.name + ' - ' + u.name;
+              }
             }
           }
           if (selectedWords.length < 8) return;
