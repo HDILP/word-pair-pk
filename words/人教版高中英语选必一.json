@@ -6,275 +6,408 @@
       "words": [
         {
           "en": "physiology",
-          "zh": "n. 生理机能，生理学；【生】生理学"
+          "zh": "n. 生理机能，生理学；【生】生理学",
+          "unit": "Unit 1 People of Achievement"
+        },
+        {
+          "en": "artemisinin",
+          "zh": "",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "crucial",
-          "zh": "adj. 关键的，至关重要的；决定性的"
+          "zh": "adj. 关键的，至关重要的；决定性的",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "malaria",
-          "zh": "n. 瘴气；疟疾"
+          "zh": "n. 瘴气；疟疾",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "vital",
-          "zh": "adj. 必不可少的，至关重要的；有活力的；生死攸关的；生命的；  n. 重要部分，要害"
+          "zh": "adj. 必不可少的，至关重要的；有活力的；生死攸关的；生命的；  n. 重要部分，要害",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "committed",
-          "zh": "adj. 效忠的；忠于……的；坚信的；坚定的，尽心尽力的；  v. commit的过去式"
+          "zh": "adj. 效忠的；忠于……的；坚信的；坚定的，尽心尽力的；  v. commit的过去式",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "commit",
-          "zh": "v. 犯（罪）；进行 (自杀)；调拨 (钱、资源)；监禁；送交 (到精神病院、监狱等)；干（坏事）；委托，托付；承诺，保证；致力于；用纸记下；书写"
+          "zh": "v. 犯（罪）；进行 (自杀)；调拨 (钱、资源)；监禁；送交 (到精神病院、监狱等)；干（坏事）；委托，托付；承诺，保证；致力于；用纸记下；书写",
+          "unit": "Unit 1 People of Achievement"
         },
         {
-          "en": "commit oneself to do",
-          "zh": "phr. 保证（做某事、遵守协议或安排等）；承诺"
+          "en": "commit oneself to",
+          "zh": "v. 犯（罪）；进行 (自杀)；调拨 (钱、资源)；监禁；送交 (到精神病院、监狱等)；干（坏事）；委托，托付；承诺，保证；致力于；用纸记下；书写",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "academy",
-          "zh": "n. 学院；学会；研究院；私立中学；学术"
+          "zh": "n. 学院；学会；研究院；私立中学；学术",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "academic",
-          "zh": "adj. 学术的；学院的；理论的；  n. 学者；学科"
+          "zh": "adj. 学术的；学院的；理论的；  n. 学者；学科",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "objective",
-          "zh": "n. 目标；  adj. 客观的；真实的；（语法）宾格的；公正的"
+          "zh": "n. 目标；  adj. 客观的；真实的；（语法）宾格的；公正的",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "botanical",
-          "zh": "adj. 植物（学）的"
+          "zh": "adj. 植物（学）的",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "evaluate",
-          "zh": "v. 评估；评价；估计；【计】求值；【数】求值"
+          "zh": "v. 评估；评价；估计；【计】求值；【数】求值",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "property",
-          "zh": "n. 房产；财产；特性；性能；财物；【计】属性；房地产行业，不动产（=real estate ）；【化】特质，特性；【航】特性"
+          "zh": "n. 房产；财产；特性；性能；财物；【计】属性；房地产行业，不动产（=real estate ）；【化】特质，特性；【航】特性",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "distinct",
-          "zh": "adj. 截然不同的；独特的；明显的；清晰的；确切的，确定无误的"
+          "zh": "adj. 截然不同的；独特的；明显的；清晰的；确切的，确定无误的",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "extract",
-          "zh": "v. 取出；提取；摘录；设法得到；索取（读作/ɪkˈstrækt/）；【化】提取，萃取；  n. 摘录；提出物（读作/ˈɛksˌtrækt/）"
+          "zh": "v. 取出；提取；摘录；设法得到；索取（读作/ɪkˈstrækt/）；【化】提取，萃取；  n. 摘录；提出物（读作/ˈɛksˌtrækt/）",
+          "unit": "Unit 1 People of Achievement"
+        },
+        {
+          "en": "wormwood",
+          "zh": "",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "boil",
-          "zh": "v. 烧开，煮沸，沸腾；用开水煮，在沸水中煮；怒火中烧，异常气愤；【化】煮沸，沸腾，达到沸点；【物】沸腾；  n. 煮沸，沸腾；疔，疖子；【医】疡肿，脓肿"
+          "zh": "v. 烧开，煮沸，沸腾；用开水煮，在沸水中煮；怒火中烧，异常气愤；【化】煮沸，沸腾，达到沸点；【物】沸腾；  n. 煮沸，沸腾；疔，疖子；【医】疡肿，脓肿",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "liquid",
-          "zh": "n. 液体；流体；【化】液体；【物】液体；  adj. 液体的，液态的；清脆的"
+          "zh": "n. 液体；流体；【化】液体；【物】液体；  adj. 液体的，液态的；清脆的",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "obtain",
-          "zh": "v. 获得，赢得，取得；存在，流行，适用；形成；【化】获得，得到"
+          "zh": "v. 获得，赢得，取得；存在，流行，适用；形成；【化】获得，得到",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "acknowledge",
-          "zh": "vt. 承认；感谢；（公开）致谢；致意；认可；告知收到"
+          "zh": "vt. 承认；感谢；（公开）致谢；致意；认可；告知收到",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "defeat",
-          "zh": "v. 打败，击败，战胜；  n. 击败，战胜；挫败"
+          "zh": "v. 打败，击败，战胜；  n. 击败，战胜；挫败",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "analyse",
-          "zh": "v. 分析，分解"
+          "zh": "v. 分析，分解",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "apparently",
-          "zh": "adv. 显然；看来，似乎；据说"
+          "zh": "adv. 显然；看来，似乎；据说",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "substance",
-          "zh": "n. 物质；实质；资产；主旨；物品；【化】物质；【物】物质"
+          "zh": "n. 物质；实质；资产；主旨；物品；【化】物质；【物】物质",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "insist",
-          "zh": "v. 坚持；坚持要求；坚持认为；坚持认为..."
+          "zh": "v. 坚持；坚持要求；坚持认为；坚持认为...",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "insist on",
-          "zh": "phr. 坚持，强调，坚决要求，督促"
+          "zh": "phr. 坚持，强调，坚决要求，督促",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "scientific",
-          "zh": "adj. 科学的"
+          "zh": "adj. 科学的",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "mostly",
-          "zh": "adv. 大多；主要地；一般地；通常"
+          "zh": "adv. 大多；主要地；一般地；通常",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "wear and tear",
-          "zh": "phr. 磨损"
+          "zh": "phr. 磨损",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "conclusion",
-          "zh": "n. 结论，推论；总结，归纳；结束，结局；【数】结论"
+          "zh": "n. 结论，推论；总结，归纳；结束，结局；【数】结论",
+          "unit": "Unit 1 People of Achievement"
+        },
+        {
+          "en": "penicillin",
+          "zh": "",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "flee",
-          "zh": "v. 逃走；逃离；避开；迅速离开"
+          "zh": "v. 逃走；逃离；避开；迅速离开",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "circumstance",
-          "zh": "n. 情况；条件；客观环境；处境；环境"
+          "zh": "n. 情况；条件；客观环境；处境；环境",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "novelist",
-          "zh": "n. 小说家"
+          "zh": "n. 小说家",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "novel",
-          "zh": "n. 小说，长篇故事；  adj. 新奇的，新颖的"
+          "zh": "n. 小说，长篇故事；  adj. 新奇的，新颖的",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "flow",
-          "zh": "v. 流动；飘垂；涨潮；来自……的结果；流畅；使泛滥；流；持续抵达；持续供应（或生产）；（人，物）涌向，涌进；【化】流动；  n. 流动；流通；流量"
+          "zh": "v. 流动；飘垂；涨潮；来自……的结果；流畅；使泛滥；流；持续抵达；持续供应（或生产）；（人，物）涌向，涌进；【化】流动；  n. 流动；流通；流量",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "chart",
-          "zh": "v. 记录，跟踪（变化或进展）；  vt. 制成图表；制航海图；  n. 图表，表格；航海图；每周排行榜；【化】图表；【数】图表，图形"
+          "zh": "v. 记录，跟踪（变化或进展）；  vt. 制成图表；制航海图；  n. 图表，表格；航海图；每周排行榜；【化】图表；【数】图表，图形",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "flow chart",
-          "zh": "phr. 流程图；作业图；生产过程图解"
+          "zh": "phr. 流程图；作业图；生产过程图解",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "found",
-          "zh": "v. 成立，建立，创办；发现，感到（find的过去式）；把……建立在；发现，找到；创立，创建"
+          "zh": "v. 成立，建立，创办；发现，感到（find的过去式）；把……建立在；发现，找到；创立，创建",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "infer",
-          "zh": "v. 推断；暗示；【计】推导"
+          "zh": "v. 推断；暗示；【计】推导",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "politician",
-          "zh": "n. 政治家，政客"
+          "zh": "n. 政治家，政客",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "numerous",
-          "zh": "adj. 为数众多的，许多的"
+          "zh": "adj. 为数众多的，许多的",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "theory",
-          "zh": "n. 理论，原理；学说；推测；想法；【化】理论，学说"
+          "zh": "n. 理论，原理；学说；推测；想法；【化】理论，学说",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "relativity",
-          "zh": "n. 相关性；相对性；相对论"
+          "zh": "n. 相关性；相对性；相对论",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "formula",
-          "zh": "n. 公式，方程式；配方；准则，方案；方法；配方奶粉；套话；【数】公式"
+          "zh": "n. 公式，方程式；配方；准则，方案；方法；配方奶粉；套话；【数】公式",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "genius",
-          "zh": "n. 天才；天资，天赋；才华"
+          "zh": "n. 天才；天资，天赋；才华",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "gentle",
-          "zh": "adj. 温柔的，文雅的；温和的；平缓的；【化】温和的，缓慢的"
+          "zh": "adj. 温柔的，文雅的；温和的；平缓的；【化】温和的，缓慢的",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "patent",
-          "zh": "v. 取得专利权；  n. 专利；  adj. 显然的，明显的；专利的；有专利的"
+          "zh": "v. 取得专利权；  n. 专利；  adj. 显然的，明显的；专利的；有专利的",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "passion",
-          "zh": "n. 强烈的情感，激情；酷爱；盛怒，激愤"
+          "zh": "n. 强烈的情感，激情；酷爱；盛怒，激愤",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "doctorate",
-          "zh": "n. 博士学位"
+          "zh": "n. 博士学位",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "extraordinary",
-          "zh": "adj. 非同寻常的；特别的；意想不到的"
+          "zh": "adj. 非同寻常的；特别的；意想不到的",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "gradually",
-          "zh": "adv. 逐步地；渐渐地"
+          "zh": "adv. 逐步地；渐渐地",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "photoelectric",
-          "zh": "adj. 光电的"
+          "zh": "adj. 光电的",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "come to power",
-          "zh": "phr. 掌权；上台"
+          "zh": "phr. 掌权；上台",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "institution",
-          "zh": "n. 机构；制度；惯例；习俗；建立，设立，制定；社团"
+          "zh": "n. 机构；制度；惯例；习俗；建立，设立，制定；社团",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "institute",
-          "zh": "n. 学会；学院，专科学院，研究院（或所）；机构建筑；机构；  vt. 建立，设立，制定"
+          "zh": "n. 学会；学院，专科学院，研究院（或所）；机构建筑；机构；  vt. 建立，设立，制定",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "consequence",
-          "zh": "n. 结果；后果；重要性"
+          "zh": "n. 结果；后果；重要性",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "take up a position",
-          "zh": "phr. 担任；任职"
+          "zh": "phr. 担任；任职",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "moustache",
-          "zh": "n. 小胡子，髭（mustache）；（哺乳动物的）触须"
+          "zh": "n. 小胡子，髭（mustache）；（哺乳动物的）触须",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "peculiarity",
-          "zh": "n. 怪癖；独特性；个性"
+          "zh": "n. 怪癖；独特性；个性",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "encounter",
-          "zh": "vt. 邂逅，偶遇；遭遇；  n. 偶然碰见；遭遇；相遇，邂逅"
+          "zh": "vt. 邂逅，偶遇；遭遇；  n. 偶然碰见；遭遇；相遇，邂逅",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "professor",
-          "zh": "n. 教授；高级教师"
+          "zh": "n. 教授；高级教师",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "mourn",
-          "zh": "v. 哀悼，哀伤"
+          "zh": "v. 哀悼，哀伤",
+          "unit": "Unit 1 People of Achievement"
+        },
+        {
+          "en": "brilliant",
+          "zh": "adj. 卓越的；聪颖的；明亮的；漂亮的；极好的；才华横溢的",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "remarkable",
-          "zh": "adj. 显著的，非凡的，卓越的"
+          "zh": "adj. 显著的，非凡的，卓越的",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "device",
-          "zh": "n. 装置，设备；手段，计谋；方法；技巧；【计】设备"
+          "zh": "n. 装置，设备；手段，计谋；方法；技巧；【计】设备",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "sum",
-          "zh": "v. 共计；总结；概括；  n. 全部，总和；算术；款项，金额；【数】总和"
+          "zh": "v. 共计；总结；概括；  n. 全部，总和；算术；款项，金额；【数】总和",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "sum up",
-          "zh": "phr. 总结；概括"
+          "zh": "phr. 总结；概括",
+          "unit": "Unit 1 People of Achievement"
         },
         {
           "en": "draft",
-          "zh": "n. 气流；通风，通风装置；草稿；汇票；征兵；草案；初步计划；  v. 起草；草拟；征兵；计划；  adj. 草拟的；（啤酒）散装的；（动物）驮重物的，负重的"
+          "zh": "n. 气流；通风，通风装置；草稿；汇票；征兵；草案；初步计划；  v. 起草；草拟；征兵；计划；  adj. 草拟的；（啤酒）散装的；（动物）驮重物的，负重的",
+          "unit": "Unit 1 People of Achievement"
         },
         {
-          "en": "phrase",
-          "zh": "n. 简短的警句；短语，词组；习语；措辞，乐句；  v. 措辞；将(乐曲)分成乐句"
+          "en": "Nobel Prize",
+          "zh": "",
+          "unit": "Unit 1 People of Achievement"
         },
         {
-          "en": "persuade",
-          "zh": "v. 劝说；说服；使相信"
+          "en": "Alexander Fleming",
+          "zh": "",
+          "unit": "Unit 1 People of Achievement"
+        },
+        {
+          "en": "Albert Einstein",
+          "zh": "",
+          "unit": "Unit 1 People of Achievement"
+        },
+        {
+          "en": "Hitler",
+          "zh": "",
+          "unit": "Unit 1 People of Achievement"
+        },
+        {
+          "en": "Florence Nightingale",
+          "zh": "",
+          "unit": "Unit 1 People of Achievement"
+        },
+        {
+          "en": "SARS",
+          "zh": "",
+          "unit": "Unit 1 People of Achievement"
+        },
+        {
+          "en": "Switzerland",
+          "zh": "",
+          "unit": "Unit 1 People of Achievement"
+        },
+        {
+          "en": "Swiss",
+          "zh": "",
+          "unit": "Unit 1 People of Achievement"
+        },
+        {
+          "en": "Isaac Newton",
+          "zh": "",
+          "unit": "Unit 1 People of Achievement"
+        },
+        {
+          "en": "Jewish",
+          "zh": "",
+          "unit": "Unit 1 People of Achievement"
+        },
+        {
+          "en": "Princeton",
+          "zh": "",
+          "unit": "Unit 1 People of Achievement"
         }
       ]
     },
@@ -282,276 +415,389 @@
       "name": "Unit 2 Looking into the Future",
       "words": [
         {
+          "en": "phrase",
+          "zh": "n. 简短的警句；短语，词组；习语；措辞，乐句；  v. 措辞；将(乐曲)分成乐句",
+          "unit": "Unit 2 Looking into the Future"
+        },
+        {
+          "en": "persuade",
+          "zh": "v. 劝说；说服；使相信",
+          "unit": "Unit 2 Looking into the Future"
+        },
+        {
           "en": "switch",
-          "zh": "v. 改变；调换；交换；转移；按下开关；转换；开关；开或关（电器）；【化】转变；  n. 开关；改变；转向；转换器；转换；【物】开关"
+          "zh": "v. 改变；调换；交换；转移；按下开关；转换；开关；开或关（电器）；【化】转变；  n. 开关；改变；转向；转换器；转换；【物】开关",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
-          "en": "switch off",
-          "zh": "phr. 关上（电灯、电视等）；断掉（电源）；关（电灯、机器等）"
-        },
-        {
-          "en": "switch on",
-          "zh": "phr. 打开（灯、无线电等）"
+          "en": "switch off/on",
+          "zh": "v. 改变；调换；交换；转移；按下开关；转换；开关；开或关（电器）；【化】转变；  n. 开关；改变；转向；转换器；转换；【物】开关",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "distant",
-          "zh": "adj. 遥远的；远方的；疏远的；心不在焉的；不亲近的；久远的"
+          "zh": "adj. 遥远的；远方的；疏远的；心不在焉的；不亲近的；久远的",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "secure",
-          "zh": "adj. 安全的；稳固的，可靠的；有把握的，确切的；安心的；  v. 使安全；保护；（经过努力）获得；确保；拴牢"
+          "zh": "adj. 安全的；稳固的，可靠的；有把握的，确切的；安心的；  v. 使安全；保护；（经过努力）获得；确保；拴牢",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "knob",
-          "zh": "n. 球形把手，旋钮，圆形突出物；  v. 突出；使有球形突出物；在…上生疖（长瘤）；给（门等）装球形捏手"
+          "zh": "n. 球形把手，旋钮，圆形突出物；  v. 突出；使有球形突出物；在…上生疖（长瘤）；给（门等）装球形捏手",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "appliance",
-          "zh": "n. 家用电器，器具；装置；应用，适用"
+          "zh": "n. 家用电器，器具；装置；应用，适用",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "remote",
-          "zh": "n. 遥控器；  adj. 遥远的；偏远的；关系远的；冷漠的，冷淡的；远程的；微乎其微的；久远的"
+          "zh": "n. 遥控器；  adj. 遥远的；偏远的；关系远的；冷漠的，冷淡的；远程的；微乎其微的；久远的",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "remote control",
-          "zh": "phr. 遥控，遥控装置，遥控操作；遥控器"
+          "zh": "phr. 遥控，遥控装置，遥控操作；遥控器",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "air conditioner",
-          "zh": "n. 空调，空调设备"
+          "zh": "n. 空调，空调设备",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "automatic",
-          "zh": "adj. 无意识的；自动的；自发的；  n. 自动手枪；自动工具"
+          "zh": "adj. 无意识的；自动的；自发的；  n. 自动手枪；自动工具",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "integrated",
-          "zh": "adj. 综合的，完整的，互相协调的"
+          "zh": "adj. 综合的，完整的，互相协调的",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "integrate",
-          "zh": "v. （使）成为一体，（使）合并；完整，健全；（使）加入，融入群体；【计】集成；  adj. 完整的，组合的"
+          "zh": "v. （使）成为一体，（使）合并；完整，健全；（使）加入，融入群体；【计】集成；  adj. 完整的，组合的",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "sensor",
-          "zh": "n. 传感器；敏感元件；探测器"
+          "zh": "n. 传感器；敏感元件；探测器",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "efficient",
-          "zh": "adj. 效率高的；有能力的；能胜任的；有功效的；【计】高效"
+          "zh": "adj. 效率高的；有能力的；能胜任的；有功效的；【计】高效",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "mode",
-          "zh": "n. 模式；方式；风格；【数】众数"
+          "zh": "n. 模式；方式；风格；【数】众数",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "routine",
-          "zh": "n. 常规；正常顺序；例行公事；一套固定舞步（或动作）；惯例，习惯；【计】例程；  adj. 例行的，惯例的；普通的；常规的，日常的，例行公事的"
+          "zh": "n. 常规；正常顺序；例行公事；一套固定舞步（或动作）；惯例，习惯；【计】例程；  adj. 例行的，惯例的；普通的；常规的，日常的，例行公事的",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "daily routine",
-          "zh": "n. 每天的例行公事；日常工作；日常生活"
+          "zh": "n. 每天的例行公事；日常工作；日常生活",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "preference",
-          "zh": "n. 偏爱，喜好；优先（权）；【财】优先（权），偏袒"
+          "zh": "n. 偏爱，喜好；优先（权）；【财】优先（权），偏袒",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "instant",
-          "zh": "n. 瞬间；片刻；  adj. 立即的；即食的；紧急的；速溶的"
+          "zh": "n. 瞬间；片刻；  adj. 立即的；即食的；紧急的；速溶的",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "command",
-          "zh": "v. 命令；掌管，控制；值得，博得；指挥，统率；俯瞰；  n. 指令；命令；控制；掌握"
+          "zh": "v. 命令；掌管，控制；值得，博得；指挥，统率；俯瞰；  n. 指令；命令；控制；掌握",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "obey",
-          "zh": "v. 服从，听从，遵守；【法】遵守，遵照；【化】遵循，遵守；【航】遵守"
+          "zh": "v. 服从，听从，遵守；【法】遵守，遵照；【化】遵循，遵守；【航】遵守",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "warning",
-          "zh": "n. 警告；预兆；预告；警示；警告（又作caution, book）；  adj. 警告的；警告；警示；引以为戒的；  v. 警告（warn的现在分词）"
+          "zh": "n. 警告；预兆；预告；警示；警告（又作caution, book）；  adj. 警告的；警告；警示；引以为戒的；  v. 警告（warn的现在分词）",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "constant",
-          "zh": "n. 常数，恒量；常量；持久不变，始终如一；【计】常量；【化】常量，常数；【数】常数；  adj. 不变的；持续不断的；重复的；始终如一的；经常的；永恒的"
+          "zh": "n. 常数，恒量；常量；持久不变，始终如一；【计】常量；【化】常量，常数；【数】常数；  adj. 不变的；持续不断的；重复的；始终如一的；经常的；永恒的",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "early on",
-          "zh": "phr. 早先；前不久；在初期"
+          "zh": "phr. 早先；前不久；在初期",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "abnormal",
-          "zh": "adj. 反常的；畸形的；不正常的"
+          "zh": "adj. 反常的；畸形的；不正常的",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "critical",
-          "zh": "adj. 批评性的；文艺评论的；爱挑剔的；危急的；重要的；严重的；关键的，决定性的；临界的；【化】临界的"
+          "zh": "adj. 批评性的；文艺评论的；爱挑剔的；危急的；重要的；严重的；关键的，决定性的；临界的；【化】临界的",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "cancer",
-          "zh": "n. 癌症；（迅速蔓延的）恶劣的或危险的事物；毒瘤"
+          "zh": "n. 癌症；（迅速蔓延的）恶劣的或危险的事物；毒瘤",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "potentially",
-          "zh": "adv. 潜在地；可能地"
+          "zh": "adv. 潜在地；可能地",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "potential",
-          "zh": "n. 潜力，潜能；可能性；  adj. 潜在的，可能的"
+          "zh": "n. 潜力，潜能；可能性；  adj. 潜在的，可能的",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "leak",
-          "zh": "v. 漏；泄露；渗漏；透露；【化】泄漏，渗漏；  n. 漏洞；泄漏，裂缝；透露"
+          "zh": "v. 漏；泄露；渗漏；透露；【化】泄漏，渗漏；  n. 漏洞；泄漏，裂缝；透露",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "electrical",
-          "zh": "adj. 电的；电气科学的；用电的"
+          "zh": "adj. 电的；电气科学的；用电的",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "wiring",
-          "zh": "n. 电线线路；布线；线路系统；  v. 动词wire的现在分词形式"
+          "zh": "n. 电线线路；布线；线路系统；  v. 动词wire的现在分词形式",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "wire",
-          "zh": "v. 拍电报；接通电源；给…装电线；将……连接到；  n. 电线，电缆，导线，金属丝，金属线；【物】导线"
+          "zh": "v. 拍电报；接通电源；给…装电线；将……连接到；  n. 电线，电缆，导线，金属丝，金属线；【物】导线",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "detect",
-          "zh": "v. 查明；【财】检测；【化】检测，测定；  vt. 探测；察觉；发现"
+          "zh": "v. 查明；【财】检测；【化】检测，测定；  vt. 探测；察觉；发现",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "relevant",
-          "zh": "adj. 相关的，有关的；正确的，适宜的；贴切的；有意义的；切题的；【法】相关的，有关的；【化】相关的"
+          "zh": "adj. 相关的，有关的；正确的，适宜的；贴切的；有意义的；切题的；【法】相关的，有关的；【化】相关的",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "catch fire",
-          "zh": "phr. 着火，失火"
+          "zh": "phr. 着火，失火",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "fantasy",
-          "zh": "n. 幻想，想象；幻想作品；奇幻小说；  v. 奏幻想曲；想象；幻想；  adj. 虚幻的"
+          "zh": "n. 幻想，想象；幻想作品；奇幻小说；  v. 奏幻想曲；想象；幻想；  adj. 虚幻的",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "innovation",
-          "zh": "n. 创新，革新；新事物，新方法；创造"
+          "zh": "n. 创新，革新；新事物，新方法；创造",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "available",
-          "zh": "adj. 可获得的，可用的；有空的；可找到的；单身的；  phr. 可用的，可得到的，有空的"
+          "zh": "adj. 可获得的，可用的；有空的；可找到的；单身的；  phr. 可用的，可得到的，有空的",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "in this sense",
-          "zh": "phr. 从这种意义上来讲"
+          "zh": "phr. 从这种意义上来讲",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "nevertheless",
-          "zh": "adv. 然而，不过；尽管如此"
+          "zh": "adv. 然而，不过；尽管如此",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "structure",
-          "zh": "v. 赋予……结构，使形成结构；  vt. 精心组织；系统安排；建筑，建造；  n. 结构；构造；建筑物；体系；组织；【化】结构"
+          "zh": "v. 赋予……结构，使形成结构；  vt. 精心组织；系统安排；建筑，建造；  n. 结构；构造；建筑物；体系；组织；【化】结构",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "security",
-          "zh": "n. 安全；保护措施；债券；抵押物；安全工作；保障，保护；安检处；有价证券；安保部门（人员）；【财】证券；【法】担保，保证；证券，抵押品"
+          "zh": "n. 安全；保护措施；债券；抵押物；安全工作；保障，保护；安检处；有价证券；安保部门（人员）；【财】证券；【法】担保，保证；证券，抵押品",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "crime",
-          "zh": "n. 犯罪活动；罪行；违反道德的行为，罪过；  v. 判定犯罪；处罚军事犯"
+          "zh": "n. 犯罪活动；罪行；违反道德的行为，罪过；  v. 判定犯罪；处罚军事犯",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "combine",
-          "zh": "v. 混合，联合；（使）结合；组合；兼具；同时做（两种活动）；  n. 联合体，联合企业；联合收割机（读作/ˈkɑmˌbaɪn/）"
+          "zh": "v. 混合，联合；（使）结合；组合；兼具；同时做（两种活动）；  n. 联合体，联合企业；联合收割机（读作/ˈkɑmˌbaɪn/）",
+          "unit": "Unit 2 Looking into the Future"
+        },
+        {
+          "en": "nanobot",
+          "zh": "",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "artificial",
-          "zh": "adj. 人造的；人为的；假装的，虚伪的；人工的；假的；【财】人造的，假的，虚伪的；  n. 人造肥料"
+          "zh": "adj. 人造的；人为的；假装的，虚伪的；人工的；假的；【财】人造的，假的，虚伪的；  n. 人造肥料",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "artificial intelligence",
-          "zh": "phr. 人工智能"
+          "zh": "phr. 人工智能",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "clone",
-          "zh": "v. 克隆；复制；以无性繁殖技术复制；【计】克隆；  n. 克隆；无性繁殖系个体；复制品；克隆动物(或植物)"
+          "zh": "v. 克隆；复制；以无性繁殖技术复制；【计】克隆；  n. 克隆；无性繁殖系个体；复制品；克隆动物(或植物)",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "predict",
-          "zh": "v. 预言，预告，预测；预料；【化】预测"
+          "zh": "v. 预言，预告，预测；预料；【化】预测",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "prediction",
-          "zh": "n. 预测，预言；【数】预测；【计】预测"
+          "zh": "n. 预测，预言；【数】预测；【计】预测",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "forecast",
-          "zh": "n. 预报；预言；预测；  v. 预报；预测"
+          "zh": "n. 预报；预言；预测；  v. 预报；预测",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "occupation",
-          "zh": "n. 占领，占据；占用，居住；职业，工作；消遣"
+          "zh": "n. 占领，占据；占用，居住；职业，工作；消遣",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "oppose",
-          "zh": "v. 反对；反抗；抵制；【化】阻挠，反对；  vt. 阻挠"
+          "zh": "v. 反对；反抗；抵制；【化】阻挠，反对；  vt. 阻挠",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "hence",
-          "zh": "adv. 因此；由此；  int. <诗>去"
+          "zh": "adv. 因此；由此；  int. <诗>去",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "cease",
-          "zh": "v. 停止，结束；终止；  n. 停止，停息"
+          "zh": "v. 停止，结束；终止；  n. 停止，停息",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "deceased",
-          "zh": "adj. 死去的，死去了的；亡故的"
+          "zh": "adj. 死去的，死去了的；亡故的",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "absence",
-          "zh": "n. 不在，缺席；缺乏"
+          "zh": "n. 不在，缺席；缺乏",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "rural",
-          "zh": "adj. 乡村的，田园的；农村的"
+          "zh": "adj. 乡村的，田园的；农村的",
+          "unit": "Unit 2 Looking into the Future"
+        },
+        {
+          "en": "advocate",
+          "zh": "vt. 提倡；支持；拥护 n. 提倡者；支持者；拥护者",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "emphasis",
-          "zh": "n. 强调；重点；重要性；重视"
+          "zh": "n. 强调；重点；重要性；重视",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "luxury",
-          "zh": "adj. 奢侈的，豪华的；  n. 奢侈，奢华；奢侈品"
+          "zh": "adj. 奢侈的，豪华的；  n. 奢侈，奢华；奢侈品",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
-          "en": "keep in touch with",
-          "zh": "phr. （与……）保持联系；了解"
+          "en": "keep in touch",
+          "zh": "phr. （与……）保持联系；了解",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "career",
-          "zh": "n. 职业，事业；生涯，经历；  vi. 全速前进，猛冲；  vt. 在……中急行"
+          "zh": "n. 职业，事业；生涯，经历；  vi. 全速前进，猛冲；  vt. 在……中急行",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "prospect",
-          "zh": "n. 前景，展望；视野；可能性；景象（读作/ˈprɑˌspɛk(t)/）；希望；  v. 勘察；有前途；勘探；对……进行仔细调查（读作/ˈprɑːspekt/）"
+          "zh": "n. 前景，展望；视野；可能性；景象（读作/ˈprɑˌspɛk(t)/）；希望；  v. 勘察；有前途；勘探；对……进行仔细调查（读作/ˈprɑːspekt/）",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "resist",
-          "zh": "v. 抗拒；抵抗，抵制；反抗；抵挡；耐得住；使不受…的伤害；抗（伤害）"
+          "zh": "v. 抗拒；抵抗，抵制；反抗；抵挡；耐得住；使不受…的伤害；抗（伤害）",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "resistance",
-          "zh": "n. 阻力；抵抗；抵制；抵抗力；电阻；反对；【物】电阻"
+          "zh": "n. 阻力；抵抗；抵制；抵抗力；电阻；反对；【物】电阻",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "paragraph",
-          "zh": "n. （文章的）段，节"
+          "zh": "n. （文章的）段，节",
+          "unit": "Unit 2 Looking into the Future"
         },
         {
           "en": "signpost",
-          "zh": "n. 路标；  v. 设置路标"
+          "zh": "n. 路标；  v. 设置路标",
+          "unit": "Unit 2 Looking into the Future"
+        },
+        {
+          "en": "essay",
+          "zh": "n. 文章，短文；论文；尝试；随笔；  v. 尝试",
+          "unit": "Unit 2 Looking into the Future"
+        },
+        {
+          "en": "accurate",
+          "zh": "adj. 正确的，符合标准的；准确的；精密的；精确的；正确无误的；【化】精确的，准确的；【物】准确的",
+          "unit": "Unit 2 Looking into the Future"
+        },
+        {
+          "en": "librarian",
+          "zh": "n. 图书管理员",
+          "unit": "Unit 2 Looking into the Future"
+        },
+        {
+          "en": "Melbourne",
+          "zh": "",
+          "unit": "Unit 2 Looking into the Future"
+        },
+        {
+          "en": "Christian",
+          "zh": "",
+          "unit": "Unit 2 Looking into the Future"
+        },
+        {
+          "en": "the Amish",
+          "zh": "",
+          "unit": "Unit 2 Looking into the Future"
         }
       ]
     },
@@ -559,272 +805,364 @@
       "name": "Unit 3 Fascinating Parks",
       "words": [
         {
-          "en": "essay",
-          "zh": "n. 文章，短文；论文；尝试；随笔；  v. 尝试"
-        },
-        {
-          "en": "accurate",
-          "zh": "adj. 正确的，符合标准的；准确的；精密的；精确的；正确无误的；【化】精确的，准确的；【物】准确的"
-        },
-        {
-          "en": "librarian",
-          "zh": "n. 图书管理员"
-        },
-        {
           "en": "buffet",
-          "zh": "n. 自助餐；（火车内）餐室，冷餐桌（读作/bəˈfeɪ/）；  v. 打来打去；连续猛击；反复敲打，打击，重击（读作/ˈbʌfɪt/）"
+          "zh": "n. 自助餐；（火车内）餐室，冷餐桌（读作/bəˈfeɪ/）；  v. 打来打去；连续猛击；反复敲打，打击，重击（读作/ˈbʌfɪt/）",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "cloth",
-          "zh": "n. （一块）布；衣料；桌布；织物"
+          "zh": "n. （一块）布；衣料；桌布；织物",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "edge",
-          "zh": "v. （使）徐徐移动；给……开刃，使锐利；给……加边；  n. （悬崖、峭壁的）边缘；边缘；锋利，尖锐；刀口，刀刃；优势；边；边线；【数】边缘，边；【航】边缘"
+          "zh": "v. （使）徐徐移动；给……开刃，使锐利；给……加边；  n. （悬崖、峭壁的）边缘；边缘；锋利，尖锐；刀口，刀刃；优势；边；边线；【数】边缘，边；【航】边缘",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "valley",
-          "zh": "n. 山谷，溪谷，低谷"
+          "zh": "n. 山谷，溪谷，低谷",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "vast",
-          "zh": "adj. 辽阔的；巨大的；庞大的；巨额的；大量的"
+          "zh": "adj. 辽阔的；巨大的；庞大的；巨额的；大量的",
+          "unit": "Unit 3 Fascinating Parks"
+        },
+        {
+          "en": "melt",
+          "zh": "vi.&vt. (使)融化；熔化；软化",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "glacier",
-          "zh": "n. 冰川，冰河"
+          "zh": "n. 冰川，冰河",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "reindeer",
-          "zh": "n. 驯鹿"
+          "zh": "n. 驯鹿",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "territory",
-          "zh": "n. 地区，领土；版图；领域；范围；属地"
+          "zh": "n. 地区，领土；版图；领域；范围；属地",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "ban",
-          "zh": "vt. 明令禁止；取缔；  n. 禁止，禁令"
+          "zh": "vt. 明令禁止；取缔；  n. 禁止，禁令",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "boundary",
-          "zh": "n. 边界，国界；分界；使球越过边界线的击球（得加分）；界限；分界线；球场边界；【财】边界，界限"
+          "zh": "n. 边界，国界；分界；使球越过边界线的击球（得加分）；界限；分界线；球场边界；【财】边界，界限",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "cottage",
-          "zh": "n. 村舍，小屋；小别墅"
+          "zh": "n. 村舍，小屋；小别墅",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "visible",
-          "zh": "adj. 可见的；显然的，明显的；【化】明显的，可见的"
+          "zh": "adj. 可见的；显然的，明显的；【化】明显的，可见的",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "on the move",
-          "zh": "phr. 在移动中；在进展中；在行进中"
+          "zh": "phr. 在移动中；在进展中；在行进中",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "accompany",
-          "zh": "v. 陪伴；为……伴奏（或伴唱）；陪同；伴随"
+          "zh": "v. 陪伴；为……伴奏（或伴唱）；陪同；伴随",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "adopt",
-          "zh": "v. 收养；采纳，采用；采取"
+          "zh": "v. 收养；采纳，采用；采取",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "sour",
-          "zh": "adj. 酸的；（人）尖酸刻薄的，不友好的；有酸味的；  v. （友谊，局势，态度等）变坏；使恶化"
+          "zh": "adj. 酸的；（人）尖酸刻薄的，不友好的；有酸味的；  v. （友谊，局势，态度等）变坏；使恶化",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "set out",
-          "zh": "phr. 出发，启程；开始做；摆放，陈列；（怀着目标）开始工作"
+          "zh": "phr. 出发，启程；开始做；摆放，陈列；（怀着目标）开始工作",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "bless",
-          "zh": "vt. 保佑，祝福，赐福；  vi. 有幸具有"
+          "zh": "vt. 保佑，祝福，赐福；  vi. 有幸具有",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "live off",
-          "zh": "phr. 依赖……生活；以吃……为生"
+          "zh": "phr. 依赖……生活；以吃……为生",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "prohibition",
-          "zh": "n. 禁止；禁令；阻止"
+          "zh": "n. 禁止；禁令；阻止",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "prohibit",
-          "zh": "v. 禁止；阻止"
+          "zh": "v. 禁止；阻止",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "journalist",
-          "zh": "n. 新闻记者；新闻工作者"
+          "zh": "n. 新闻记者；新闻工作者",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "sneeze",
-          "zh": "n. 喷嚏；喷嚏声；  v. 打喷嚏"
+          "zh": "n. 喷嚏；喷嚏声；  v. 打喷嚏",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "teapot",
-          "zh": "n. 茶壶"
+          "zh": "n. 茶壶",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "label",
-          "zh": "v. 把……称为，贴标签于……；用标签标明；  n. 标签；称号；唱片公司；标记；品牌；公司；【化】标签；【计】标签；【数】标签，标记"
+          "zh": "v. 把……称为，贴标签于……；用标签标明；  n. 标签；称号；唱片公司；标记；品牌；公司；【化】标签；【计】标签；【数】标签，标记",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "cream",
-          "zh": "n. 面霜；奶油，乳脂；奶油色；精英；膏；  vt. 凝成乳脂，起泡沫；  adj. 奶油色的，乳白色的；淡黄色的"
+          "zh": "n. 面霜；奶油，乳脂；奶油色；精英；膏；  vt. 凝成乳脂，起泡沫；  adj. 奶油色的，乳白色的；淡黄色的",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "leopard",
-          "zh": "n. 豹"
+          "zh": "n. 豹",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "stretch",
-          "zh": "v. 伸展，延伸，张开；夸大；超越；延续；绵延；  n. 伸展，张开；一段时间；一段路程；（土地或水域的）一片，一段；展开，铺开；  adj. 可伸缩的；弹性的"
+          "zh": "v. 伸展，延伸，张开；夸大；超越；延续；绵延；  n. 伸展，张开；一段时间；一段路程；（土地或水域的）一片，一段；展开，铺开；  adj. 可伸缩的；弹性的",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "rewarding",
-          "zh": "adj. 有报酬的，有回报的；有益的；值得的；有意义的；值得的，有报酬的"
+          "zh": "adj. 有报酬的，有回报的；有益的；值得的；有意义的；值得的，有报酬的",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "bush",
-          "zh": "n. 灌木；灌木丛；矮树丛；  vi. 丛生；灌木般丛生；浓密（或茂密）地生长；生密枝；  vt. 加（金属）衬套于；加套管于；用耙耙平（耕地）；以灌木（或灌木丛）装饰（或覆盖、围绕、围住、支撑、标志、保护等）；  adj. （豆科植物等）如灌木般长得低矮的；粗野的；粗鲁的；粗糙但实用的"
+          "zh": "n. 灌木；灌木丛；矮树丛；  vi. 丛生；灌木般丛生；浓密（或茂密）地生长；生密枝；  vt. 加（金属）衬套于；加套管于；用耙耙平（耕地）；以灌木（或灌木丛）装饰（或覆盖、围绕、围住、支撑、标志、保护等）；  adj. （豆科植物等）如灌木般长得低矮的；粗野的；粗鲁的；粗糙但实用的",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "lung",
-          "zh": "n. 肺；【医】肺"
+          "zh": "n. 肺；【医】肺",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "cycle",
-          "zh": "n. 自行车；周期，循环；摩托车；【计】周期；  v. 骑自行车；循环"
+          "zh": "n. 自行车；周期，循环；摩托车；【计】周期；  v. 骑自行车；循环",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "corridor",
-          "zh": "n. 走廊，回廊，通道；（沿着重要道路或河道的）狭长地带；过道"
+          "zh": "n. 走廊，回廊，通道；（沿着重要道路或河道的）狭长地带；过道",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "pedal",
-          "zh": "n. 踏板；  v. 蹬脚踏板；骑自行车；  adj. 脚踏的"
+          "zh": "n. 踏板；  v. 蹬脚踏板；骑自行车；  adj. 脚踏的",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "fountain",
-          "zh": "n. 泉水，喷泉；源泉；人工喷泉；喷水池；储水容器"
+          "zh": "n. 泉水，喷泉；源泉；人工喷泉；喷水池；储水容器",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "route",
-          "zh": "n. 路线；固定路线；途径；公路；渠道；路途；  v. 按某路线发送；给…规定路线【次序，程序】"
+          "zh": "n. 路线；固定路线；途径；公路；渠道；路途；  v. 按某路线发送；给…规定路线【次序，程序】",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "ahead",
-          "zh": "adv. 领先地；向前；提前；（时间、空间）向前面，在前面；  adj. 在前的，向前的；提前的"
+          "zh": "adv. 领先地；向前；提前；（时间、空间）向前面，在前面；  adj. 在前的，向前的；提前的",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "theme",
-          "zh": "n. 主题；主旨；主旋律；题目；主题思想；  adj. 有特定主题的；  v. 赋予……某种主题"
+          "zh": "n. 主题；主旨；主旋律；题目；主题思想；  adj. 有特定主题的；  v. 赋予……某种主题",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "theme park",
-          "zh": "n. 主题公园"
+          "zh": "n. 主题公园",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "roller coaster",
-          "zh": "n. 过山车"
+          "zh": "n. 过山车",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "incredible",
-          "zh": "adj. 不可相信的；惊人的，不可思议的，难以置信的；极好的，极大的"
+          "zh": "adj. 不可相信的；惊人的，不可思议的，难以置信的；极好的，极大的",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "appeal",
-          "zh": "v. 请求；上诉；有吸引力；呼吁；诉诸；启发，激发；  n. 呼吁；吸引力；请求； 筹款努力；上诉"
+          "zh": "v. 请求；上诉；有吸引力；呼吁；诉诸；启发，激发；  n. 呼吁；吸引力；请求； 筹款努力；上诉",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "appeal to",
-          "zh": "phr. （对某人）有吸引力，（使某人）感兴趣；有感染力；呼吁；上诉；打动；【法】上诉"
+          "zh": "phr. （对某人）有吸引力，（使某人）感兴趣；有感染力；呼吁；上诉；打动；【法】上诉",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "pirate",
-          "zh": "n. 海盗；剽窃者；  v. 窃用；盗印"
+          "zh": "n. 海盗；剽窃者；  v. 窃用；盗印",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "adorable",
-          "zh": "adj. 可爱的；值得崇敬的；讨人喜爱的"
+          "zh": "adj. 可爱的；值得崇敬的；讨人喜爱的",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "wander",
-          "zh": "v. 闲逛，漫步；徘徊；蜿蜒；迷路；离题；走失；走神；离散；漫游；漂泊；  n. 闲逛，漫步；游荡；失散；流浪；徘徊"
+          "zh": "v. 闲逛，漫步；徘徊；蜿蜒；迷路；离题；走失；走神；离散；漫游；漂泊；  n. 闲逛，漫步；游荡；失散；流浪；徘徊",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "amusement",
-          "zh": "n. 娱乐；消遣；乐趣；愉悦；娱乐活动"
+          "zh": "n. 娱乐；消遣；乐趣；愉悦；娱乐活动",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "amuse",
-          "zh": "v. 使人发笑；（提供）娱乐，消遣；逗乐；娱乐"
+          "zh": "v. 使人发笑；（提供）娱乐，消遣；逗乐；娱乐",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "enormous",
-          "zh": "adj. （范围、程度）极大的；巨大的；庞大的"
+          "zh": "adj. （范围、程度）极大的；巨大的；庞大的",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "swing",
-          "zh": "v. 摇荡，摆动；突然转向；使摇摆，使转动，使转向；转弯；朝……打去；荡秋千；  n. 秋千；摇摆，摆幅；转弯；击打；挥动，挥舞"
+          "zh": "v. 摇荡，摆动；突然转向；使摇摆，使转动，使转向；转弯；朝……打去；荡秋千；  n. 秋千；摇摆，摆幅；转弯；击打；挥动，挥舞",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "iron",
-          "zh": "v. 熨烫（衣物）；烫平；  n. 铁；熨斗；铸铁；【物】铁；铁，铁元素；  adj. 铁的；刚强的；严酷的"
+          "zh": "v. 熨烫（衣物）；烫平；  n. 铁；熨斗；铸铁；【物】铁；铁，铁元素；  adj. 铁的；刚强的；严酷的",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "fashion",
-          "zh": "n. 时髦，风尚；时装；方式；时兴；流行款式；时尚，流行；  v. 制作，塑造；形成，制定"
+          "zh": "n. 时髦，风尚；时装；方式；时兴；流行款式；时尚，流行；  v. 制作，塑造；形成，制定",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "rare",
-          "zh": "adj. 罕见的，难得的；（肉）半熟的；不寻常的；美好的；珍贵的；稀少的，稀有的"
+          "zh": "adj. 罕见的，难得的；（肉）半熟的；不寻常的；美好的；珍贵的；稀少的，稀有的",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "steam",
-          "zh": "n. 蒸汽，水蒸气；轮船；蒸汽动力；  v. 冒水汽，冒热气；蒸；快速行进；蒸发；散发蒸汽"
+          "zh": "n. 蒸汽，水蒸气；轮船；蒸汽动力；  v. 冒水汽，冒热气；蒸；快速行进；蒸发；散发蒸汽",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "superb",
-          "zh": "adj. 极好的；壮丽的；卓越的"
+          "zh": "adj. 极好的；壮丽的；卓越的",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "aquarium",
-          "zh": "n. 水族馆，水族箱，鱼缸；水族馆，鱼缸"
+          "zh": "n. 水族馆，水族箱，鱼缸；水族馆，鱼缸",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "up to",
-          "zh": "phr. 到（某个数量）；直到；不多于；（体力或智力上）能胜任"
+          "zh": "phr. 到（某个数量）；直到；不多于；（体力或智力上）能胜任",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "polar",
-          "zh": "adj. 极地的；南极的，北极的；截然对立的，正好相反的；磁极的"
+          "zh": "adj. 极地的；南极的，北极的；截然对立的，正好相反的；磁极的",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "upside down",
-          "zh": "phr. 颠倒，混乱，翻转"
+          "zh": "phr. 颠倒，混乱，翻转",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "splendid",
-          "zh": "adj. 壮观的，辉煌的，华丽的；极好的，出色的；雄伟的"
+          "zh": "adj. 壮观的，辉煌的，华丽的；极好的，出色的；雄伟的",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "display",
-          "zh": "v. 展示；显示；陈列；【化】展示，显示；  n. 表现，流露；显示；陈列；展示；展览；展览品；显示器；【航】显示器"
+          "zh": "v. 展示；显示；陈列；【化】展示，显示；  n. 表现，流露；显示；陈列；展示；展览；展览品；显示器；【航】显示器",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "appetite",
-          "zh": "n. 食欲；强烈欲望；嗜好；需求"
+          "zh": "n. 食欲；强烈欲望；嗜好；需求",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "entertainment",
-          "zh": "n. 娱乐；招待，款待；文娱节目"
+          "zh": "n. 娱乐；招待，款待；文娱节目",
+          "unit": "Unit 3 Fascinating Parks"
         },
         {
           "en": "column",
-          "zh": "n. 柱，支柱，圆柱；栏，专栏；长队；列；【财】列；【计】列；【数】列"
+          "zh": "n. 柱，支柱，圆柱；栏，专栏；长队；列；【财】列；【计】列；【数】列",
+          "unit": "Unit 3 Fascinating Parks"
+        },
+        {
+          "en": "Sami",
+          "zh": "",
+          "unit": "Unit 3 Fascinating Parks"
+        },
+        {
+          "en": "Sarek National Park",
+          "zh": "",
+          "unit": "Unit 3 Fascinating Parks"
+        },
+        {
+          "en": "Sweden",
+          "zh": "",
+          "unit": "Unit 3 Fascinating Parks"
+        },
+        {
+          "en": "the Arctic Circle",
+          "zh": "",
+          "unit": "Unit 3 Fascinating Parks"
+        },
+        {
+          "en": "Rapa River",
+          "zh": "",
+          "unit": "Unit 3 Fascinating Parks"
+        },
+        {
+          "en": "Siberian",
+          "zh": "",
+          "unit": "Unit 3 Fascinating Parks"
+        },
+        {
+          "en": "Dollywood",
+          "zh": "",
+          "unit": "Unit 3 Fascinating Parks"
         }
       ]
     },
@@ -833,271 +1171,363 @@
       "words": [
         {
           "en": "interaction",
-          "zh": "n. 互动；相互作用，相互影响；交流"
+          "zh": "n. 互动；相互作用，相互影响；交流",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "vary",
-          "zh": "v. 相异；（根据情况）变化；使多样化；改变"
+          "zh": "v. 相异；（根据情况）变化；使多样化；改变",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "appropriate",
-          "zh": "v. 挪用；拨款；私占（读作/əˈprəʊprieɪt/）；  adj. 合适的，适当的（读作/əˈprəʊpriət/）；【化】适当的，恰当的"
+          "zh": "v. 挪用；拨款；私占（读作/əˈprəʊprieɪt/）；  adj. 合适的，适当的（读作/əˈprəʊpriət/）；【化】适当的，恰当的",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "by contrast",
-          "zh": "phr. 相比之下；相反"
+          "zh": "phr. 相比之下；相反",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "approve",
-          "zh": "v. 批准，称许；批准；赞成；满意；同意；通过"
+          "zh": "v. 批准，称许；批准；赞成；满意；同意；通过",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "demonstrate",
-          "zh": "v. （用实例、实验）论证；演示，展示；示范；示威；表现，表达；说明"
+          "zh": "v. （用实例、实验）论证；演示，展示；示范；示威；表现，表达；说明",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "gesture",
-          "zh": "n. 手势，姿势；姿态；(外交等方面的)姿态，表示；  v. 做手势，用动作示意"
+          "zh": "n. 手势，姿势；姿态；(外交等方面的)姿态，表示；  v. 做手势，用动作示意",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "witness",
-          "zh": "v. 目击，亲眼看见；为……作证；见证；  n. 目击者；证人；证据，证言"
+          "zh": "v. 目击，亲眼看见；为……作证；见证；  n. 目击者；证人；证据，证言",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "employ",
-          "zh": "vt. 雇用；使忙于，使从事；使用；应用；  n. 受雇；使用；职业；雇用，受雇；服务"
+          "zh": "vt. 雇用；使忙于，使从事；使用；应用；  n. 受雇；使用；职业；雇用，受雇；服务",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "identical",
-          "zh": "n. 完全相同的事物；  adj. 相同的，同一的；一模一样的；(双胞胎)同卵的；【计】一致；【化】相同的"
+          "zh": "n. 完全相同的事物；  adj. 相同的，同一的；一模一样的；(双胞胎)同卵的；【计】一致；【化】相同的",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "interpret",
-          "zh": "v. 口译；解释；【计】解释；  vt. 把……理解（解释）为"
+          "zh": "v. 口译；解释；【计】解释；  vt. 把……理解（解释）为",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "differ",
-          "zh": "vi. 相异，不同于；不同意；有异议"
+          "zh": "vi. 相异，不同于；不同意；有异议",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "by comparison",
-          "zh": "phr. （与……）相比较；比较起来"
+          "zh": "phr. （与……）相比较；比较起来",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "cheek",
-          "zh": "vt. （口语）无礼地说；  n. 面颊，脸蛋；脸颊"
+          "zh": "vt. （口语）无礼地说；  n. 面颊，脸蛋；脸颊",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "favour",
-          "zh": "n. 帮助，恩惠，好事；赞同；偏爱；善意的行为；  v. 偏爱，较喜欢；选择；有利于"
+          "zh": "n. 帮助，恩惠，好事；赞同；偏爱；善意的行为；  v. 偏爱，较喜欢；选择；有利于",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "bow",
-          "zh": "vi. 鞠躬，弯腰；点头，垂首；  vt. 低（头）；  v. 使弯曲，屈从（读作/baʊ/）；  n. 鞠躬；弓；蝴蝶结；船头（读作/boʊ/）"
+          "zh": "vi. 鞠躬，弯腰；点头，垂首；  vt. 低（头）；  v. 使弯曲，屈从（读作/baʊ/）；  n. 鞠躬；弓；蝴蝶结；船头（读作/boʊ/）",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "waist",
-          "zh": "n. 腰"
+          "zh": "n. 腰",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "make inferences",
-          "zh": "phr. 推断；推理"
+          "zh": "phr. 推断；推理",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "break down",
-          "zh": "phr. （机器等）发生故障，抛锚；失败；（精神）垮下来；分解；消除；打破；（谈判等）失败，分解"
+          "zh": "phr. （机器等）发生故障，抛锚；失败；（精神）垮下来；分解；消除；打破；（谈判等）失败，分解",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "barrier",
-          "zh": "n. 障碍；隔阂；壁垒；障碍物；栅栏；界线；障碍，壁垒"
+          "zh": "n. 障碍；隔阂；壁垒；障碍物；栅栏；界线；障碍，壁垒",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "fake",
-          "zh": "v. 假造，杜撰；伪造；冒充，假装；假装；  n. 骗子；假货，赝品；  adj. 假的，假装的，冒充的"
+          "zh": "v. 假造，杜撰；伪造；冒充，假装；假装；  n. 骗子；假货，赝品；  adj. 假的，假装的，冒充的",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "anger",
-          "zh": "n. 怒气；愤怒；  vt. 激怒，使生气"
+          "zh": "n. 怒气；愤怒；  vt. 激怒，使生气",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "reliable",
-          "zh": "n. 可靠的人；  adj. 可靠的，可信赖的；真实可信的"
+          "zh": "n. 可靠的人；  adj. 可靠的，可信赖的；真实可信的",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "incident",
-          "zh": "n. 事件；事故，严重事件；事变，（军事）冲突；【财】事件，事变；【航】事件；  adj. 【法】附带的；【光】入射的；易发生的，伴随而来的"
+          "zh": "n. 事件；事故，严重事件；事变，（军事）冲突；【财】事件，事变；【航】事件；  adj. 【法】附带的；【光】入射的；易发生的，伴随而来的",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "trial",
-          "zh": "v. 审讯，审判，试验，试用；  n. 审判，审讯；试验；试用；考验；预赛；试验，测试；【化】试验，实验；  adj. 试验的，试验性的；考验的；审判的"
+          "zh": "v. 审讯，审判，试验，试用；  n. 审判，审讯；试验；试用；考验；预赛；试验，测试；【化】试验，实验；  adj. 试验的，试验性的；考验的；审判的",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "slight",
-          "zh": "adj. 轻微的，微小的；略微的，细小的；纤细的，瘦弱的；少量的；细长的；脆弱的；  n. 轻视，蔑视；  vt. 轻视，忽略"
+          "zh": "adj. 轻微的，微小的；略微的，细小的；纤细的，瘦弱的；少量的；细长的；脆弱的；  n. 轻视，蔑视；  vt. 轻视，忽略",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "slightly",
-          "zh": "adv. 稍微，轻微地；纤细地；略微；轻微地"
+          "zh": "adv. 稍微，轻微地；纤细地；略微；轻微地",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "twin",
-          "zh": "adj. 孪生的；双胞胎之一的；成双的；  n. 孪生儿；双胞胎之一"
+          "zh": "adj. 孪生的；双胞胎之一的；成双的；  n. 孪生儿；双胞胎之一",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "nonverbal",
-          "zh": "adj. 不使用动词的；不使用语言的；不涉及言语的，非言语的"
+          "zh": "adj. 不使用动词的；不使用语言的；不涉及言语的，非言语的",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "assessment",
-          "zh": "n. 评估，估价；评价；评定；【化】评估，测定"
+          "zh": "n. 评估，估价；评价；评定；【化】评估，测定",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "assess",
-          "zh": "vt. 评估；估值；评价；计算， 估计"
+          "zh": "vt. 评估；估值；评价；计算， 估计",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "internal",
-          "zh": "adj. 体内的，内部的；里面的；国内的；内在的；内心的；【计】内部的；  n. 内部器官"
+          "zh": "adj. 体内的，内部的；里面的；国内的；内在的；内心的；【计】内部的；  n. 内部器官",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "straighten up",
-          "zh": "phr. 使整齐；整理，直起来"
+          "zh": "phr. 使整齐；整理，直起来",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "slump",
-          "zh": "v. 突然倒下；暴跌；  vi. 垂头弯腰地走（或坐等）；  n. 下降；经济萧条时期"
+          "zh": "v. 突然倒下；暴跌；  vi. 垂头弯腰地走（或坐等）；  n. 下降；经济萧条时期",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "pose",
-          "zh": "n. 姿势；装腔作势，伪装；  vi. 摆造型；  vt. 引起，导致，造成；主张，提出；假扮，冒充"
+          "zh": "n. 姿势；装腔作势，伪装；  vi. 摆造型；  vt. 引起，导致，造成；主张，提出；假扮，冒充",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "bend",
-          "zh": "v. （使）弯曲；（使）改变（主意）；使屈服；倾斜；偏向；弯曲；  n. （复数形式）减压症；弯曲，弯曲处；倾向，屈服"
+          "zh": "v. （使）弯曲；（使）改变（主意）；使屈服；倾斜；偏向；弯曲；  n. （复数形式）减压症；弯曲，弯曲处；倾向，屈服",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "reveal",
-          "zh": "vt. 揭示；透露；显示；  v. 露出，展示"
+          "zh": "vt. 揭示；透露；显示；  v. 露出，展示",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "clarify",
-          "zh": "v. 阐明，澄清；净化；澄清"
+          "zh": "v. 阐明，澄清；净化；澄清",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "in other words",
-          "zh": "phr. 换句话说；也就是说"
+          "zh": "phr. 换句话说；也就是说",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "educator",
-          "zh": "n. 教育家，教育者，教师；教育学家"
+          "zh": "n. 教育家，教育者，教师；教育学家",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "tick",
-          "zh": "v. 用勾作为记号；发出滴答声；出租车打表计费；  n. 勾号；（钟表）滴答声；一刹那；蜱虫"
+          "zh": "v. 用勾作为记号；发出滴答声；出租车打表计费；  n. 勾号；（钟表）滴答声；一刹那；蜱虫",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "tendency",
-          "zh": "n. 趋向，趋势，倾向；癖好，意向；派别"
+          "zh": "n. 趋向，趋势，倾向；癖好，意向；派别",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "lower",
-          "zh": "v. 降低，减少；（缓缓）放下；【航】降低；  adj. 下方的，底部的；较低级的；（数字或数量）较小的"
+          "zh": "v. 降低，减少；（缓缓）放下；【航】降低；  adj. 下方的，底部的；较低级的；（数字或数量）较小的",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "imply",
-          "zh": "vt. 暗示；暗指；意味着；表明"
+          "zh": "vt. 暗示；暗指；意味着；表明",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "barely",
-          "zh": "adv. 几乎不；仅仅； 刚好，不超过；勉强才能"
+          "zh": "adv. 几乎不；仅仅； 刚好，不超过；勉强才能",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "chin",
-          "zh": "v. 用下巴夹住；聊天；作引体向上动作；  n. 颏；下巴"
+          "zh": "v. 用下巴夹住；聊天；作引体向上动作；  n. 颏；下巴",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "occupy",
-          "zh": "v. 占据，占领；占用（时间、空间等）；使用，居住（房屋、建筑）；任职，执政；居住；【化】占据"
+          "zh": "v. 占据，占领；占用（时间、空间等）；使用，居住（房屋、建筑）；任职，执政；居住；【化】占据",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "stare",
-          "zh": "v. 盯，凝视；  n. 注视"
+          "zh": "v. 盯，凝视；  n. 注视",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "ceiling",
-          "zh": "n. 天花板；屋顶；上限"
+          "zh": "n. 天花板；屋顶；上限",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "distract",
-          "zh": "vt. 使分心；打扰"
+          "zh": "vt. 使分心；打扰",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "perceive",
-          "zh": "v. 意识到；看待，理解；感知，察觉；认为，认知"
+          "zh": "v. 意识到；看待，理解；感知，察觉；认为，认知",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "distinguish",
-          "zh": "v. 区别，识别；使显著；辨别；【财】区分；【化】区分，辨别"
+          "zh": "v. 区别，识别；使显著；辨别；【财】区分；【化】区分，辨别",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "anxiety",
-          "zh": "n. 焦虑；忧虑；担心；害怕；渴望，热望"
+          "zh": "n. 焦虑；忧虑；担心；害怕；渴望，热望",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "chest",
-          "zh": "v. 胸部传球；  n. 胸膛，胸部；箱子；胸部"
+          "zh": "v. 胸部传球；  n. 胸膛，胸部；箱子；胸部",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "embarrassed",
-          "zh": "adj. 尴尬的，窘迫的，觉得难堪的"
+          "zh": "adj. 尴尬的，窘迫的，觉得难堪的",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "ashamed",
-          "zh": "adj. 羞耻的；害臊的；感到惭愧的；难为情的；内疚的"
+          "zh": "adj. 羞耻的；害臊的；感到惭愧的；难为情的；内疚的",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "merely",
-          "zh": "adv. 只是，仅仅，只不过"
+          "zh": "adv. 只是，仅仅，只不过",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "call on",
-          "zh": "phr. 要求（某人讲话等）；拜访；正式邀请；号召"
+          "zh": "phr. 要求（某人讲话等）；拜访；正式邀请；号召",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "bother",
-          "zh": "v. 打扰，因……操心；麻烦；费心，费时；(使)担心，(使)生气，(使)苦恼；  n. 麻烦；不便；烦恼，焦急"
+          "zh": "v. 打扰，因……操心；麻烦；费心，费时；(使)担心，(使)生气，(使)苦恼；  n. 麻烦；不便；烦恼，焦急",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "weep",
-          "zh": "v. 哭泣，流泪；（伤口）化脓；  n. 哭泣"
+          "zh": "v. 哭泣，流泪；（伤口）化脓；  n. 哭泣",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "at work",
-          "zh": "phr. 在工作；有某种影响"
+          "zh": "phr. 在工作；有某种影响",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "conflict",
-          "zh": "n. 冲突，争执，矛盾；战斗（读作/ˈkɑnˌflɪkt/）；  vi. 冲突，抵触（读作/kənˈflɪkt/）"
+          "zh": "n. 冲突，争执，矛盾；战斗（读作/ˈkɑnˌflɪkt/）；  vi. 冲突，抵触（读作/kənˈflɪkt/）",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "inquire",
-          "zh": "v. 打听，询问；调查"
+          "zh": "v. 打听，询问；调查",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "ultimately",
-          "zh": "adv. 最终，最后；根本上"
-        },
-        {
-          "en": "intervene",
-          "zh": "vi. 介入，调停；干预，阻挠；  v. 干扰；插嘴，打断(别人的话)"
+          "zh": "adv. 最终，最后；根本上",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "adjust",
-          "zh": "v. 调整，调节；校正；适应；（使）习惯；【化】调节，调整；【航】调整"
+          "zh": "v. 调整，调节；校正；适应；（使）习惯；【化】调节，调整；【航】调整",
+          "unit": "Unit 4 Body Language"
+        },
+        {
+          "en": "intervene",
+          "zh": "vi. 介入，调停；干预，阻挠；  v. 干扰；插嘴，打断(别人的话)",
+          "unit": "Unit 4 Body Language"
         },
         {
           "en": "react",
-          "zh": "vi. 起反应，对……做出反应；（对食物等）有不良反应；起化学反应；  v. 回应"
+          "zh": "vi. 起反应，对……做出反应；（对食物等）有不良反应；起化学反应；  v. 回应",
+          "unit": "Unit 4 Body Language"
+        },
+        {
+          "en": "component",
+          "zh": "n. 零件，组成部分；【计】组件；【物】分量；  adj. 组成的",
+          "unit": "Unit 4 Body Language"
+        },
+        {
+          "en": "tone",
+          "zh": "vi. 给……上色；  vt. 使更健壮；  n. 语气；语调；色调；腔调；口吻；（尤指肌肉的）坚实，结实；语气，音调",
+          "unit": "Unit 4 Body Language"
+        },
+        {
+          "en": "Brazil",
+          "zh": "",
+          "unit": "Unit 4 Body Language"
+        },
+        {
+          "en": "Bulgaria",
+          "zh": "",
+          "unit": "Unit 4 Body Language"
+        },
+        {
+          "en": "Albania",
+          "zh": "",
+          "unit": "Unit 4 Body Language"
         }
       ]
     },
@@ -1105,272 +1535,349 @@
       "name": "Unit 5 Working the Land",
       "words": [
         {
-          "en": "component",
-          "zh": "n. 零件，组成部分；【计】组件；【物】分量；  adj. 组成的"
-        },
-        {
-          "en": "tone",
-          "zh": "vi. 给……上色；  vt. 使更健壮；  n. 语气；语调；色调；腔调；口吻；（尤指肌肉的）坚实，结实；语气，音调"
-        },
-        {
           "en": "hybrid",
-          "zh": "n. 杂交植（动）物；混血儿；混合物，合成物；混合动力车；杂交品种（家猫与野外品种杂交而来）；杂交品种；  adj. 混合的；杂种的；杂交的；【财】混合的；【生】混合的，杂交的"
+          "zh": "n. 杂交植（动）物；混血儿；混合物，合成物；混合动力车；杂交品种（家猫与野外品种杂交而来）；杂交品种；  adj. 混合的；杂种的；杂交的；【财】混合的；【生】混合的，杂交的",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "devote",
-          "zh": "vt. 献身于，专心致力于，把……专用于"
+          "zh": "vt. 献身于，专心致力于，把……专用于",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "devote...to",
-          "zh": "phr. 献身；把……用于；致力于"
+          "zh": "phr. 献身；把……用于；致力于",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "shortage",
-          "zh": "n. 短缺，不足，缺少"
+          "zh": "n. 短缺，不足，缺少",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "tackle",
-          "zh": "v. 对付，处理，解决（难题）；（足球等比赛中）阻截；  n. 阻截；钓具；滑轮（组）"
+          "zh": "v. 对付，处理，解决（难题）；（足球等比赛中）阻截；  n. 阻截；钓具；滑轮（组）",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "crisis",
-          "zh": "n. 危机；危急关头，存亡之际"
+          "zh": "n. 危机；危急关头，存亡之际",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "boost",
-          "zh": "vt. 使增长，使兴旺；促进，推动；  v. 偷盗；  n. 提高，增长；激励；推动；助推发动机"
+          "zh": "vt. 使增长，使兴旺；促进，推动；  v. 偷盗；  n. 提高，增长；激励；推动；助推发动机",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "yield",
-          "zh": "vt. 出产（作物）；产生（收益、效益等）；获得；  vi. 屈服；让步；弯曲；让行；  n. 收益；产量；产出"
+          "zh": "vt. 出产（作物）；产生（收益、效益等）；获得；  vi. 屈服；让步；弯曲；让行；  n. 收益；产量；产出",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "convince",
-          "zh": "v. 说服；使确信，使相信；使信服"
+          "zh": "v. 说服；使确信，使相信；使信服",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "characteristic",
-          "zh": "n. 特点，特征，特色；品质；  adj. 典型的；独特的；特有的；【化】独特的"
+          "zh": "n. 特点，特征，特色；品质；  adj. 典型的；独特的；特有的；【化】独特的",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "attain",
-          "zh": "vt. 获得，得到；达到（某种状态或情况）；实现；  n. 成就"
+          "zh": "vt. 获得，得到；达到（某种状态或情况）；实现；  n. 成就",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "conventional",
-          "zh": "adj. 普通的，常规的；传统的，惯用的；（武器、战争）非核的，常规的 ；【化】传统的，常规的"
+          "zh": "adj. 普通的，常规的；传统的，惯用的；（武器、战争）非核的，常规的 ；【化】传统的，常规的",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "pollinate",
-          "zh": "vt. 授粉，传花粉给……"
+          "zh": "vt. 授粉，传花粉给……",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "assumption",
-          "zh": "n. 假定，设想；采取；（责任的）承担；（权利的）获得；设定；【化】假设，假定"
+          "zh": "n. 假定，设想；采取；（责任的）承担；（权利的）获得；设定；【化】假设，假定",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "intense",
-          "zh": "adj. 强烈的，激烈的；紧张的；认真的；热情的，热切的；极度的；【化】剧烈的，浓烈的"
+          "zh": "adj. 强烈的，激烈的；紧张的；认真的；热情的，热切的；极度的；【化】剧烈的，浓烈的",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "overcome",
-          "zh": "v. 【化】克服；  vt. 克服；解决；战胜；压倒"
+          "zh": "v. 【化】克服；  vt. 克服；解决；战胜；压倒",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "expand",
-          "zh": "v. 膨胀；增加；扩大；详细展开；扩展，发展（业务）"
+          "zh": "v. 膨胀；增加；扩大；详细展开；扩展，发展（业务）",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "output",
-          "zh": "v. 【数】输出；  vt. 输出；生产，制造；  n. 产量；输出；输出量；输出功率；输出端；作品；产出"
+          "zh": "v. 【数】输出；  vt. 输出；生产，制造；  n. 产量；输出；输出量；输出功率；输出端；作品；产出",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "estimate",
-          "zh": "v. 估价，估计；评价，判断；【化】估计，预测；【物】估计；【数】估计；  n. 估价，估计；评价，看法；【航】估计"
+          "zh": "v. 估价，估计；评价，判断；【化】估计，预测；【物】估计；【数】估计；  n. 估价，估计；评价，看法；【航】估计",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "domestic",
-          "zh": "adj. 国产的；国内的；家庭的；家用的；家养的，驯养的；家务的；  n. 家仆；家庭纷争"
+          "zh": "adj. 国产的；国内的；家庭的；家用的；家养的，驯养的；家务的；  n. 家仆；家庭纷争",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "consumption",
-          "zh": "n. 消耗，消耗量，消费；肺痨"
+          "zh": "n. 消耗，消耗量，消费；肺痨",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "comprise",
-          "zh": "vt. 包含，包括；构成，由……组成"
+          "zh": "vt. 包含，包括；构成，由……组成",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "be comprised of",
-          "zh": "phr. 由……组成（或构成）；包含，包括"
+          "zh": "phr. 由……组成（或构成）；包含，包括",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "generate",
-          "zh": "v. 产生（热、电等能量）；引起，造成，创造；【计】生成；【化】生成，产生"
+          "zh": "v. 产生（热、电等能量）；引起，造成，创造；【计】生成；【化】生成，产生",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "strain",
-          "zh": "v. 拉紧；劳累；过度使用；扭伤；努力做；【生】拉紧，扭伤；  n. 负担，压力；紧张；拉力；拉伤；（生物体）品种，种类；血缘；【物】拉力"
+          "zh": "v. 拉紧；劳累；过度使用；扭伤；努力做；【生】拉紧，扭伤；  n. 负担，压力；紧张；拉力；拉伤；（生物体）品种，种类；血缘；【物】拉力",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "leisure",
-          "zh": "n. 闲暇，休闲；休闲（产业）；  adj. 空闲的"
+          "zh": "n. 闲暇，休闲；休闲（产业）；  adj. 空闲的",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "deep down",
-          "zh": "phr. 在内心深处；本质上；实际上"
+          "zh": "phr. 在内心深处；本质上；实际上",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "soil",
-          "zh": "n. 泥土，土壤；国土，领土；  vt. 弄脏；污损"
+          "zh": "n. 泥土，土壤；国土，领土；  vt. 弄脏；污损",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "celebrity",
-          "zh": "n. 名人，名流；名望，名誉"
+          "zh": "n. 名人，名流；名望，名誉",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "envision",
-          "zh": "vt. 预测，想象，展望"
+          "zh": "vt. 预测，想象，展望",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "sorghum",
-          "zh": "n. 高粱，高粱米"
+          "zh": "n. 高粱，高粱米",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "broom",
-          "zh": "n. 扫把，扫帚；金雀花"
+          "zh": "n. 扫把，扫帚；金雀花",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "grain",
-          "zh": "n. 谷物，谷粒；颗粒；一点儿；纹理；质感；  v. 使成粒状"
+          "zh": "n. 谷物，谷粒；颗粒；一点儿；纹理；质感；  v. 使成粒状",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "vision",
-          "zh": "n. 视力；视野；构想，展望；视觉；想象；洞察；影像；憧憬；眼力；  v. 幻想，设想"
+          "zh": "n. 视力；视野；构想，展望；视觉；想象；洞察；影像；憧憬；眼力；  v. 幻想，设想",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "reality",
-          "zh": "n. 现实，实际；事实；真实"
+          "zh": "n. 现实，实际；事实；真实",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "salty",
-          "zh": "adj. 含盐的，咸的，咸味的；辛辣的；粗俗的；海洋的"
+          "zh": "adj. 含盐的，咸的，咸味的；辛辣的；粗俗的；海洋的",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "urban",
-          "zh": "adj. 城市的，城镇的，都市的"
+          "zh": "adj. 城市的，城镇的，都市的",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "bomb",
-          "zh": "n. 炸弹；  vt. 轰炸，投弹于……"
+          "zh": "n. 炸弹；  vt. 轰炸，投弹于……",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "tunnel",
-          "zh": "n. 隧道，地道，地下通道；  v. 挖地道"
+          "zh": "n. 隧道，地道，地下通道；  v. 挖地道",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "extension",
-          "zh": "n. （建筑物的）扩建部分；延期；扩展；扩大，延长；电话分机；延长（或扩大）的事物；【法】合同期限的延展；【物】延伸"
+          "zh": "n. （建筑物的）扩建部分；延期；扩展；扩大，延长；电话分机；延长（或扩大）的事物；【法】合同期限的延展；【物】延伸",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "chemical",
-          "zh": "n. 化学品，化学物质；毒品；  adj. 化学的，与化学有关的；化学品组成的；【化】化学的"
+          "zh": "n. 化学品，化学物质；毒品；  adj. 化学的，与化学有关的；化学品组成的；【化】化学的",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "wheat",
-          "zh": "n. 小麦；小麦籽；小麦色"
+          "zh": "n. 小麦；小麦籽；小麦色",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "flavour",
-          "zh": "n. 味道；调味品；特色；特点；  vt. 给…调味，给…增添风趣"
+          "zh": "n. 味道；调味品；特色；特点；  vt. 给…调味，给…增添风趣",
+          "unit": "Unit 5 Working the Land"
         },
         {
-          "en": "fertilizer",
-          "zh": "n. 肥料，化肥"
+          "en": "fertiliser",
+          "zh": "n. 肥料，化肥",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "nutritional",
-          "zh": "adj. 营养的；滋养的"
+          "zh": "adj. 营养的；滋养的",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "nutritious",
-          "zh": "adj. 有营养的，滋养的，营养丰富的"
+          "zh": "adj. 有营养的，滋养的，营养丰富的",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "nutrition",
-          "zh": "n. 营养；营养学；滋养"
+          "zh": "n. 营养；营养学；滋养",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "alleviate",
-          "zh": "vt. 减轻；缓解；  v. 缓和"
+          "zh": "vt. 减轻；缓解；  v. 缓和",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "poverty",
-          "zh": "n. 贫困，贫穷；贫乏"
+          "zh": "n. 贫困，贫穷；贫乏",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "organic",
-          "zh": "adj. 有机的；不使用化肥的；有机物的；器官的；自然的，逐渐演进的；  n. 有机物质"
+          "zh": "adj. 有机的；不使用化肥的；有机物的；器官的；自然的，逐渐演进的；  n. 有机物质",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "pesticide",
-          "zh": "n. 杀虫剂，除害药物；农药；【医】农药；【化】农药"
+          "zh": "n. 杀虫剂，除害药物；农药；【医】农药；【化】农药",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "widespread",
-          "zh": "adj. 分布广的；普遍的，广泛的"
+          "zh": "adj. 分布广的；普遍的，广泛的",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "bacterium",
-          "zh": "n. 细菌"
+          "zh": "n. 细菌",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "in turn",
-          "zh": "phr. 依次；轮流；相应地；反过来，转而"
+          "zh": "phr. 依次；轮流；相应地；反过来，转而",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "digest",
-          "zh": "v. 消化；领会，理解（读作/daɪˈdʒest/）；  n. 文摘；摘要（读作/ˈdaɪˌdʒest/）；分解物"
+          "zh": "v. 消化；领会，理解（读作/daɪˈdʒest/）；  n. 文摘；摘要（读作/ˈdaɪˌdʒest/）；分解物",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "essential",
-          "zh": "n. 要素；必需品；  adj. 必不可少的，极其重要的；本质的；基本的；【航】必不可少的，至关重要的"
+          "zh": "n. 要素；必需品；  adj. 必不可少的，极其重要的；本质的；基本的；【航】必不可少的，至关重要的",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "mineral",
-          "zh": "adj. 矿物的；  n. 矿物，矿物质；矿产；矿物质"
+          "zh": "adj. 矿物的；  n. 矿物，矿物质；矿产；矿物质",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "alternative",
-          "zh": "n. 可供选择的事物；【计】备选；  adj. 不寻常的，非传统的；可供选择的；可供替代的；另外的；【航】备用的"
+          "zh": "n. 可供选择的事物；【计】备选；  adj. 不寻常的，非传统的；可供选择的；可供替代的；另外的；【航】备用的",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "grocery",
-          "zh": "n. 食品杂货店；食品杂货；超级市场"
+          "zh": "n. 食品杂货店；食品杂货；超级市场",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "instance",
-          "zh": "n. 例子，实例，事例；提议；情况，场合；副本，镜像副本；  vt. 举…为例"
+          "zh": "n. 例子，实例，事例；提议；情况，场合；副本，镜像副本；  vt. 举…为例",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "for instance",
-          "zh": "phr. 例如，比如；以……为例"
+          "zh": "phr. 例如，比如；以……为例",
+          "unit": "Unit 5 Working the Land"
+        },
+        {
+          "en": "batch",
+          "zh": "n. 一批；一组 vt. 分批处理",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "depth",
-          "zh": "n. 纵深；深度；深刻；深处；最深处；强度；诚挚；【物】深度；【数】深度；【计】深度"
+          "zh": "n. 纵深；深度；深刻；深处；最深处；强度；诚挚；【物】深度；【数】深度；【计】深度",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "root",
-          "zh": "v. 生根；使固定；源于；使敌人定住；  n. 根，根茎，根部；根源；词根；根；【计】根；  adj. 根本的"
+          "zh": "v. 生根；使固定；源于；使敌人定住；  n. 根，根茎，根部；根源；词根；根；【计】根；  adj. 根本的",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "entirely",
-          "zh": "adv. 全部地；完全地；完整地；彻底地"
+          "zh": "adv. 全部地；完全地；完整地；彻底地",
+          "unit": "Unit 5 Working the Land"
         },
         {
           "en": "aspect",
-          "zh": "n. 外表，面貌；（问题等的）方面；层面；方位，方向"
+          "zh": "n. 外表，面貌；（问题等的）方面；层面；方位，方向",
+          "unit": "Unit 5 Working the Land"
+        },
+        {
+          "en": "Vietnam",
+          "zh": "",
+          "unit": "Unit 5 Working the Land"
+        },
+        {
+          "en": "LED",
+          "zh": "",
+          "unit": "Unit 5 Working the Land"
+        },
+        {
+          "en": "DDT",
+          "zh": "",
+          "unit": "Unit 5 Working the Land"
         }
       ]
     }
