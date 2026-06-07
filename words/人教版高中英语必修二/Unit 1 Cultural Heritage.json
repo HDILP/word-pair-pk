@@ -1,0 +1,405 @@
+{
+  "name": "Unit 1 Cultural Heritage",
+  "words": [
+    {
+      "en": "heritage",
+      "zh": "n. 遗产；继承物；传统；文化遗产",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "creatively",
+      "zh": "adv. 创造性地；有创造力地",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "creative",
+      "zh": "adj. 有创造力的；创造（性）的，创作的；有创意的；  n. （非正式）创意人士",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "temple",
+      "zh": "n. 庙宇，神殿；太阳穴；寺庙",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "relic",
+      "zh": "n. 遗迹；神圣的遗物；纪念物",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "mount",
+      "zh": "v. 登上；爬上；骑上；增长；组织，安排；提升；装备；开展；  n. 山；峰；马，坐骑",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "former",
+      "zh": "adj. 前任的；前者的；以前的；过去的，昔日的；  n. 形成者；（两者中的）前者",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "clue",
+      "zh": "n. 线索；提示；暗示；迹象；  v. 给……提供线索",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "preserve",
+      "zh": "v. 贮存，保鲜；保存；维持；保护；保留；  n. 保护区；独揽之事，独占的活动；腌菜，果酱",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "promote",
+      "zh": "v. 升职；促进；宣传；促销；推动；提升，升级；发起，创办",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "cypress",
+      "zh": "n. 柏树；柏木",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "app",
+      "zh": "n. 应用程序（application的缩写）",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "application",
+      "zh": "n. 运用；申请（书）；应用程序；应用，运用；【计】应用；涂抹，敷用",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "take part in",
+      "zh": "phr. 参加（活动）",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "give way to",
+      "zh": "phr. 让路；让位；屈服",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "balance",
+      "zh": "v. 保持平衡；结算； 比较；抵消；平衡；权衡；结存，结欠；称(重量)；使同等重要；【航】平衡；  n. 平衡，平衡能力；天平；余额；均匀；【物】天平",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "keep a balance",
+      "zh": "phr. 保持平衡",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "lead to",
+      "zh": "phr. 导致",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "dam",
+      "zh": "n. 水坝；母兽；  v. 用水坝阻止；阻塞，抑制",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "proposal",
+      "zh": "n. 提议；建议；求婚；提案",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "make a proposal",
+      "zh": "phr. 提出建议",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "protest",
+      "zh": "v. 抗议；反对（读作/proʊˈtɛst/）；  n. 抗议（读作/ˈproʊˌtɛst/）；反对",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "likely",
+      "zh": "adj. 有可能的；可信的；适合的；有希望的；  adv. 很可能",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "turn to",
+      "zh": "phr. 求助于；变成，转向；转至",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "committee",
+      "zh": "n. 委员会；全体委员",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "establish",
+      "zh": "v. 建立；创立；确立；使安全；使成为；使确认；证实，确定",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "limit",
+      "zh": "vt. 限制；  n. 限制；限度；极限；【化】极限",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "prevent",
+      "zh": "v. 阻止；阻碍；阻挠；预防；【化】阻止，预防；【航】预防",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "prevent...from...",
+      "zh": "v. 阻止；阻碍；阻挠；预防；【化】阻止，预防；【航】预防",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "loss",
+      "zh": "n. 遗失；失败；失去；损失；死亡；减少，降低；缺失；【计】损失",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "contribution",
+      "zh": "n. 贡献；捐款，捐赠；投稿稿件；【财】贡献",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "contribute",
+      "zh": "v. 有助于；促成，导致；贡献；投稿；捐赠（款项）；是……的一个原因；增加；增进；添加（到某物）；（做）贡献；【化】促使，促进",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "department",
+      "zh": "n. 部门；（大学）系，部；司；科；（商场里的）部",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "fund",
+      "zh": "n. 资金，基金；专款；储备；  v. 拨款，提供资金",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "within",
+      "zh": "prep. 在……之内；  adv. 在内部，在里面",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "investigate",
+      "zh": "v. 调查，查明；研究；【化】调查，研究",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "issue",
+      "zh": "n. 问题；争论的问题；议题；发行物；期号；  v. 公布，发布；发行；造成……结果；发给",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "conduct",
+      "zh": "v. 指挥；进行；实施，执行；传导；表现（读作/kənˈdʌkt/） ；带领；指挥（乐团）；组织，实施；安排；【化】传导（热或电等能量）；  n. 经营方式，实施办法；引导（读作/ˈkɑnˌdʌkt/）；（人在某种情况下的）行为举止；行为",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "document",
+      "zh": "n. 文件，公文；文献；（计算机的）文档（读作/ˈdɑkjumənt/）；【计】文档；  v. 证明（读作/ˈdɑkjuˌmɛnt/）；记录",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "donate",
+      "zh": "v. 捐献；捐赠；【化】给出，提供",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "donate...to...",
+      "zh": "v. 捐献；捐赠；【化】给出，提供",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "disappear",
+      "zh": "vi. 消失；失踪；灭绝，消亡",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "attempt",
+      "zh": "vt. 试图，尝试；努力去做；  n. 努力，尝试；企图；【化】尝试",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "make sure",
+      "zh": "phr. 确保，设法保证；证实；查明；弄清楚",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "worthwhile",
+      "zh": "adj. 值得的，有意义的",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "download",
+      "zh": "v. 下载；  n. 下载；下载的文件或数据资料",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "republic",
+      "zh": "n. 共和国，共和政体",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "professional",
+      "zh": "n. 专业人员；职业选手；专业人士；  adj. 专业的；职业的",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "archaeologist",
+      "zh": "n. 考古学家",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "entrance",
+      "zh": "v. 使出神，使入迷；  n. 入口，通道；大门口；出场，登场；进入；（大学等的）进入许可；【航】入口",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "pyramid",
+      "zh": "n. 金字塔；棱锥体；【数】棱锥体，角锥体",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "process",
+      "zh": "v. 加工；处理；  n. 步骤，过程；进程；传票；事物发展（自然或偶然的）变化过程；做事方法；工序；【计】进程；【化】过程",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "overseas",
+      "zh": "adv. 在海外；在外国；  adj. 外国的；海外的",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "exit",
+      "zh": "n. 出口；退场；通道；离去，退出；  v. 离开，出去；【计】退出",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "sheet",
+      "zh": "v. （雨，雪等）下得很大；  n. 被单；纸张；床单；(冰或水等的)一大片；一张（纸）；【化】玻璃片",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "parade",
+      "zh": "n. 游行；检阅；  v. 游行，（使）列队行进；炫耀",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "mirror",
+      "zh": "n. 镜子；真实的写照，反映；  v. 反射，反映；【计】镜像",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "roof",
+      "zh": "n. 屋顶；顶部；车顶；  v. 覆盖，给……盖屋顶",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "dragon",
+      "zh": "n. （传说中的）龙；凶暴的人，严厉的人；悍妇",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "forgive",
+      "zh": "v. 饶恕；（国家、银行等）免除（债务）；原谅；宽恕",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "digital",
+      "zh": "adj. 数字显示的；数码的；电子的；数字的；  n. 数字仪表、时钟；键",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "image",
+      "zh": "vt. 反映；想象；描绘；  n. 形象；图像；印象；影像；想象；【化】影像，图像；【物】像",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "cave",
+      "zh": "n. 山洞，洞穴；  v. 塌落；屈服；洞穴探险",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "throughout",
+      "zh": "prep. 在……期间，在整个时期；自始至终；遍及，到处，各处",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "quality",
+      "zh": "n. 质量；品性；品质；特征；素质；本性，本质；【计】质量；  adj. 优质的",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "all over the world",
+      "zh": "phr. 全世界",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "tradition",
+      "zh": "n. 传统，惯例；传统的信仰或风俗",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "further",
+      "zh": "adj. 更进一步的；更远的；更多的，附加的；  v. 促进，推动；增进；继续，使......进一步；  adv. 更远地；进一步",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "historic",
+      "zh": "adj. 有历史意义的，历史上著名的；历史性的；古老的；可名垂青史的",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "opinion",
+      "zh": "n. 意见，看法，观点；评价；想法；专家意见；判断",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "quote",
+      "zh": "v. 引用；报价；举例说明；【计】引用；【法】报价；  n. 引语，引文",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "paraphrase",
+      "zh": "v. 解释，释义；  n. 转述，释义",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "comparison",
+      "zh": "n. 比较；对比；对照；比较等级；比喻；【化】比较，对照",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "contrast",
+      "zh": "n. 差异；对照，对比；对比度（读作/ˈkɑnˌtræst/）；  v. 对照，对比（读作/kənˈtræst/）",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "identify",
+      "zh": "v. 认出；找到；识别出；发现；确定，鉴定；认同；认为…关系紧密；表明身份；认为……和……一致；认同，共鸣；辨别，区分；【化】鉴定，识别；【航】确定，识别",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "forever",
+      "zh": "adv. 永远；总是，老是",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "Egypt",
+      "zh": "n. 埃及",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "Egyptian",
+      "zh": "n. 埃及人；  adj. 埃及(人)的",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "Moscow",
+      "zh": "n. 莫斯科",
+      "unit": "Unit 1 Cultural Heritage"
+    },
+    {
+      "en": "Los Angeles",
+      "zh": "n. 洛杉矶",
+      "unit": "Unit 1 Cultural Heritage"
+    }
+  ]
+}

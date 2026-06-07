@@ -1,0 +1,345 @@
+{
+  "name": "Unit 5 Poems",
+  "words": [
+    {
+      "en": "drama",
+      "zh": "n. 戏剧；戏剧性的场面（或情景）；激情；戏剧性事件",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "sorrow",
+      "zh": "n. 悲伤；伤心事；歉疚；悲痛；不幸；  v. 感到悲伤；哀痛；为……悲痛",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "imagery",
+      "zh": "n. 画像，图像；意象，形象的描述；比喻",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "literary",
+      "zh": "adj. 文学的，文学上的；精通文学的；以写作为职业的；书本上的；书面的；书面语的；爱好文学的；有文学作品特征的",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "rhyme",
+      "zh": "n. 押韵短诗；押韵词；押韵的短诗；儿歌，童谣；  v. 押韵",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "rhythm",
+      "zh": "n. 节奏；韵律；格律；规律；【医】节律",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "nursery",
+      "zh": "n. 托儿所；保育室；苗圃；育儿室；  adj. 幼儿教育的",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "nursery rhyme",
+      "zh": "n. 童谣；儿歌",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "folk",
+      "zh": "adj. 民间的；普通百姓的；民俗的；  n. 大众；亲人，家人；民间音乐；民众；人们",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "mockingbird",
+      "zh": "n. 模仿鸟；嘲鸫属鸣禽",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "diamond",
+      "zh": "n. 钻石；方块牌；菱形；棒球场的内场；金刚石；【化】金刚石；【数】菱形",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "brass",
+      "zh": "v. 付（款）；  n. 黄铜（器）；铜管乐器；【口语】厚脸皮；高级将领官员；黄铜；【化】黄铜",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "billy goat",
+      "zh": "n. 公山羊",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "bull",
+      "zh": "n. 公牛，雄性的鲸、象等大动物",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "recite",
+      "zh": "vt. 背诵；朗诵，吟诵；列举；  v. 叙述",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "bee",
+      "zh": "n. 蜜蜂；忙碌的人",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "dewdrop",
+      "zh": "n. 露珠，露滴；水珠",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "dawn",
+      "zh": "n. 黎明；开始；开端；萌芽；  v. 开始；破晓；开始清楚",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "clover",
+      "zh": "n. 三叶草",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "butterfly",
+      "zh": "n. 蝴蝶；蝶泳；  vt. （烹饪时把鱼肉等）切开摊平",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "lawn",
+      "zh": "n. 草坪；（衣服用）细麻",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "amateur",
+      "zh": "n. 业余爱好者；外行；  adj. 外行的；业余爱好的",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "cinquain",
+      "zh": "n. 五行诗",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "be made up of",
+      "zh": "phr. 由……构成，由……组成",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "mood",
+      "zh": "n. 情绪，心情；氛围；语气",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "tease",
+      "zh": "v. 取笑，打趣；挑逗；逗弄；使……渴望；梳理；揶揄；分离，提取；  n. 爱戏弄别人的人",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "haiku",
+      "zh": "n. 俳句",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "syllable",
+      "zh": "n. 音节",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "format",
+      "zh": "n. 版式；设计；格式；总体安排；  v. 设计一个版式，设计……的版面；使格式化",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "respectively",
+      "zh": "adv. 各自；分别；独自；依次为",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "respective",
+      "zh": "adj. 分别的；各自的；【化】各自的，分别的",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "blossom",
+      "zh": "v. 开花；兴旺，繁荣；  n. （果树的）花；花簇",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "delicate",
+      "zh": "adj. 易碎的，脆弱的；（人）娇弱的，体弱多病的；精美的，精致的；微妙的，需要谨慎处理的；优美的，优雅的；淡雅的；纤细的，细长的",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "await",
+      "zh": "vt. 等候；期待；将发生在；  v. 等待……发生",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "revolve",
+      "zh": "vi. （使）旋转；转动；围绕，环绕；  v. 以……为中心",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "utter",
+      "zh": "vt. 说；讲；发出；发射；  adj. 完全的；彻底的；无条件的；十足的",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "comprehension",
+      "zh": "n. 测试；理解力；领悟力；理解练习；理解",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "shelf",
+      "zh": "n. 架子，搁板",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "core",
+      "zh": "v. 去核；  n. 核心，要点；果心，核；精髓；（物体的）中心部分；核心肌群；【物】核心；  adj. 核心的，主要的；骨干的；必修的",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "cherry",
+      "zh": "n. 樱桃（树）；樱桃色；  adj. 樱桃色的；鲜红色的",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "cherry blossom",
+      "zh": "phr. 樱花",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "blank",
+      "zh": "adj. （纸等）空白的；茫然的；无图画（或韵律、装饰的）；没表情的；  n. 空白，空白处；空格；  v. 忽视",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "verse",
+      "zh": "n. 诗句，诗节，诗；韵文",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "civilian",
+      "zh": "n. 平民，百姓；  adj. 平民的，百姓的，民用的；平民的，民用的",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "prose",
+      "zh": "n. 散文；  vt. 用散文写，把…改写成散文；平淡无趣地写；啰啰唆唆地讲",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "sympathetic",
+      "zh": "adj. 有同情心的，同情的；赞同的，支持的",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "sympathy",
+      "zh": "n. 同情；同感；赞同；慰问",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "version",
+      "zh": "n. 版本；说法；（某人对于某件事不同于其他人的）描述，说法；译本",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "innocence",
+      "zh": "n. 清白，无罪；天真无邪，单纯；无知，头脑简单；良性",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "innocent",
+      "zh": "adj. 天真的，单纯的；无辜的，清白的；无恶意的；幼稚的；不懂事的，无知的；无罪的；  n. 天真无邪的人",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "era",
+      "zh": "n. 时代；纪元；年代",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "correspondence",
+      "zh": "n. 通信，通信联系；信件，函件；符合，一致；相似；相关，关联",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "correspond",
+      "zh": "vi. 相符，一致；相似；通信；相当于；对应，相应",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "sow",
+      "zh": "v. 播种；种；散布；煽动（读作/soʊ/）；  n. 母猪（读作/saʊ/）",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "seed",
+      "zh": "v. 播种，结籽；  n. 种子，籽；种子选手；起源；萌芽；【生】种子",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "dominant",
+      "zh": "adj. 主要的，占优势的；显性基因的；统治的，支配的；显著的",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "sonnet",
+      "zh": "n. 十四行诗",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "deadline",
+      "zh": "n. 最后期限",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "contest",
+      "zh": "n. 比赛，竞争（读作/ˈkɑːntest/）；竞赛；  v. 争夺，争论（读作/kənˈtest/）；争取赢得（比赛、选举等）；争辩",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "polish",
+      "zh": "v. 【航】抛光；  vt. 磨光，擦亮；润饰，使优美；抛光；修改；润色；  n. 擦光剂；完美；完善；上光剂；抛光；擦亮；  adj. （Polish）波兰的；（Polish）波兰人的；（Polish）波兰语的（读作/ˈpoʊlɪʃ/）",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "string",
+      "zh": "v. 使紧张；  vt. 串起；悬挂；系；  n. 弦；线；一行；细绳；一系列；一串；条件；【计】字串；【物】线",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "wherever",
+      "zh": "conj. 无论在哪里；各处，处处；  adv. （用于问句）究竟在（到）哪里",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "barren",
+      "zh": "adj. 贫瘠的；不结果实的；不孕的；  n. 荒原，不毛之地",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "grief",
+      "zh": "n. 悲伤，悲痛；悲痛的缘由，伤心事；担心，忧虑",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "complicated",
+      "zh": "adj. 复杂的；难解的；难懂的；  v. 使复杂",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "variation",
+      "zh": "n. 变化；[生物] 变异，变种；差异；变奏曲；变化物，变体；【化】变化，变体；【数】变化",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "racial",
+      "zh": "adj. 种族的；人种的",
+      "unit": "Unit 5 Poems"
+    },
+    {
+      "en": "prejudice",
+      "zh": "n. 偏见，成见；损害，侵害；【法】对合法权益损害；  vt. 使抱有偏见",
+      "unit": "Unit 5 Poems"
+    }
+  ]
+}

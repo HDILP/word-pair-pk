@@ -1,0 +1,350 @@
+{
+  "name": "Unit 5 Music",
+  "words": [
+    {
+      "en": "classical",
+      "zh": "adj. 古典的；传统的；正统的；权威的；经典的；  n. 古典音乐",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "hip-hop",
+      "zh": "n. 嘻哈文化；街舞；  adj. 嘻哈的",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "techno",
+      "zh": "n. 泰克诺音乐，现代电子乐；高技术音乐；  pref. 技术；技巧；工艺",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "energy",
+      "zh": "n. 能量；能源；活力；精力；【护】能量；【化】能量，活化能；【物】能量",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "soul",
+      "zh": "n. 灵魂；灵乐（一种主要由美国黑人音乐家表演的流行音乐）；情绪；心灵，内心；思想；鬼魂；核心；中心人物；典型；精神；人；精神世界；  adj. 黑人的；熟悉黑人的",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "bagpipes",
+      "zh": "n. 风笛",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "stringed",
+      "zh": "adj. 有弦的；由弦乐器产生的",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "stringed instrument",
+      "zh": "n. 弦乐器",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "virtual",
+      "zh": "adj. （计算机）虚拟的；十分接近的；实质上的；模拟的",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "virtual choir",
+      "zh": "n. 虚拟合唱团",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "composition",
+      "zh": "n. （绘画或照片的）构图，布局；构成，组成，成分；作品；【化】成分；合成物；创作；【化学】构成，结构；【术语】印刷排版，排字；【计】组合",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "opportunity",
+      "zh": "n. 机会，良机；时机；【财】机会；【化】机会",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "perform",
+      "zh": "v. 表演；执行；表现；运行；（驯兽）玩把戏；起…...作用，有…...功能；【计】执行；【法】履行",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "performance",
+      "zh": "n. 表演，演出；表现；执行；性能；演技；业绩，成绩；【计】性能；演出；表现，业绩；【航】性能",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "performer",
+      "zh": "n. 表演者",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "onto",
+      "zh": "prep. 到...之上，向...之上，朝...之上；向，朝，朝向",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "studio",
+      "zh": "n. 摄影棚；工作室；录音室，录像室；制作室，制片公司；演播室；片场",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "ordinary",
+      "zh": "adj. 普通的，平常的；平淡的，平庸的；【计】常规的",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "enable",
+      "zh": "v. 使能够，使可能；使发生",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "prove",
+      "zh": "v. 证明，证实；展现，展示；检验；鉴定；结果是，表明是；【数】证明",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "award",
+      "zh": "n. 奖，奖章；奖品；奖学金；判决；奖赏；奖金；奖项；  v. 奖励；授予；判给；给予；授予，授奖",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "composer",
+      "zh": "n. 作曲家",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "conductor",
+      "zh": "n. 售票员；指挥；导体；列车长；【化】导体；【物】导体",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "fall in love with",
+      "zh": "phr. 爱上，喜欢（表动作）",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "original",
+      "zh": "n. 原件；怪人；原作；  adj. 最初的，原始的，原来的；有独创性的，独创的；原作的；【化】原来的，原始的",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "phenomenon",
+      "zh": "n. 现象；奇迹；奇才；【物】现象",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "stage",
+      "zh": "v. 举行；展现；上演；筹划；适于上演；适合在舞台上演出；乘公交车（或驿车）旅行；[军事]中间集结；扎营；  n. 舞台；阶段；（发展或进展的）时期；戏剧；【化】阶段，步骤",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "altogether",
+      "zh": "adv. 总而言之；完全；总共，一共；  n. （口）裸体",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "thus",
+      "zh": "adv. 因此；这样，如此；从而",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "band",
+      "zh": "n. 乐队；帮伙；带；环；一帮，一群；波段；乐团；  v. 用带捆扎；联合；划分范围；加彩条",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "rap",
+      "zh": "n. 说唱；快速敲击；看法，评价；反响；（尤指人或事的不良）名声，声誉；  v. 敲击；表演说唱；严厉批评",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "nowadays",
+      "zh": "adv. 现在，当今",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "gradual",
+      "zh": "adj. 逐渐的；逐步的；平缓的",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "capable",
+      "zh": "adj. 有本领的，有能力的；有才能的，能干的；足以胜任的",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "relief",
+      "zh": "n. 安慰；缓解；减轻；浮雕；凸显，起伏；救济金；救济物资；换班人；接替人；对比；救济，援助；（不快过后的）宽慰，轻松；【法】救济",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "cure",
+      "zh": "n. 对策，措施；治疗，医治；药物；疗法；  vt. 治愈，治疗；解决（问题）；矫正",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "absorbed in sth/sb",
+      "zh": "phr. 被……吸引住；专心致志",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "previous",
+      "zh": "adj. 先前的；过早的；【化】前一个的，之前的",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "unemployed",
+      "zh": "adj. 失业的，未被雇用的；未被利用的，闲置的；  n. 失业者",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "romantic",
+      "zh": "adj. 浪漫的；传奇式的；不切实际的；好幻想的；有关情爱的，爱情的；  n. 浪漫的人",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "album",
+      "zh": "n. 相册；唱片集，专辑；集邮册",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "impact",
+      "zh": "v. 碰撞，冲击；压紧；影响；有影响（读作/ɪmˈpækt/）；【化】影响；  n. 影响；强大作用；冲击力；碰撞，冲击（读作/ˈɪmˌpækt/）",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "aim",
+      "zh": "v. 瞄准，对准；力求达到，力争做到；目的是，旨在；  n. 目标；目的；对准；枪法",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "set sth up",
+      "zh": "phr. 建起，设立；提议，提倡；预备；（军事）训练；安装；竖立；安排",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "equipment",
+      "zh": "n. 设备，器材；装备，装置；装备；【化】设备，仪器",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "try out",
+      "zh": "phr. 参加选拔；试用，试；试验",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "talent",
+      "zh": "n. 天赋，才能；天才，人才",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "piano",
+      "zh": "n. 钢琴；  adv. 轻柔地（弹或唱）；  adj. （弹或唱时）轻柔的",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "assume",
+      "zh": "vt. 猜想；认为；接受；表现出；假设；假定；  vi. 认为；采取；承担",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "addition",
+      "zh": "n. 加法；添加；附加物；增加物；附加；新增人员；【数】加法",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "in addition (to sb/sth)",
+      "zh": "phr. 除……之外（还）",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "disease",
+      "zh": "n. 疾病，病；【化】疾病；【生】疾病",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "ache",
+      "zh": "n. 疼痛；  v. 疼痛；觉得疼痛；渴望",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "treatment",
+      "zh": "n. 对待，待遇；治疗，疗法；加工处理；（净化或防治）处理加工；【化】处理",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "from (then) on",
+      "zh": "phr. 从(那)时起",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "lean",
+      "zh": "v. 斜靠；倾斜；屈身；依赖；  adj. 瘦且健康的；精益的；萧条的，不景气的；  n. 瘦肉",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "get through",
+      "zh": "phr. 完成；穿过；（成功）渡过（困难时期）；打通（电话）；打通（电话），完成，通过",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "moreover",
+      "zh": "adv. 此外，而且",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "satisfaction",
+      "zh": "n. 满足，满意；乐事；补偿",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "being",
+      "zh": "n. 存在；生物；生命；身心；  adj. 现在的，目前的；  v. 存在，处于；是",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "various",
+      "zh": "adj. 各种各样的，不同的；【化】各种各样的",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "somehow",
+      "zh": "adv. 出于某种原因，不知怎么地；以某种方式",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "rhetorical",
+      "zh": "adj. 修辞的；言辞华丽（却往往无内涵的）；语言文字上的",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "metaphor",
+      "zh": "n. 暗喻，隐喻",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "personification",
+      "zh": "n. 拟人；化身；典型；具体化",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "repetition",
+      "zh": "n. 重复，反复",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "simile",
+      "zh": "n. 直喻，明喻",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "outline",
+      "zh": "n. 外形，轮廓；概要；  v. 描绘，画出……的轮廓；概述",
+      "unit": "Unit 5 Music"
+    },
+    {
+      "en": "reaction",
+      "zh": "n. 反应能力；反应；生理反应；回应；（对事件的）反应，回应；【化】反应",
+      "unit": "Unit 5 Music"
+    }
+  ]
+}

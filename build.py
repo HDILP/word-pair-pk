@@ -24,20 +24,37 @@ WORDS_DIR = 'words'
 # ── 1. 读词库 ──────────────────────────────────────────────
 word_files = sorted(glob.glob(os.path.join(WORDS_DIR, '*.json')))
 if not word_files:
-    print(f'❌ 未在 {WORDS_DIR}/ 找到词库 JSON 文件')
-    sys.exit(1)
-
-books = []
-for fpath in word_files:
-    with open(fpath, 'r', encoding='utf-8') as f:
-        book = json.load(f)
-    # 兼容旧格式 (words) 和新格式 (units)
-    if 'words' in book or 'units' in book:
-        books.append(book)
+    # Try subdirectory structure: words/<book_name>/*.json
+    subdirs = sorted(glob.glob(os.path.join(WORDS_DIR, '*')))
+    subdirs = [d for d in subdirs if os.path.isdir(d)]
+    if subdirs:
+        books = []
+        for subdir in subdirs:
+            book_name = os.path.basename(subdir)
+            unit_files = sorted(glob.glob(os.path.join(subdir, '*.json')))
+            if not unit_files:
+                continue
+            units = []
+            for uf in unit_files:
+                with open(uf, 'r', encoding='utf-8') as f:
+                    unit_data = json.load(f)
+                units.append(unit_data)
+            books.append({"name": book_name, "units": units})
+        print(f'📚 读取 {len(books)} 册词库（子目录结构）')
     else:
-        print(f'⚠️  跳过 {fpath}：缺少 words 或 units 字段')
-
-print(f'📚 读取 {len(books)} 册词库')
+        print(f'❌ 未在 {WORDS_DIR}/ 找到词库文件')
+        sys.exit(1)
+else:
+    # Legacy flat structure: words/*.json
+    books = []
+    for fpath in word_files:
+        with open(fpath, 'r', encoding='utf-8') as f:
+            book = json.load(f)
+        if 'words' in book or 'units' in book:
+            books.append(book)
+        else:
+            print(f'⚠️  跳过 {fpath}：缺少 words 或 units 字段')
+    print(f'📚 读取 {len(books)} 册词库（旧结构）')
 total = sum(
     len(b.get('words', [])) + sum(len(u.get('words', [])) for u in b.get('units', []))
     for b in books

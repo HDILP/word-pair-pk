@@ -1,0 +1,330 @@
+{
+  "name": "Unit 3 Fascinating Parks",
+  "words": [
+    {
+      "en": "buffet",
+      "zh": "n. 自助餐；（火车内）餐室，冷餐桌（读作/bəˈfeɪ/）；  v. 打来打去；连续猛击；反复敲打，打击，重击（读作/ˈbʌfɪt/）",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "cloth",
+      "zh": "n. （一块）布；衣料；桌布；织物",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "edge",
+      "zh": "v. （使）徐徐移动；给……开刃，使锐利；给……加边；  n. （悬崖、峭壁的）边缘；边缘；锋利，尖锐；刀口，刀刃；优势；边；边线；【数】边缘，边；【航】边缘",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "valley",
+      "zh": "n. 山谷，溪谷，低谷",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "vast",
+      "zh": "adj. 辽阔的；巨大的；庞大的；巨额的；大量的",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "melt",
+      "zh": "vi.&vt. (使)融化；熔化；软化",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "glacier",
+      "zh": "n. 冰川，冰河",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "reindeer",
+      "zh": "n. 驯鹿",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "territory",
+      "zh": "n. 地区，领土；版图；领域；范围；属地",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "ban",
+      "zh": "vt. 明令禁止；取缔；  n. 禁止，禁令",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "boundary",
+      "zh": "n. 边界，国界；分界；使球越过边界线的击球（得加分）；界限；分界线；球场边界；【财】边界，界限",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "cottage",
+      "zh": "n. 村舍，小屋；小别墅",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "visible",
+      "zh": "adj. 可见的；显然的，明显的；【化】明显的，可见的",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "on the move",
+      "zh": "phr. 在移动中；在进展中；在行进中",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "accompany",
+      "zh": "v. 陪伴；为……伴奏（或伴唱）；陪同；伴随",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "adopt",
+      "zh": "v. 收养；采纳，采用；采取",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "sour",
+      "zh": "adj. 酸的；（人）尖酸刻薄的，不友好的；有酸味的；  v. （友谊，局势，态度等）变坏；使恶化",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "set out",
+      "zh": "phr. 出发，启程；开始做；摆放，陈列；（怀着目标）开始工作",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "bless",
+      "zh": "vt. 保佑，祝福，赐福；  vi. 有幸具有",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "live off",
+      "zh": "phr. 依赖……生活；以吃……为生",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "prohibition",
+      "zh": "n. 禁止；禁令；阻止",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "prohibit",
+      "zh": "v. 禁止；阻止",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "journalist",
+      "zh": "n. 新闻记者；新闻工作者",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "sneeze",
+      "zh": "n. 喷嚏；喷嚏声；  v. 打喷嚏",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "teapot",
+      "zh": "n. 茶壶",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "label",
+      "zh": "v. 把……称为，贴标签于……；用标签标明；  n. 标签；称号；唱片公司；标记；品牌；公司；【化】标签；【计】标签；【数】标签，标记",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "cream",
+      "zh": "n. 面霜；奶油，乳脂；奶油色；精英；膏；  vt. 凝成乳脂，起泡沫；  adj. 奶油色的，乳白色的；淡黄色的",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "leopard",
+      "zh": "n. 豹",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "stretch",
+      "zh": "v. 伸展，延伸，张开；夸大；超越；延续；绵延；  n. 伸展，张开；一段时间；一段路程；（土地或水域的）一片，一段；展开，铺开；  adj. 可伸缩的；弹性的",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "rewarding",
+      "zh": "adj. 有报酬的，有回报的；有益的；值得的；有意义的；值得的，有报酬的",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "bush",
+      "zh": "n. 灌木；灌木丛；矮树丛；  vi. 丛生；灌木般丛生；浓密（或茂密）地生长；生密枝；  vt. 加（金属）衬套于；加套管于；用耙耙平（耕地）；以灌木（或灌木丛）装饰（或覆盖、围绕、围住、支撑、标志、保护等）；  adj. （豆科植物等）如灌木般长得低矮的；粗野的；粗鲁的；粗糙但实用的",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "lung",
+      "zh": "n. 肺；【医】肺",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "cycle",
+      "zh": "n. 自行车；周期，循环；摩托车；【计】周期；  v. 骑自行车；循环",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "corridor",
+      "zh": "n. 走廊，回廊，通道；（沿着重要道路或河道的）狭长地带；过道",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "pedal",
+      "zh": "n. 踏板；  v. 蹬脚踏板；骑自行车；  adj. 脚踏的",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "fountain",
+      "zh": "n. 泉水，喷泉；源泉；人工喷泉；喷水池；储水容器",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "route",
+      "zh": "n. 路线；固定路线；途径；公路；渠道；路途；  v. 按某路线发送；给…规定路线【次序，程序】",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "ahead",
+      "zh": "adv. 领先地；向前；提前；（时间、空间）向前面，在前面；  adj. 在前的，向前的；提前的",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "theme",
+      "zh": "n. 主题；主旨；主旋律；题目；主题思想；  adj. 有特定主题的；  v. 赋予……某种主题",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "theme park",
+      "zh": "n. 主题公园",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "roller coaster",
+      "zh": "n. 过山车",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "incredible",
+      "zh": "adj. 不可相信的；惊人的，不可思议的，难以置信的；极好的，极大的",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "appeal",
+      "zh": "v. 请求；上诉；有吸引力；呼吁；诉诸；启发，激发；  n. 呼吁；吸引力；请求； 筹款努力；上诉",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "appeal to",
+      "zh": "phr. （对某人）有吸引力，（使某人）感兴趣；有感染力；呼吁；上诉；打动；【法】上诉",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "pirate",
+      "zh": "n. 海盗；剽窃者；  v. 窃用；盗印",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "adorable",
+      "zh": "adj. 可爱的；值得崇敬的；讨人喜爱的",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "wander",
+      "zh": "v. 闲逛，漫步；徘徊；蜿蜒；迷路；离题；走失；走神；离散；漫游；漂泊；  n. 闲逛，漫步；游荡；失散；流浪；徘徊",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "amusement",
+      "zh": "n. 娱乐；消遣；乐趣；愉悦；娱乐活动",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "amuse",
+      "zh": "v. 使人发笑；（提供）娱乐，消遣；逗乐；娱乐",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "enormous",
+      "zh": "adj. （范围、程度）极大的；巨大的；庞大的",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "swing",
+      "zh": "v. 摇荡，摆动；突然转向；使摇摆，使转动，使转向；转弯；朝……打去；荡秋千；  n. 秋千；摇摆，摆幅；转弯；击打；挥动，挥舞",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "iron",
+      "zh": "v. 熨烫（衣物）；烫平；  n. 铁；熨斗；铸铁；【物】铁；铁，铁元素；  adj. 铁的；刚强的；严酷的",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "fashion",
+      "zh": "n. 时髦，风尚；时装；方式；时兴；流行款式；时尚，流行；  v. 制作，塑造；形成，制定",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "rare",
+      "zh": "adj. 罕见的，难得的；（肉）半熟的；不寻常的；美好的；珍贵的；稀少的，稀有的",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "steam",
+      "zh": "n. 蒸汽，水蒸气；轮船；蒸汽动力；  v. 冒水汽，冒热气；蒸；快速行进；蒸发；散发蒸汽",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "superb",
+      "zh": "adj. 极好的；壮丽的；卓越的",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "aquarium",
+      "zh": "n. 水族馆，水族箱，鱼缸；水族馆，鱼缸",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "up to",
+      "zh": "phr. 到（某个数量）；直到；不多于；（体力或智力上）能胜任",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "polar",
+      "zh": "adj. 极地的；南极的，北极的；截然对立的，正好相反的；磁极的",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "upside down",
+      "zh": "phr. 颠倒，混乱，翻转",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "splendid",
+      "zh": "adj. 壮观的，辉煌的，华丽的；极好的，出色的；雄伟的",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "display",
+      "zh": "v. 展示；显示；陈列；【化】展示，显示；  n. 表现，流露；显示；陈列；展示；展览；展览品；显示器；【航】显示器",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "appetite",
+      "zh": "n. 食欲；强烈欲望；嗜好；需求",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "entertainment",
+      "zh": "n. 娱乐；招待，款待；文娱节目",
+      "unit": "Unit 3 Fascinating Parks"
+    },
+    {
+      "en": "column",
+      "zh": "n. 柱，支柱，圆柱；栏，专栏；长队；列；【财】列；【计】列；【数】列",
+      "unit": "Unit 3 Fascinating Parks"
+    }
+  ]
+}

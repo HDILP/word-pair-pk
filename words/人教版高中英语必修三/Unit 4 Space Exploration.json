@@ -1,0 +1,410 @@
+{
+  "name": "Unit 4 Space Exploration",
+  "words": [
+    {
+      "en": "astronaut",
+      "zh": "n. 宇航员，太空人",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "procedure",
+      "zh": "n. 步骤；程序；手续；手术；【财】（清算）程序；【计】过程；【化】步骤",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "mental",
+      "zh": "adj. 精神的；思想的；脑力的；心理的；内心的；精神病治疗的；  n. 意念（一种游戏角色属性）",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "cm",
+      "zh": "abbr. =(centimeter)厘米",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "intelligent",
+      "zh": "adj. 有智慧的，聪明的；智能的",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "rocket",
+      "zh": "n. 火箭，火箭弹；芝麻菜；  vt. 用火箭运载；  vi. 飞快地移动；猛涨",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "gravity",
+      "zh": "n. 重力，引力；严重性；庄重，严肃",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "frontier",
+      "zh": "n. 边境，国界；边远地区，边界地区；新领域；知识/物理学等的前沿；  adj. 开拓的",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "vehicle",
+      "zh": "n. 车辆；交通工具；传播媒介；工具，手段",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "determined",
+      "zh": "adj. 有决心的；意志坚定的；决定了的",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "determine",
+      "zh": "v. 做决定；查明；确定，测定；决定，支配；下决心；【化】确定，测定；【数】准确算出",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "satellite",
+      "zh": "n. 卫星；人造卫星；随体；【物】人造卫星；  adj. 卫视的",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "launch",
+      "zh": "v. 发射；下水；创办，开始从事；发起，实施；上市，发行；推出；  n. 发射，投放市场；（游艇、汽艇）下水；发行；汽艇",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "orbit",
+      "zh": "vi. 盘旋；绕轨道运行；  vt. 沿轨道运行，环绕……运行；  n. 轨道；势力范围；眼眶；生活常规；【物】轨道",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "giant",
+      "zh": "adj. 巨大的，特大的；伟大的；  n. 巨人；伟人；庞然大物；大公司",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "leap",
+      "zh": "v. 跳跃，跃过；暴涨；踊跃；飞跃，跃进；  n. 跳跃；跳动；剧增，剧变",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "mankind",
+      "zh": "n. 人类；男人",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "agency",
+      "zh": "n. 代理机构；中介；地区政府；服务机构；作用；代理处；行政部门；【法】代理",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "transmit",
+      "zh": "v. 传播；发送；发射；传输；传送，输送；【航】传输",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "data",
+      "zh": "n. 数据；资料；【计】数据；【化】数据；【数】数据",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "on board",
+      "zh": "phr. 在船上；在飞机上；在宇宙飞船上",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "spacecraft",
+      "zh": "n. 宇宙飞船；航天器",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "disappointment",
+      "zh": "n. 沮丧；失望；扫兴",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "disappointed",
+      "zh": "adj. 失望的，沮丧的",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "desire",
+      "zh": "n. 渴望；欲望；愿望；要求；情欲；  vi. 有希望，期望，愿望；  vt. 希望，渴望；请求，要求",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "universe",
+      "zh": "n. 宇宙，天地万物；领域，范围",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "carry on",
+      "zh": "phr. 继续，坚持；继续开展，继续下去",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "independently",
+      "zh": "adv. 独立地；自立地",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "independent",
+      "zh": "adj. 独立的，自立的；无偏见的；  n. 无党派者",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "spacewalk",
+      "zh": "n. 太空行走；太空行走的时间",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "jade",
+      "zh": "n. 玉石；翡翠；玉制品；  adj. 玉制的，玉的；翡翠色；绿玉色的，翡翠色的；  v. 使疲倦不堪",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "module",
+      "zh": "n. 组件，模件，（航天器的）舱；（组成一门课程的）独立单元；【计】功能块，程序块；【财】模块；【计】模块",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "signal",
+      "zh": "v. 发信号；标志；预示；表明；  n. 信号；标志；预兆；导火线；动机；【电】信号；  adj. 显著的，优越的；暗号的，作信号用的",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "in the hope of doing sth",
+      "zh": "phr. 抱着……的希望；希望",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "so as to",
+      "zh": "phr. 为了，以便",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "recycle",
+      "zh": "v. 回收利用；改建；【航】回收利用；  n. 再循环",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "muscle",
+      "zh": "v. 用强硬手段获得；  n. 肌肉；实力，影响力；体力；肌；【医】肌；【生】肌肉",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "lack",
+      "zh": "n. 缺乏，短缺；不足；  v. 没有；缺乏",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "float",
+      "zh": "v. 使浮动，使漂浮；飘动，漂移；发行股票上市；【物】漂浮；  vi. 浮动，漂流，漂浮；散布；漂泊；飘浮；  n. 浮标，漂浮物，漂浮",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "otherwise",
+      "zh": "adv. 否则；要不然；除此之外；在其他方面，另，亦；【法】除此之外；  conj. 否则，不然",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "beyond",
+      "zh": "prep. 超出；在更远处；无法……；除…之外；晚于，迟于；在（或向）......较远的一边；  adv. 超出；在更远处，在另一边",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "solar",
+      "zh": "adj. 太阳能的；太阳系的；日光的；太阳的；  n. 日光浴室",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "solar system",
+      "zh": "phr. 太阳系；类太阳系",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "current",
+      "zh": "adj. 当前的，现在的；流动的；  n. 水流；电流；思潮",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "figure out",
+      "zh": "phr. 想出，弄明白；解决",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "sufficient",
+      "zh": "adj. 足够的，充足的；充分的；【化】足够的",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "soap",
+      "zh": "n. 肥皂；  v. 用肥皂擦洗",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "towel",
+      "zh": "n. 毛巾，手巾；抹布；  v. 用毛巾擦干",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "telescope",
+      "zh": "n. 望远镜；  v. 叠缩；缩短，精简；（使）套入；压缩；  adj. 套筒的，伸缩式的",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "microwave",
+      "zh": "v. 用微波炉加热；  n. 微波炉，微波；【物】微波",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "tissue",
+      "zh": "n. 纸巾；（人、动植物细胞的）组织；纱布；【生】组织",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "facility",
+      "zh": "n. 设施，设备；灵巧；才能，资质；容易；（供特定用途的）场所",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "keen",
+      "zh": "adj. 敏锐的；热衷的，渴望的；强烈的；着迷的；喜爱，有兴趣；  v. 恸哭",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "globe",
+      "zh": "n. 球体，地球仪；地球，世界；  v. （使）成球状",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "argue",
+      "zh": "v. 争论；论证，争辩；主张，认为；提供证据，证明；表明（原因等）；提出异议；争吵",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "argument",
+      "zh": "n. 争吵，争论，争辩；辩论；论据，论点；【计】参数",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "fatal",
+      "zh": "adj. 致命的；灾难性的，毁灭性的；决定性的",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "shallow",
+      "zh": "adj. 浅的；肤浅的；浅显易懂的；  v. 变浅；使变浅；  n. 浅滩；浅处",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "result in",
+      "zh": "phr. 导致，造成",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "pattern",
+      "zh": "v. 形成图案；促成（某种行为模式）；  n. 模型，模式；典范；图案；版式；样品；花样；方式；【计】模式；【化】模式；【物】斑图；【数】规律",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "analysis",
+      "zh": "n. 分析；分解；分析报告；精神分析；【化】分析",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "as a result",
+      "zh": "phr. 所以，结果是；因此",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "high-end",
+      "zh": "adj. 高端的",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "monitor",
+      "zh": "v. 监视；监督；监测；监控；【化】监控，监测；【航】监控；  n. 显示器；监视器；监测仪；班长；监控；监听；课代表",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "regularly",
+      "zh": "adv. 经常，定期地；有规律地；正常地；【化】定期地",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "regular",
+      "zh": "adj. 定期的，有规律的；经常的；正常的；匀称的；普通的，常规的；左脚前（习惯为左脚在前的滑板姿势）；通常的，平常的；  n. 常客；正式队员",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "foam",
+      "zh": "n. 泡沫；泡沫体；泡沫橡胶；汗沫，唾沫；  vi. 吐白沫，起泡沫",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "pillow",
+      "zh": "n. 枕头；  v. 垫，枕着",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "smartphone",
+      "zh": "n. 智能手机",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "resource",
+      "zh": "v. 向…提供资金（或设备）；  n. 资源；资料；财力；物力；办法；谋略；【化】资源",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "limited",
+      "zh": "adj. 有限的；被限制的",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "provide for sb",
+      "zh": "phr. 提供生活所需",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "closing",
+      "zh": "adj. 结束的；  v. 动词close的现在分词.；  n. 关闭；终止；结算；地产成交会；【法】交割，完成交易",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "in closing",
+      "zh": "adj. 结束的；  v. 动词close的现在分词.；  n. 关闭；终止；结算；地产成交会；【法】交割，完成交易",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "mystery",
+      "zh": "n. 神秘（感）；神秘的事物；难以解决的事情；难以理解的事物；疑案故事",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "run out",
+      "zh": "phr. 用完，耗尽",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "attach",
+      "zh": "v. 贴上，使依附；把……固定，把……附（在……上）；认为...有重要性；附加；缚；赋予；【化】结合，附着；【航】使依附，贴上",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "oxygen",
+      "zh": "n. 氧气，氧；【物】氧气",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "NASA",
+      "zh": "abbr. 美国国家航空和航天管理局(=National Aeronautics and Space Administration)",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "Mars",
+      "zh": "n. 火星；【物】火星",
+      "unit": "Unit 4 Space Exploration"
+    },
+    {
+      "en": "Jupiter",
+      "zh": "n. 木星；【物】木星",
+      "unit": "Unit 4 Space Exploration"
+    }
+  ]
+}

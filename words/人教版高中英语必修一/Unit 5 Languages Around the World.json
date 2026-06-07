@@ -1,0 +1,245 @@
+{
+  "name": "Unit 5 Languages Around the World",
+  "words": [
+    {
+      "en": "billion",
+      "zh": "n. 【数】十亿；  adj. 大量的；  num. 十亿；数以十亿计；大量",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "native",
+      "zh": "adj. 本地的；土著的；与生俱来的；本国的；出生地的；母语的；当地土产的；【计】本地的；  n. 本地人；土著；当地动植物",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "attitude",
+      "zh": "n. 态度；看法；姿势",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "reference",
+      "zh": "v. 给（书等）附参考资料；查阅；  n. 参考书；提及；推荐人；参考；引文；推荐信；【计】引用；编号；参考文献；介绍信，推荐信，参考，（方便查询的）编号",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "refer",
+      "zh": "v. 参考；谈及，提到；涉及；把……描述为；查阅，查询；指；托付；介绍；提交；叫……求助于；把……归因于；转医院，转诊；【计】参考；【航】参考",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "refer to",
+      "zh": "phr. 参考；涉及；指的是；适用于；谈到",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "system",
+      "zh": "n. 系统；体系；身体；制度；体质；方法；【电】系统；【航】系统",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "despite",
+      "zh": "prep. 尽管，不顾；即使；【法】即使，尽管",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "ups and downs",
+      "zh": "phr. 起伏；盛衰；高低；成败",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "factor",
+      "zh": "vi. 作为因素；  vt. 把…因素包括进去；  n. 因素；要素；【数】因子，商；系数；【财】保理商；【化】因素；【数】因数，因子",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "based",
+      "zh": "adj. 以...为基础的；在...居住（或工作）；基地（或总部）在...",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "base",
+      "zh": "v. 以……作基础；以……为据点；以......为基地；  n. 根基；底座；[化]碱；基础；根据；基地，大本营；基础成分；总部；基本工资；【化】碱；  adj. 卑鄙的；不道德的",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "date back (to...)",
+      "zh": "phr. 追溯到，远在……年代",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "bone",
+      "zh": "v. 将……去骨；  n. 骨头；骨骼；骨质物；【医】骨",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "shell",
+      "zh": "n. 壳，外壳；骨架；贝壳；炮弹；  v. 剥壳；炮击",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "symbol",
+      "zh": "n. 象征；符号；图标；记号；标志；【计】符号；【化】符号；【数】符号；【航】标志",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "carve",
+      "zh": "v. 雕刻；（把肉等）切成块；开创，开拓；刻上",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "dynasty",
+      "zh": "n. 王朝，朝代",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "variety",
+      "zh": "n. 种类；变化，多样性；变体；异体；不同种类；（同一事物的）不同种类，多种式样；综艺表演；多样性",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "major",
+      "zh": "vi. 专攻；  n. 主修（科目）；陆军少校；成年人；主修学生；主修生；  adj. 主要的；严重的；重要的；主修的；较多的；较大的；【化】主要的",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "no matter where/who/what etc.",
+      "zh": "phr. 无论；不管",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "dialect",
+      "zh": "n. 方言；语调；  adj. 方言的",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "means",
+      "zh": "n. 方法，手段；工具；财富，收入；  v. 打算或注定要某人成为或做某事；意味着（mean的第三人称单数）",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "classic",
+      "zh": "adj. 经典的；典雅的，老式的；高雅的；一流的；  n. 经典著作；文豪；优秀典范",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "regard",
+      "zh": "n. 尊敬；问候；关注；  v. 把……视为；看待；认为；看作",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "character",
+      "zh": "n. 角色；字；性格；特点；品质；人物；【计】字符；【化】性质，特性",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "calligraphy",
+      "zh": "n. 笔迹，墨宝，书法",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "global",
+      "zh": "adj. 全球的；全面的；【计】全局的",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "affair",
+      "zh": "n. 事情，事务；私通，风流韵事；事件；政治事务，公共事务；恋爱事件",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "appreciate",
+      "zh": "v. 欣赏；感谢，感激；领会；重视；增值；赏识",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "specific",
+      "zh": "adj. 具体的；特定的；特殊的；明确的；针对……的；特有的；特别的；  n. 详情；特性",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "CE",
+      "zh": "abbr. 公元；化学工程师（=Chemical Engineer）；土木工程师（=Civil Engineer）",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "struggle",
+      "zh": "v. 挣扎；抗争；奋斗，拼搏；努力；搏斗；  n. 挣扎；斗争；奋斗；努力；搏斗",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "tongue",
+      "zh": "vi. 吹奏管乐器；  vt. 舔；用舌头碰触；  n. 舌头；语言，说话方式；方言",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "point of view",
+      "zh": "phr. 观点，立场",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "semester",
+      "zh": "n. 学期；半年",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "petrol",
+      "zh": "n. <英>汽油",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "subway",
+      "zh": "n. 地铁；（穿越马路等的）地下人行道",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "apartment",
+      "zh": "n. <美>公寓；一套住房，公寓套房",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "pants",
+      "zh": "pl. 裤子；  n. 内裤",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "beg",
+      "zh": "v. 乞求，恳求；乞讨；引起疑问",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "equal",
+      "zh": "v. 【计】相等；等于；比得上；导致；  n. 同等的人；相等物；  adj. 相等的；平等的；胜任的；相同的；【数】等于，等价；【化】等量的，相等的",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "gap",
+      "zh": "n. 间隙，间隔；缺口，开口；差距，差别；漏洞；  vt. 制造缺口",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "demand",
+      "zh": "n. 需求，需要；要求；【财】需求；  v. 需要；强烈要求；要求；询问，查问",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "vocabulary",
+      "zh": "n. 词汇（量）；词（汇）表",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "description",
+      "zh": "n. 描写，形容，叙述；种类，类型",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "relate",
+      "zh": "v. 相关，有联系；讲述；涉及，关于；（对别人的处境、问题等）认同，理解；联系；使......相关；了解",
+      "unit": "Unit 5 Languages Around the World"
+    },
+    {
+      "en": "relate to",
+      "zh": "phr. 与...有关；涉及",
+      "unit": "Unit 5 Languages Around the World"
+    }
+  ]
+}

@@ -1,0 +1,295 @@
+{
+  "name": "Unit 3 Environmental Protection",
+  "words": [
+    {
+      "en": "graph",
+      "zh": "vt. 用曲线图表示，把…绘入图表；用胶版印刷；  n. （曲线）图，图表；【化】图表，曲线图；【数】图像；【计】图表",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "emission",
+      "zh": "n. 排放物；放射物；散发物；排放；发射；【化】发射，放射；【物】放射",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "starve",
+      "zh": "v. 挨饿；饿死；渴望；缺乏；需要",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "seal",
+      "zh": "v. 【化】密封；  vt. 封（信封）；密封，把……封入；封锁；确定；  n. 海豹；邮戳；封条；印章",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "ecology",
+      "zh": "n. 生态学；生态；个体生态学；【生】生态学",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "release",
+      "zh": "v. 释放；排放（气体等）；发布，发行；免除（责任、债务等）；发泄（情感）；放开，松开，使自由移动（或飞翔、降落等）；放出，放走；释放，放出；发布，推出；【化】释放；【航】释放；  n. 上映；解除；释放；排放；发布；免除（责任、债务等）；解脱；发行，发布；发布的声明（或文件等）",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "methane",
+      "zh": "n. 【有化】甲烷，【能源】沼气；【化】甲烷",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "carbon",
+      "zh": "n. 碳；复写纸；【物】碳",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "dioxide",
+      "zh": "n. 二氧化物",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "carbon dioxide",
+      "zh": "phr. 二氧化碳；【物】二氧化碳",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "habitable",
+      "zh": "adj. 可居住的；适合居住的",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "sustain",
+      "zh": "v. 维持（生命）；支撑，承受；供养；忍受；遭受，蒙受；使保持",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "sustainable",
+      "zh": "adj. 可持续的；合理利用的",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "fossil",
+      "zh": "n. 化石；  adj. 从地下发掘出来的；化石的；属于旧时代的；陈腐的",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "fuel",
+      "zh": "v. 给……加燃料；煽动；刺激；激起；加强；  n. 燃料；刺激因素；【化】燃料",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "fossil fuel",
+      "zh": "n. 化石燃料",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "comprehensive",
+      "zh": "adj. 综合的；有充分理解力的，悟性好的；全面的，完整的；详尽的；广泛的，无所不包的；广义的；  n. 综合测验；综合学校",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "worldwide",
+      "zh": "adj. 全世界的，影响全世界的；世界各地的；  adv. 在世界各地，遍及全球地",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "trend",
+      "zh": "v. 倾向；走向；转向；使趋向；  n. 趋势；趋向，动向；时尚；【化】趋势，倾向",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "frequently",
+      "zh": "adv. 频繁地；经常地",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "broadcast",
+      "zh": "v. 播放，广播；散布，传播；  n. 广播或电视节目",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "policy",
+      "zh": "n. 保险单；政策，方针；原则，策略；【计】策略",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "footprint",
+      "zh": "n. 脚印，足迹；（某物所占的）空间量；面积",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "restrict",
+      "zh": "v. 【化】限制；  vt. 限制；约束；限定；束缚",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "restriction",
+      "zh": "n. 限制，约束；限制规定；限制法规；【化】限制",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "seize",
+      "zh": "v. 抓住，逮捕；夺取，攻占；控制；抓住，把握（机会等）；捉拿，俘获",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "basin",
+      "zh": "n. 水池；盆地；流域；盆；低洼地",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "penguin",
+      "zh": "n. 企鹅",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "reform",
+      "zh": "v. 革新；改良；（人）改正，改过自新；改造；改革；  n. 革新，变革；改良；改革；  adj. 改革的",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "undergo",
+      "zh": "v. 经历；遭受，经受（变化、不快等）",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "implement",
+      "zh": "n. 工具，器具；  v. 实施，执行；使生效；贯彻；【计】实现；【法】履行",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "harmonious",
+      "zh": "adj. 和谐的，协调的；和睦的；悦耳的",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "moderate",
+      "zh": "v. 使减轻，使缓和（读作/ˈmɑdərˌeɪt/）；缓和；使适中；  n. 温和主义者；稳健的人；  adj. 中等的，适中的；适度的；温和的，稳健的；【化】中等的，适度的",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "submit",
+      "zh": "v. 提交；呈递；屈服，使...服从；建议，主张",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "annual",
+      "zh": "adj. 年度的，一年一次的；  n. 年鉴；一年生植物；年刊",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "tropical",
+      "zh": "adj. 热带的；来自热带的；炎热的",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "chaos",
+      "zh": "n. 混乱，纷乱；混沌；杂乱；紊乱；【电】混沌",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "on behalf of",
+      "zh": "phr. 代表…...，为了…...；为帮助",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "nuclear",
+      "zh": "adj. 核能的；原子能的；细胞核的；原子核的",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "sensitive",
+      "zh": "n. 有灵异能力的人， 敏感的人；  adj. 敏感的；过敏的；灵敏的；善解人意的；易受伤害的；感光的；玻璃心；【化】敏感的",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "jungle",
+      "zh": "n. （热带）丛林；危险地带；丛林音乐；密林；复杂的事物；弱肉强食的地方",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "smog",
+      "zh": "n. 烟雾；【化】烟雾",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "originate",
+      "zh": "v. 起源；发源；创立；开始；开创",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "volume",
+      "zh": "n. 音量；数量；容量；体积；册，卷；【化】体积；【物】体积；【数】体积",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "garbage",
+      "zh": "n. 垃圾；垃圾桶；废物；废话，无聊话；无聊作品；废料；食物残渣；【计】垃圾",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "enterprise",
+      "zh": "n. 企业（或事业）单位，公司；事业；事业心；艰巨复杂的计划",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "restore",
+      "zh": "vt. 恢复；使复原；修补，修复；  v. 归还",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "conservation",
+      "zh": "n. 保护；保存；维持，保持",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "dozen",
+      "zh": "n. 【数】十二个；  adj. 一打的；十二个的；  num. 一打，十二个；许多",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "dozens of",
+      "zh": "phr. 许多；很多",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "regulation",
+      "zh": "n. 规章，法规，条例；管理；章程；调整，调节；【财】规则，法规；【法】条例；【化】调控",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "disposal",
+      "zh": "n. 销毁，丢掉，处理；去掉；清除；【财】处置；【化】处理，处置；  adj. 处理（或置放）废品的",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "inspection",
+      "zh": "n. 检查，细看；查看；视察；【护】视诊；【航】检查",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "fine",
+      "zh": "vt. 罚款；  n. 罚款；【财】罚款；罚款，罚金；  adj. 可接受的，蛮不错的，美好的；好的；健康的；优质的；晴朗的；精致的；  adv. 可接受，够好；够好，蛮不错",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "campaign",
+      "zh": "n. （社会性、政治性）活动，运动；战役；  v. 从事活动；参加运动；领导运动",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "waterway",
+      "zh": "n. 水路；航道；水道；舷侧排水沟",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "tolerate",
+      "zh": "vt. 忍受，容忍；容许，允许；包容；能经受住（困难条件）；  v. 【财】容忍",
+      "unit": "Unit 3 Environmental Protection"
+    },
+    {
+      "en": "agenda",
+      "zh": "n. 议程，议程表；议事日程；（潜在的）动机（此时常与hidden连用）",
+      "unit": "Unit 3 Environmental Protection"
+    }
+  ]
+}

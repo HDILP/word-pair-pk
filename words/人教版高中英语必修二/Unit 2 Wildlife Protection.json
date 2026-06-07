@@ -1,0 +1,405 @@
+{
+  "name": "Unit 2 Wildlife Protection",
+  "words": [
+    {
+      "en": "poster",
+      "zh": "n. 海报；招贴",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "illegal",
+      "zh": "adj. 非法的；  n. 非法移民，非法劳工；间谍",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "illegally",
+      "zh": "adv. 非法地",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "hunt",
+      "zh": "n. 打猎；搜寻；  v. 追捕；搜索；打猎；寻找，搜寻；猎取；猎杀",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "hunter",
+      "zh": "n. 猎人；猎犬；搜寻者；猎户座；追逐者",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "immediately",
+      "zh": "adv. 马上；直接地；靠近地；  conj. 一……（就）",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "species",
+      "zh": "n. 物种；种类；人类；【化】形态；【生】物种；  adj. 物种上的",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "shark",
+      "zh": "n. 鲨鱼；骗子",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "fin",
+      "zh": "n. 鳍；  v. 切去（鱼的）鳍",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "on earth",
+      "zh": "phr. 到底，究竟；根本，完全",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "die out",
+      "zh": "phr. 灭绝，绝种；消失",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "alarming",
+      "zh": "adj. 惊人的，令人恐慌的",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "alarm",
+      "zh": "n. 警报器，警报；闹钟；惊恐，忧虑；  v. 使惊恐，使忧虑",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "rate",
+      "zh": "v. 评估，评价；定等级，评级；认为；  n. 速度，速率；率，比率；价格，价钱；等级；频率；【数】比率",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "rating",
+      "zh": "n. 评价；等级；等级评定；额定功率；评分；收视率；程度",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "extinct",
+      "zh": "adj. 灭绝的；破灭了的，消亡了的；熄灭了的；（火山）死的",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "extinction",
+      "zh": "n. 灭绝；熄灭；消失；【生】灭绝",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "mass",
+      "zh": "v. 聚集；  n. 大量，一堆；大多数；群众；[物]质量；团，块，堆；【化】质量；【物】质量；【数】质量；  adj. 大量的；广泛的",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "habitat",
+      "zh": "n. 栖息地，生活环境；【生】栖息地",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "aware",
+      "zh": "adj. 意识到的；知道的；对……有意识的",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "aware of",
+      "zh": "phr. 意识到，知道",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "endanger",
+      "zh": "vt. 危及，危害",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "average",
+      "zh": "v. 平均为；  n. 平均数；平均水平；  adj. 通常的；一般的；平均的；平庸的，普通的；【数】平均值，均值",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "on average",
+      "zh": "phr. 平均，通常",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "prince",
+      "zh": "n. 王子；王孙；亲王",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "make progress",
+      "zh": "phr. 取得进步",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "concern",
+      "zh": "v. 感兴趣；涉及；担心；关于；  n. 关心，关切；担心；所关切的事；（利害）关系；关注；【化】关注点",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "concerned",
+      "zh": "adj. 关心的，关切的；担心的",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "concerned about",
+      "zh": "adj. 关心的，关切的；担心的",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "living",
+      "zh": "adj. 活的；居住的；在用的；  n. 生活，生计",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "adapt",
+      "zh": "v. 适应；使适应；改编；改装，改造；【航】调节，使适应",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "adapt to",
+      "zh": "phr. （使）适应",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "measure",
+      "zh": "v. 测量，度量；估量；【化】测量；【数】测量，度量；【航】测量；  n. 措施，方法；尺寸；计量标准；(估价、判断的)标准，尺度",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "authority",
+      "zh": "n. 权威，威信；当局，官方；权力，职权；当权者；权威人士；【航】权威，当局",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "pressure",
+      "zh": "vt. 对……施加压力；密封；  n. 压力；压迫，[物] 压强；迫使；要求；催促；【化】压强；【物】压强",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "under pressure",
+      "zh": "phr. 面临压力；被催逼",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "whale",
+      "zh": "n. 鲸；氪佬；  v. <美，非正式>殴打，猛击",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "antelope",
+      "zh": "n. 羚羊",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "reserve",
+      "zh": "v. 预订；保留；保存；储备；推迟决定；  n. 储备；储备金；保护区；保留意见；保留；禁猎区；预备队员；拘谨；【财】预定；留出；储备",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "plain",
+      "zh": "adj. 朴素的，不做修饰的；平凡的；简单明了的；坦率的；清楚的，显而易见的；单纯的；  n. 平原；  adv. (用以加强语气)显然，非常",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "make out",
+      "zh": "phr. 理解；看清，听清，分清",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "herd",
+      "zh": "n. 兽群，牧群；  v. 放牧，群集",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "observe",
+      "zh": "v. 观察；注视；注意；说，评论；庆祝，纪念；遵守；【法】遵守，遵照；【医】观察；【化】观察",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "beauty",
+      "zh": "n. 美（丽）；美人；美丽的东西；美容品，化妆品",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "remind",
+      "zh": "v. 提醒；使想起",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "remind sb of sb/sth",
+      "zh": "v. 提醒；使想起",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "fur",
+      "zh": "n. 毛皮；毛皮外套；人造毛；软毛；  vt. 用毛皮覆盖",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "sacred",
+      "zh": "adj. 神圣不可侵犯的；神圣的；宗教（性）的；不容更改的",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "shoot",
+      "zh": "v. 射击，射伤；拍照；射出（光、亮等），放射；发射；射门；狩猎；（使朝某方向）冲，奔，扑，射，飞驰；拍摄，摄影；射门（又作strike）；  n. 新芽；嫩枝",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "profit",
+      "zh": "v. 得益，有益于；  n. 利润，盈利；益处",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "watch over",
+      "zh": "phr. 照管；监督",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "day and night",
+      "zh": "phr. 日夜不停地，不断地",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "attack",
+      "zh": "v. 攻击，袭击；侵袭，侵蚀；毁坏；抨击；疾病发作；发动攻击；全力应对，奋力处理；【化】（疾病、化学药品、昆虫等）攻击，侵蚀；  n. 疾病发作；攻击，袭击；抨击",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "effective",
+      "zh": "adj. 有效的；实际的；生效的",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "recover",
+      "zh": "v. 痊愈，恢复健康；恢复；收回；换回；重新找到；重新获得；复苏；弥补；找回；【化】回收",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "remove",
+      "zh": "v. 去除；免除；脱去，摘下；移开；【航】去除；  n. 间距",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "intend",
+      "zh": "v. 打算；想要；计划",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "threat",
+      "zh": "n. 威胁，恐吓；凶兆；威胁的言论；【财】威胁",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "threaten",
+      "zh": "v. 恐吓；危及；预示……的恶兆；威胁",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "exist",
+      "zh": "vi. 生存，生活；存在",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "harmony",
+      "zh": "n. 和谐；和声；和睦；协调",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "goods",
+      "zh": "n. 货物，商品",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "creature",
+      "zh": "n. 生物；动物；人；创造物",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "deer",
+      "zh": "n. 鹿（单复数同形）",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "kangaroo",
+      "zh": "n. 袋鼠",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "reduce",
+      "zh": "v. 减少，减小，降低；精简；缩小；【化】还原；【数】简化，约分",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "due",
+      "zh": "adv. 直接地，确切地；正对着；  adj. 拖欠的；到期的；欠债的，应给的；由于，因为；适当的；预期的；应有的；  n. 会费；应有的权利；应得到的东西",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "due to",
+      "zh": "phr. 由于；因为",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "insect",
+      "zh": "n. 昆虫",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "net",
+      "zh": "n. 网，网状物；通信网；球网；篮网；  adj. 纯利的，净值的，净的；  v. 用网捕；捕获；净赚；踢入球门",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "neighbourhood",
+      "zh": "n. 邻近地区；街区，居民区；城区；社区；邻里情谊，邻居间的友善关系",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "binoculars",
+      "zh": "n. 双筒望远镜",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "search for",
+      "zh": "phr. 搜寻，寻找",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "dolphin",
+      "zh": "n. 海豚",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "koala",
+      "zh": "n. 树袋熊，考拉",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "stir",
+      "zh": "v. 搅拌，搅动；搅和；激发（兴趣）；轰动；动，移动；挪动，活动，离开 ；激动；【化】搅拌；  n. 感动，激动，愤怒，震动；搅拌；骚乱",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "stir up",
+      "zh": "phr. 激起；唤起；搅拌；煽动",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "emotion",
+      "zh": "n. 情绪，情感；强烈的感情；感性",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "skin",
+      "zh": "v. 剥皮；去皮；  n. 皮肤；皮，外皮；兽皮，毛皮；果皮；【医】皮肤；【生】皮肤；  adj. <俚>色情的",
+      "unit": "Unit 2 Wildlife Protection"
+    },
+    {
+      "en": "unusual",
+      "zh": "adj. 不寻常的，不常见的；与众不同的",
+      "unit": "Unit 2 Wildlife Protection"
+    }
+  ]
+}

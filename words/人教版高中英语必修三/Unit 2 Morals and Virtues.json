@@ -1,0 +1,445 @@
+{
+  "name": "Unit 2 Morals and Virtues",
+  "words": [
+    {
+      "en": "moral",
+      "zh": "adj. 道德（上）的，道义的；  n. 道德，品行；寓意",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "virtue",
+      "zh": "n. 正直，善良；美德，高尚的道德；德行；好处，优点；优秀品质；【财】美德，优点，品德",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "dilemma",
+      "zh": "n. 进退两难的窘境；困境；【财】困境，进退两难的局面",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "moral dilemma",
+      "zh": "phr. 道德两难处境",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "faint",
+      "zh": "vi. 晕倒；变得模糊；昏厥；  adj. 虚弱的；（光、声、味）微弱的；眩晕的；不清楚的；不太可能的；  n. 晕倒；昏厥",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "illustrate",
+      "zh": "v. （用示例、图画等）说明，解释；图解，加插图；【化】说明，插图",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "precious",
+      "zh": "n. <口>宝贝，心爱的人；  adj. 珍贵的，宝贵的；珍稀的；【化】贵重的，贵的；  adv. 强调极少或太少",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "entrust",
+      "zh": "v. 委托，托管；交付",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "carry sb through sth",
+      "zh": "phr. 维持；使渡过难关，坚持下去",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "marriage",
+      "zh": "n. 结婚；婚姻；婚礼；已婚状态",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "majority",
+      "zh": "n. 大多数，大部分；法定成年年龄；多数票",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "complain",
+      "zh": "v. 抱怨，发牢骚；诉苦；申诉；控诉；诉说；控告；埋怨；诉说（病情或痛苦）",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "tuition",
+      "zh": "n. 学费；（小组）教学，讲课",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "fee",
+      "zh": "n. 服务费，报酬；费用",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "tuition fees",
+      "zh": "n. 服务费，报酬；费用",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "respond",
+      "zh": "v. 回答，回复；做出反应；对……有效果；回应",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "response",
+      "zh": "n. 回应；回答，答复；响应；反应；【电】响应",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "union",
+      "zh": "n. 工会；联合；合并；协会；同盟；一致；融洽；联邦；结婚、婚姻；【计】并集；【数】并集",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "scholarship",
+      "zh": "n. 学问；奖学金；学术界；学术成就",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "hire",
+      "zh": "v. 雇佣；租用；聘任；雇用，聘用；  n. 雇用；租用，租借；新雇员",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "physician",
+      "zh": "n. 内科医生",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "resident physician",
+      "zh": "n. 内科医生",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "colleague",
+      "zh": "n. 同事；同行",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "reject",
+      "zh": "v. 拒绝，拒绝接受；驳回；抵制；丢弃（读作/rɪˈdʒɛkt/）；冷落；嫌弃，厌弃；【航】拒绝；  n. 次品；不合格者（读作/ˈridʒɛkt/）",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "rejection",
+      "zh": "n. 拒绝接受；被拒绝的东西；否决；【财】拒绝",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "appoint",
+      "zh": "v. 委派，任命；确定，约定；【财】任命，委派，指定；任命，委派，委任",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "clinic",
+      "zh": "n. 诊所，门诊部；门诊（部、室）",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "faraway",
+      "zh": "adj. 远的；远方的；遥远的；  n. 遥远的事物",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "elect",
+      "zh": "v. 选举，推选；选择；  adj. 精选的，选出的；当选的；  n. 被选的人；上帝的选民",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "election",
+      "zh": "n. 选举；当选；推举",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "decade",
+      "zh": "n. 十年，一个年代；【数】十年",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "elsewhere",
+      "zh": "adv. 向别处，在别处；  pron. 别处，别的地方",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "tend",
+      "zh": "v. 照顾，照料；倾向，趋于；往往会发生某事；【化】容易，倾向于",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "tend to do sth",
+      "zh": "v. 照顾，照料；倾向，趋于；往往会发生某事；【化】容易，倾向于",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "publish",
+      "zh": "v. 出版；公布；刊登；发表",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "staff",
+      "zh": "v. 为……配备职员；在……工作；  n. 工作人员，全体职员；参谋；拐杖；五线谱；同事；杆棒；棍；  adj. 行政工作的；参谋的；职员的；作为正式工作人员的",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "retire",
+      "zh": "v. 退休；退役；退出，离开；退庭，休庭；就寝；撤离；移开，拿来",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "saving",
+      "zh": "n. 节省，节约；（复数）积蓄，储蓄；（复数）储蓄金，存款；节省物；搭救，挽救；  prep. 除...之外；  conj. 除了，除去",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "kindergarten",
+      "zh": "n. 幼儿园",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "principle",
+      "zh": "n. 原则；理由，信条；法则；道德原则；原理；【化】原则，定律",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "passive",
+      "zh": "adj. 被动的；消极的；顺从的；  n. 被动语态",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "scared",
+      "zh": "adj. 害怕的，恐惧的；担心的",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "scare",
+      "zh": "v. 使害怕，惊吓；受惊吓；  n. 惊恐，恐慌；惊吓",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "sharp",
+      "zh": "adj. 锋利的；敏锐的；聪明的；明显的；（增长、下跌等）急剧的；清楚的；刺耳的；（言语）尖锐的；  adv. 急剧地；锐利地；突然地；整点；时刻，正准；  n. 【计】井号；（音乐）升半音；磨；  v. 升音",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "insurance",
+      "zh": "n. 保险；保险费；保险业；安全保证",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "energetic",
+      "zh": "adj. 精力充沛的，充满活力的；有力的，积极的",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "replace",
+      "zh": "v. 更换，替换；代替，接替；放回；还原，重新放置",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "accident",
+      "zh": "n. 事故；意外；偶然；车祸；失事；【航】事故",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "operation",
+      "zh": "n. 操作；手术；运转，运行；经营；生意，企业；行动，活动；运算；【计】操作；【数】运算；【计】操作（op）；【航】操作",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "whisper",
+      "zh": "v. 小声说，耳语，低语；低声低语地讲，悄悄地说；私下说；  n. 私语；沙沙声，飒飒声；耳语声，低语声；传言，谣传",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "midnight",
+      "zh": "n. 子夜，午夜；午夜蓝",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "import",
+      "zh": "v. 进口；输入，引进（读作/ɪmˈpɔrt/）；【计】导入；  n. 进口；进口商品；含义，意义；重要性（读作/ˈɪmˌpɔrt/）",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "export",
+      "zh": "v. 出口，输出；传播（读作/ɪkˈspɔrt/）；【计】导出；  n. 出口，输出；出口商品（读作/ˈeksˌpɔrt/）",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "pole",
+      "zh": "n. 杆子，棍，杖；电极；磁极；（行星的）极，地极；地球的极",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "lap",
+      "zh": "n. （坐下时的）大腿部；（跑道的）一圈；  v. （赛跑时）领先（某人）一圈；轻拍",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "bite",
+      "zh": "v. 咬，叮，蜇；咬；  n. 咬；（咬下的）一口；少量食物；简单的一餐；咬伤的伤口",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "lip",
+      "zh": "v. 接吻；说话；拍打；  n. 嘴唇；唇状物；  adj. 唇的；口头上的",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "assist",
+      "zh": "v. 帮助；协助；促进；  n. 帮助；助攻；助功",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "first aid",
+      "zh": "phr. 急救",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "pass away",
+      "zh": "phr. 死，逝世；消失",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "chairman",
+      "zh": "n. 议长；主席，董事长；主持人",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "memory",
+      "zh": "n. 记忆；存储；记忆力，记性；追忆（已逝去的人）；【计】内存",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "in memory of",
+      "zh": "phr. 作为对……的纪念，追念",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "chain",
+      "zh": "vt. 束缚；用链条拴住；  n. 链条；链子；项圈；连锁；一系列；一连串（人或事）；连锁店，连锁集团；束缚",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "cafe",
+      "zh": "n. 咖啡馆，餐馆；咖啡馆(=café)",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "waitress",
+      "zh": "n. 女侍者；女服务员",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "pregnant",
+      "zh": "adj. 怀孕的，妊娠的；充满的，意味深长的",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "disguise",
+      "zh": "v. 伪装；掩饰，掩盖；装扮，假扮；【财】隐瞒；  n. 伪装物；伪装；化装用具",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "maple",
+      "zh": "n. 枫树；枫木；槭树",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "cart",
+      "zh": "n. 手推车，运货马车；  v. 用车装载",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "spill",
+      "zh": "v. 使溢出；使流出，涌流；撒；摔下；（人群）涌出；泄密；(使)洒出，泼出；【航】使溢出，流出；  n. 溢出，溅出；溢出量；摔下；裂片，破片；圆筒形纸；木片，纸捻",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "trip over",
+      "zh": "phr. 被……绊倒",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "limp",
+      "zh": "n. 跛行；  vi. 一瘸一拐地走，跛行；慢腾腾地进行；  adj. 无力的，无生气的；柔软的，软弱的",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "tear",
+      "zh": "v. 撕裂，撕碎（读作/ter/ ）；流泪；  n. 眼泪（读作/tɪr/）；（撕破的）洞或裂缝",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "in tears",
+      "zh": "phr. 流泪；含泪；哭",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "despair",
+      "zh": "n. 绝望；  v. 绝望，感到无望",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "in despair",
+      "zh": "phr. 处于绝望中，失望地",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "harm",
+      "zh": "v. 伤害；  n. 伤害，损害",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "might",
+      "zh": "n. 力量，威力；  aux. 或许；可以；可能，也许（may的过去式）",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "a great deal of",
+      "zh": "phr. 大量",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "fable",
+      "zh": "n. 寓言，童话；无稽之谈；  v. 虚构，杜撰；煞有介事地讲",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "court",
+      "zh": "n. 法院，法庭；庭院；球场；宫廷；公寓大楼；  v. 试图取悦；招致灾祸；追求",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "flexible",
+      "zh": "adj. 易弯曲的，柔软的；灵活的；可变通的；【财】灵活的；【化】柔韧的",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "income",
+      "zh": "n. 收入，收益；利润",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "per",
+      "zh": "prep. 每，每一；按照",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "therefore",
+      "zh": "adv. 因此，所以；由此",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "tension",
+      "zh": "v. 绷紧；  n. （精神上的）紧张，不安；拉紧；张力；电压；焦虑；紧张局面；矛盾，对立；【物】拉力",
+      "unit": "Unit 2 Morals and Virtues"
+    },
+    {
+      "en": "the People's Republic of China",
+      "zh": "phr. 中华人民共和国",
+      "unit": "Unit 2 Morals and Virtues"
+    }
+  ]
+}

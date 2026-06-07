@@ -1,0 +1,325 @@
+{
+  "name": "Unit 1 Science Fiction",
+  "words": [
+    {
+      "en": "fiction",
+      "zh": "n. 虚构；小说；虚构的事；小说，虚构作品",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "science fiction",
+      "zh": "phr. 科幻小说（=sci-fi，有时也可指代科幻电影）",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "test out",
+      "zh": "phr. 彻底检查，仔细检查；检验；测试",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "bonus",
+      "zh": "n. 奖金，额外津贴；意外收获；红利；奖金，红利，意外收获，额外奖励",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "more like",
+      "zh": "phr. 更像是；说...还差不多；更接近",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "ridiculous",
+      "zh": "adj. 可笑的，荒谬的；愚蠢的",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "integrity",
+      "zh": "n. 正直，真诚；完整；完好；【财】诚信正直",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "dignity",
+      "zh": "n. 尊严；威严；端庄",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "salary",
+      "zh": "vt. 给...加薪，给...薪水；  n. 工资，薪水",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "absurd",
+      "zh": "adj. 不合理的；可笑的，荒唐的；荒谬的；  n. 荒唐的事",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "appointment",
+      "zh": "n. 预约；委派；任命；制定；约会",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "nail",
+      "zh": "v. 将……钉牢，钉住；固定；  n. 指甲，爪；钉；趾甲",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "saleswoman",
+      "zh": "n. 女推销员，女销售员",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "guilty",
+      "zh": "adj. 内疚的；负罪的；有过失的",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "suspend",
+      "zh": "v. 悬挂，吊；中止；推迟；使有悬念；取消；偿付债务；暂停；悬浮；【计】挂起；【化】悬浮；  vt. 使暂时停职（或停学等）",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "ladder",
+      "zh": "n. 梯子；阶梯；  vi. （长筒袜等）抽丝",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "dismiss",
+      "zh": "v. 开除；不考虑；解散；让（某人）离开；消除；解雇；否定；对……不屑一提；【法】驳回",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "declare",
+      "zh": "v. 宣布，宣告；表明；宣称，声称；断言；申报；（在击球员还未全部出局时）宣布结束赛局",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "whereas",
+      "zh": "conj. 然而，但是，尽管；【法】鉴于，就……而论",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "rumour",
+      "zh": "n. 谣言，传闻；【财】谣言；  v. 谣传，传闻",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "presume",
+      "zh": "v. 假定；推测；擅自行事；利用；以…...为先决条件；【财】假设",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "fare",
+      "zh": "n. 交通费；票价；食物；出租车乘客；  v. （事情）进行得（好或坏）",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "weekly",
+      "zh": "adv. 一周一次地；  adj. 每周的，一周一次的；  n. 周报，周刊",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "calculate",
+      "zh": "v. 计算；估计；计划；核算；预测；【化】计算，推算；【航】计算",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "chairwoman",
+      "zh": "n. 女主席，女会长，女董事长",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "gramme",
+      "zh": "n. 克",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "flour",
+      "zh": "n. 面粉；粉状物质，（谷物磨成的）粉；  v. 撒上粉；研成粉末",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "venue",
+      "zh": "n. 审判地；犯罪地点；发生地点；集合地点；活动场地（如音乐厅、会场等）；场地",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "salesman",
+      "zh": "n. 男推销员，男售货员",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "alien",
+      "zh": "n. 外星人；外国人；  adj. 陌生的；外国的；异己的，不相容的；外星（人）的",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "pros and cons",
+      "zh": "phr. 事物的利与弊；支持与反对",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "blurred",
+      "zh": "v. 动词blur的过去式和过去分词；  adj. 难以区分的；模糊不清的；记不清的",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "superior",
+      "zh": "n. 上级；  adj. （级别/重要性）更高的；出众的；更好的；占优势的；质量上乘的，优质的",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "superior to",
+      "zh": "phr. 高于……，优于……，更胜一筹",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "take over",
+      "zh": "phr. 接收，接管，接任，夺取；占上风；取代",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "inaction",
+      "zh": "n. 无行动；无为；不采取措施",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "conflict with",
+      "zh": "phr. 抵触；与……冲突",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "labour",
+      "zh": "v. 劳动；为…迷惑；过于详尽地阐述；  vi. 奋斗；努力工作；  n. （体力）劳动；劳动者；分娩；劳动力；劳动；  adj. 工党的，支持工党的",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "leather",
+      "zh": "n. 皮革；皮制品；  vt. 用皮鞭抽打；用皮革覆盖；  pl. 皮衣，皮外套",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "lever",
+      "zh": "n. 杠杆；控制杆；施加影响的手段；  v. 用杠杆移动；撬开",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "panel",
+      "zh": "n. 讨论小组，专家咨询组；仪表板；面板；  v. 镶嵌",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "inch",
+      "zh": "v. （使）缓慢地移动；使渐进；  n. 英寸；少许，少量；【数】英寸（长度单位，1英寸等于2.54厘米）",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "backwards",
+      "zh": "adv. 向后，倒着，往回；反过来；退步，每况愈下",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "grip",
+      "zh": "v. 握紧，抓牢；  n. 紧握，握力；掌握，控制，影响",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "hazy",
+      "zh": "adj. 朦胧的，烟雾弥漫的，模糊的；迷惑的",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "niece",
+      "zh": "n. 侄女，外甥女",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "fetch",
+      "zh": "vt. 取来；接来，请来；使发出；售得；带来；接住；  vi. 取物；  n. 拿来，取来；诡计；风浪区；  v. 抵达，到达",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "handkerchief",
+      "zh": "n. 手帕；头巾；方巾；纸巾； 围巾",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "lamp",
+      "zh": "n. 灯，台灯；【物】灯泡",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "turn out",
+      "zh": "phr. 结果是，证明是；生产；制造；关闭，熄灭；翻转；出席（某项活动），在场；使朝外",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "pace",
+      "zh": "n. 速度；步伐；节奏；  vi. 踱步；确定速度；调整节奏",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "fall away",
+      "zh": "phr. 逐渐减少；消失；疏远；背离，离开；抛弃；消瘦；倾斜",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "division",
+      "zh": "n. 分，分配；除法；部门；分裂；分开，分隔；差异",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "puff",
+      "zh": "v. 喷出；膨胀，肿胀；吹捧；一口口抽烟；  n. 一口（气味，烟雾）；一阵，一股；喷出；粉扑；呼吸；（烟、气等的）一缕；少量；喘息；  adj. 吹嘘的",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "urge",
+      "zh": "v. 催促；敦促，督促；鞭策，鼓动；力荐，主张；强烈要求；  n. 冲动；强烈的愿望",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "have an urge to",
+      "zh": "phr. 有强烈的欲望做某事",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "random",
+      "zh": "n. 随意，胡乱；  adj. 随机的；任意的；不可思议的；随意的；【数】随机的",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "maximum",
+      "zh": "n. 最大值；最大限度；【化】最大值，最大限度；【数】最大值；  adj. 最大的",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "explode",
+      "zh": "vt. 爆破；  vi. 爆炸；爆发；激增；大发雷霆；突然活跃起来",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "jolt",
+      "zh": "n. 猛的一击，摇晃，颠簸；  v. （使）颠簸，摇晃；使震惊",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "flip",
+      "zh": "v. 把……往上抛；掷；抽打；用指轻弹；空翻；（使）快速翻转；【数】翻转；  adj. 轻率的，无礼的",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "stun",
+      "zh": "v. 使昏迷，使发愣",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "mud",
+      "zh": "n. 泥；泥浆",
+      "unit": "Unit 1 Science Fiction"
+    },
+    {
+      "en": "overstatement",
+      "zh": "n. 夸大；夸张",
+      "unit": "Unit 1 Science Fiction"
+    }
+  ]
+}

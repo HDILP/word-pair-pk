@@ -1,0 +1,350 @@
+{
+  "name": "Unit 3",
+  "words": [
+    {
+      "en": "cuisine",
+      "zh": "n. 菜肴；烹饪；风味",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "prior",
+      "zh": "adj. 事先的；优先的；先前的；在...的前面；  n. 上司",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "prior to",
+      "zh": "phr. 在……之前；【法】某日之前，提前多少日",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "consist",
+      "zh": "v. 由……组成；在于；【化】由……组成",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "consist of",
+      "zh": "phr. 由……组成",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "pepper",
+      "zh": "n. 胡椒粉，胡椒；辣椒；甜椒，灯笼椒；  v. 加胡椒粉于；使布满",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "recipe",
+      "zh": "n. 食谱；烹饪法；处方；秘诀；制作方法；秘方",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "bold",
+      "zh": "adj. 大胆自信的，勇于冒险的；无耻的，放肆的；醒目的；（印刷字）粗体的；  n. 粗体字",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "chef",
+      "zh": "n. 主厨；厨师",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "peppercorn",
+      "zh": "n. 胡椒粒；空有其名的地租",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "vinegar",
+      "zh": "n. 醋",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "stuff",
+      "zh": "n. 东西；材料；原料；素材，资料；填充物；<非正式>作曲，乐曲，艺术；<非正式>活动，事情；  vt. 把……塞进；装满；吃得过多；  adj. 毛织品做的；  v. 给......填馅",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "slice",
+      "zh": "v. 把……切成片；大幅度削减；切开；  n. 片，薄片，切片；份额，部分",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "slice... off",
+      "zh": "v. 把……切成片；大幅度削减；切开；  n. 片，薄片，切片；份额，部分",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "onion",
+      "zh": "n. 洋葱；葱头",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "lamb",
+      "zh": "n. 羔羊；羊羔肉",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "lamb kebab",
+      "zh": "n. 烤羊肉串",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "elegant",
+      "zh": "adj. 优雅的，典雅的；雅致的，陈设讲究的；精美的",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "dim sum",
+      "zh": "n. <广东话>点心",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "exceptional",
+      "zh": "adj. 优越的，杰出的；例外的，特殊的；罕见的；特别的",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "minimum",
+      "zh": "n. 最低限度，最小量；最小值；【数】最小值；  adj. 最少的，最低（限度）的",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "consume",
+      "zh": "vt. 消耗，消费；吃，喝，饮；毁灭",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "temper",
+      "zh": "n. 脾气，性情；调和剂；火气；  vt. 使缓和",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "vegetarian",
+      "zh": "n. 素食者；  adj. 素食的",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "junk",
+      "zh": "n. 垃圾，废旧物品；  v. 把……（当废物）丢弃",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "junk food",
+      "zh": "n. 垃圾食品；无营养食品；高热量食品",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "garlic",
+      "zh": "n. 大蒜",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "bacon",
+      "zh": "n. 培根，（通常切成薄片的）咸猪肉，熏猪肉",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "ham",
+      "zh": "n. 火腿；  adj. 做作的，蹩脚的；  v. 表演过火",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "sausage",
+      "zh": "n. 香肠；腊肠",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "cabbage",
+      "zh": "n. 洋白菜，卷心菜；甘蓝；卷心菜",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "bean curd",
+      "zh": "n. 豆腐，豆制凝块",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "tofu",
+      "zh": "n. 豆腐(=bean curd)",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "brand",
+      "zh": "n. 品牌；烙印；  v. 给……打上烙印；加污名于；加商标于；谴责",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "olive",
+      "zh": "n. 橄榄；橄榄树；橄榄色；  adj. 橄榄色的",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "fig",
+      "zh": "n. 无花果；无花果树；少许，一些；无价值的东西；服装；  vt. 打扮；使马跑快",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "ingredient",
+      "zh": "n. （烹调的）原料；成分，构成要素；【化】成分，配料",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "dessert",
+      "zh": "n. 甜点",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "dough",
+      "zh": "n. 生面团；金钱",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "stable",
+      "zh": "vt. 使（马）入厩；  n. 马厩；  adj. 稳定的；安定的；牢固的；稳重的",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "haggis",
+      "zh": "n. （苏格兰）羊杂碎肚，哈吉斯",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "canteen",
+      "zh": "n. 食堂，餐厅；水壶",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "cafeteria",
+      "zh": "n. 自助食堂；自助餐厅",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "bun",
+      "zh": "n. 圆面包；曲卷（或结）状的头发；小圆甜饼；馒头",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "chilli",
+      "zh": "n. 辣椒",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "chili",
+      "zh": "n. 辣椒",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "pork",
+      "zh": "n. 猪肉",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "red braised pork",
+      "zh": "phr. 红烧肉",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "pearl",
+      "zh": "n. 珍珠；珠状物",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "somewhat",
+      "zh": "adv. 有点儿，稍微；  pron. 某物；一些",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "madam",
+      "zh": "n. 夫人；女士",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "calorie",
+      "zh": "n. 【热量单位】卡，卡路里",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "association",
+      "zh": "n. 结合；伙伴，关系；协会，联盟，社团；联想；关联；帮派",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "regardless",
+      "zh": "adv. 不顾；不加理会；无论如何；  adj. 不顾的，不管的",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "regardless of",
+      "zh": "phr. 不管，不顾",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "category",
+      "zh": "n. 类别；范畴；种类；【数】范畴",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "vitamin",
+      "zh": "n. 维生素；【化】维生素",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "fibre",
+      "zh": "n. 纤维（=fiber）；纤维制品；纤维素",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "fiber",
+      "zh": "n. 纤维（=fiber）；纤维制品；纤维素",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "quantity",
+      "zh": "n. 数量，数额；大量，许多；（特定的）数量；【数】数量，量",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "dairy",
+      "zh": "adj. 奶制的，牛奶的；乳品（业）的；  n. 乳制品；牛奶厂；乳品店",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "moderation",
+      "zh": "n. 适度，节制，温和，缓和；合理",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "ideal",
+      "zh": "adj. 理想的；完美的；空想的；观念的；想象的；高尚的；  n. 理想；典范；目标；完美的人（或事物）",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "fundamental",
+      "zh": "adj. 基本的；至关重要的；基础的；根本的；首要的；  n. 基本原理；基本规律；根本法则",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "chew",
+      "zh": "v. 咀嚼，嚼碎；咀嚼；  n. 咀嚼；咬嚼",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "consistent",
+      "zh": "adj. 始终如一的，一致的；连续的；坚持的；一贯的；【计】一致的",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "modest",
+      "zh": "adj. 谦虚的；端庄的；适度的；些许的；朴素的；有节制的",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "trick",
+      "zh": "v. 哄骗；捉弄，戏弄；欺诈；  n. 恶作剧，诡计，花招；把戏；诀窍；技巧，戏法；技巧；  adj. 虚弱的；特技的；欺诈的",
+      "unit": "Unit 3"
+    },
+    {
+      "en": "overall",
+      "zh": "adj. 全面的，全部的；综合的；总体的；  n. 罩衫，工装服；  adv. 总体上；一般来说，大致上；总共（读作/oʊvərˈɔl/）",
+      "unit": "Unit 3"
+    }
+  ]
+}

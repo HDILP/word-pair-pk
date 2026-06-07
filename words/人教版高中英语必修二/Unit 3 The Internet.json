@@ -1,0 +1,305 @@
+{
+  "name": "Unit 3 The Internet",
+  "words": [
+    {
+      "en": "blog",
+      "zh": "n. 博客；网络随笔；日志；  v. 写博客",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "blog post",
+      "zh": "n. 博文；博客帖子",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "blogger",
+      "zh": "n. 写博客的人，博主",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "engine",
+      "zh": "v. 给……装引擎；  n. 引擎；发动机；火车头；【化】催化，驱动",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "search engine",
+      "zh": "n. 搜索引擎",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "chat",
+      "zh": "v. 闲谈，聊天；  n. 闲谈，聊天；【计】聊天",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "stream",
+      "zh": "n. 小河，溪；流；一股，一串；潮流；光线；数据流，指令流；【计】流；  v. 流（媒体）播放；流出；流动；照射；鱼贯而行；涌动",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "identity",
+      "zh": "n. 身份；特性；一致；认同；【财】身份；【计】标识",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "identity card",
+      "zh": "phr. 身份证",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "convenient",
+      "zh": "adj. 方便的，省事的；附近的；容易得到的",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "cash",
+      "zh": "n. 现金；  v. 兑现；付（或收）现款",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "update",
+      "zh": "vt. 更新；为……提供最新信息（读作/ʌpˈdeɪt/）；  n. 更新；最新消息（读作/ˈʌpˌdeɪt/）",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "database",
+      "zh": "n. 数据库；资料库；【财】数据库；【计】数据库",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "software",
+      "zh": "n. 软件；【计】软件",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "network",
+      "zh": "v. 建立关系网；联播；使联网；  n. 广播网，电视网；网络；人际关系网，联络网；互联网；【计】网络；（路线）网络；【电】网络",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "stuck",
+      "zh": "adj. 不能动的；束手无策的；不得不的；卡住的；  v. 刺入，插入；阻塞，塞",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "keep sb company",
+      "zh": "phr. 陪伴某人",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "surf",
+      "zh": "n. 海浪，拍岸浪；  v. 进行冲浪运动，在……上冲浪；网上冲浪，浏览；上网",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "benefit",
+      "zh": "v. 得益于；使......受益；  n. 好处；（雇主为员工提供的）福利政策；慈善活动；（政府）补助金，救济金；【法】利益",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "distance",
+      "zh": "v. 使与……保持距离，撇清和……的关系；  n. 距离；间距；远处；【化】距离：间距，距离；【物】距离；【数】距离；  adj. 远距离的",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "inspire",
+      "zh": "v. 激励，鼓舞；激发灵感；启示",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "now that",
+      "zh": "phr. 既然；由于",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "access",
+      "zh": "n. 进入；使用权；通道；（使用或见到的）机会，权利；接触；访问；接近；  v. 进入，使用，获取；（计算机）访问；接近；接触；访问；【计】访问",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "charity",
+      "zh": "n. 慈善机构（或组织）；慈善；仁慈；施舍；慈善机构",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "go through",
+      "zh": "phr. 浏览，查阅；通过，完成；经历；度过；通读；穿过；检查",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "tough",
+      "zh": "v. 坚持，忍受；  n. 暴徒，恶棍；  adj. 坚韧的；健壮的；粗野的；嚼不动的；棘手的；艰难的；严厉的；固执的；困难的，难办的；  adv. 强硬地，顽强地",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "province",
+      "zh": "n. 省；领域，部门",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "conference",
+      "zh": "n. 会议；讨论会；正式会谈",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "resident",
+      "zh": "n. 居民；住客；住院实习医师；  adj. 居住的；住校的；固有的；常驻的",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "plus",
+      "zh": "n. 加号；有利因素；【数】加，加法；  adj. 正的；有利的；阳性的；多的；（分数后）加，略高；  conj. 此外，而且，况且；  prep. 加，加上",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "function",
+      "zh": "v. 起作用；工作，运转；  n. 功能，作用，用途，机能；函数；随他物变化而变化的事物 ；盛大聚会；职务，职责；【计】函数；【化】功能，作用；【电】函数；【数】函数",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "battery",
+      "zh": "n. 电池（组）；排炮；一组，许多，众多；炮兵连；【化】电池，蓄电池；【物】电池",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "confirm",
+      "zh": "v. 确认，使确信；证实；批准",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "Wi-Fi",
+      "zh": "n. 无线网络",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "press",
+      "zh": "v. 按，压；逼迫；敦促；揿；服役；征用；  n. 出版社；新闻界；压力；强迫；服役；（报刊、广播、电视的）新闻报道；印刷；印刷机",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "button",
+      "zh": "n. 纽扣；按钮，开关；像纽扣的东西；未成熟的蘑菇；  v. 扣紧；扣上纽扣；闭嘴",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "file",
+      "zh": "n. 文件；文件夹；档案，卷宗；锉刀；纵列，单列；公文箱；【计】文件；  v. 把……归档；提起（诉讼），提出（申请）；锉；列队行进；提交",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "in shape",
+      "zh": "phr. 处于良好状态",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "keep track of",
+      "zh": "phr. 记录；跟上...的进展；追踪",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "discount",
+      "zh": "v. 打折（读作/dɪsˈkaʊnt/）；认为……不重要，低估；【数】折现；  n. 折扣（读作/ˈdɪskaʊnt/）；（价格、债款等的）折扣",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "account",
+      "zh": "n. 账目，账户；原因，理由；描述；叙述；解释；报告；估计；利益，好处；价值，重要性；【法】账户，账目；  v. 做出说明（或解释）；把……视作；认为；报账；归咎（于）；占（一定数量或比例）",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "click",
+      "zh": "v. 点击(鼠标)；（使）发出咔嗒声；情投意合；博得喝彩；点击；  n. 点击；咔嗒声",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "privacy",
+      "zh": "n. 隐私；秘密；私生活",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "theft",
+      "zh": "n. 偷盗，盗窃；盗窃罪",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "rude",
+      "zh": "adj. 粗鲁的，无礼的；猛烈的，狂暴的",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "target",
+      "zh": "v. 瞄准；把……作为攻击目标；  vt. 面向，把…对准（某群体）；  n. 靶子；目标；对象；指标；【计】目标",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "troll",
+      "zh": "v. 反复；轮唱(歌曲)；用曳绳钓；搜索，搜查；滚动；  n. 巨怪；钓绳；钓饵；发挑衅帖子的人；恶意挑衅的帖子；巨魔、侏儒等怪物；演子",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "cyberbully",
+      "zh": "n. 网络霸凌；  v. 网络欺凌",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "false",
+      "zh": "adj. 错误的；假的；虚伪的",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "particular",
+      "zh": "adj. 特别的，不寻常的；特定的；特指的；格外的；挑剔的，讲究的；  n. 细节；详细资料；尤其，特别",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "embarrassing",
+      "zh": "adj. 使人尴尬的；令人为难的",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "make fun of",
+      "zh": "phr. 嘲笑，取笑，拿......开玩笑",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "upset",
+      "zh": "adj. 苦恼的，沮丧的，心烦的；不适的；弄翻的；混乱的；  v. 使苦恼；颠覆；搅乱；  n. 混乱，推翻；心烦意乱，失望，苦恼",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "guideline",
+      "zh": "n. 指导路线；准则；【财】指导方针",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "author",
+      "zh": "n. 作者，作家；发起人；  v. 成为作家",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "tip",
+      "zh": "v. 轻击；倾斜；给小费；翻倒；  n. 尖端；小费；诀窍，建议；实用的提示；（比赛的）内部消息；指示，指点；提示，技巧，建议",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "familiar",
+      "zh": "adj. 熟悉的；熟知的；不拘礼节的；亲密的；随便的；  n. 密友；常客；高级官吏的家属",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "keep...in mind",
+      "zh": "phr. 牢记",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "define",
+      "zh": "v. 给（词、短语等）下定义；使明确；规定；界定，解释；【计】定义；【化】解释……的含义",
+      "unit": "Unit 3 The Internet"
+    },
+    {
+      "en": "case",
+      "zh": "n. 箱，盒；容器；套；案件；情况；事例，实例；状况，场合；病例，案例；事实；【计】用例，分支；  v. 踩点",
+      "unit": "Unit 3 The Internet"
+    }
+  ]
+}

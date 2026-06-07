@@ -1,0 +1,470 @@
+{
+  "name": "Unit 1 Festivals and Celebrations",
+  "words": [
+    {
+      "en": "lantern",
+      "zh": "n. 灯笼；提灯",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "carnival",
+      "zh": "n. 狂欢节",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "costume",
+      "zh": "n. 服装，戏装；  v. 提供服装；为 ... 设计服装；  adj. 服装打扮的",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "dress up",
+      "zh": "phr. 盛装，打扮，装饰",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "march",
+      "zh": "vi. 行军，前进；游行示威；  vt. 使前进；使行军；  n. 稳步前进；行军，游行示威；三月（首字母大写）；进行曲",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "congratulation",
+      "zh": "n. （常用复数形式）祝贺；祝贺信；恭喜",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "congratulate",
+      "zh": "v. 祝贺；称赞",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "riddle",
+      "zh": "n. 谜，谜语；  v. 解谜，出谜题；使……满是弹孔",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "ceremony",
+      "zh": "n. 典礼；礼节；仪式",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "samba",
+      "zh": "n. 桑巴舞；  v. 跳桑巴舞",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "make-up",
+      "zh": "n. 化妆品；性格；构造；组成；补考",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "after all",
+      "zh": "phr. 毕竟，终究",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "range",
+      "zh": "v. 排成一排；排列；（在一定范围内）变化；延伸，绵亘；漫游；  n. 排；范围，界限；一系列；山脉；放牧场；射程；距离；炉灶；【计】范围；【化】（变化）范围；【数】数值范围；  adj. 牧场的",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "range from...to...",
+      "zh": "phr. 从…到…的范围；在…中变化",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "origin",
+      "zh": "n. 起源；由来，来源；出身；【数】原点，起源",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "religion",
+      "zh": "n. 宗教；宗教信仰；宗教生活；虔诚的追求",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "religious",
+      "zh": "adj. 宗教的；虔诚的；细心的；  n. 修道院成员，僧侣",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "figure",
+      "zh": "v. 想出；计算出；估计；认为，认定；  n. 身形；人影，人物；形状；数字；算术；插图；雕像；轮廓，人影；（远处人的）轮廓；（隐约可见的）人影；【化】图形，形状；【数】图形",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "charm",
+      "zh": "n. 魅力；迷人的特征；咒语；  vt. 迷住，吸引",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "joy",
+      "zh": "n. 欢乐，高兴，喜悦，乐事；  vi. 享受快乐",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "joyful",
+      "zh": "adj. 愉快的；高兴的",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "gratitude",
+      "zh": "n. 感激，感谢",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "harvest",
+      "zh": "n. 收成；收获；收获的季节；丰收；产量；  v. 收割；获得；采集；捕获",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "agricultural",
+      "zh": "adj. 农业的；农艺的",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "agriculture",
+      "zh": "n. 农业；农艺",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "crop",
+      "zh": "n. 作物，庄稼；（一季的）收成；一批，大量；  v. 收获；裁切；啃吃；突然出现",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "gather",
+      "zh": "v. 集合；缝紧，拉紧；收割；聚集，召集；收集，搜集；使......聚集；采集；逐渐增加；积聚；增加（速度、力量等）；  n. 聚集；衣服的褶子",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "grateful",
+      "zh": "adj. 感激的；感谢的",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "feature",
+      "zh": "v. 以……为特色；起重要作用，作为主要角色；以……为主要组成；  n. 面貌，相貌；特征，特点，特色；特辑；（报纸或杂志的）特写；【计】功能，特性；（报刊、电视等的）专题特写；【计】特征；【化】特征",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "decorate",
+      "zh": "v. 装饰，布置；装潢；授予勋章",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "church",
+      "zh": "n. 教堂；礼拜；牧师；基督教徒；教会；教派；  adj. 教堂的；  vt. 把...带到教堂；接受某种宗教仪式",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "significant",
+      "zh": "n. 象征，标志；  adj. 有重大意义的，重要的；意味深长的；数量相当大的；显著的；【化】重要的",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "fade",
+      "zh": "vi. 褪色，褪去；失去；逐渐消失；  vt. 使褪色；  v. （身体）变得虚弱；衰老；  n. 淡入，淡出；  adj. 乏味的",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "fade away",
+      "zh": "phr. 逐渐消失；褪色",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "typical",
+      "zh": "adj. 典型的，有代表性的；平常的；特有的，独特的",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "firecracker",
+      "zh": "n. 鞭炮；爆竹",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "evil",
+      "zh": "adj. 邪恶的；罪恶的；有害的；  n. 邪恶，罪恶，恶行；邪恶之事；祸害",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "in spite of",
+      "zh": "conj. 尽管，不管；  phr. 【法】即使，尽管",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "commercial",
+      "zh": "adj. 贸易的；商业化的；以获利为目的的；商业的；商用的；【财】商业的，盈利的；  n. 商业广告",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "commercialise",
+      "zh": "v. 使商业化；利用……牟利",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "commercialisation",
+      "zh": "n. 商业化",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "take advantage of",
+      "zh": "phr. 利用；欺骗；占......的便宜",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "medium",
+      "zh": "adj. 中等的；中号的；适中的；中间的；普通的；  n. 手段，方法；媒介；材料；媒介剂",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "the media",
+      "zh": "phr. 媒体，大众传播媒介",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "reflect",
+      "zh": "v. 倒映；反射；反映；仔细思考；反思，反省；显示；表达（意见）",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "belief",
+      "zh": "n. 信仰；信任；信心；信条；相信；信念",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "faith",
+      "zh": "n. 信任；信心；宗教信仰；相信；  int. 实在，确实",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "occasion",
+      "zh": "n. 场合，时候，活动；时机，机会；重要的社交活动；  v. 导致；引起",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "have sth in common",
+      "zh": "phr. (兴趣、想法等方面)相同；有相同的特征",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "atmosphere",
+      "zh": "n. 大气层；大气；空气；氛围，气氛；环境；【物】大气",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "eve",
+      "zh": "n. （节日等的）前夜，前夕；前一天；重大事件关头",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "envelope",
+      "zh": "n. 信封；塑料封套；包裹；【电】包络线",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "Christmas carol",
+      "zh": "phr. 圣诞颂歌",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "merry",
+      "zh": "adj. 欢乐的，愉快的；<口>微醉的",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "Merry Christmas",
+      "zh": "phr. 圣诞快乐",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "pumpkin",
+      "zh": "n. 南瓜，倭瓜",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "pudding",
+      "zh": "n. 布丁，一种甜点心",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "mashed potatoes",
+      "zh": "phr. 土豆泥",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "roast",
+      "zh": "v. 烤，焙，烘；挖苦；逗乐；  n. 烤肉；  adj. 烤的，烘的",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "turkey",
+      "zh": "n. 火鸡；笨蛋；失败之作",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "roast turkey",
+      "zh": "n. 烤火鸡",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "pleased",
+      "zh": "adj. 高兴的，满意的",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "firework",
+      "zh": "n. 烟花，烟火",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "frank",
+      "zh": "adj. 坦白的，直率的；清楚表明的，明显的；坦诚的；  n. 免费邮寄权，免费邮寄的信件；  vt. 免费寄（邮件）；盖邮戳，盖免费邮寄公章；便于使（人）自由地来往",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "to be frank",
+      "zh": "phr. 坦白说，坦率地说",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "go off",
+      "zh": "phr. 爆炸；进行；变质；走火；离开；（警报器等）突然发出巨响；【航】停止运转",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "except for",
+      "zh": "phr. 除...之外；要不是由于",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "inner",
+      "zh": "n. 内部，里面；  adj. 内部的，里面的；内心的；精神的；（想法或情感）未表达出来的；隐藏的；【化】内部的，内层的",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "autonomous",
+      "zh": "adj. 自动驾驶的；自治的，有自治权的；自主的；自由的；【财】自治的",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "region",
+      "zh": "n. 地区，区域，地带；范围；行政区；身体部位；（一个国家内）有…特色，以…知名的地区；地方；【化】地区，区域；【数】区域",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "lunar",
+      "zh": "adj. 阴历的，农历的；月亮的，月球的",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "represent",
+      "zh": "v. 象征；代表；表示；描述，展现；阐明；说明；演绎；表达；相当于；【计】表现；【法】代表，代理；【数】表示",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "wrestling",
+      "zh": "n. 摔跤",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "wrestle",
+      "zh": "v. 摔跤，角斗；努力斗争；奋力对付；  n. 摔跤，角力，扭斗",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "wrestler",
+      "zh": "n. 摔跤选手；扭斗者",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "archery",
+      "zh": "n. 射箭术，射箭运动",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "set off",
+      "zh": "phr. 出发，启程；引爆(炸弹)",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "fancy",
+      "zh": "adj. 奢华的；昂贵的；复杂的；精致的；花哨的；  n. 幻想，想象力；喜爱；  v. 想象，幻想；倾慕；想要；认为；真没想到",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "robe",
+      "zh": "n. 长袍，礼服；  v. 穿，披（袍服或其他特殊衣服）",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "eagle",
+      "zh": "n. 雕；鹰；鹰状标志；（高尔夫球赛中）少击两杆入穴的成绩；  vt. （高尔夫球赛中）比标准杆数少击两杆入穴",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "grace",
+      "zh": "n. 优美；风度；慈悲，善意，宽厚，仁慈；魅力；优雅，高雅；  vt. 使优美，装饰；使……增光",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "absolutely",
+      "zh": "adv. 完全地；绝对地；独立地；正是，当然；极其",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "moment",
+      "zh": "n. 瞬间，片刻；时刻；某个时刻；【物】力矩",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "tent",
+      "zh": "n. 帐篷",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "pot",
+      "zh": "n. 锅；罐，壶；盆",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "brief",
+      "zh": "adj. 简洁的，简短的；短暂的；草率的；  n. 摘要；简短声明；诉讼要点；任务简介，指示；  v. 简单汇报；向…通报情况",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "branch",
+      "zh": "vi. 出枝桠，分叉；  n. 树枝；分支；支流；（政府等的）部门；分支机构，分部；【计】分支；分行，分支机构；【电】支路",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "wedding",
+      "zh": "n. 婚礼；结婚庆典；结合",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "clap",
+      "zh": "v. 拍手，鼓掌，击掌；轻拍，轻敲；砰然出声，啪地关上，发出噼啪声；  n. 轻拍（以示热情招呼），拍手（喝彩），鼓掌（欢迎），善意的拍打；霹雳声，破裂声，噼啪声，突然的爆炸声，砰然巨响；拍手，鼓掌，掌声；鼓掌",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "respect",
+      "zh": "n. 敬重；方面；尊敬；尊重；  v. 敬重，尊敬；尊敬；尊重；慎重对待",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "horrible",
+      "zh": "adj. 可怕的；糟糕的；粗鲁的，不友好的；令人震惊的；极坏的；十分讨厌的",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "Halloween",
+      "zh": "n. 万圣节前夕（指10月31日夜晚）",
+      "unit": "Unit 1 Festivals and Celebrations"
+    },
+    {
+      "en": "Thanksgiving",
+      "zh": "n. 感恩节(美国是11月的第四个星期四,加拿大是10月的第二个星期一)",
+      "unit": "Unit 1 Festivals and Celebrations"
+    }
+  ]
+}

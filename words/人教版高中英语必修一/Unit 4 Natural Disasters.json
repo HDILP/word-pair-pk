@@ -1,0 +1,325 @@
+{
+  "name": "Unit 4 Natural Disasters",
+  "words": [
+    {
+      "en": "disaster",
+      "zh": "n. 灾难，天灾",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "tornado",
+      "zh": "n. 龙卷风",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "drought",
+      "zh": "n. 干旱，旱灾",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "landslide",
+      "zh": "n. 滑坡；崩塌；塌方",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "slide",
+      "zh": "v. 滑动，滑行；使滑动；滑倒；下跌；使滑入；滑落；【数】平移；  n. 滑面；滑行；下落；幻灯片；滑梯；滑道",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "tsunami",
+      "zh": "n. 海啸",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "flood",
+      "zh": "n. 洪水；大量；  v. 淹没；大量涌入；充满；（使）灌满水；灌溉；泛滥；挤满",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "volcanic eruption",
+      "zh": "phr. 火山爆发",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "magnitude",
+      "zh": "n. 巨大；震级；重要性；【数】量值；规模，大小；【化】量级；【物】大小",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "rescue",
+      "zh": "v. 挽救；拯救，救援；  vt. 营救；救援；  n. 营救；救援",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "damage",
+      "zh": "v. 损害，毁坏，破坏；破坏；  n. 损坏，毁坏，破坏；损失；损害；【化】损伤，损害",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "destroy",
+      "zh": "v. 摧毁；毁灭；破坏",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "evacuate",
+      "zh": "v. 疏散；撤离",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "helicopter",
+      "zh": "n. 直升机；  v. 用直升飞机载送，乘直升机",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "death",
+      "zh": "n. 死亡；死神；毁灭；死",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "affect",
+      "zh": "v. 影响；深深打动；（疾病）侵袭；【化】影响；  n. 情感，心情；【精神病学】情绪反应",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "shelter",
+      "zh": "n. 隐蔽处，躲避处；庇护；居所，住处；避难所；遮蔽物；庇护处；  v. 遮蔽，庇护；保护；隐匿",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "crack",
+      "zh": "v. （使）破裂，打碎；垮掉；断裂，折断；找到解决方法；  n. 裂缝；破裂声；挖苦话；强效纯可卡因；  adj. 优秀的，一流的；  adv. 尖锐地",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "gas",
+      "zh": "v. 使吸入毒气；毒（死）；空谈；加汽油；  n. 煤气；天然气；气体；汽油；【化】气体；【物】气体；【航】气体；  adj. 〈美俚〉喝醉酒的",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "as if",
+      "zh": "phr. 好像，仿佛",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "ruin",
+      "zh": "v. 毁灭，毁坏；（使）破产；（使）堕落；  n. 废墟；毁灭",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "in ruins",
+      "zh": "phr. 严重受损，破败不堪",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "percent",
+      "zh": "n. 百分比，比例，部分；百分之……；  adj. 每一百中的；  adv. 每一百中地",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "brick",
+      "zh": "n. 砖；积木；  vt. 用砖砌",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "metal",
+      "zh": "v. （以金属）覆盖，装配；  n. 金属，合金，金属制品；【物】金属；  adj. 金属制的",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "shock",
+      "zh": "v. 使……震惊；使……震动；震惊；使难以置信；使触电，使遭电击；使不悦或生气；  n. 震惊；震动；休克；令人震惊的事；电击，触电；【医】休克",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "in shock",
+      "zh": "v. 使……震惊；使……震动；震惊；使难以置信；使触电，使遭电击；使不悦或生气；  n. 震惊；震动；休克；令人震惊的事；电击，触电；【医】休克",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "electricity",
+      "zh": "n. 电，电力；电流；电学；电能",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "trap",
+      "zh": "n. 陷阱；捕兽夹，捕鼠器；险境；双轮轻便马车；嘴；  v. 困住；诱骗；收集；吸收；设陷阱捕捉，用捕捉器捕捉（动物）；使陷于危险中",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "bury",
+      "zh": "v. 埋葬；隐藏，埋藏；埋头于；抛开；遮盖",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "breathe",
+      "zh": "v. 呼吸；低语；呼出",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "revive",
+      "zh": "v. （使）苏醒；（使）复苏，（使）复兴；再兴起；重做；（使）重新流行；（使）复活",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "revival",
+      "zh": "n. 复苏，复兴",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "effort",
+      "zh": "n. 努力；艰难的尝试；尽力；力气，精力；努力的成果；试图",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "unify",
+      "zh": "v. 使联合，统一；使相同，使一致",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "wisdom",
+      "zh": "n. 智慧，学问；明智，正确判断；名言，格言，古训；普遍的看法",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "context",
+      "zh": "n. 上下文，语境；背景；【计】上下文",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "suffer",
+      "zh": "v. 感到（疼痛）；遭受（痛苦）；受折磨",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "volcano",
+      "zh": "n. 火山",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "erupt",
+      "zh": "v. 爆发；（火山、喷泉、蒸汽等）喷发；使迸发；喷射出；（斑疹等）突然出现；突然发生",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "supply",
+      "zh": "v. 供给；提供；供应；【化】供应，提供；  n. 供应，供应量；补给；（复数）储备；供给品；贮备；【财】供给",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "typhoon",
+      "zh": "n. 台风，强热带风暴",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "in the open air",
+      "zh": "phr. 户外；露天",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "hurricane",
+      "zh": "n. 飓风；像飓风般猛烈的人（或物）",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "survive",
+      "zh": "vi. 生存，活着；  vt. 幸存；存活；艰难度过；比…活得长；  v. 【法】继续有效",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "power",
+      "zh": "v. 提供动力；  n. 力量；能量，能；控制力；权力；电力；功率；幂；电；能力；电力供应；【物】功率；【电】功率；【数】幂次",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "tap",
+      "zh": "n. 水龙头；轻敲；塞子；轻拍；窃听；旋塞，龙头；  v. 轻叩，轻敲；监听，窃听 (电话)；开发，发掘；利用；装水龙头",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "pipe",
+      "zh": "n. 管子，导管；烟斗；笛；【计】管道；管道；吹奏的管乐器；  v. 安静下来（pipe down）；用管子输送；用管乐器演奏",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "whistle",
+      "zh": "n. 口哨（声）；汽笛声，警笛声；  v. 吹口哨；呼啸",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "emergency",
+      "zh": "n. 紧急情况，突发事件；急诊；【航】紧急情况；  adj. 紧急情况下的；应急的",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "calm",
+      "zh": "adj. 冷静的，平静的；风平浪静的；无风的；  n. 平静，安宁；镇静；  v. （使）平静，（使）镇定",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "aid",
+      "zh": "n. 帮助；救护；辅助设备；救援物资；援助；  v. 援助，帮助",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "kit",
+      "zh": "n. 成套工具；工具箱；装备；  v. 装备",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "first aid kit",
+      "zh": "phr. 急救包",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "on hand",
+      "zh": "phr. 手头现有",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "crash",
+      "zh": "v. 碰撞；猛撞；坠落；崩溃；暴跌；坠毁；猛撞，碰撞 ；【计】崩溃；  n. 撞车；碰撞；猛撞；坠毁；崩溃；轰隆声；大镲，强音镲；崩盘；  adj. 紧急的",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "sweep",
+      "zh": "v. 扫，打扫；席卷，迅速传播；吹过，掠过；吹走，冲走；  n. 清扫；一挥（手，胳膊等）；范围，广度；绵延弯曲的地带",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "sweep away",
+      "zh": "phr. 清除掉；扫去",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "wave",
+      "zh": "n. 海浪，波浪；挥手；起伏；涌现的人，涌现的事物；卷发，卷曲；波，波状运动；汹涌的行动；  v. 挥手，招手；波动，飘动；挥臂；上下起伏，左右摇晃；摆动，摇动",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "strike",
+      "zh": "v. 击打；袭击；罢工；划（火柴）；突然发生（某种不幸）；突然有坏的影响；顿时使处于某状态；达成，达到；使产生……想法；给（某人以…）印象；让（某人）觉得；弹奏；发出（声音）；撞击；碰撞；敲(钟)，报(时)；  n. 罢工；打击；殴打；袭击；停工，罢工",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "deliver",
+      "zh": "v. 递送，交付；分发；发表（演讲）；分娩；投掷；履行；传达；交付，实施；带来",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "summary",
+      "zh": "n. 摘要，总结；概括；概要；【计】摘要；  adj. 简略的，概要的",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "effect",
+      "zh": "v. 使发生；引起；产生；  n. 影响；效果；结果；印象；效应；作用；【计】效果；【化】影响，作用；生效，使某种状态达成",
+      "unit": "Unit 4 Natural Disasters"
+    },
+    {
+      "en": "length",
+      "zh": "n. 长度；持续时间；一段 (绳子、布、木头等)；（书或文件的）篇幅，（影片的）时长；【化】长度；【数】长度",
+      "unit": "Unit 4 Natural Disasters"
+    }
+  ]
+}
