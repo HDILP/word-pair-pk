@@ -739,6 +739,230 @@
       display: none;
     }
 
+    /* ==========================================
+       复习 — 单词复习视图
+       ========================================== */
+    .review-view {
+      width: 100%;
+      max-width: 680px;
+      max-height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .review-view .card {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 32px 36px;
+    }
+    .review-view h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .review-view__stats {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .review-view__stats strong {
+      color: var(--text);
+    }
+    .review-view__modes {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+    .review-mode-btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 20px;
+      background: var(--bg);
+      border: 1px solid #eee;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: left;
+      font-family: 'Noto Sans SC', sans-serif;
+    }
+    .review-mode-btn:hover {
+      border-color: var(--primary);
+      background: #fff8f8;
+    }
+    .review-mode-btn:active {
+      transform: scale(0.98);
+    }
+    .review-mode-btn__icon {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+    .review-mode-btn__info {
+      flex: 1;
+      min-width: 0;
+    }
+    .review-mode-btn__title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .review-mode-btn__desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    .review-mode-btn__count {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    /* 复习 — 配对游戏（无计时） */
+    .review-game-view {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .review-game-view .game-side {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 8px 10px;
+      overflow: hidden;
+      position: relative;
+    }
+    .review-game-view .game-side__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 6px 8px 6px;
+    }
+    .review-game-view .game-side__label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      padding: 4px 14px;
+      border-radius: 6px;
+      background: var(--bg);
+    }
+    .review-game-view .game-side__progress-text {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+    .review-game-view .game-side__progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #eee;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .review-game-view .game-side__progress-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.3s ease;
+      background: #a0c4ff;
+    }
+
+    /* 复盘弹窗 */
+    .review-popup-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 200;
+      background: rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .review-popup {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 32px 36px;
+      width: 100%;
+      max-width: 480px;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+      animation: modalIn 0.3s ease-out;
+    }
+    .review-popup__title {
+      font-size: 22px;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 4px;
+      color: var(--text);
+    }
+    .review-popup__subtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .review-popup__list {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .review-popup__word {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      background: #fff5f5;
+      border-radius: 10px;
+      border-left: 3px solid var(--primary);
+    }
+    .review-popup__word-en {
+      font-weight: 600;
+      font-size: 15px;
+      min-width: 0;
+      flex-shrink: 0;
+    }
+    .review-popup__word-zh {
+      font-size: 13px;
+      color: var(--text-secondary);
+      flex: 1;
+      min-width: 0;
+    }
+    .review-popup__word-errors {
+      font-size: 12px;
+      color: #e06060;
+      flex-shrink: 0;
+    }
+    .review-popup__empty {
+      text-align: center;
+      padding: 32px 0;
+      color: var(--text-secondary);
+      font-size: 15px;
+    }
+    .review-popup__actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    /* 复习按钮样式 */
+    .btn--review {
+      background: #a0c4ff;
+      color: #fff;
+    }
+    .btn--review:hover {
+      background: #8bb4f0;
+    }
+
     /* ===== 滚动条美化 ===== */
     ::-webkit-scrollbar {
       width: 6px;
@@ -1081,6 +1305,7 @@
         <div class="home-view__actions">
           <button class="btn btn--primary" @click="goSelect('dual')">开始 PK</button>
           <button class="btn btn--accent" @click="goSelect('single')">单人挑战</button>
+          <button class="btn btn--ghost" @click="goReviewHome">📖 单词复习</button>
           <button class="btn btn--ghost" @click="currentView = 'leaderboard'">排行榜</button>
         </div>
       </div>
@@ -1197,6 +1422,9 @@
             </div>
             <div class="result-modal__actions">
               <button class="btn btn--secondary" @click="goSelect('single')">再来一局</button>
+              <template v-if="reviewGameErrors && Object.keys(reviewGameErrors).length > 0">
+                <button class="btn btn--review" @click="goToReviewFromSingle">📖 复习错词</button>
+              </template>
               <button class="btn btn--ghost" @click="goHome">返回首页</button>
             </div>
           </div>
@@ -1339,6 +1567,105 @@
         </div>
       </div>
 
+      <!-- ==========================================
+           视图 6：复习首页
+           ========================================== -->
+      <div v-else-if="currentView === 'review'" class="review-view">
+        <div class="card">
+          <h2>📖 单词复习</h2>
+          <div class="review-view__stats">
+            已学 <strong>{{ reviewTotalWords }}</strong> 个词 ·
+            今日需复习 <strong>{{ reviewDueToday }}</strong> 个 ·
+            待攻克 <strong>{{ reviewBox1Count }}</strong> 个
+          </div>
+          <div class="review-view__modes">
+            <div class="review-mode-btn" @click="startReviewGame('free')">
+              <div class="review-mode-btn__icon">📝</div>
+              <div class="review-mode-btn__info">
+                <div class="review-mode-btn__title">自由练习</div>
+                <div class="review-mode-btn__desc">选词表 → 配对，不计时，配错的词自动进复习系统</div>
+              </div>
+            </div>
+            <div class="review-mode-btn" @click="startReviewGame('due')">
+              <div class="review-mode-btn__icon">🔁</div>
+              <div class="review-mode-btn__info">
+                <div class="review-mode-btn__title">今日复习</div>
+                <div class="review-mode-btn__desc">按利特纳盒子自动捞今天该复习的词</div>
+              </div>
+              <div class="review-mode-btn__count">{{ reviewDueToday > 0 ? reviewDueToday + ' 词' : '暂无' }}</div>
+            </div>
+            <div class="review-mode-btn" @click="startReviewGame('hard')">
+              <div class="review-mode-btn__icon">🏋️</div>
+              <div class="review-mode-btn__info">
+                <div class="review-mode-btn__title">错题特训</div>
+                <div class="review-mode-btn__desc">只练盒子 1 里的顽固错词</div>
+              </div>
+              <div class="review-mode-btn__count">{{ reviewBox1Count > 0 ? reviewBox1Count + ' 词' : '暂无' }}</div>
+            </div>
+          </div>
+          <div style="text-align:center;margin-top:20px;">
+            <button class="btn btn--ghost" @click="currentView = 'home'">返回首页</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           视图 7：复习配对游戏
+           ========================================== -->
+      <div v-else-if="currentView === 'reviewGame'" class="review-game-view">
+        <div class="game-side">
+          <div class="game-side__header">
+            <span class="game-side__label">{{ reviewModeLabel }}</span>
+            <span class="game-side__progress-text">{{ reviewMatchedCount }}/8</span>
+          </div>
+          <div class="game-side__progress-bar">
+            <div class="game-side__progress-fill" :style="{width: (reviewMatchedCount/8*100)+'%'}"></div>
+          </div>
+          <div class="card-grid-wrapper">
+            <div class="card-grid" @touchstart="handleReviewTouchStart($event)" @touchend="handleReviewTouchEnd($event)" @click="handleReviewClick($event)">
+              <div
+                v-for="card in reviewCards"
+                :key="card.id"
+                class="game-card"
+                :class="{
+                  selected: card.selected,
+                  matched: card.matched,
+                  wrong: card.wrong,
+                  'game-card--en': card.type === 'en',
+                  'game-card--zh': card.type === 'zh',
+                }"
+                :data-card-id="card.id"
+              >{{ card.text }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 复盘弹窗 -->
+      <div v-if="reviewPopup" class="review-popup-overlay">
+        <div class="review-popup">
+          <div class="review-popup__title">📊 本次复盘</div>
+          <div class="review-popup__subtitle">
+            正确 {{ reviewPopup.correct }} / 8 ·
+            失误 {{ reviewPopup.totalErrors }} 次
+          </div>
+          <div v-if="reviewPopup.wrongWords.length === 0" class="review-popup__empty">
+            🎉 全部正确！太棒了
+          </div>
+          <div v-else class="review-popup__list">
+            <div v-for="(w, i) in reviewPopup.wrongWords" :key="i" class="review-popup__word">
+              <span class="review-popup__word-en">{{ w.en }}</span>
+              <span class="review-popup__word-zh">{{ w.zh }}</span>
+              <span class="review-popup__word-errors" v-if="w.totalErrors > 1">错 {{ w.totalErrors }} 次</span>
+            </div>
+          </div>
+          <div class="review-popup__actions">
+            <button class="btn btn--secondary" @click="rerunReviewGame">再来一轮</button>
+            <button class="btn btn--ghost" @click="closeReviewPopup">返回复习</button>
+          </div>
+        </div>
+      </div>
+
     </main>
   </div>
 
@@ -1396,6 +1723,17 @@
           _processingClick: { p1: false, p2: false },
           _p1MatchSet: new Set(),
           _p2MatchSet: new Set(),
+
+          // ===== 复习系统 =====
+          reviewMode: null, // 'free' | 'due' | 'hard'
+          reviewCards: [],
+          reviewSelected: null,
+          reviewMatchSet: new Set(),
+          reviewProcessing: false,
+          reviewPopup: null,
+          reviewGameWords: [], // 本局 8 个原始词对象 {en, zh, errors}
+          reviewGameErrors: {}, // { cardId: count } — 每张卡片的失误次数
+          singleGameWords: [], // 单人模式下抽到的 8 个词
         };
       },
 
@@ -1414,6 +1752,43 @@
         },
         p1MatchedCount() { return this._p1MatchSet.size; },
         p2MatchedCount() { return this._p2MatchSet.size; },
+
+        // ===== 复习系统 computed =====
+        reviewMatchedCount() { return this.reviewMatchSet.size; },
+        reviewModeLabel() {
+          const labels = { free: '📝 自由练习', due: '🔁 今日复习', hard: '🏋️ 错题特训' };
+          return labels[this.reviewMode] || '复习';
+        },
+        reviewData() {
+          try {
+            return JSON.parse(localStorage.getItem('wordpair_review') || '{}');
+          } catch(e) { return {}; }
+        },
+        reviewTotalWords() {
+          return Object.keys(this.reviewData).length;
+        },
+        reviewDueToday() {
+          const data = this.reviewData;
+          const today = new Date().toISOString().slice(0, 10);
+          const intervals = [0, 1, 2, 4, 8, 16];
+          let count = 0;
+          for (const key in data) {
+            const entry = data[key];
+            const box = entry.box || 1;
+            const last = entry.lastReview || '2000-01-01';
+            const daysSince = Math.floor((new Date(today) - new Date(last)) / 86400000);
+            if (daysSince >= intervals[box]) count++;
+          }
+          return count;
+        },
+        reviewBox1Count() {
+          const data = this.reviewData;
+          let count = 0;
+          for (const key in data) {
+            if ((data[key].box || 1) === 1) count++;
+          }
+          return count;
+        },
       },
 
       methods: {
@@ -1430,6 +1805,294 @@
           this.gameOverInternal = false;
           this.winnerName = '';
           this.currentView = 'select';
+        },
+
+        // ===== 复习系统 =====
+        goReviewHome() {
+          this.currentView = 'review';
+          this.reviewPopup = null;
+        },
+        getWordKey(word) {
+          return (word.en || '').trim().toLowerCase().replace(/\s+/g, '_').slice(0, 60);
+        },
+        loadReviewStore() {
+          try {
+            return JSON.parse(localStorage.getItem('wordpair_review') || '{}');
+          } catch(e) { return {}; }
+        },
+        saveReviewStore(data) {
+          localStorage.setItem('wordpair_review', JSON.stringify(data));
+        },
+        // 复习结束后更新利特纳盒子
+        updateReviewBoxes(gameWords, errorMap) {
+          const intervals = [0, 1, 2, 4, 8, 16];
+          const store = this.loadReviewStore();
+          const today = new Date().toISOString().slice(0, 10);
+          for (const word of gameWords) {
+            const key = this.getWordKey(word);
+            const entry = store[key] || { box: 1, correctStreak: 0, totalErrors: 0, lastReview: null };
+            const errCount = errorMap[word.en] || 0;
+            if (errCount > 0) {
+              // 有失误 — 重置
+              entry.box = 1;
+              entry.correctStreak = 0;
+              entry.totalErrors = (entry.totalErrors || 0) + errCount;
+            } else {
+              // 全对 — 升盒子
+              entry.correctStreak = (entry.correctStreak || 0) + 1;
+              entry.box = Math.min(entry.correctStreak + 1, 5);
+            }
+            entry.lastReview = today;
+            store[key] = entry;
+          }
+          this.saveReviewStore(store);
+        },
+        // 单人/自由练习完成后记录错误
+        recordReviewErrors(words, errorMap) {
+          this.updateReviewBoxes(words, errorMap);
+        },
+
+        // ===== 开始复习游戏 =====
+        startReviewGame(mode) {
+          this.reviewMode = mode;
+          let selectedWords = [];
+
+          if (mode === 'free') {
+            // 自由练习：从已选的词表里随机抽 8 个
+            const allWords = [];
+            for (const b of this.books) {
+              for (const u of (b.units || [])) {
+                if (u._checked) allWords.push(...(u.words || []));
+              }
+            }
+            if (allWords.length < 8) {
+              alert('请先在首页选择词表后再进入复习！（至少 8 个词）');
+              this.currentView = 'review';
+              return;
+            }
+            const shuffled = [...allWords].sort(() => Math.random() - 0.5);
+            selectedWords = shuffled.slice(0, 8);
+          } else if (mode === 'due') {
+            // 今日复习：从盒子里捞今天该复习的词
+            const store = this.loadReviewStore();
+            const today = new Date().toISOString().slice(0, 10);
+            const intervals = [0, 1, 2, 4, 8, 16];
+            const dueWords = [];
+            // 找词 — 在 books 里匹配
+            for (const b of this.books) {
+              for (const u of (b.units || [])) {
+                for (const w of (u.words || [])) {
+                  const key = this.getWordKey(w);
+                  const entry = store[key];
+                  if (!entry) continue;
+                  const box = entry.box || 1;
+                  const last = entry.lastReview || '2000-01-01';
+                  const daysSince = Math.floor((new Date(today) - new Date(last)) / 86400000);
+                  if (daysSince >= intervals[box]) {
+                    dueWords.push(w);
+                  }
+                }
+              }
+            }
+            if (dueWords.length === 0) {
+              alert('🎉 今天暂无需要复习的词！去做自由练习吧～');
+              this.currentView = 'review';
+              return;
+            }
+            const shuffled = [...dueWords].sort(() => Math.random() - 0.5);
+            selectedWords = shuffled.slice(0, 8);
+          } else if (mode === 'hard') {
+            // 错题特训：盒子 1 里的词
+            const store = this.loadReviewStore();
+            const hardWords = [];
+            for (const b of this.books) {
+              for (const u of (b.units || [])) {
+                for (const w of (u.words || [])) {
+                  const key = this.getWordKey(w);
+                  const entry = store[key];
+                  if (entry && (entry.box || 1) === 1) {
+                    hardWords.push(w);
+                  }
+                }
+              }
+            }
+            if (hardWords.length === 0) {
+              alert('🎉 没有待攻克的错词！继续保持～');
+              this.currentView = 'review';
+              return;
+            }
+            const shuffled = [...hardWords].sort(() => Math.random() - 0.5);
+            selectedWords = shuffled.slice(0, 8);
+          }
+
+          // 生成卡片
+          let allCards = [];
+          selectedWords.forEach((word, idx) => {
+            allCards.push({
+              id: 'en-' + idx,
+              text: word.en,
+              pairId: idx,
+              type: 'en',
+              matched: false,
+              selected: false,
+              wrong: false,
+              _word: word,
+            });
+            allCards.push({
+              id: 'zh-' + idx,
+              text: word.zh,
+              pairId: idx,
+              type: 'zh',
+              matched: false,
+              selected: false,
+              wrong: false,
+              _word: word,
+            });
+          });
+          const enCards = allCards.filter(c => c.type === 'en').map(c => ({...c, id: 'c-' + c.id}));
+          const zhCards = allCards.filter(c => c.type === 'zh').map(c => ({...c, id: 'c-' + c.id}));
+          this.reviewCards = [...enCards, ...zhCards].sort(() => Math.random() - 0.5);
+          this.reviewMatchSet = new Set();
+          this.reviewSelected = null;
+          this.reviewProcessing = false;
+          this.reviewPopup = null;
+          this.reviewGameWords = selectedWords;
+          this.reviewGameErrors = {};
+          this.currentView = 'reviewGame';
+        },
+
+        // ===== 复习卡片点击 =====
+        handleReviewClick(event) {
+          const cardEl = event.target.closest('.game-card');
+          if (!cardEl) return;
+          const cardId = cardEl.dataset.cardId;
+          if (!cardId) return;
+          this.processReviewCardClick(cardId);
+        },
+        handleReviewTouchStart(event) {
+          const touch = event.changedTouches[0];
+          if (!touch) return;
+          const el = document.elementFromPoint(touch.clientX, touch.clientY);
+          if (!el) return;
+          const cardEl = el.closest('.game-card');
+          if (!cardEl) return;
+          this._reviewTouchId = cardEl.dataset.cardId;
+        },
+        handleReviewTouchEnd(event) {
+          if (!this._reviewTouchId) return;
+          this.processReviewCardClick(this._reviewTouchId);
+          this._reviewTouchId = null;
+        },
+        processReviewCardClick(cardId) {
+          if (this.reviewProcessing) return;
+          if (!this.reviewCards) return;
+          const card = this.reviewCards.find(c => c.id === cardId);
+          if (!card || card.matched) return;
+
+          this.reviewProcessing = true;
+
+          if (this.reviewSelected) {
+            const firstCard = this.reviewSelected;
+
+            if (firstCard.id === cardId) {
+              card.selected = false;
+              this.reviewSelected = null;
+              this.reviewProcessing = false;
+              return;
+            }
+
+            const isMatch = firstCard.pairId === card.pairId && firstCard.type !== card.type;
+
+            if (isMatch) {
+              firstCard.selected = false;
+              firstCard.matched = true;
+              card.matched = true;
+              this.reviewMatchSet.add(firstCard.pairId);
+
+              // TTS
+              const enText = firstCard.type === 'en' ? firstCard.text : card.text;
+              try {
+                const utter = new SpeechSynthesisUtterance(enText);
+                utter.lang = 'en-US';
+                utter.rate = 0.9;
+                speechSynthesis.speak(utter);
+              } catch(e) {}
+
+              this.reviewSelected = null;
+
+              if (this.reviewMatchSet.size >= 8) {
+                this.endReviewGame();
+                this.reviewProcessing = false;
+                return;
+              }
+            } else {
+              // 配对失败 — 记录错误
+              firstCard.selected = false;
+              firstCard.wrong = true;
+              card.wrong = true;
+              // 记录每个词的错误次数
+              const enText = firstCard.type === 'en' ? firstCard.text : card.text;
+              this.reviewGameErrors[enText] = (this.reviewGameErrors[enText] || 0) + 1;
+              this.reviewSelected = null;
+              setTimeout(() => {
+                firstCard.wrong = false;
+                card.wrong = false;
+              }, 300);
+            }
+          } else {
+            card.selected = true;
+            this.reviewSelected = card;
+          }
+
+          this.reviewProcessing = false;
+        },
+
+        // ===== 复习结束 =====
+        endReviewGame() {
+          // 更新利特纳盒子
+          this.updateReviewBoxes(this.reviewGameWords, this.reviewGameErrors);
+
+          // 构建复盘数据
+          const wrongWords = [];
+          for (const word of this.reviewGameWords) {
+            const errCount = this.reviewGameErrors[word.en] || 0;
+            if (errCount > 0) {
+              const store = this.loadReviewStore();
+              const key = this.getWordKey(word);
+              wrongWords.push({
+                en: word.en,
+                zh: word.zh,
+                totalErrors: (store[key]?.totalErrors || errCount),
+              });
+            }
+          }
+
+          const totalCorrect = 8 - wrongWords.length;
+          const totalErrors = Object.values(this.reviewGameErrors).reduce((s, v) => s + v, 0);
+
+          this.reviewPopup = {
+            correct: totalCorrect,
+            totalErrors: totalErrors,
+            wrongWords: wrongWords,
+          };
+        },
+
+        rerunReviewGame() {
+          if (this.reviewMode) {
+            this.startReviewGame(this.reviewMode);
+          }
+        },
+        closeReviewPopup() {
+          this.reviewPopup = null;
+          this.reviewCards = [];
+          this.reviewGameWords = [];
+          this.reviewGameErrors = {};
+          this.currentView = 'review';
+        },
+        goToReviewFromSingle() {
+          this.currentView = 'review';
+          this.gameResult = null;
+          this.reviewPopup = null;
         },
 
         // ===== 词表数据辅助方法 =====
@@ -1540,6 +2203,8 @@
             this.p2Cards = [...p2En, ...p2Zh].sort(() => Math.random() - 0.5);
           } else {
             this.p2Cards = [];
+            this.reviewGameErrors = {};
+            this.singleGameWords = chosen;
           }
 
           this.gameBookName = bookName;
@@ -1693,6 +2358,11 @@
               firstCard.selected = false;
               firstCard.wrong = true;
               card.wrong = true;
+              // 单人模式：记录错词
+              if (side === 'p1' && this.gameMode === 'single') {
+                const enText = firstCard.type === 'en' ? firstCard.text : card.text;
+                this.reviewGameErrors[enText] = (this.reviewGameErrors[enText] || 0) + 1;
+              }
               this[selectedRef] = null;
               setTimeout(() => {
                 firstCard.wrong = false;
@@ -1728,6 +2398,11 @@
                 this.singlePlayerPb = prev;
               }
             } catch(e) {}
+            // 单人模式：同步到复习系统
+            if (this.singleGameWords && this.singleGameWords.length > 0) {
+              this.updateReviewBoxes(this.singleGameWords, this.reviewGameErrors);
+              this.reviewGameWords = this.singleGameWords; // 给复盘弹窗用
+            }
             return;
           }
 
