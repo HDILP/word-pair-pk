@@ -26,6 +26,20 @@ TEMPLATE = 'word-pair-pk.html'
 OUTPUT = sys.argv[1] if len(sys.argv) > 1 else 'index.html'
 WORDS_DIR = 'words'
 
+# ── 中文数字 → 整数，用于课本排序 ──────────────────────────
+_CN_NUM = {'一': 1, '二': 2, '三': 3, '四': 4, '五': 5,
+           '六': 6, '七': 7, '八': 8, '九': 9, '十': 10}
+_CN_TYPES = {'必修': 0, '选必': 1}
+
+def _book_sort_key(name):
+    """自定义排序：必修 < 选必，且按中文数字顺序排列"""
+    for t, tidx in _CN_TYPES.items():
+        if t in name:
+            for cn, num in _CN_NUM.items():
+                if cn in name:
+                    return (tidx, num)
+    return (99, 99)
+
 # ── 1. 扫描词库文件 ──────────────────────────────────────────
 word_files = sorted(
     glob.glob(os.path.join(WORDS_DIR, '**', '*.json'), recursive=True)
@@ -46,7 +60,7 @@ for fpath in word_files:
 books = []
 total_words = 0
 
-for book_name in sorted(files_by_dir.keys()):
+for book_name in sorted(files_by_dir.keys(), key=_book_sort_key):
     unit_files = sorted(files_by_dir[book_name])
     units = []
     for fpath in unit_files:
