@@ -481,14 +481,23 @@
       font-variant-numeric: tabular-nums;
     }
 
-    /* 卡片网格 4x4 */
-    .card-grid {
+    /* 卡片网格固定容器 — 确保网格永远是正方形 */
+    .card-grid-wrapper {
       flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .card-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       grid-template-rows: repeat(4, 1fr);
       gap: 8px;
-      min-height: 0;
+      width: 100%;
+      max-height: 100%;
       aspect-ratio: 1;
     }
 
@@ -772,6 +781,8 @@
       }
       .card-grid {
         gap: 6px;
+        width: 100%;
+        max-height: 100%;
         aspect-ratio: 1;
       }
       .game-card {
@@ -953,6 +964,8 @@
       /* 卡片网格 */
       .card-grid {
         gap: 4px;
+        width: 100%;
+        max-height: 100%;
         aspect-ratio: 1;
       }
       .game-card {
@@ -1201,20 +1214,22 @@
               <div class="game-side__progress-fill p1" :style="{width: (p1MatchedCount/8*100)+'%'}"></div>
             </div>
             <div class="game-side__timer">{{ formatTime(p1Time) }}</div>
-            <div class="card-grid" @touchstart="handleTouchStart($event, 'p1')" @touchend="handleTouchEnd($event, 'p1')" @click="handleClick($event, 'p1')">
-              <div
-                v-for="card in p1Cards"
-                :key="card.id"
-                class="game-card"
-                :class="{
-                  selected: card.selected,
-                  matched: card.matched,
-                  wrong: card.wrong,
-                  'game-card--en': card.type === 'en',
-                  'game-card--zh': card.type === 'zh',
-                }"
-                :data-card-id="card.id"
-              >{{ card.text }}</div>
+            <div class="card-grid-wrapper">
+              <div class="card-grid" @touchstart="handleTouchStart($event, 'p1')" @touchend="handleTouchEnd($event, 'p1')" @click="handleClick($event, 'p1')">
+                <div
+                  v-for="card in p1Cards"
+                  :key="card.id"
+                  class="game-card"
+                  :class="{
+                    selected: card.selected,
+                    matched: card.matched,
+                    wrong: card.wrong,
+                    'game-card--en': card.type === 'en',
+                    'game-card--zh': card.type === 'zh',
+                  }"
+                  :data-card-id="card.id"
+                >{{ card.text }}</div>
+              </div>
             </div>
           </div>
 
@@ -1231,7 +1246,8 @@
               <div class="game-side__progress-fill p2" :style="{width: (p2MatchedCount/8*100)+'%'}"></div>
             </div>
             <div class="game-side__timer">{{ formatTime(p2Time) }}</div>
-            <div class="card-grid" @touchstart="handleTouchStart($event, 'p2')" @touchend="handleTouchEnd($event, 'p2')" @click="handleClick($event, 'p2')">
+            <div class="card-grid-wrapper">
+              <div class="card-grid" @touchstart="handleTouchStart($event, 'p2')" @touchend="handleTouchEnd($event, 'p2')" @click="handleClick($event, 'p2')">
               <div
                 v-for="card in p2Cards"
                 :key="card.id"
@@ -1245,6 +1261,7 @@
                 }"
                 :data-card-id="card.id"
               >{{ card.text }}</div>
+            </div>
             </div>
           </div>
         </div>
@@ -1260,7 +1277,8 @@
               <div class="game-side__progress-fill p1" :style="{width: (p1MatchedCount/8*100)+'%'}"></div>
             </div>
             <div class="game-side__timer">{{ formatTime(p1Time) }}</div>
-            <div class="card-grid" @touchstart="handleTouchStart($event, 'p1')" @touchend="handleTouchEnd($event, 'p1')" @click="handleClick($event, 'p1')">
+            <div class="card-grid-wrapper">
+              <div class="card-grid" @touchstart="handleTouchStart($event, 'p1')" @touchend="handleTouchEnd($event, 'p1')" @click="handleClick($event, 'p1')">
               <div
                 v-for="card in p1Cards"
                 :key="card.id"
@@ -1269,9 +1287,12 @@
                   selected: card.selected,
                   matched: card.matched,
                   wrong: card.wrong,
+                  'game-card--en': card.type === 'en',
+                  'game-card--zh': card.type === 'zh',
                 }"
                 :data-card-id="card.id"
               >{{ card.text }}</div>
+            </div>
             </div>
           </div>
         </div>
