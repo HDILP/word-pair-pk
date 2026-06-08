@@ -1,6 +1,5 @@
 {
   "name": "word-pair-pk",
-  "buildCommand": "python3 build.py && cp word-pair-pk.html index.html",
   "outputDirectory": ".",
   "cleanUrls": true
 }
