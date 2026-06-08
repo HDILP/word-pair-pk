@@ -1,5 +1,6 @@
 {
   "name": "word-pair-pk",
+  "buildCommand": "python3 build.py",
   "outputDirectory": ".",
   "cleanUrls": true
 }
