@@ -1,15 +1,20 @@
 #!/usr/bin/env python3
 """
-build.py — 将 words/*.json 词库嵌入 HTML 模板，生成可双击运行的 index.html
+build.py — 将 words/<教材>/<单元>.json 词库嵌入 HTML 模板，生成可双击运行的 index.html
+
+词库目录结构：
+  words/
+    人教版高中英语必修一/
+      Welcome Unit.json
+      Unit 1 Teenage Life.json
+      ...
+
+构建后会按教材名合并，每个教材下 units 数组包含各单元，
+形如：{ name: "人教版高中英语必修一", units: [{ name: "Welcome Unit", words: [...] }, ...] }
 
 用法：
   python3 build.py              # 默认从 word-pair-pk.html → index.html
   python3 build.py output.html   # 自定义输出文件名
-
-工作流：
-  1. 在 words/ 里改/增词库 JSON（支持 words 或 units 格式）
-  2. 运行 python3 build.py
-  3. 发 index.html 给班主任 / 部署到 GitHub+Vercel
 """
 
 import json
@@ -21,57 +26,84 @@ TEMPLATE = 'word-pair-pk.html'
 OUTPUT = sys.argv[1] if len(sys.argv) > 1 else 'index.html'
 WORDS_DIR = 'words'
 
-# ── 1. 读词库 ──────────────────────────────────────────────
-word_files = sorted(glob.glob(os.path.join(WORDS_DIR, '**', '*.json'), recursive=True))
+# ── 1. 扫描词库文件 ──────────────────────────────────────────
+word_files = sorted(
+    glob.glob(os.path.join(WORDS_DIR, '**', '*.json'), recursive=True)
+)
 if not word_files:
     print(f'❌ 未在 {WORDS_DIR}/ 找到词库 JSON 文件')
     sys.exit(1)
 
-books = []
+# ── 2. 按课本目录分组 ────────────────────────────────────────
+# files_by_dir: { "人教版高中英语必修一": ["必修一/Welcome Unit.json", ...], ... }
+files_by_dir = {}
 for fpath in word_files:
-    with open(fpath, 'r', encoding='utf-8') as f:
-        book = json.load(f)
-    # 兼容旧格式 (words) 和新格式 (units)
-    if 'words' in book or 'units' in book:
-        books.append(book)
-    else:
-        print(f'⚠️  跳过 {fpath}：缺少 words 或 units 字段')
+    rel = os.path.relpath(fpath, WORDS_DIR)
+    dirname = os.path.dirname(rel)  # e.g. "人教版高中英语必修一"
+    dirname = os.path.basename(dirname)  # keep just the dir name
+    files_by_dir.setdefault(dirname, []).append(fpath)
 
-print(f'📚 读取 {len(books)} 册词库')
-total = sum(
-    len(b.get('words', [])) + sum(len(u.get('words', [])) for u in b.get('units', []))
-    for b in books
-)
-print(f'📝 共 {total} 词')
+books = []
+total_words = 0
 
-# ── 2. 读模板 ──────────────────────────────────────────────
+for book_name in sorted(files_by_dir.keys()):
+    unit_files = sorted(files_by_dir[book_name])
+    units = []
+    for fpath in unit_files:
+        with open(fpath, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        # 兼容两种格式：
+        #   格式1: { "name": "...", "words": [...] }
+        #   格式2: { "name": "...", "units": [{"name": "...", "words": [...]}, ...] }
+        #   格式3: 纯数组 [{}, ...]
+        if isinstance(data, list):
+            # 纯单词数组 → 用文件名当 unit 名
+            unit_name = os.path.splitext(os.path.basename(fpath))[0]
+            units.append({"name": unit_name, "words": data})
+            total_words += len(data)
+        elif 'units' in data:
+            # 已经分好 units 了（格式2）
+            unit_name = data.get('name') or os.path.splitext(os.path.basename(fpath))[0]
+            for u in data['units']:
+                u.setdefault('name', unit_name)
+                units.append(u)
+                total_words += len(u.get('words', []))
+        elif 'words' in data:
+            # 标准单元文件格式（格式1）
+            unit_name = data.get('name') or os.path.splitext(os.path.basename(fpath))[0]
+            units.append({"name": unit_name, "words": data['words']})
+            total_words += len(data['words'])
+        else:
+            print(f'⚠️  跳过 {fpath}：未知格式')
+            continue
+
+    if units:
+        books.append({"name": book_name, "units": units})
+
+print(f'📚 读取 {len(books)} 册课本')
+for b in books:
+    unit_count = len(b['units'])
+    word_count = sum(len(u['words']) for u in b['units'])
+    print(f'   {b["name"]}: {unit_count} 单元, {word_count} 词')
+print(f'📝 共 {total_words} 词')
+
+# ── 3. 读模板 ──────────────────────────────────────────────
 with open(TEMPLATE, 'r', encoding='utf-8') as f:
     html = f.read()
 
-# ── 3. 注入词库 ────────────────────────────────────────────
+# ── 4. 注入词库 ────────────────────────────────────────────
 data_json = json.dumps({'books': books}, ensure_ascii=False)
 placeholder = 'const ALL_WORDS_DATA = null; // 🏗️ Running'
 
-old = f'{placeholder}'
 new = f'const ALL_WORDS_DATA = {data_json}; // 💉 built by build.py'
 
 if placeholder not in html:
     print('❌ 模板中未找到占位符，请确认 word-pair-pk.html 未被修改')
     sys.exit(1)
 
-html = html.replace(old, new, 1)
-# Also clean up the rest of that line if there's residual content
-# (the placeholder comment is followed by C-style line content)
-idx = html.find(new)
-if idx >= 0:
-    end_of_line = html.find('\n', idx)
-    line_content = html[idx:end_of_line]
-    # Check if there's leftover data after the comment
-    if '};' not in line_content and line_content.strip().endswith('here'):
-        # The line is clean, good
-        pass
+html = html.replace(placeholder, new, 1)
 
-# ── 4. 写入输出 ──────────────────────────────────────────────
+# ── 5. 写入输出 ──────────────────────────────────────────────
 with open(OUTPUT, 'w', encoding='utf-8') as f:
     f.write(html)
 
