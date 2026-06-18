@@ -1356,12 +1356,12 @@
               可开局 <strong>{{ maxRounds }}</strong> 局
             </div>
             <div class="select-summary__actions">
-              <button class="btn btn--ghost" @click="currentView = 'home'">返回</button>
+              <button class="btn btn--ghost" @click="cancelReviewSelect">返回</button>
               <button
                 class="btn btn--primary"
                 :disabled="selectedWordCount < 8"
                 @click="startGame"
-              >开始 PK</button>
+              >{{ pendingReview ? '开始自由练习' : '开始 PK' }}</button>
             </div>
           </div>
         </div>
@@ -1579,7 +1579,7 @@
             待攻克 <strong>{{ reviewBox1Count }}</strong> 个
           </div>
           <div class="review-view__modes">
-            <div class="review-mode-btn" @click="startReviewGame('free')">
+            <div class="review-mode-btn" @click="goReviewSelect">
               <div class="review-mode-btn__icon">📝</div>
               <div class="review-mode-btn__info">
                 <div class="review-mode-btn__title">自由练习</div>
@@ -1725,6 +1725,8 @@
           _p2MatchSet: new Set(),
 
           // ===== 复习系统 =====
+          pendingReview: false, // 是否从复习页进入选词视图
+          reviewStoreVersion: 0, // 用于触发 review 相关的 computed 重新计算
           reviewMode: null, // 'free' | 'due' | 'hard'
           reviewCards: [],
           reviewSelected: null,
@@ -1760,6 +1762,8 @@
           return labels[this.reviewMode] || '复习';
         },
         reviewData() {
+          // 用 reviewStoreVersion 触发重新计算（localStorage 非响应式）
+          void this.reviewStoreVersion;
           try {
             return JSON.parse(localStorage.getItem('wordpair_review') || '{}');
           } catch(e) { return {}; }
@@ -1812,6 +1816,30 @@
           this.currentView = 'review';
           this.reviewPopup = null;
         },
+        goReviewSelect() {
+          this.pendingReview = true;
+          this.gameResult = null;
+          this.gameOverInternal = false;
+          this.winnerName = '';
+          this.currentView = 'select';
+          // 如果当前没有选中的词表，默认全选
+          let anyChecked = false;
+          for (const b of this.books) {
+            for (const u of (b.units || [])) {
+              if (u._checked) { anyChecked = true; break; }
+            }
+            if (anyChecked) break;
+          }
+          if (!anyChecked) this.selectAll();
+        },
+        cancelReviewSelect() {
+          if (this.pendingReview) {
+            this.pendingReview = false;
+            this.currentView = 'review';
+          } else {
+            this.currentView = 'home';
+          }
+        },
         getWordKey(word) {
           return (word.en || '').trim().toLowerCase().replace(/\s+/g, '_').slice(0, 60);
         },
@@ -1822,6 +1850,7 @@
         },
         saveReviewStore(data) {
           localStorage.setItem('wordpair_review', JSON.stringify(data));
+          this.reviewStoreVersion++;
         },
         // 复习结束后更新利特纳盒子
         updateReviewBoxes(gameWords, errorMap) {
@@ -2151,6 +2180,12 @@
 
         // ===== 开始游戏 =====
         startGame() {
+          // 如果是从复习页来的，走自由练习
+          if (this.pendingReview) {
+            this.pendingReview = false;
+            this.startReviewGame('free');
+            return;
+          }
           const selectedWords = [];
           let bookName = '';
           for (const b of this.books) {
