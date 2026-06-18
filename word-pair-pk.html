@@ -47,6 +47,7 @@
       touch-action: manipulation;
       -webkit-tap-highlight-color: transparent;
       user-select: none;
+      overscroll-behavior-x: none;
     }
 
     #app {
@@ -2553,6 +2554,10 @@
           // reset input
           e.target.value = '';
         },
+        // 防手机侧滑返回
+        preventBackSwipe() {
+          history.pushState(null, '', location.href);
+        },
       },
 
       mounted() {
@@ -2563,11 +2568,14 @@
           const v = localStorage.getItem('wordpair_pb');
           if (v) this.singlePlayerPb = parseFloat(v);
         } catch(e) {}
+        // 防手机侧滑返回
+        history.pushState(null, '', location.href);
+        window.addEventListener('popstate', this.preventBackSwipe);
       },
-
       beforeUnmount() {
         clearInterval(this.p1Timer);
         clearInterval(this.p2Timer);
+        window.removeEventListener('popstate', this.preventBackSwipe);
       },
     }).mount('#app');
   </script>
