@@ -509,9 +509,9 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      font-size: 13px;
+      font-size: clamp(12px, 2vw, 17px);
       font-weight: 500;
-      line-height: 1.3;
+      line-height: 1.4;
       padding: 4px;
       cursor: pointer;
       transition: all 0.15s ease;
@@ -519,11 +519,15 @@
       min-height: 0;
       overflow: hidden;
       box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-      /* 多行文字裁切 */
+      word-break: break-word;
+    }
+    .card-text {
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
-      word-break: break-word;
+      overflow: hidden;
+      max-width: 100%;
+      padding: 2px;
     }
     .game-card--en {
       background: #fff5f5;
@@ -1010,8 +1014,10 @@
         aspect-ratio: 1;
       }
       .game-card {
-        font-size: 12px;
+        font-size: clamp(11px, 3.5vw, 15px);
         border-radius: 10px;
+      }
+      .card-text {
         -webkit-line-clamp: 2;
       }
       .countdown-number {
@@ -1193,11 +1199,10 @@
         aspect-ratio: 1;
       }
       .game-card {
-        font-size: 11px;
+        font-size: clamp(10px, 3.2vw, 13px);
         border-radius: 8px;
         min-height: 0;
         padding: 2px;
-        -webkit-line-clamp: 2;
       }
 
       /* 倒计时 */
@@ -1456,7 +1461,7 @@
                     'game-card--zh': card.type === 'zh',
                   }"
                   :data-card-id="card.id"
-                >{{ card.text }}</div>
+                ><span class="card-text">{{ card.text }}</span></div>
               </div>
             </div>
           </div>
@@ -1488,7 +1493,7 @@
                   'game-card--zh': card.type === 'zh',
                 }"
                 :data-card-id="card.id"
-              >{{ card.text }}</div>
+              ><span class="card-text">{{ card.text }}</span></div>
             </div>
             </div>
           </div>
@@ -1519,7 +1524,7 @@
                   'game-card--zh': card.type === 'zh',
                 }"
                 :data-card-id="card.id"
-              >{{ card.text }}</div>
+              ><span class="card-text">{{ card.text }}</span></div>
             </div>
             </div>
           </div>
@@ -1635,7 +1640,7 @@
                   'game-card--zh': card.type === 'zh',
                 }"
                 :data-card-id="card.id"
-              >{{ card.text }}</div>
+              ><span class="card-text">{{ card.text }}</span></div>
             </div>
           </div>
         </div>
