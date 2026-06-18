@@ -80,6 +80,12 @@ touchstart → touchend → (浏览器合成) click
 - `handleReviewClick` 检查此标记，true 则跳过
 - 数据属性以 `pendingReview`、`reviewTouchProcessed` 等命名——**Vue 3 不会代理 `_` 开头的数据到模板**，所以避免用 `_` 前缀
 
+### 手机侧边返回防护
+
+- CSS `overscroll-behavior-x: none` 阻止浏览器边缘滑动导航
+- JS `history.pushState` + `popstate` 拦截器兜底
+- `beforeUnmount` 时清理事件监听
+
 ### 复习系统（利特纳盒子）
 
 - 存储键：`wordpair_review`
