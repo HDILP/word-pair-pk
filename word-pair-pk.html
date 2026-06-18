@@ -1616,10 +1616,10 @@
         <div class="game-side">
           <div class="game-side__header">
             <span class="game-side__label">{{ reviewModeLabel }}</span>
-            <span class="game-side__progress-text">{{ reviewMatchedCount }}/8</span>
+            <span class="game-side__progress-text">{{ reviewMatchedCount }}/{{ reviewCardPairCount }}</span>
           </div>
           <div class="game-side__progress-bar">
-            <div class="game-side__progress-fill" :style="{width: (reviewMatchedCount/8*100)+'%'}"></div>
+            <div class="game-side__progress-fill" :style="{width: (reviewMatchedCount/reviewCardPairCount*100)+'%'}"></div>
           </div>
           <div class="card-grid-wrapper">
             <div class="card-grid" @touchstart="handleReviewTouchStart($event)" @touchend="handleReviewTouchEnd($event)" @click="handleReviewClick($event)">
@@ -1646,7 +1646,7 @@
         <div class="review-popup">
           <div class="review-popup__title">📊 本次复盘</div>
           <div class="review-popup__subtitle">
-            正确 {{ reviewPopup.correct }} / 8 ·
+            正确 {{ reviewPopup.correct }} / {{ reviewCardPairCount }} ·
             失误 {{ reviewPopup.totalErrors }} 次
           </div>
           <div v-if="reviewPopup.wrongWords.length === 0" class="review-popup__empty">
@@ -1735,6 +1735,7 @@
           reviewPopup: null,
           reviewGameWords: [], // 本局 8 个原始词对象 {en, zh, errors}
           reviewGameErrors: {}, // { cardId: count } — 每张卡片的失误次数
+          reviewCardPairCount: 8, // 本局实际配对数量（错题特训可能 < 8）
           singleGameWords: [], // 单人模式下抽到的 8 个词
         };
       },
@@ -1900,7 +1901,7 @@
               return;
             }
             const shuffled = [...allWords].sort(() => Math.random() - 0.5);
-            selectedWords = shuffled.slice(0, 8);
+            selectedWords = shuffled.slice(0, Math.min(8, shuffled.length));
           } else if (mode === 'due') {
             // 今日复习：从盒子里捞今天该复习的词
             const store = this.loadReviewStore();
@@ -1929,7 +1930,7 @@
               return;
             }
             const shuffled = [...dueWords].sort(() => Math.random() - 0.5);
-            selectedWords = shuffled.slice(0, 8);
+            selectedWords = shuffled.slice(0, Math.min(8, shuffled.length));
           } else if (mode === 'hard') {
             // 错题特训：盒子 1 里的词
             const store = this.loadReviewStore();
@@ -1951,8 +1952,11 @@
               return;
             }
             const shuffled = [...hardWords].sort(() => Math.random() - 0.5);
-            selectedWords = shuffled.slice(0, 8);
+            selectedWords = shuffled.slice(0, Math.min(8, shuffled.length));
           }
+
+          // 设配对数量
+          this.reviewCardPairCount = selectedWords.length;
 
           // 生成卡片
           let allCards = [];
@@ -2049,7 +2053,7 @@
 
               this.reviewSelected = null;
 
-              if (this.reviewMatchSet.size >= 8) {
+              if (this.reviewMatchSet.size >= this.reviewCardPairCount) {
                 this.endReviewGame();
                 this.reviewProcessing = false;
                 return;
@@ -2096,7 +2100,7 @@
             }
           }
 
-          const totalCorrect = 8 - wrongWords.length;
+          const totalCorrect = this.reviewCardPairCount - wrongWords.length;
           const totalErrors = Object.values(this.reviewGameErrors).reduce((s, v) => s + v, 0);
 
           this.reviewPopup = {
