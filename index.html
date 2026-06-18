@@ -1293,7 +1293,7 @@
   </style>
 </head>
 <body>
-  <div id="app">
+  <div id="app" @touchstart="handleEdgeTouch" @touchmove="handleEdgeMove" @touchend="handleEdgeEnd">
     <!-- ===== 顶部标题栏 ===== -->
     <header class="header">
       <span class="header__title">词对 PK</span>
@@ -1744,6 +1744,9 @@
           reviewCardPairCount: 8, // 本局实际配对数量（错题特训可能 < 8）
           reviewTouchProcessed: false, // 防止 touchend+click 重复触发
           singleGameWords: [], // 单人模式下抽到的 8 个词
+          // 边缘滑动手势检测
+          _edgeSwipeX: null,
+          _edgeSwipeY: null,
         };
       },
 
@@ -2554,9 +2557,55 @@
           // reset input
           e.target.value = '';
         },
-        // 防手机侧滑返回
-        preventBackSwipe() {
-          history.pushState(null, '', location.href);
+        // 手机侧滑返回——边缘滑动触发应用内导航
+        handleEdgeTouch(e) {
+          if (e.touches.length === 1) {
+            const x = e.touches[0].clientX;
+            const y = e.touches[0].clientY;
+            if (x < 40) {
+              this._edgeSwipeX = x;
+              this._edgeSwipeY = y;
+            }
+          }
+        },
+        handleEdgeMove(e) {
+          if (this._edgeSwipeX !== null && e.touches.length === 1) {
+            const dy = Math.abs(e.touches[0].clientY - this._edgeSwipeY);
+            const dx = Math.abs(e.touches[0].clientX - this._edgeSwipeX);
+            // 竖直滑动占比大 → 取消边缘检测（允许滚动）
+            if (dy > dx * 1.5 && dy > 10) {
+              this._edgeSwipeX = null;
+            }
+          }
+        },
+        handleEdgeEnd(e) {
+          if (this._edgeSwipeX !== null) {
+            const touch = e.changedTouches[0];
+            if (touch) {
+              const dx = touch.clientX - this._edgeSwipeX;
+              if (dx > 60) {
+                this.navigateBack();
+              }
+            }
+          }
+          this._edgeSwipeX = null;
+          this._edgeSwipeY = null;
+        },
+        navigateBack() {
+          switch (this.currentView) {
+            case 'select':
+              this.cancelReviewSelect();
+              break;
+            case 'reviewGame':
+              this.currentView = 'review';
+              break;
+            case 'game':
+            case 'review':
+            case 'leaderboard':
+              this.goHome();
+              break;
+            // home: 最顶层，不处理
+          }
         },
       },
 
@@ -2568,14 +2617,10 @@
           const v = localStorage.getItem('wordpair_pb');
           if (v) this.singlePlayerPb = parseFloat(v);
         } catch(e) {}
-        // 防手机侧滑返回
-        history.pushState(null, '', location.href);
-        window.addEventListener('popstate', this.preventBackSwipe);
       },
       beforeUnmount() {
         clearInterval(this.p1Timer);
         clearInterval(this.p2Timer);
-        window.removeEventListener('popstate', this.preventBackSwipe);
       },
     }).mount('#app');
   </script>
