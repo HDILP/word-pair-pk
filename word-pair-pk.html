@@ -1736,6 +1736,7 @@
           reviewGameWords: [], // 本局 8 个原始词对象 {en, zh, errors}
           reviewGameErrors: {}, // { cardId: count } — 每张卡片的失误次数
           reviewCardPairCount: 8, // 本局实际配对数量（错题特训可能 < 8）
+          reviewTouchProcessed: false, // 防止 touchend+click 重复触发
           singleGameWords: [], // 单人模式下抽到的 8 个词
         };
       },
@@ -2013,8 +2014,21 @@
         },
         handleReviewTouchEnd(event) {
           if (!this._reviewTouchId) return;
+          this.reviewTouchProcessed = true;
           this.processReviewCardClick(this._reviewTouchId);
           this._reviewTouchId = null;
+        },
+        handleReviewClick(event) {
+          // 触摸设备上 click 会在 touchend 后触发，防重复处理
+          if (this.reviewTouchProcessed) {
+            this.reviewTouchProcessed = false;
+            return;
+          }
+          const cardEl = event.target.closest('.game-card');
+          if (!cardEl) return;
+          const cardId = cardEl.dataset.cardId;
+          if (!cardId) return;
+          this.processReviewCardClick(cardId);
         },
         processReviewCardClick(cardId) {
           if (this.reviewProcessing) return;
