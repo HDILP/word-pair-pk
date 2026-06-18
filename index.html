@@ -2607,6 +2607,11 @@
             // home: 最顶层，不处理
           }
         },
+        // Android 系统返回手势拦截 → 应用内导航 + 阻止离开页面
+        handleSystemBack() {
+          history.pushState(null, '', location.href);
+          this.navigateBack();
+        },
       },
 
       mounted() {
@@ -2617,10 +2622,14 @@
           const v = localStorage.getItem('wordpair_pb');
           if (v) this.singlePlayerPb = parseFloat(v);
         } catch(e) {}
+        // 防 Android 系统返回手势（会触发 popstate）
+        history.pushState(null, '', location.href);
+        window.addEventListener('popstate', this.handleSystemBack);
       },
       beforeUnmount() {
         clearInterval(this.p1Timer);
         clearInterval(this.p2Timer);
+        window.removeEventListener('popstate', this.handleSystemBack);
       },
     }).mount('#app');
   </script>
