@@ -80,13 +80,21 @@ touchstart → touchend → (浏览器合成) click
 - `handleReviewClick` 检查此标记，true 则跳过
 - 数据属性以 `pendingReview`、`reviewTouchProcessed` 等命名——**Vue 3 不会代理 `_` 开头的数据到模板**，所以避免用 `_` 前缀
 
-### 手机侧滑返回
+### 手机侧滑返回（三层防护）
 
-- CSS `overscroll-behavior-x: none` 阻止浏览器原生侧滑导航
-- 触摸手势检测：`touchstart` 在左边缘（x<40px）启动检测，`touchend` 时右滑位移 >60px 触发应用内导航
-- `navigateBack()` 根据 `currentView` 决定返回目标（选词→返回复习/首页、复习游戏→复习首页、其他→首页）
-- 竖直滑动占比大时自动取消检测，不影响正常滚动
-- 游戏卡片的居中触摸事件与边缘检测不冲突
+1. **CSS 层** — `overscroll-behavior-x: none` 阻止浏览器原生 overscroll 导航
+2. **触摸手势层** — `touchstart` 在左边缘（x<40px）启动检测，`touchend` 右滑 >60px 触发 `navigateBack()`
+   - 竖直滑动占比大自动取消，不影响正常滚动
+   - 游戏卡片居中，与边缘检测不冲突
+3. **系统返回层** — `history.pushState` + `popstate` 监听器拦截 Android 系统级返回手势
+   - `popstate` 触发时：`pushState` 防止离开页面 + `navigateBack()` 执行应用内导航
+   - `beforeUnmount` 时清理事件监听
+
+`navigateBack()` 根据 `currentView` 决定返回目标：
+- `select` → `cancelReviewSelect()`（返回复习/主页）
+- `reviewGame` → 返回复习首页
+- `game` / `review` / `leaderboard` → `goHome()`
+- `home` → 不处理
 
 ### 复习系统（利特纳盒子）
 
