@@ -80,6 +80,14 @@ touchstart → touchend → (浏览器合成) click
 - `handleReviewClick` 检查此标记，true 则跳过
 - 数据属性以 `pendingReview`、`reviewTouchProcessed` 等命名——**Vue 3 不会代理 `_` 开头的数据到模板**，所以避免用 `_` 前缀
 
+### PK/单人模式多点触控
+
+- 触摸事件在 `.game-board` 父级处理（而非每个 `.card-grid`），支持双人同时点击
+- `handleBoardTouch` 遍历 `event.changedTouches`，用 `touch.identifier` 唯一标识每根手指
+- 通过 `document.elementFromPoint(x, y)` + `.closest('.game-side')` 判断触摸点属于 P1 还是 P2
+- 触摸信息存入 `_touchMap[identifier] = { cardId, side }`，`handleBoardTouchEnd` 按 identifier 取出处理
+- 桌面端保留 `.card-grid` 的 `@click` 事件，通过 `_processingClick[side]` 防止 touch→click 重复
+
 ### 手机侧滑返回（三层防护）
 
 1. **CSS 层** — `overscroll-behavior-x: none` 阻止浏览器原生 overscroll 导航
