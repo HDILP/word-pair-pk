@@ -104,6 +104,25 @@ touchstart → touchend → (浏览器合成) click
 - `game` / `review` / `leaderboard` → `goHome()`
 - `home` → 不处理
 
+### 卡片视觉与响应式布局
+
+- 每张 `.game-card` 使用 `display: flex; align-items: center; justify-content: center` 居中文字
+- 文字包裹于 `<span class="card-text">` 内，该 span 使用 `-webkit-line-clamp: 2` 实现多行截断
+- `font-size` 使用 `clamp(13px, 2.5vw, 17px)` 根据屏幕宽度自动调整
+
+### 页面布局与滚动
+
+- `#app`：`height: 100vh; display: flex; flex-direction: column` — 固定视口高度
+- `.header`：固定 48px，`flex-shrink: 0`
+- `.main`：`flex: 1; overflow-y: auto` — 主内容区可纵向滚动
+  - 所有视图容器 (`word-select-view`, `leaderboard-view`, `review-view`)：
+    - `max-height: 100%; min-height: 0; overflow-y: auto` — 内容超出时内部可滚
+    - `min-height: 0` 是关键——flex 子项默认 `min-height: auto`（等于内容高度），会阻止 `max-height` 缩容
+  - 首页 (`.home-view`)：通过 `.main > .home-view { margin: auto 0 }` 垂直居中
+  - 游戏视图 (`.game-view`, `.review-game-view`)：`height: 100%` 撑满，无需滚动
+- 原 `.main { justify-content: center }` 因与 `overflow-y: auto` 在 flexbox 中存在浏览器兼容冲突，已移除
+- `html, body { overflow: hidden }` 防止 body 弹跳
+
 ### 复习系统（利特纳盒子）
 
 - 存储键：`wordpair_review`
