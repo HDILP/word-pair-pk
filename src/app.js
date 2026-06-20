@@ -480,7 +480,13 @@
           this.updateAvailable = false; // 马上隐藏提醒
           const isLocal = window.location.protocol === 'file:';
           if (isLocal) {
-            // file:// 下直接下载当前文件（fetch 会被浏览器拒绝）
+            if (this.remoteVersion) {
+              // 本地检测到新版 → 引导去网站下载
+              window.open('https://word-pair-pk.hdilp.top', '_blank');
+              this.downloadingUpdate = false;
+              return;
+            }
+            // 否则下载当前文件
             const a = document.createElement('a');
             a.href = window.location.href;
             a.download = 'index.html';
@@ -983,17 +989,22 @@
           const el = document.querySelector('meta[name="build-revision"]');
           if (el) this.buildVersion = el.content;
         } catch(e) {}
-        // 检查线上更新（仅在线版，file:// 下无法跨域 fetch）
-        if (this.buildVersion && window.location.protocol !== 'file:') {
-          fetch('version.json?t=' + Date.now(), { cache: 'no-store' })
-            .then(r => r.ok ? r.json() : null)
-            .then(data => {
-              if (data && data.revision && data.revision !== this.buildVersion) {
-                this.remoteVersion = data.revision;
-                this.updateAvailable = true;
-              }
-            })
-            .catch(() => {});
+        // 检查线上更新 — 用 <script> 加载 version.js（兼容 file:// 协议）
+        if (this.buildVersion) {
+          const s = document.createElement('script');
+          s.src = 'version.js?t=' + Date.now();
+          s.onload = () => {
+            if (window.__remoteRevision && window.__remoteRevision !== this.buildVersion) {
+              this.remoteVersion = window.__remoteRevision;
+              this.updateAvailable = true;
+            }
+            delete window.__remoteRevision;
+          };
+          // 加载失败（离线/无网络）静默忽略
+          s.onerror = () => {};
+          document.head.appendChild(s);
+          // 脚本加载完自动清理 script 元素
+          setTimeout(() => { if (s.parentNode) s.parentNode.removeChild(s); }, 5000);
         }
         // 防 Android 系统返回手势（会触发 popstate）
         history.pushState(null, '', location.href);

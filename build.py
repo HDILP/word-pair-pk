@@ -132,10 +132,13 @@ html = html.replace('<!-- BUILD_VER -->', ver, 1)
 with open(OUTPUT, 'w', encoding='utf-8') as f:
     f.write(html)
 
-# ── 6. 写入 version.json ─────────────────────────────────────
+# ── 6. 写入 version.json + version.js ──────────────────────
 VERJSON = 'version.json'
 with open(VERJSON, 'w', encoding='utf-8') as f:
     f.write(f'{{"revision":"{ver}"}}\n')
+VERJS = 'version.js'
+with open(VERJS, 'w', encoding='utf-8') as f:
+    f.write(f'window.__remoteRevision = "{ver}";\n')
 
 size_kb = os.path.getsize(OUTPUT) / 1024
 print(f'✅ 已生成 {OUTPUT}  ({size_kb:.0f} KB)')
