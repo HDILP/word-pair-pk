@@ -296,7 +296,6 @@
               matched: false,
               selected: false,
               wrong: false,
-              _done: false,
               _word: word,
             });
             allCards.push({
@@ -307,7 +306,6 @@
               matched: false,
               selected: false,
               wrong: false,
-              _done: false,
               _word: word,
             });
           });
@@ -383,9 +381,6 @@
               firstCard.matched = true;
               card.matched = true;
               this.reviewMatchSet.add(firstCard.pairId);
-
-              // 400ms 后从 DOM 移除已消卡片（动画播完）
-              setTimeout(() => { firstCard._done = true; card._done = true; }, 400);
 
               // TTS
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
@@ -627,7 +622,6 @@
               matched: false,
               selected: false,
               wrong: false,
-              _done: false,
             });
             allCards.push({
               id: 'zh-' + idx,
@@ -637,7 +631,6 @@
               matched: false,
               selected: false,
               wrong: false,
-              _done: false,
             });
           });
 
@@ -782,9 +775,6 @@
               firstCard.matched = true;
               card.matched = true;
               matchSet.add(firstCard.pairId);
-
-              // 400ms 后从 DOM 移除已消卡片（动画播完）
-              setTimeout(() => { firstCard._done = true; card._done = true; }, 400);
 
               // 用 speechSynthesis 念英文
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
