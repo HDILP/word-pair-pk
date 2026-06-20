@@ -516,6 +516,13 @@
       >📦 新版本 {{ remoteVersion.slice(0,8) }} 可用 · 点击更新</a>
       <span v-if="buildVersion" class="app-footer__group">
         <span class="app-footer__text" @click="showBuildToast">{{ buildVersion }}</span>
+        <span
+          class="app-footer__dot"
+          :class="versionJsLoaded ? 'app-footer__dot--ok' : 'app-footer__dot--none'"
+          :title="versionJsLoaded
+            ? (location.protocol === 'file:' ? '远程检测 ✓' : '在线版')
+            : '远程检测未连接'"
+        ></span>
         <a class="app-footer__dl" href="#" @click.prevent="downloadUpdate" title="下载离线版">↓</a>
       </span>
     </footer>

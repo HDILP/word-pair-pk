@@ -160,14 +160,20 @@ touchstart → touchend → (浏览器合成) click
 
 - 页面底部 `.app-footer` 显示构建版本号（`position: fixed; bottom: 0`）
 - 正常状态：淡灰等宽字体显示版本号（`20260620153454`），点击弹详情
-- 新版本提示（`updateAvailable`）：显示粉色提示条「📦 新版本 xxx 可用 · 点击更新」
-- 版本号旁边有 `↓` 下载按钮，点击直接下载最新的 `index.html`（通过 Blob 触发浏览器下载）
+- 有更新时：粉色更新条「📦 新版本 xxx 可用 · 点击更新」
+- `↓` 按钮：下载最新版（详见下方）
 
-### 离线版下载（↓ 按钮）
+### 更新检测 + 离线版下载
 
-- 本地 `file://` 版：动态创建 `<script>` 加载远程 `version.js`（Vercel 同源），内部 `fetch('/index.html')` 是纯同源请求，产生 Blob 触发浏览器下载
-- 在线 Vercel 版：直接 `fetch('index.html?t=...')` 下载自身作为离线备份
-- 离线/无网络 → `version.js` 加载失败时 alert 提示手动访问网站
+`build.py` 生成 `version.js`（部署在 Vercel 上）：
+- `window.__remoteRevision` — 当前构建版本号
+- `window.__downloadLatest()` — fetch `/index.html` 并触发浏览器下载（同源请求，无 CORS）
+
+**检查流程：**
+1. `mounted()` 中读取本地 `<meta name="build-revision">` 得到 `buildVersion`
+2. `file://` 本地版：动态加载远程 `version.js`，对比 `__remoteRevision`，不一致则显示粉色更新条
+3. 在线 Vercel 版：页面永远最新，跳过更新检测
+4. 点击更新条 / `↓` 按钮：调用 `__downloadLatest()`（已加载过一次，直接复用）
 
 ### 首页史诗入场动画
 

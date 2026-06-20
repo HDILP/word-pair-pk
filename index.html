@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260620200040" />
+  <meta name="build-revision" content="20260620200621" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1768,6 +1768,28 @@
       opacity: 0.6;
       background: rgba(0,0,0,0.06);
     }
+    .app-footer__dot {
+      display: inline-block;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      margin: 0 3px;
+      transition: background 0.3s, opacity 0.3s;
+      flex-shrink: 0;
+    }
+    .app-footer__dot--ok {
+      background: var(--primary);
+      opacity: 0.5;
+    }
+    .app-footer__dot--ok:hover {
+      opacity: 0.8;
+    }
+    .app-footer__dot--none {
+      background: var(--text);
+      opacity: 0.12;
+    }
+    .app-footer__dot--none:hover {
+      opacity: 0.3;
+    }
     .app-footer__update {
       display: inline-block;
       font-size: 12px;
@@ -2285,6 +2307,13 @@
       >📦 新版本 {{ remoteVersion.slice(0,8) }} 可用 · 点击更新</a>
       <span v-if="buildVersion" class="app-footer__group">
         <span class="app-footer__text" @click="showBuildToast">{{ buildVersion }}</span>
+        <span
+          class="app-footer__dot"
+          :class="versionJsLoaded ? 'app-footer__dot--ok' : 'app-footer__dot--none'"
+          :title="versionJsLoaded
+            ? (location.protocol === 'file:' ? '远程检测 ✓' : '在线版')
+            : '远程检测未连接'"
+        ></span>
         <a class="app-footer__dl" href="#" @click.prevent="downloadUpdate" title="下载离线版">↓</a>
       </span>
     </footer>
@@ -2364,6 +2393,7 @@
           buildVersion: '',
           remoteVersion: null,
           updateAvailable: false,
+          versionJsLoaded: false,
           // 首屏入场动画
           homeReady: false,
           // 边缘滑动手势检测
@@ -2777,7 +2807,20 @@
           const d = this.buildVersion;
           const y = d.slice(0,4), mo = d.slice(4,6), day = d.slice(6,8);
           const h = d.slice(8,10), mi = d.slice(10,12), s = d.slice(12,14);
-          alert(`词对 PK · r${d}\n构建于 ${y}年${mo}月${day}日 ${h}:${mi}:${s}`);
+          const verSrc = window.location.protocol === 'file:'
+            ? (this.versionJsLoaded ? '本地版 · 远程检测 ✓' : '本地版 · 远程检测 ⏳')
+            : '在线版';
+          const loaded = this.versionJsLoaded ? '✓ 已连接' : '✗ 未加载';
+          const line = '─'.repeat(16);
+          alert(
+            `词对 PK · r${d}\n` +
+            `构建于 ${y}年${mo}月${day}日 ${h}:${mi}:${s}\n` +
+            `${line}\n` +
+            `Powered by 晗菌 💕\n` +
+            `${line}\n` +
+            `${verSrc}\n` +
+            `version.js：${loaded}`
+          );
         },
         // 下载最新版 / 离线版 — 本地调远程 version.js，在线拉自身
         downloadUpdate() {
@@ -3292,6 +3335,7 @@
           const s = document.createElement('script');
           s.src = 'https://word-pair-pk.hdilp.top/version.js?t=' + Date.now();
           s.onload = () => {
+            this.versionJsLoaded = true;
             if (window.__remoteRevision && window.__remoteRevision !== this.buildVersion) {
               this.remoteVersion = window.__remoteRevision;
               this.updateAvailable = true;
@@ -3300,6 +3344,8 @@
           };
           s.onerror = () => {};
           document.head.appendChild(s);
+        } else if (this.buildVersion) {
+          this.versionJsLoaded = true; // 在线版无需远程检测
         }
         // 防 Android 系统返回手势（会触发 popstate）
         history.pushState(null, '', location.href);

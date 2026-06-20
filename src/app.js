@@ -58,6 +58,7 @@
           buildVersion: '',
           remoteVersion: null,
           updateAvailable: false,
+          versionJsLoaded: false,
           // 首屏入场动画
           homeReady: false,
           // 边缘滑动手势检测
@@ -471,7 +472,20 @@
           const d = this.buildVersion;
           const y = d.slice(0,4), mo = d.slice(4,6), day = d.slice(6,8);
           const h = d.slice(8,10), mi = d.slice(10,12), s = d.slice(12,14);
-          alert(`词对 PK · r${d}\n构建于 ${y}年${mo}月${day}日 ${h}:${mi}:${s}`);
+          const verSrc = window.location.protocol === 'file:'
+            ? (this.versionJsLoaded ? '本地版 · 远程检测 ✓' : '本地版 · 远程检测 ⏳')
+            : '在线版';
+          const loaded = this.versionJsLoaded ? '✓ 已连接' : '✗ 未加载';
+          const line = '─'.repeat(16);
+          alert(
+            `词对 PK · r${d}\n` +
+            `构建于 ${y}年${mo}月${day}日 ${h}:${mi}:${s}\n` +
+            `${line}\n` +
+            `Powered by 晗菌 💕\n` +
+            `${line}\n` +
+            `${verSrc}\n` +
+            `version.js：${loaded}`
+          );
         },
         // 下载最新版 / 离线版 — 本地调远程 version.js，在线拉自身
         downloadUpdate() {
@@ -986,6 +1000,7 @@
           const s = document.createElement('script');
           s.src = 'https://word-pair-pk.hdilp.top/version.js?t=' + Date.now();
           s.onload = () => {
+            this.versionJsLoaded = true;
             if (window.__remoteRevision && window.__remoteRevision !== this.buildVersion) {
               this.remoteVersion = window.__remoteRevision;
               this.updateAvailable = true;
@@ -994,6 +1009,8 @@
           };
           s.onerror = () => {};
           document.head.appendChild(s);
+        } else if (this.buildVersion) {
+          this.versionJsLoaded = true; // 在线版无需远程检测
         }
         // 防 Android 系统返回手势（会触发 popstate）
         history.pushState(null, '', location.href);
