@@ -244,9 +244,8 @@
             <div class="game-side__timer">{{ formatTime(p1Time) }}</div>
             <div class="card-grid-wrapper">
               <div class="card-grid" @click="handleClick($event, 'p1')">
+                <template v-for="(card, ci) in p1Cards" :key="card.id">
                 <div
-                  v-for="(card, ci) in p1Cards"
-                  :key="card.id"
                   v-if="!card._done"
                   class="game-card"
                   :style="{animationDelay: (ci * 40) + 'ms'}"
@@ -259,6 +258,7 @@
                   }"
                   :data-card-id="card.id"
                 ><span class="card-text">{{ card.text }}</span></div>
+                </template>
               </div>
             </div>
           </div>
@@ -278,9 +278,8 @@
             <div class="game-side__timer">{{ formatTime(p2Time) }}</div>
             <div class="card-grid-wrapper">
               <div class="card-grid" @click="handleClick($event, 'p2')">
+              <template v-for="(card, ci) in p2Cards" :key="card.id">
               <div
-                v-for="(card, ci) in p2Cards"
-                :key="card.id"
                 v-if="!card._done"
                 class="game-card"
                 :style="{animationDelay: (ci * 40) + 'ms'}"
@@ -293,6 +292,7 @@
                 }"
                 :data-card-id="card.id"
               ><span class="card-text">{{ card.text }}</span></div>
+              </template>
             </div>
             </div>
           </div>
@@ -317,9 +317,8 @@
             <div class="game-side__timer">{{ formatTime(p1Time) }}</div>
             <div class="card-grid-wrapper">
               <div class="card-grid" @click="handleClick($event, 'p1')">
+              <template v-for="(card, ci) in p1Cards" :key="card.id">
               <div
-                v-for="(card, ci) in p1Cards"
-                :key="card.id"
                 v-if="!card._done"
                 class="game-card"
                 :style="{animationDelay: (ci * 40) + 'ms'}"
@@ -332,6 +331,7 @@
                 }"
                 :data-card-id="card.id"
               ><span class="card-text">{{ card.text }}</span></div>
+              </template>
             </div>
             </div>
           </div>
@@ -473,9 +473,8 @@
           </div>
           <div class="card-grid-wrapper">
             <div class="card-grid" @touchstart="handleReviewTouchStart($event)" @touchend="handleReviewTouchEnd($event)" @click="handleReviewClick($event)">
+              <template v-for="(card, ci) in reviewCards" :key="card.id">
               <div
-                v-for="(card, ci) in reviewCards"
-                :key="card.id"
                 v-if="!card._done"
                 class="game-card"
                 :style="{animationDelay: (ci * 40) + 'ms'}"
@@ -488,6 +487,7 @@
                 }"
                 :data-card-id="card.id"
               ><span class="card-text">{{ card.text }}</span></div>
+              </template>
             </div>
           </div>
 
