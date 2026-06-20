@@ -1,4 +1,4 @@
-# 词对 PK 🎯
+# 词对 PK (word-pair-pk)
 
 英语单词配对双人 PK 游戏，教室一体机/手机浏览器均可运行。
 
@@ -69,7 +69,7 @@ python3 build.py
 ## 技术栈
 
 - **Vue 3**（CDN）—— 响应式 UI
-- **纯 CSS** —— 教室笔记风格配色（暖白底 + 樱花粉 #ffaab2 + 淡蓝 #A5D8FF）
+- **纯 CSS** —— 暖白底 + 樱花粉 #ffaab2 + 淡蓝 #A5D8FF，含完整设计系统（12色变体、5级阴影、5条定制动画曲线、毛玻璃卡片、动态渐变球背景、噪点纹理、点阵图案）
 - **Web Speech API** —— 英语 TTS 朗读
 - **LocalStorage** —— 排行榜持久化（支持 JSON 导入/导出迁移）
 - **Vercel** —— 自动部署，中国加速（vercel-cname.xingpingcn.top）

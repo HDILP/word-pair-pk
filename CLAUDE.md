@@ -35,7 +35,9 @@ JSON 格式：`{ "name": "单元名", "words": [{"en": "...", "zh": "..."}, ...]
 
 - **Vue 3**（CDN，Options API）→ 全局数据、methods、computed
 - **纯 CSS** → 暖白底 + 樱花粉 #ffaab2 + 淡蓝 #A5D8FF
-  - 2026-06-20 视觉改版：完整设计系统（12色变体、5级阴影、5条定制动画曲线）、毛玻璃卡片、渐变按钮、视图过渡、卡片错位入场、配对光晕动画
+  - 2026-06-20 视觉改版：完整设计系统（12色变体、5级阴影、5条定制动画曲线）、毛玻璃卡片、渐变按钮（渐变+阴影+hover上移）、视图过渡（Vue Transition 淡入上移）、动态背景（4层渐变球+噪点纹理+粉蓝双色点阵）、卡片错位入场（40ms间隔）、配对绿色光晕动画、错误闪烁抖动、倒计时弹入（ease-bounce曲线）
+- **SVG 图标系统** → 所有 UI 图标改用 inline SVG（书本/奖杯/时钟/笔/刷新/杠铃），排行榜前三名用 CSS 渐变圆形徽章
+- **Vue 3 `<Transition>`** → 视图间淡入上移动画
 - **Web Speech API** → TTS 朗读
 - **LocalStorage** → 排行榜（`wordpair_leaderboard`）、复习系统（`wordpair_review`）、个人最佳（`wordpair_pb`）
 - **Vercel** → 自动部署，中国加速
