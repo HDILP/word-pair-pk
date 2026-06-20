@@ -117,8 +117,9 @@ if placeholder not in html:
 
 html = html.replace(placeholder, new, 1)
 
-# 注入构建版本号（精确到秒，无符号紧凑格式 e.g. 20260620144233）
-now = __import__('datetime').datetime.now()
+# 注入构建版本号（精确到秒，紧凑格式，强制东八区）
+import datetime as _dt
+now = _dt.datetime.now(_dt.timezone(_dt.timedelta(hours=8)))
 ver = now.strftime('%Y%m%d%H%M%S')
 html = html.replace('<!-- BUILD_VER -->', ver, 1)
 
