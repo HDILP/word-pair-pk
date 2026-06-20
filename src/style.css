@@ -818,6 +818,7 @@
     }
 
     .game-card {
+      position: relative;
       background: var(--card-bg);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
@@ -832,15 +833,32 @@
       line-height: 1.4;
       padding: 4px;
       cursor: pointer;
-      transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out), border-color 200ms var(--ease-out), background 200ms var(--ease-out);
+      transition: transform 200ms var(--ease-out);
       touch-action: manipulation;
       min-height: 0;
       overflow: hidden;
       box-shadow: var(--shadow-xs);
       word-break: break-word;
-      animation: cardEnter 400ms var(--ease-out) backwards;
+      animation-name: cardEnter;
+      animation-duration: 400ms;
+      animation-timing-function: var(--ease-out);
+      animation-fill-mode: backwards;
+    }
+    /* 视觉反馈层 ::after — 纯 opacity 动画，不触发 paint */
+    .game-card::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 200ms var(--ease-out);
+      border: 2px solid transparent;
     }
     .card-text {
+      position: relative;
+      z-index: 1;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -858,49 +876,83 @@
     }
     .game-card:hover {
       transform: translateY(-1px);
-      box-shadow: var(--shadow-sm);
     }
     .game-card:active {
       transform: scale(0.96);
-      box-shadow: var(--shadow-xs);
     }
+    /* selected = 粉框光晕 via ::after */
     .game-card.selected {
-      border: 2px solid var(--primary);
-      box-shadow: 0 0 0 3px rgba(255, 170, 178, 0.25), var(--shadow-sm);
       transform: scale(1.02);
     }
+    .game-card.selected::after {
+      opacity: 1;
+      background: rgba(255, 170, 178, 0.08);
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(255, 170, 178, 0.2);
+    }
+    /* matched = 绿光缩小消失 — GPU only */
     .game-card.matched {
-      animation: matchFlash 350ms var(--ease-out) forwards;
+      animation-name: matchFlash;
+      animation-duration: 350ms;
+      animation-timing-function: var(--ease-out);
+      animation-fill-mode: forwards;
       pointer-events: none;
     }
-    .game-card.matched-p1 {
-      border-color: var(--primary);
-    }
-    .game-card.matched-p2 {
-      border-color: var(--secondary);
+    .game-card.matched::after {
+      background: rgba(125, 211, 160, 0.2);
+      box-shadow: 0 0 16px rgba(125, 211, 160, 0.25);
+      border-color: var(--success);
+      animation-name: matchGlow;
+      animation-duration: 350ms;
+      animation-timing-function: var(--ease-out);
+      animation-fill-mode: forwards;
     }
     .game-card.wrong {
-      animation: wrongShake 350ms var(--ease-out);
+      animation-name: wrongShake;
+      animation-duration: 350ms;
+      animation-timing-function: var(--ease-out);
+    }
+    .game-card.wrong::after {
+      background: rgba(240, 98, 146, 0.15);
+      border-color: var(--error);
+      animation-name: wrongGlow;
+      animation-duration: 350ms;
+      animation-timing-function: var(--ease-out);
+      animation-fill-mode: forwards;
     }
 
-    /* 卡片入场动画 */
+    /* 卡片入场动画 — 纯 GPU */
     @keyframes cardEnter {
       0% { transform: scale(0.85); opacity: 0; }
       100% { transform: scale(1); opacity: 1; }
     }
 
+    /* 消除动画 — 卡片本身只动 transform + opacity */
     @keyframes matchFlash {
-      0% { transform: scale(1); opacity: 1; border-color: var(--success); background: rgba(125, 211, 160, 0.15); box-shadow: 0 0 16px rgba(125, 211, 160, 0.3); }
-      40% { transform: scale(1.06); opacity: 1; }
-      100% { transform: scale(0.92); opacity: 0; }
+      0%   { transform: scale(1);     opacity: 1; }
+      40%  { transform: scale(1.06);  opacity: 1; }
+      100% { transform: scale(0.92);  opacity: 0; }
     }
+    /* 消除绿光 — ::after 负责视觉反馈，keyframes 只动 opacity */
+    @keyframes matchGlow {
+      0%   { opacity: 0; }
+      25%  { opacity: 1; }
+      60%  { opacity: 0.5; }
+      100% { opacity: 0; }
+    }
+
+    /* 错误抖动 — 纯 transform */
     @keyframes wrongShake {
-      0%, 100% { transform: translateX(0); background: transparent; }
-      15% { transform: translateX(-5px); background: rgba(240, 98, 146, 0.1); }
-      30% { transform: translateX(5px); background: rgba(240, 98, 146, 0.08); }
-      45% { transform: translateX(-3px); }
-      60% { transform: translateX(3px); }
-      75% { transform: translateX(-1px); }
+      0%, 100% { transform: translateX(0); }
+      15%, 45%, 75% { transform: translateX(-6px); }
+      30%, 60%, 90% { transform: translateX(6px); }
+    }
+    /* 错误红闪 — ::after 只动 opacity */
+    @keyframes wrongGlow {
+      0%   { opacity: 0; }
+      15%  { opacity: 1; }
+      60%  { opacity: 0.4; }
+      100% { opacity: 0; }
     }
 
     /* 中间分割线 */
