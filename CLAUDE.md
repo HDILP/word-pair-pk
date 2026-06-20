@@ -5,14 +5,16 @@
 ## 项目结构
 
 ```
-word-pair-pk.html   ← Vue 3 单文件应用（入口 + 源码）
-index.html           ← 构建产物（build.py 生成，部署用）
-build.py             ← 构建脚本：words/ → index.html，注入构建版本号 + version.json
+src/
+  style.css         ← 全部 CSS（44KB）
+  app.js            ← Vue 3 应用代码（35KB）
+word-pair-pk.html   ← HTML 模板（引入 src/ 中的 CSS/JS）
+index.html           ← 构建产物（build.py 生成，CSS/JS/词库全内联，部署用）
+build.py             ← 构建脚本：内联 src/* → 注入词库数据 + 版本号 → index.html
 version.json         ← 构建产物（build.py 生成，更新提醒用）
 words/               ← 词库目录
   人教版高中英语必修一/    ← 教材目录
     Welcome Unit.json
-    Unit 1 Teenage Life.json
     ...
 vercel.json          ← Vercel 部署配置
 ```
@@ -20,9 +22,16 @@ vercel.json          ← Vercel 部署配置
 ## 构建
 
 ```bash
-python3 build.py              # 从 word-pair-pk.html 生成 index.html + version.json
+python3 build.py              # 从 word-pair-pk.html + src/* 生成 index.html + version.json
 python3 build.py output.html  # 自定义输出文件名
 ```
+
+**构建过程：**
+1. 读取 `word-pair-pk.html` 模板
+2. 读取 `src/style.css` → 内联为 `<style>`
+3. 读取 `src/app.js` → 内联为 `<script>`
+4. 扫描 `words/` 词库 → 注入 `ALL_WORDS_DATA`
+5. 注入构建版本号 → 输出 `index.html` + `version.json`
 
 **构建产物：**
 - `index.html` — 注入词库数据 + 构建版本号（`<meta name="build-revision" content="20260620153454">`）

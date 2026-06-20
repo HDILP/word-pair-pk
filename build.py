@@ -1,19 +1,15 @@
 #!/usr/bin/env python3
 """
-build.py — 将 words/<教材>/<单元>.json 词库嵌入 HTML 模板，生成可双击运行的 index.html
+build.py — 将 src/style.css + src/app.js 内联后嵌入词库数据，生成 index.html
 
 词库目录结构：
   words/
     人教版高中英语必修一/
       Welcome Unit.json
-      Unit 1 Teenage Life.json
       ...
 
-构建后会按教材名合并，每个教材下 units 数组包含各单元，
-形如：{ name: "人教版高中英语必修一", units: [{ name: "Welcome Unit", words: [...] }, ...] }
-
 用法：
-  python3 build.py              # 默认从 word-pair-pk.html → index.html
+  python3 build.py              # 默认 → index.html
   python3 build.py output.html   # 自定义输出文件名
 """
 
@@ -32,7 +28,6 @@ _CN_NUM = {'一': 1, '二': 2, '三': 3, '四': 4, '五': 5,
 _CN_TYPES = {'必修': 0, '选必': 1}
 
 def _book_sort_key(name):
-    """自定义排序：必修 < 选必，且按中文数字顺序排列"""
     for t, tidx in _CN_TYPES.items():
         if t in name:
             for cn, num in _CN_NUM.items():
@@ -49,12 +44,11 @@ if not word_files:
     sys.exit(1)
 
 # ── 2. 按课本目录分组 ────────────────────────────────────────
-# files_by_dir: { "人教版高中英语必修一": ["必修一/Welcome Unit.json", ...], ... }
 files_by_dir = {}
 for fpath in word_files:
     rel = os.path.relpath(fpath, WORDS_DIR)
-    dirname = os.path.dirname(rel)  # e.g. "人教版高中英语必修一"
-    dirname = os.path.basename(dirname)  # keep just the dir name
+    dirname = os.path.dirname(rel)
+    dirname = os.path.basename(dirname)
     files_by_dir.setdefault(dirname, []).append(fpath)
 
 books = []
@@ -66,31 +60,23 @@ for book_name in sorted(files_by_dir.keys(), key=_book_sort_key):
     for fpath in unit_files:
         with open(fpath, 'r', encoding='utf-8') as f:
             data = json.load(f)
-        # 兼容两种格式：
-        #   格式1: { "name": "...", "words": [...] }
-        #   格式2: { "name": "...", "units": [{"name": "...", "words": [...]}, ...] }
-        #   格式3: 纯数组 [{}, ...]
         if isinstance(data, list):
-            # 纯单词数组 → 用文件名当 unit 名
             unit_name = os.path.splitext(os.path.basename(fpath))[0]
             units.append({"name": unit_name, "words": data})
             total_words += len(data)
         elif 'units' in data:
-            # 已经分好 units 了（格式2）
             unit_name = data.get('name') or os.path.splitext(os.path.basename(fpath))[0]
             for u in data['units']:
                 u.setdefault('name', unit_name)
                 units.append(u)
                 total_words += len(u.get('words', []))
         elif 'words' in data:
-            # 标准单元文件格式（格式1）
             unit_name = data.get('name') or os.path.splitext(os.path.basename(fpath))[0]
             units.append({"name": unit_name, "words": data['words']})
             total_words += len(data['words'])
         else:
             print(f'⚠️  跳过 {fpath}：未知格式')
             continue
-
     if units:
         books.append({"name": book_name, "units": units})
 
@@ -101,23 +87,42 @@ for b in books:
     print(f'   {b["name"]}: {unit_count} 单元, {word_count} 词')
 print(f'📝 共 {total_words} 词')
 
-# ── 3. 读模板 ──────────────────────────────────────────────
+# ── 3. 读取模板 + src/ 文件 ─────────────────────────────────
 with open(TEMPLATE, 'r', encoding='utf-8') as f:
     html = f.read()
+
+src_dir = os.path.join(os.path.dirname(TEMPLATE), 'src')
+
+# 内联 CSS
+css_path = os.path.join(src_dir, 'style.css')
+with open(css_path, 'r', encoding='utf-8') as f:
+    css_content = f.read()
+html = html.replace(
+    '<link rel="stylesheet" href="src/style.css" />',
+    f'<style>\n{css_content}\n  </style>',
+    1
+)
+
+# 内联 JS
+js_path = os.path.join(src_dir, 'app.js')
+with open(js_path, 'r', encoding='utf-8') as f:
+    js_content = f.read()
+html = html.replace(
+    '<script src="src/app.js"></script>',
+    f'  <script>\n{js_content}\n  </script>',
+    1
+)
 
 # ── 4. 注入词库和构建版本号 ────────────────────────────
 data_json = json.dumps({'books': books}, ensure_ascii=False)
 placeholder = 'const ALL_WORDS_DATA = null; // 🏗️ Running'
-
 new = f'const ALL_WORDS_DATA = {data_json}; // 💉 built by build.py'
-
 if placeholder not in html:
     print('❌ 模板中未找到占位符，请确认 word-pair-pk.html 未被修改')
     sys.exit(1)
-
 html = html.replace(placeholder, new, 1)
 
-# 注入构建版本号（精确到秒，紧凑格式，强制东八区）
+# 注入构建版本号（东八区）
 import datetime as _dt
 now = _dt.datetime.now(_dt.timezone(_dt.timedelta(hours=8)))
 ver = now.strftime('%Y%m%d%H%M%S')
@@ -127,7 +132,7 @@ html = html.replace('<!-- BUILD_VER -->', ver, 1)
 with open(OUTPUT, 'w', encoding='utf-8') as f:
     f.write(html)
 
-# ── 6. 写入 version.json（更新提醒用） ─────────────────────
+# ── 6. 写入 version.json ─────────────────────────────────────
 VERJSON = 'version.json'
 with open(VERJSON, 'w', encoding='utf-8') as f:
     f.write(f'{{"revision":"{ver}"}}\n')
