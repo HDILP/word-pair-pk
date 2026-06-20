@@ -22,6 +22,8 @@
 <body>
   <div id="app" @touchstart="handleEdgeTouch" @touchmove="handleEdgeMove" @touchend="handleEdgeEnd">
     <!-- ===== 背景装饰层 ===== -->
+    <div class="home-aurora"></div>
+    <div class="home-mist"></div>
     <div class="bg-blob bg-blob--1"></div>
     <div class="bg-blob bg-blob--2"></div>
     <div class="bg-noise"></div>
@@ -57,6 +59,9 @@
             <span class="home-ambient__letter" style="left:15%;animation-delay:1s;animation-duration:10s">u</span>
             <span class="home-ambient__letter" style="left:60%;animation-delay:3.2s;animation-duration:8s">g</span>
           </div>
+
+          <!-- 涟漪光环（logo 入口单次，CSS animation forwards） -->
+          <div class="home-ripple" style="top:calc(50% - 35px);left:calc(50% - 35px);margin-top:-100px;"></div>
 
           <div class="home-view__logo home-enter-logo">
             <svg viewBox="0 0 24 24" width="56" height="56" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">

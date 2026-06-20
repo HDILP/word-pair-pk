@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260620204453" />
+  <meta name="build-revision" content="20260620211608" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -394,6 +394,7 @@
     }
     .home-view .home-char {
       display: inline-block;
+      position: relative;
       transform: translateY(60px) scale(0.6);
       opacity: 0;
       transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275),
@@ -1808,11 +1809,179 @@
       opacity: 1;
       background: rgba(255,170,178,0.3);
     }
+
+    /* ==========================================
+       首页 — 梦幻系动画 ✨🌙
+       设计原则：入口单次 > 无限循环；
+       常驻氛围必须极度克制（opacity<0.08, 周期>20s）
+       ========================================== */
+
+    /* === 1. 极光漂移（氛围背景） === */
+    /* 渐变层用 transform 平移（GPU），不用 background-position */
+    .home-aurora {
+      position: fixed;
+      left: -50%;
+      right: -50%;
+      top: 0;
+      bottom: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.06;
+      background:
+        linear-gradient(90deg, transparent 0%, rgba(255,170,178,0.25) 25%, transparent 50%),
+        linear-gradient(90deg, transparent 0%, rgba(165,216,255,0.18) 20%, transparent 60%),
+        linear-gradient(90deg, transparent 0%, rgba(192,132,252,0.12) 30%, transparent 70%);
+      animation-name: auroraDrift;
+      animation-duration: 25s;
+      animation-timing-function: var(--ease-in-out);
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      filter: blur(80px);
+    }
+    @keyframes auroraDrift {
+      0%   { transform: translateX(-15%); }
+      100% { transform: translateX(15%); }
+    }
+
+    /* === 2. 晨雾层（氛围背景） === */
+    .home-mist {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.035;
+      background:
+        radial-gradient(ellipse 80% 30% at 30% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(ellipse 60% 25% at 70% 40%, rgba(255,255,255,0.2) 0%, transparent 100%);
+      animation-name: mistDrift;
+      animation-duration: 40s;
+      animation-timing-function: var(--ease-in-out);
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      filter: blur(50px);
+    }
+    @keyframes mistDrift {
+      0%   { transform: translateX(-3%) scale(1); }
+      100% { transform: translateX(3%) scale(1.05); }
+    }
+
+    /* === 3. 涟漪光环（入口单次 ::before 纯 GPU） === */
+    .home-ripple {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: visible;
+    }
+    .home-ripple::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 170, 178, 0.5);
+      opacity: 0;
+    }
+    .home-ready .home-ripple::before {
+      animation-name: rippleOut;
+      animation-duration: 1.8s;
+      animation-timing-function: var(--ease-out);
+      animation-fill-mode: forwards;
+      animation-delay: 1.2s;
+    }
+    @keyframes rippleOut {
+      0%   { transform: scale(0.5);  opacity: 0.7; border-color: rgba(255, 170, 178, 0.5); border-width: 2px; }
+      40%  { transform: scale(2);    opacity: 0.4; border-color: rgba(165, 216, 255, 0.3); border-width: 1.5px; }
+      100% { transform: scale(3.5);  opacity: 0;   border-color: rgba(165, 216, 255, 0);   border-width: 0.5px; }
+    }
+
+    /* === 4. 字符星芒（入口单次 ::before 纯 GPU） === */
+    /* 每个标题字落定时闪一下柔光 ::before 背景缩放 */
+    .home-char::before {
+      content: '';
+      position: absolute;
+      inset: -10px -4px;
+      border-radius: 6px;
+      background: radial-gradient(circle, rgba(255,170,178,0.35) 0%, rgba(165,216,255,0.15) 50%, transparent 80%);
+      transform: scale(0.3);
+      opacity: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .home-ready .home-char::before {
+      animation-name: charSparkle;
+      animation-duration: 0.7s;
+      animation-timing-function: var(--ease-out);
+      animation-fill-mode: forwards;
+    }
+    .home-ready .home-char:nth-child(1)::before { animation-delay: 1s; }
+    .home-ready .home-char:nth-child(2)::before { animation-delay: 1.12s; }
+    .home-ready .home-char:nth-child(3)::before { animation-delay: 1.24s; }
+    .home-ready .home-char:nth-child(4)::before { animation-delay: 1.36s; }
+    .home-ready .home-char:nth-child(5)::before { animation-delay: 1.48s; }
+    @keyframes charSparkle {
+      0%   { transform: scale(0.3); opacity: 0; }
+      20%  { transform: scale(1.3); opacity: 0.7; }
+      50%  { transform: scale(1.1); opacity: 0.25; }
+      100% { transform: scale(1);   opacity: 0; }
+    }
+
+    /* === 5. 星尘（JS 生成，入口单次） === */
+    .home-stardust-container {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 10;
+    }
+    .home-stardust {
+      position: absolute;
+      bottom: 0;
+      width: var(--size, 3px);
+      height: var(--size, 3px);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, transparent 70%);
+      box-shadow: 0 0 4px 1px rgba(255,255,255,0.3);
+      opacity: 0;
+      animation-name: stardustRise;
+      animation-duration: var(--dur, 3s);
+      animation-timing-function: var(--ease-out);
+      animation-fill-mode: forwards;
+    }
+    @keyframes stardustRise {
+      0%   { transform: translateY(0) scale(0.3); opacity: 0; }
+      10%  { opacity: 0.7; }
+      60%  { opacity: 0.5; }
+      100% { transform: translateY(var(--ty, -200px)) translateX(var(--tx, 0)) scale(1.2); opacity: 0; }
+    }
+
+    /* 减少动效 */
+    @media (prefers-reduced-motion: reduce) {
+      .home-aurora {
+        animation: none !important; /* 保持可见但不移动 */
+        opacity: 0.06 !important;
+      }
+      .home-mist {
+        animation: none !important;
+        opacity: 0.035 !important;
+      }
+      .home-ripple,
+      .home-stardust-container {
+        display: none !important; /* 入口 delight，可安全隐藏 */
+      }
+      .home-ready .home-char::before {
+        animation: none !important;
+        opacity: 0 !important;
+      }
+    }
   </style>
 </head>
 <body>
   <div id="app" @touchstart="handleEdgeTouch" @touchmove="handleEdgeMove" @touchend="handleEdgeEnd">
     <!-- ===== 背景装饰层 ===== -->
+    <div class="home-aurora"></div>
+    <div class="home-mist"></div>
     <div class="bg-blob bg-blob--1"></div>
     <div class="bg-blob bg-blob--2"></div>
     <div class="bg-noise"></div>
@@ -1848,6 +2017,9 @@
             <span class="home-ambient__letter" style="left:15%;animation-delay:1s;animation-duration:10s">u</span>
             <span class="home-ambient__letter" style="left:60%;animation-delay:3.2s;animation-duration:8s">g</span>
           </div>
+
+          <!-- 涟漪光环（logo 入口单次，CSS animation forwards） -->
+          <div class="home-ripple" style="top:calc(50% - 35px);left:calc(50% - 35px);margin-top:-100px;"></div>
 
           <div class="home-view__logo home-enter-logo">
             <svg viewBox="0 0 24 24" width="56" height="56" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -3363,9 +3535,39 @@
           requestAnimationFrame(() => {
             requestAnimationFrame(() => {
               this.homeReady = true;
+
+              // 星尘升腾 ✦
+              this._spawnStardust();
             });
           });
         });
+      },
+      // 星尘粒子 — tiny 银白颗粒从底部缓缓上升消散
+      _spawnStardust() {
+        const homeView = document.querySelector('.home-view');
+        if (!homeView || !homeView.classList.contains('home-ready')) return;
+        const count = 22;
+        const container = document.createElement('div');
+        container.className = 'home-stardust-container';
+        const frag = document.createDocumentFragment();
+        for (let i = 0; i < count; i++) {
+          const p = document.createElement('div');
+          p.className = 'home-stardust';
+          const size = 1.5 + Math.random() * 2.5;
+          const x = 10 + Math.random() * 80; // left offset %
+          const drift = (Math.random() - 0.5) * 40; // slight horizontal drift
+          const rise = 120 + Math.random() * 200;
+          const dur = (2 + Math.random() * 2).toFixed(1);
+          const delay = (Math.random() * 1.2).toFixed(2);
+          p.style.cssText =
+            `left:${x}%;--ty:-${rise}px;--tx:${drift}px;--dur:${dur}s;--size:${size}px;animation-delay:${delay}s;`;
+          frag.appendChild(p);
+        }
+        container.appendChild(frag);
+        homeView.appendChild(container);
+        setTimeout(() => {
+          if (container.parentNode) container.parentNode.removeChild(container);
+        }, 5000);
       },
       beforeUnmount() {
         clearInterval(this.p1Timer);

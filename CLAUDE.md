@@ -10,8 +10,9 @@ src/
   app.js            ← Vue 3 应用代码（35KB）
 word-pair-pk.html   ← HTML 模板（引入 src/ 中的 CSS/JS）
 index.html           ← 构建产物（build.py 生成，CSS/JS/词库全内联，部署用）
-build.py             ← 构建脚本：内联 src/* → 注入词库数据 + 版本号 → index.html
-version.json         ← 构建产物（build.py 生成，更新提醒用）
+build.py             ← 构建脚本：内联 src/* → 注入词库数据 + 版本号 → index.html + version.js + version.json
+version.js           ← 构建产物（部署在 Vercel，暴露 __remoteRevision + __downloadLatest()，供本地版检测更新/下载）
+version.json         ← 构建产物（build.py 生成）
 words/               ← 词库目录
   必修一/              ← 教材目录
     Welcome Unit.json
@@ -167,13 +168,21 @@ touchstart → touchend → (浏览器合成) click
 
 `build.py` 生成 `version.js`（部署在 Vercel 上）：
 - `window.__remoteRevision` — 当前构建版本号
-- `window.__downloadLatest()` — fetch `/index.html` 并触发浏览器下载（同源请求，无 CORS）
+- `window.__downloadLatest()` — `fetch('https://word-pair-pk.hdilp.top/?t=...')` 并触发浏览器下载（绝对 URL + CORS）
 
 **检查流程：**
 1. `mounted()` 中读取本地 `<meta name="build-revision">` 得到 `buildVersion`
-2. `file://` 本地版：动态加载远程 `version.js`，对比 `__remoteRevision`，不一致则显示粉色更新条
+2. 本地版（`_isLocal()` 判断，覆盖 `file://` 和 Android `content://`）：动态加载远程 `version.js`，对比 `__remoteRevision`，不一致则显示粉色更新条
 3. 在线 Vercel 版：页面永远最新，跳过更新检测
 4. 点击更新条 / `↓` 按钮：调用 `__downloadLatest()`（已加载过一次，直接复用）
+
+**版本号弹窗（点击版本号触发）：**
+- 显示构建时间 + "Powered by 晗菌 💕" + 版本来源（在线版/本地版） + version.js 加载状态
+- 页脚版本号旁有小点指示：粉色=已连接，灰色=未连接
+
+**CORS 支持：**
+- `vercel.json` 配置 `Access-Control-Allow-Origin: *`，确保 `content://` 协议下的同源 fetch 可用
+- `version.js` 中的 fetch 使用绝对 URL `https://word-pair-pk.hdilp.top/?t=...`，绕过 `cleanUrls` 导致的 308 跳转
 
 ### 首页史诗入场动画
 
