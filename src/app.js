@@ -467,17 +467,22 @@
           this.gameResult = null;
           this.reviewPopup = null;
         },
+        // 判断是否为本地打开（file:// 或 Android content://）
+        _isLocal() {
+          const p = window.location.protocol;
+          return p === 'file:' || p === 'content:';
+        },
         // 点击版本号弹窗
         footerDotTitle() {
           return this.versionJsLoaded
-            ? (window.location.protocol === 'file:' ? '远程检测 ✓' : '在线版')
+            ? (this._isLocal() ? '远程检测 ✓' : '在线版')
             : '远程检测未连接';
         },
         showBuildToast() {
           const d = this.buildVersion;
           const y = d.slice(0,4), mo = d.slice(4,6), day = d.slice(6,8);
           const h = d.slice(8,10), mi = d.slice(10,12), s = d.slice(12,14);
-          const verSrc = window.location.protocol === 'file:'
+          const verSrc = this._isLocal()
             ? (this.versionJsLoaded ? '本地版 · 远程检测 ✓' : '本地版 · 远程检测 ⏳')
             : '在线版';
           const loaded = this.versionJsLoaded ? '✓ 已连接' : '✗ 未加载';
@@ -494,7 +499,7 @@
         },
         // 下载最新版 / 离线版 — 本地调远程 version.js，在线拉自身
         downloadUpdate() {
-          if (window.location.protocol === 'file:') {
+          if (this._isLocal()) {
             this.updateAvailable = false;
             if (typeof window.__downloadLatest === 'function') {
               window.__downloadLatest();
@@ -1001,7 +1006,7 @@
           if (el) this.buildVersion = el.content;
         } catch(e) {}
         // 本地 file:// 版加载远程 version.js 检查更新
-        if (this.buildVersion && window.location.protocol === 'file:') {
+        if (this.buildVersion && this._isLocal()) {
           const s = document.createElement('script');
           s.src = 'https://word-pair-pk.hdilp.top/version.js?t=' + Date.now();
           s.onload = () => {
