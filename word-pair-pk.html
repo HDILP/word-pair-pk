@@ -351,7 +351,7 @@
     }
 
     /* ==========================================
-       首页 — 史诗入场动画
+       首页 — 史诗入场动画（Vue 驱动 transition）
        ========================================== */
     /* 浮动字母环境 */
     .home-ambient {
@@ -378,59 +378,70 @@
       100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
     }
 
-    /* 入场动画 — logo */
-    @keyframes logoReveal {
-      0%   { transform: scale(0) rotate(-20deg); opacity: 0; }
-      50%  { transform: scale(1.18) rotate(4deg); opacity: 1; }
-      70%  { transform: scale(0.95) rotate(-2deg); }
-      85%  { transform: scale(1.03) rotate(1deg); }
-      100% { transform: scale(1) rotate(0deg); opacity: 1; }
-    }
-    .home-enter-logo {
-      animation: logoReveal 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    /* 入场前状态（隐藏 + 位移） */
+    .home-view .home-view__logo,
+    .home-view .home-char,
+    .home-view .home-enter-subtitle,
+    .home-view .home-enter-btn {
+      will-change: transform, opacity;
     }
 
-    /* 入场动画 — 标题单字 */
-    @keyframes charBounce {
-      0%   { transform: translateY(60px) scale(0.6); opacity: 0; }
-      60%  { transform: translateY(-8px) scale(1.05); opacity: 1; }
-      80%  { transform: translateY(3px) scale(0.98); }
-      100% { transform: translateY(0) scale(1); opacity: 1; }
+    .home-view .home-view__logo {
+      transform: scale(0) rotate(-20deg);
+      opacity: 0;
+      transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                  opacity 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    .home-char {
+    .home-view .home-char {
       display: inline-block;
+      transform: translateY(60px) scale(0.6);
       opacity: 0;
-      animation: charBounce 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                  opacity 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .home-view .home-enter-subtitle {
+      transform: translateY(20px);
+      opacity: 0;
+      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+                  opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .home-view .home-enter-btn {
+      transform: translateY(24px);
+      opacity: 0;
+      transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1),
+                  opacity 0.45s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
-    /* 入场动画 — 副标题 */
-    @keyframes subtitleFade {
-      0%   { transform: translateY(20px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
+    /* 入场后状态（home-ready 加到 .home-view 时触发 transition） */
+    .home-view.home-ready .home-view__logo {
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
     }
-    .home-enter-subtitle {
-      opacity: 0;
-      animation: subtitleFade 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    .home-view.home-ready .home-char {
+      transform: translateY(0) scale(1);
+      opacity: 1;
     }
-
-    /* 入场动画 — 按钮 */
-    @keyframes btnSlideUp {
-      0%   { transform: translateY(24px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
+    .home-view.home-ready .home-enter-subtitle {
+      transform: translateY(0);
+      opacity: 1;
     }
-    .home-enter-btn {
-      opacity: 0;
-      animation: btnSlideUp 0.45s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    .home-view.home-ready .home-enter-btn {
+      transform: translateY(0);
+      opacity: 1;
     }
 
-    /* 减少动效适配 */
+    /* 减少动效 */
     @media (prefers-reduced-motion: reduce) {
-    .home-ambient { display: none; }
-    .home-enter-logo { animation: none !important; opacity: 1 !important; }
-    .home-char { animation: none !important; opacity: 1 !important; }
-    .home-enter-subtitle { animation: none !important; opacity: 1 !important; }
-    .home-enter-btn { animation: none !important; opacity: 1 !important; }
-    @keyframes logoFloat { 0% { transform: none; } 100% { transform: none; } }
+      .home-ambient { display: none; }
+      .home-view .home-view__logo,
+      .home-view .home-char,
+      .home-view .home-enter-subtitle,
+      .home-view .home-enter-btn {
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+      }
+      @keyframes logoFloat { 0% { transform: none; } 100% { transform: none; } }
     }
 
     .home-view__logo {
@@ -1783,7 +1794,7 @@
         <!-- ==========================================
              视图 1：首页视图
              ========================================== -->
-        <div v-if="currentView === 'home'" key="home" class="card home-view">
+        <div v-if="currentView === 'home'" key="home" class="card home-view" :class="{ 'home-ready': homeReady }">
           <!-- 浮动字母环境 -->
           <div class="home-ambient">
             <span class="home-ambient__letter" style="left:10%;animation-delay:0s;animation-duration:9s">a</span>
@@ -2341,6 +2352,8 @@
           remoteVersion: null,
           updateAvailable: false,
           downloadingUpdate: false,
+          // 首屏入场动画
+          homeReady: false,
           // 边缘滑动手势检测
           _edgeSwipeX: null,
           _edgeSwipeY: null,
@@ -3266,6 +3279,8 @@
         // 防 Android 系统返回手势（会触发 popstate）
         history.pushState(null, '', location.href);
         window.addEventListener('popstate', this.handleSystemBack);
+        // 首屏入场动画 — nextTick 后激活 transition
+        this.$nextTick(() => { this.homeReady = true; });
       },
       beforeUnmount() {
         clearInterval(this.p1Timer);
