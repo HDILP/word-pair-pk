@@ -1638,6 +1638,24 @@
     .app-footer__text:hover {
       opacity: 0.5;
     }
+    .app-footer__update {
+      display: inline-block;
+      font-size: 12px;
+      color: var(--primary);
+      opacity: 0.8;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      user-select: none;
+      text-decoration: none;
+      padding: 4px 12px;
+      border-radius: 6px;
+      background: rgba(255,170,178,0.15);
+      transition: opacity 0.2s, background 0.2s;
+    }
+    .app-footer__update:hover {
+      opacity: 1;
+      background: rgba(255,170,178,0.3);
+    }
   </style>
 </head>
 <body>
@@ -2102,9 +2120,19 @@
 
     </main>
 
-    <!-- 🦶 低调页脚：关于 -->
-    <footer class="app-footer" v-if="buildVersion" @click="showBuildToast">
-      <span class="app-footer__text">{{ buildVersion }}</span>
+    <!-- 🦶 低调页脚 + 更新提醒 -->
+    <footer class="app-footer">
+      <a
+        v-if="updateAvailable"
+        class="app-footer__update"
+        href="#"
+        @click.prevent="downloadUpdate"
+      >📦 新版本 {{ remoteVersion.slice(0,8) }} 可用 · 点击更新</a>
+      <span
+        v-else-if="buildVersion"
+        class="app-footer__text"
+        @click="showBuildToast"
+      >{{ buildVersion }}</span>
     </footer>
   </div>
 
@@ -2180,6 +2208,9 @@
           singleGameWords: [], // 单人模式下抽到的 8 个词
           // 版本戳
           buildVersion: '',
+          remoteVersion: null,
+          updateAvailable: false,
+          downloadingUpdate: false,
           // 边缘滑动手势检测
           _edgeSwipeX: null,
           _edgeSwipeY: null,
@@ -2592,6 +2623,29 @@
           const y = d.slice(0,4), mo = d.slice(4,6), day = d.slice(6,8);
           const h = d.slice(8,10), mi = d.slice(10,12), s = d.slice(12,14);
           alert(`词对 PK · r${d}\n构建于 ${y}年${mo}月${day}日 ${h}:${mi}:${s}`);
+        },
+        // 下载最新版本
+        downloadUpdate() {
+          this.downloadingUpdate = true;
+          this.updateAvailable = false; // 马上隐藏提醒
+          fetch('/index.html?t=' + Date.now(), { cache: 'no-store' })
+            .then(r => r.blob())
+            .then(blob => {
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = 'index.html';
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+              setTimeout(() => URL.revokeObjectURL(url), 5000);
+            })
+            .catch(() => {
+              alert('下载失败，请手动访问 https://word-pair-pk.hdilp.top 保存页面');
+            })
+            .finally(() => {
+              this.downloadingUpdate = false;
+            });
         },
 
         // ===== 词表数据辅助方法 =====
@@ -3067,6 +3121,18 @@
           const el = document.querySelector('meta[name="build-revision"]');
           if (el) this.buildVersion = el.content;
         } catch(e) {}
+        // 检查线上更新
+        if (this.buildVersion) {
+          fetch('/version.json?t=' + Date.now(), { cache: 'no-store' })
+            .then(r => r.ok ? r.json() : null)
+            .then(data => {
+              if (data && data.revision && data.revision !== this.buildVersion) {
+                this.remoteVersion = data.revision;
+                this.updateAvailable = true;
+              }
+            })
+            .catch(() => {});
+        }
         // 防 Android 系统返回手势（会触发 popstate）
         history.pushState(null, '', location.href);
         window.addEventListener('popstate', this.handleSystemBack);
