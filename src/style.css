@@ -820,8 +820,6 @@
     .game-card {
       position: relative;
       background: var(--card-bg);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
       border: 1px solid rgba(0,0,0,0.04);
       border-radius: var(--radius-md);
       display: flex;
@@ -839,26 +837,25 @@
       overflow: hidden;
       box-shadow: var(--shadow-xs);
       word-break: break-word;
+      will-change: transform, opacity;
       animation-name: cardEnter;
       animation-duration: 400ms;
       animation-timing-function: var(--ease-out);
       animation-fill-mode: backwards;
     }
-    /* 视觉反馈层 ::after — 纯 opacity 动画，不触发 paint */
+    /* 视觉反馈层 ::after — z-index: -1 让文字始终在上层 */
     .game-card::after {
       content: '';
       position: absolute;
       inset: -1px;
       border-radius: inherit;
       pointer-events: none;
-      z-index: 0;
+      z-index: -1;
       opacity: 0;
       transition: opacity 200ms var(--ease-out);
       border: 2px solid transparent;
     }
     .card-text {
-      position: relative;
-      z-index: 1;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
