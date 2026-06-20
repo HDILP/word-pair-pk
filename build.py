@@ -105,7 +105,7 @@ print(f'📝 共 {total_words} 词')
 with open(TEMPLATE, 'r', encoding='utf-8') as f:
     html = f.read()
 
-# ── 4. 注入词库 ────────────────────────────────────────────
+# ── 4. 注入词库和构建版本号 ────────────────────────────
 data_json = json.dumps({'books': books}, ensure_ascii=False)
 placeholder = 'const ALL_WORDS_DATA = null; // 🏗️ Running'
 
@@ -116,6 +116,10 @@ if placeholder not in html:
     sys.exit(1)
 
 html = html.replace(placeholder, new, 1)
+
+# 注入构建日期
+today = __import__('datetime').date.today().isoformat()  # 2026-06-20
+html = html.replace('<!-- BUILD_DATE -->', today, 1)
 
 # ── 5. 写入输出 ──────────────────────────────────────────────
 with open(OUTPUT, 'w', encoding='utf-8') as f:
