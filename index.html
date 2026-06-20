@@ -2043,34 +2043,33 @@
               ><span class="card-text">{{ card.text }}</span></div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <!-- 复盘弹窗 -->
-      <div v-if="reviewPopup" class="review-popup-overlay">
-        <div class="review-popup">
-          <div class="review-popup__title">📊 本次复盘</div>
-          <div class="review-popup__subtitle">
-            正确 {{ reviewPopup.correct }} / {{ reviewCardPairCount }} ·
-            失误 {{ reviewPopup.totalErrors }} 次
-          </div>
-          <div v-if="reviewPopup.wrongWords.length === 0" class="review-popup__empty">
-            全部正确！太棒了
-          </div>
-          <div v-else class="review-popup__list">
-            <div v-for="(w, i) in reviewPopup.wrongWords" :key="i" class="review-popup__word">
-              <span class="review-popup__word-en">{{ w.en }}</span>
-              <span class="review-popup__word-zh">{{ w.zh }}</span>
-              <span class="review-popup__word-errors" v-if="w.totalErrors > 1">错 {{ w.totalErrors }} 次</span>
+          <!-- 复盘弹窗 — 放在 reviewGame 内部，不要跟 Transition 抢孩子位 -->
+          <div v-if="reviewPopup" class="review-popup-overlay">
+            <div class="review-popup">
+              <div class="review-popup__title">📊 本次复盘</div>
+              <div class="review-popup__subtitle">
+                正确 {{ reviewPopup.correct }} / {{ reviewCardPairCount }} ·
+                失误 {{ reviewPopup.totalErrors }} 次
+              </div>
+              <div v-if="reviewPopup.wrongWords.length === 0" class="review-popup__empty">
+                全部正确！太棒了
+              </div>
+              <div v-else class="review-popup__list">
+                <div v-for="(w, i) in reviewPopup.wrongWords" :key="i" class="review-popup__word">
+                  <span class="review-popup__word-en">{{ w.en }}</span>
+                  <span class="review-popup__word-zh">{{ w.zh }}</span>
+                  <span class="review-popup__word-errors" v-if="w.totalErrors > 1">错 {{ w.totalErrors }} 次</span>
+                </div>
+              </div>
+              <div class="review-popup__actions">
+                <button class="btn btn--secondary" @click="rerunReviewGame">再来一轮</button>
+                <button class="btn btn--ghost" @click="closeReviewPopup">返回复习</button>
+              </div>
             </div>
           </div>
-          <div class="review-popup__actions">
-            <button class="btn btn--secondary" @click="rerunReviewGame">再来一轮</button>
-            <button class="btn btn--ghost" @click="closeReviewPopup">返回复习</button>
-          </div>
         </div>
       </div>
-
     </Transition>
 
     </main>
