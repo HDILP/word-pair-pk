@@ -983,8 +983,8 @@
           const el = document.querySelector('meta[name="build-revision"]');
           if (el) this.buildVersion = el.content;
         } catch(e) {}
-        // 检查线上更新
-        if (this.buildVersion) {
+        // 检查线上更新（仅在线版，file:// 下无法跨域 fetch）
+        if (this.buildVersion && window.location.protocol !== 'file:') {
           fetch('version.json?t=' + Date.now(), { cache: 'no-store' })
             .then(r => r.ok ? r.json() : null)
             .then(data => {

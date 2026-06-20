@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260620194141" />
+  <meta name="build-revision" content="20260620194559" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -3289,8 +3289,8 @@
           const el = document.querySelector('meta[name="build-revision"]');
           if (el) this.buildVersion = el.content;
         } catch(e) {}
-        // 检查线上更新
-        if (this.buildVersion) {
+        // 检查线上更新（仅在线版，file:// 下无法跨域 fetch）
+        if (this.buildVersion && window.location.protocol !== 'file:') {
           fetch('version.json?t=' + Date.now(), { cache: 'no-store' })
             .then(r => r.ok ? r.json() : null)
             .then(data => {
