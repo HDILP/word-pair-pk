@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260620155941" />
+  <meta name="build-revision" content="20260620161017" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -416,6 +416,8 @@
     .home-view.home-ready .home-view__logo {
       transform: scale(1) rotate(0deg);
       opacity: 1;
+      animation: logoFloat 3s var(--ease-in-out) infinite alternate;
+      animation-delay: 1.2s;
     }
     .home-view.home-ready .home-char {
       transform: translateY(0) scale(1);
@@ -434,12 +436,16 @@
     @media (prefers-reduced-motion: reduce) {
       .home-ambient { display: none; }
       .home-view .home-view__logo,
+      .home-view.home-ready .home-view__logo,
       .home-view .home-char,
       .home-view .home-enter-subtitle,
       .home-view .home-enter-btn {
         transition: none !important;
         transform: none !important;
         opacity: 1 !important;
+      }
+      .home-view.home-ready .home-view__logo {
+        animation: none !important;
       }
       @keyframes logoFloat { 0% { transform: none; } 100% { transform: none; } }
     }
@@ -448,7 +454,6 @@
       font-size: 56px;
       line-height: 1;
       margin-bottom: -8px;
-      animation: logoFloat 3s var(--ease-in-out) infinite alternate;
     }
     @keyframes logoFloat {
       0% { transform: translateY(0) scale(1); }
@@ -1824,17 +1829,17 @@
             </svg>
           </div>
           <div class="home-view__title">
-            <span class="home-char" style="animation-delay:500ms">词</span>
-            <span class="home-char" style="animation-delay:620ms">对</span>
-            <span class="home-char" style="animation-delay:740ms">&nbsp;</span>
-            <span class="home-char" style="animation-delay:860ms">P</span>
-            <span class="home-char" style="animation-delay:980ms">K</span>
+            <span class="home-char" style="transition-delay:500ms">词</span>
+            <span class="home-char" style="transition-delay:620ms">对</span>
+            <span class="home-char" style="transition-delay:740ms">&nbsp;</span>
+            <span class="home-char" style="transition-delay:860ms">P</span>
+            <span class="home-char" style="transition-delay:980ms">K</span>
           </div>
-          <div class="home-view__subtitle home-enter-subtitle" style="animation-delay:1.2s">双人单词对战 · 中英配对 · 谁更快？</div>
+          <div class="home-view__subtitle home-enter-subtitle" style="transition-delay:1.2s">双人单词对战 · 中英配对 · 谁更快？</div>
           <div class="home-view__actions">
-            <button class="btn btn--primary home-enter-btn" style="animation-delay:1.5s" @click="goSelect('dual')">开始 PK</button>
-            <button class="btn btn--accent home-enter-btn" style="animation-delay:1.64s" @click="goSelect('single')">单人挑战</button>
-            <button class="btn btn--ghost home-enter-btn" style="animation-delay:1.78s" @click="goReviewHome">
+            <button class="btn btn--primary home-enter-btn" style="transition-delay:1.5s" @click="goSelect('dual')">开始 PK</button>
+            <button class="btn btn--accent home-enter-btn" style="transition-delay:1.64s" @click="goSelect('single')">单人挑战</button>
+            <button class="btn btn--ghost home-enter-btn" style="transition-delay:1.78s" @click="goReviewHome">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;vertical-align:-3px;">
                 <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
                 <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
@@ -1843,7 +1848,7 @@
               </svg>
               单词复习
             </button>
-            <button class="btn btn--ghost home-enter-btn" style="animation-delay:1.92s" @click="currentView = 'leaderboard'">排行榜</button>
+            <button class="btn btn--ghost home-enter-btn" style="transition-delay:1.92s" @click="currentView = 'leaderboard'">排行榜</button>
           </div>
         </div>
 
@@ -3279,8 +3284,12 @@
         // 防 Android 系统返回手势（会触发 popstate）
         history.pushState(null, '', location.href);
         window.addEventListener('popstate', this.handleSystemBack);
-        // 首屏入场动画 — nextTick 后激活 transition
-        this.$nextTick(() => { this.homeReady = true; });
+        // 首屏入场动画 — nextTick → requestAnimationFrame 确保初始状态已被 paint
+        this.$nextTick(() => {
+          requestAnimationFrame(() => {
+            this.homeReady = true;
+          });
+        });
       },
       beforeUnmount() {
         clearInterval(this.p1Timer);

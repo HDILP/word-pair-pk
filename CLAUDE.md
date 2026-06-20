@@ -7,7 +7,8 @@
 ```
 word-pair-pk.html   ← Vue 3 单文件应用（入口 + 源码）
 index.html           ← 构建产物（build.py 生成，部署用）
-build.py             ← 构建脚本：words/ → index.html
+build.py             ← 构建脚本：words/ → index.html，注入构建版本号 + version.json
+version.json         ← 构建产物（build.py 生成，更新提醒用）
 words/               ← 词库目录
   人教版高中英语必修一/    ← 教材目录
     Welcome Unit.json
@@ -19,9 +20,14 @@ vercel.json          ← Vercel 部署配置
 ## 构建
 
 ```bash
-python3 build.py              # 从 word-pair-pk.html 生成 index.html
+python3 build.py              # 从 word-pair-pk.html 生成 index.html + version.json
 python3 build.py output.html  # 自定义输出文件名
 ```
+
+**构建产物：**
+- `index.html` — 注入词库数据 + 构建版本号（`<meta name="build-revision" content="20260620153454">`）
+- `version.json` — `{"revision":"20260620153454"}`（东八区，精确到秒，供线上更新检测）
+- 版本号格式：`YYYYMMDDHHMMSS`，build.py 中使用 `datetime.timezone(datetime.timedelta(hours=8))` 强制东八区
 
 词库目录结构要求：
 ```
@@ -134,6 +140,41 @@ touchstart → touchend → (浏览器合成) click
 - 单人模式完成后自动同步到复习系统
 - `reviewStoreVersion` 计数器确保 `localStorage` 变化能触发 Vue computed 重新计算（`void this.reviewStoreVersion`）
 - 低时渲染的 `reviewData` / `reviewBox1Count` / `reviewDueToday` 为 computed 属性
+
+### 复盘弹窗（复习模式结束）
+
+- 弹窗使用 `v-if="reviewPopup"` 渲染，**必须放在 `reviewGameView` 视图 div 内部**（不在 `<Transition>` 的直接子级）
+- 历史 bug：弹窗原在 `<Transition>` 内作为独立 `v-if` → 当 `currentView === 'reviewGame'` 且 `reviewPopup` 为 true 时，Vue `<Transition>` 同时有两个子元素，弹窗不渲染
+- 修复：将弹窗移入 `reviewGameView` 内部 ✅
+
+### 页脚与构建版本号
+
+- 页面底部 `.app-footer` 显示构建版本号（`position: fixed; bottom: 0`）
+- 正常状态：淡灰等宽字体显示版本号（`20260620153454`），点击弹详情
+- 新版本提示（`updateAvailable`）：显示粉色提示条「📦 新版本 xxx 可用 · 点击更新」
+- 版本号旁边有 `↓` 下载按钮，点击直接下载最新的 `index.html`（通过 Blob 触发浏览器下载）
+
+### 更新检测机制
+
+1. `build.py` 生成 `version.json`（`{"revision":"20260620153454"}`）随构建部署
+2. Vue `mounted()` 中 fetch `/version.json?t=<timestamp>`（`cache: 'no-store'`）
+3. 对比 `revision` 与本地 `<meta name="build-revision">` 的 content
+4. 不一致 → `updateAvailable = true` → 底部显示更新提醒
+5. 点击 → `fetch('/index.html')` → `response.blob()` → 创建 `<a>` 触发下载
+6. 离线/无网络 → fetch 静默 catch，不影响任何功能
+
+### 首页史诗入场动画
+
+- **驱动方式**：Vue `mounted()` → `$nextTick()` → 设置 `homeReady = true` → 添加 `.home-ready` class
+- **动画方式**：CSS `transition`（非 `@keyframes`），由 class 切换触发
+- **关键修复**：之前使用 `@keyframes` + `animation: forwards` + `opacity: 0`，部分浏览器中 `var()` 在 animation 简写里解析失败导致动画不触发，元素永久隐藏 → 改用 Vue `$nextTick` + CSS transition，100% 可靠
+- **入场层次**：
+  - 背景层：15 个英文字母从底部浮到顶部（`@keyframes letterFloat`，持续 7-13s）
+  - logo：`scale(0) rotate(-20deg)` → `scale(1) rotate(0deg)`，1s 弹跳曲线
+  - 标题："词对 PK" 5 个字符逐个 `translateY(60px) scale(0.6)` → 归位，间隔 120ms
+  - 副标题：`translateY(20px)` → 归位，0.6s，delay 1.2s
+  - 按钮：4 个按钮 `translateY(24px)` → 归位，0.45s，间隔 140ms
+- **`prefers-reduced-motion`**：环境粒子隐藏 + 所有 transition 跳过，元素直接可见
 
 ## 数据来源
 

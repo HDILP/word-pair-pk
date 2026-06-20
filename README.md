@@ -21,8 +21,9 @@
 │   │   └── ...
 │   ├── 必修二/
 │   └── ...
-├── build.py                ← 构建脚本：合并词库 → index.html
+├── build.py                ← 构建脚本：合并词库 → index.html + version.json
 ├── index.html              ← 构建产物（由 build.py 生成，双击即玩）
+├── version.json            ← 构建产物（build.py 生成，供线上更新检测）
 ├── vercel.json             ← Vercel 部署配置
 └── README.md
 ```
