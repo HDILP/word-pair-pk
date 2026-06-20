@@ -994,6 +994,37 @@
       min-width: 32px;
       text-align: center;
     }
+    .rank-medal {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .rank-medal--1 {
+      background: linear-gradient(135deg, #ffd700, #f0c000);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
+    }
+    .rank-medal--2 {
+      background: linear-gradient(135deg, #c0c0c0, #a8a8a8);
+      color: #fff;
+      box-shadow: 0 2px 6px rgba(192, 192, 192, 0.4);
+    }
+    .rank-medal--3 {
+      background: linear-gradient(135deg, #cd7f32, #b87028);
+      color: #fff;
+      box-shadow: 0 2px 6px rgba(205, 127, 50, 0.4);
+    }
+    .rank-medal--n {
+      background: transparent;
+      color: var(--text-secondary);
+      font-weight: 600;
+      font-size: 14px;
+    }
     .leaderboard-view__name {
       flex: 1;
       font-weight: 500;
@@ -1601,13 +1632,29 @@
              视图 1：首页视图
              ========================================== -->
         <div v-if="currentView === 'home'" key="home" class="card home-view">
-          <div class="home-view__logo">📚</div>
+          <div class="home-view__logo">
+            <svg viewBox="0 0 24 24" width="56" height="56" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+              <line x1="8" y1="7" x2="16" y2="7"/>
+              <line x1="8" y1="11" x2="14" y2="11"/>
+              <circle cx="8" cy="15" r="1" fill="var(--primary)"/>
+            </svg>
+          </div>
           <div class="home-view__title">词对 PK</div>
           <div class="home-view__subtitle">双人单词对战 · 中英配对 · 谁更快？</div>
           <div class="home-view__actions">
             <button class="btn btn--primary" @click="goSelect('dual')">开始 PK</button>
             <button class="btn btn--accent" @click="goSelect('single')">单人挑战</button>
-            <button class="btn btn--ghost" @click="goReviewHome">📖 单词复习</button>
+            <button class="btn btn--ghost" @click="goReviewHome">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;vertical-align:-3px;">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                <line x1="8" y1="7" x2="16" y2="7"/>
+                <line x1="8" y1="11" x2="14" y2="11"/>
+              </svg>
+              单词复习
+            </button>
             <button class="btn btn--ghost" @click="currentView = 'leaderboard'">排行榜</button>
           </div>
         </div>
@@ -1688,7 +1735,7 @@
         <div v-if="gameResult && gameResult.winner !== 'single'" class="result-overlay" @click.self="() => {}">
           <div class="result-modal">
             <div class="result-modal__title" :class="'win-' + gameResult.winner">
-              🎉 {{ gameResult.winner === 'p1' ? 'P1' : 'P2' }} 获胜！
+              {{ gameResult.winner === 'p1' ? 'P1' : 'P2' }} 获胜！
             </div>
             <div class="result-modal__time">
               用时 {{ formatTime(gameResult.time) }}
@@ -1714,7 +1761,7 @@
         <div v-else-if="gameResult && gameResult.winner === 'single'" class="result-overlay" @click.self="() => {}">
           <div class="result-modal">
             <div class="result-modal__title" style="color:var(--accent);">
-              🎉 完成！
+              完成！
             </div>
             <div class="result-modal__time">
               用时 {{ formatTime(gameResult.time) }}
@@ -1725,7 +1772,15 @@
             <div class="result-modal__actions">
               <button class="btn btn--secondary" @click="goSelect('single')">再来一局</button>
               <template v-if="reviewGameErrors && Object.keys(reviewGameErrors).length > 0">
-                <button class="btn btn--review" @click="goToReviewFromSingle">📖 复习错词</button>
+                <button class="btn btn--review" @click="goToReviewFromSingle">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;vertical-align:-2px;">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                    <line x1="8" y1="7" x2="16" y2="7"/>
+                    <line x1="8" y1="11" x2="14" y2="11"/>
+                  </svg>
+                  复习错词
+                </button>
               </template>
               <button class="btn btn--ghost" @click="goHome">返回首页</button>
             </div>
@@ -1802,7 +1857,13 @@
         <div v-else class="game-board" style="grid-template-columns:1fr;" @touchstart="handleBoardTouch($event)" @touchend="handleBoardTouchEnd($event)">
           <div class="game-side game-side--p1" @touchstart.prevent @touchend.prevent>
             <div class="game-side__header">
-              <span class="game-side__player-label p1">⏱️ 单人模式</span>
+              <span class="game-side__player-label p1">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;vertical-align:-2px;">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                单人模式
+              </span>
               <span class="game-side__progress-text">{{ p1MatchedCount }}/8</span>
             </div>
             <div class="game-side__progress-bar">
@@ -1836,7 +1897,17 @@
              ========================================== -->
         <div v-else-if="currentView === 'leaderboard'" key="leaderboard" class="leaderboard-view">
           <div class="card">
-            <h2>🏆 排行榜</h2>
+            <h2>
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;vertical-align:-3px;">
+                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+                <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+                <path d="M4 22h16"/>
+                <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+                <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+                <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+              </svg>
+              排行榜
+            </h2>
 
             <div v-if="leaderboard.length === 0" class="leaderboard-view__empty">
               暂无记录，快去 PK 吧！
@@ -1851,10 +1922,10 @@
                 :style="{animationDelay: (idx * 50) + 'ms'}"
               >
                 <span class="leaderboard-view__rank">
-                  <template v-if="idx === 0">🥇</template>
-                  <template v-else-if="idx === 1">🥈</template>
-                  <template v-else-if="idx === 2">🥉</template>
-                  <template v-else>{{ idx + 1 }}</template>
+                  <template v-if="idx === 0"><span class="rank-medal rank-medal--1">1</span></template>
+                  <template v-else-if="idx === 1"><span class="rank-medal rank-medal--2">2</span></template>
+                  <template v-else-if="idx === 2"><span class="rank-medal rank-medal--3">3</span></template>
+                  <template v-else><span class="rank-medal rank-medal--n">{{ idx + 1 }}</span></template>
                 </span>
                 <span class="leaderboard-view__name">{{ entry.name }}</span>
                 <span class="leaderboard-view__score">
@@ -1878,7 +1949,15 @@
              ========================================== -->
         <div v-else-if="currentView === 'review'" key="review" class="review-view">
           <div class="card">
-            <h2>📖 单词复习</h2>
+            <h2>
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--text)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;vertical-align:-3px;">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                <line x1="8" y1="7" x2="16" y2="7"/>
+                <line x1="8" y1="11" x2="14" y2="11"/>
+              </svg>
+              单词复习
+            </h2>
             <div class="review-view__stats">
               已学 <strong>{{ reviewTotalWords }}</strong> 个词 ·
               今日需复习 <strong>{{ reviewDueToday }}</strong> 个 ·
@@ -1886,14 +1965,25 @@
             </div>
             <div class="review-view__modes">
               <div class="review-mode-btn" @click="goReviewSelect">
-                <div class="review-mode-btn__icon">📝</div>
+                <div class="review-mode-btn__icon">
+                  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                  </svg>
+                </div>
                 <div class="review-mode-btn__info">
                   <div class="review-mode-btn__title">自由练习</div>
                   <div class="review-mode-btn__desc">选词表 → 配对，不计时，配错的词自动进复习系统</div>
                 </div>
               </div>
               <div class="review-mode-btn" @click="startReviewGame('due')">
-                <div class="review-mode-btn__icon">🔁</div>
+                <div class="review-mode-btn__icon">
+                  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="var(--secondary-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="23 4 23 10 17 10"/>
+                    <polyline points="1 20 1 14 7 14"/>
+                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+                  </svg>
+                </div>
                 <div class="review-mode-btn__info">
                   <div class="review-mode-btn__title">今日复习</div>
                   <div class="review-mode-btn__desc">按利特纳盒子自动捞今天该复习的词</div>
@@ -1901,7 +1991,15 @@
                 <div class="review-mode-btn__count">{{ reviewDueToday > 0 ? reviewDueToday + ' 词' : '暂无' }}</div>
               </div>
               <div class="review-mode-btn" @click="startReviewGame('hard')">
-                <div class="review-mode-btn__icon">🏋️</div>
+                <div class="review-mode-btn__icon">
+                  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="var(--primary-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6.5 6.5h11M6.5 17.5h11"/>
+                    <path d="M6.5 3.5v17"/>
+                    <path d="M17.5 3.5v17"/>
+                    <rect x="2" y="6.5" width="3" height="11" rx="1"/>
+                    <rect x="19" y="6.5" width="3" height="11" rx="1"/>
+                  </svg>
+                </div>
                 <div class="review-mode-btn__info">
                   <div class="review-mode-btn__title">错题特训</div>
                   <div class="review-mode-btn__desc">只练盒子 1 里的顽固错词</div>
@@ -1957,7 +2055,7 @@
             失误 {{ reviewPopup.totalErrors }} 次
           </div>
           <div v-if="reviewPopup.wrongWords.length === 0" class="review-popup__empty">
-            🎉 全部正确！太棒了
+            全部正确！太棒了
           </div>
           <div v-else class="review-popup__list">
             <div v-for="(w, i) in reviewPopup.wrongWords" :key="i" class="review-popup__word">
@@ -2073,7 +2171,7 @@
         // ===== 复习系统 computed =====
         reviewMatchedCount() { return this.reviewMatchSet.size; },
         reviewModeLabel() {
-          const labels = { free: '📝 自由练习', due: '🔁 今日复习', hard: '🏋️ 错题特训' };
+          const labels = { free: '自由练习', due: '今日复习', hard: '错题特训' };
           return labels[this.reviewMode] || '复习';
         },
         reviewData() {
@@ -2239,7 +2337,7 @@
               }
             }
             if (dueWords.length === 0) {
-              alert('🎉 今天暂无需要复习的词！去做自由练习吧～');
+              alert('今天暂无需要复习的词！去做自由练习吧～');
               this.currentView = 'review';
               return;
             }
@@ -2261,7 +2359,7 @@
               }
             }
             if (hardWords.length === 0) {
-              alert('🎉 没有待攻克的错词！继续保持～');
+              alert('没有待攻克的错词！继续保持～');
               this.currentView = 'review';
               return;
             }
