@@ -474,10 +474,22 @@
           const h = d.slice(8,10), mi = d.slice(10,12), s = d.slice(12,14);
           alert(`词对 PK · r${d}\n构建于 ${y}年${mo}月${day}日 ${h}:${mi}:${s}`);
         },
-        // 下载最新版本
+        // 下载最新版本 / 离线版
         downloadUpdate() {
           this.downloadingUpdate = true;
           this.updateAvailable = false; // 马上隐藏提醒
+          const isLocal = window.location.protocol === 'file:';
+          if (isLocal) {
+            // file:// 下直接下载当前文件（fetch 会被浏览器拒绝）
+            const a = document.createElement('a');
+            a.href = window.location.href;
+            a.download = 'index.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            this.downloadingUpdate = false;
+            return;
+          }
           fetch('index.html?t=' + Date.now(), { cache: 'no-store' })
             .then(r => r.blob())
             .then(blob => {
