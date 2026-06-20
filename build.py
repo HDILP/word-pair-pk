@@ -4,7 +4,7 @@ build.py — 将 src/style.css + src/app.js 内联后嵌入词库数据，生成
 
 词库目录结构：
   words/
-    人教版高中英语必修一/
+    必修一/
       Welcome Unit.json
       ...
 

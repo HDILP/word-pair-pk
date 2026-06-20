@@ -13,7 +13,7 @@ index.html           ← 构建产物（build.py 生成，CSS/JS/词库全内联
 build.py             ← 构建脚本：内联 src/* → 注入词库数据 + 版本号 → index.html
 version.json         ← 构建产物（build.py 生成，更新提醒用）
 words/               ← 词库目录
-  人教版高中英语必修一/    ← 教材目录
+  必修一/              ← 教材目录
     Welcome Unit.json
     ...
 vercel.json          ← Vercel 部署配置
