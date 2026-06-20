@@ -506,15 +506,9 @@
 
     </main>
 
-    <!-- 🦶 低调页脚 + 更新提醒 -->
+    <!-- 🦶 页脚 — 版本号 + 下载离线版 -->
     <footer class="app-footer">
-      <a
-        v-if="updateAvailable"
-        class="app-footer__update"
-        href="#"
-        @click.prevent="downloadUpdate"
-      >📦 新版本 {{ remoteVersion.slice(0,8) }} 可用 · 点击更新</a>
-      <span v-else-if="buildVersion" class="app-footer__group">
+      <span v-if="buildVersion" class="app-footer__group">
         <span class="app-footer__text" @click="showBuildToast">{{ buildVersion }}</span>
         <a class="app-footer__dl" href="#" @click.prevent="downloadUpdate" title="下载离线版">↓</a>
       </span>

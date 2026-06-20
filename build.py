@@ -138,7 +138,20 @@ with open(VERJSON, 'w', encoding='utf-8') as f:
     f.write(f'{{"revision":"{ver}"}}\n')
 VERJS = 'version.js'
 with open(VERJS, 'w', encoding='utf-8') as f:
-    f.write(f'window.__remoteRevision = "{ver}";\n')
+    f.write(
+        f'(function(){{'
+        f'fetch("/index.html?t="+Date.now(),{{cache:"no-store"}})'
+        f'.then(function(r){{return r.blob()}})'
+        f'.then(function(blob){{'
+        f'var u=URL.createObjectURL(blob);'
+        f'var a=document.createElement("a");'
+        f'a.href=u;a.download="index.html";'
+        f'document.body.appendChild(a);a.click();'
+        f'document.body.removeChild(a);'
+        f'setTimeout(function(){{URL.revokeObjectURL(u)}},5e3)}})'
+        f'.catch(function(){{alert("下载失败，请手动访问 https://word-pair-pk.hdilp.top")}})'
+        f'}})();\n'
+    )
 
 size_kb = os.path.getsize(OUTPUT) / 1024
 print(f'✅ 已生成 {OUTPUT}  ({size_kb:.0f} KB)')
