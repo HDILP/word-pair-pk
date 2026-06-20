@@ -165,12 +165,12 @@ touchstart → touchend → (浏览器合成) click
 
 ### 更新检测机制
 
-1. `build.py` 生成 `version.json`（`{"revision":"20260620153454"}`）随构建部署
-2. Vue `mounted()` 中 fetch `version.json?t=<timestamp>`（`cache: 'no-store'`，相对路径，兼容 file:// 本地访问）
-3. 对比 `revision` 与本地 `<meta name="build-revision">` 的 content
+1. `build.py` 生成 `version.js`（`window.__remoteRevision = "20260620153454"`）随构建部署
+2. Vue `mounted()` 中：在线版（Vercel）永远是最新版，跳过检查；本地 `file://` 版动态创建 `<script>` 加载远程 `https://word-pair-pk.hdilp.top/version.js`
+3. 脚本加载后对比 `__remoteRevision` 与本地 `<meta name="build-revision">` 的 content
 4. 不一致 → `updateAvailable = true` → 底部显示更新提醒
-5. 点击 → `fetch('index.html')`（相对路径）→ `response.blob()` → 创建 `<a>` 触发下载
-6. 离线/无网络 → fetch 静默 catch，不影响任何功能
+5. 点击 → 在线版 fetch 最新 `index.html` 下载，本地版打开网站引导
+6. 离线/无网络 → script onerror 静默忽略，不影响任何功能
 
 ### 首页史诗入场动画
 

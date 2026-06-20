@@ -989,10 +989,11 @@
           const el = document.querySelector('meta[name="build-revision"]');
           if (el) this.buildVersion = el.content;
         } catch(e) {}
-        // 检查线上更新 — 用 <script> 加载 version.js（兼容 file:// 协议）
-        if (this.buildVersion) {
+        // 检查线上更新 — 仅本地 file:// 时加载远程 version.js
+        // 在线版（Vercel）永远是最新版，无需检查
+        if (this.buildVersion && window.location.protocol === 'file:') {
           const s = document.createElement('script');
-          s.src = 'version.js?t=' + Date.now();
+          s.src = 'https://word-pair-pk.hdilp.top/version.js?t=' + Date.now();
           s.onload = () => {
             if (window.__remoteRevision && window.__remoteRevision !== this.buildVersion) {
               this.remoteVersion = window.__remoteRevision;
@@ -1000,10 +1001,8 @@
             }
             delete window.__remoteRevision;
           };
-          // 加载失败（离线/无网络）静默忽略
           s.onerror = () => {};
           document.head.appendChild(s);
-          // 脚本加载完自动清理 script 元素
           setTimeout(() => { if (s.parentNode) s.parentNode.removeChild(s); }, 5000);
         }
         // 防 Android 系统返回手势（会触发 popstate）
