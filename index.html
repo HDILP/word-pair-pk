@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260620211608" />
+  <meta name="build-revision" content="20260620212922" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1956,6 +1956,60 @@
       100% { transform: translateY(var(--ty, -200px)) translateX(var(--tx, 0)) scale(1.2); opacity: 0; }
     }
 
+    /* === 6. 流星（循环氛围，低频） === */
+    .home-shooting-star {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.8);
+      box-shadow: 0 0 5px 2px rgba(255,255,255,0.2);
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+    .home-shooting-star::after {
+      content: '';
+      position: absolute;
+      top: 1px;
+      left: 3px;
+      width: 45px;
+      height: 1px;
+      background: linear-gradient(to right, rgba(255,255,255,0.3) 0%, transparent 100%);
+    }
+    .home-shooting-star--1 {
+      top: 12%; left: 75%;
+      animation-name: shootingStar;
+      animation-duration: 12s;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-delay: 0s;
+    }
+    .home-shooting-star--2 {
+      top: 8%;  left: 30%;
+      animation-name: shootingStar;
+      animation-duration: 14s;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-delay: 5s;
+    }
+    .home-shooting-star--3 {
+      top: 18%; left: 50%;
+      animation-name: shootingStar;
+      animation-duration: 10s;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-delay: 9s;
+    }
+    @keyframes shootingStar {
+      0%   { transform: translate(0, 0); opacity: 0; }
+      3%   { opacity: 0.5; }
+      6%   { transform: translate(-140px, 90px); opacity: 0.5; }
+      8%   { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
     /* 减少动效 */
     @media (prefers-reduced-motion: reduce) {
       .home-aurora {
@@ -1967,8 +2021,9 @@
         opacity: 0.035 !important;
       }
       .home-ripple,
-      .home-stardust-container {
-        display: none !important; /* 入口 delight，可安全隐藏 */
+      .home-stardust-container,
+      .home-shooting-star {
+        display: none !important; /* 入口 delight + 循环流星，可安全隐藏 */
       }
       .home-ready .home-char::before {
         animation: none !important;
@@ -2020,6 +2075,11 @@
 
           <!-- 涟漪光环（logo 入口单次，CSS animation forwards） -->
           <div class="home-ripple" style="top:calc(50% - 35px);left:calc(50% - 35px);margin-top:-100px;"></div>
+
+          <!-- 流星（循环氛围，低频） -->
+          <span class="home-shooting-star home-shooting-star--1"></span>
+          <span class="home-shooting-star home-shooting-star--2"></span>
+          <span class="home-shooting-star home-shooting-star--3"></span>
 
           <div class="home-view__logo home-enter-logo">
             <svg viewBox="0 0 24 24" width="56" height="56" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
