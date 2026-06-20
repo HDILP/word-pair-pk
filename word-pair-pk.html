@@ -387,7 +387,7 @@
       100% { transform: scale(1) rotate(0deg); opacity: 1; }
     }
     .home-enter-logo {
-      animation: logoReveal 1s var(--ease-spring) forwards;
+      animation: logoReveal 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     }
 
     /* 入场动画 — 标题单字 */
@@ -400,7 +400,7 @@
     .home-char {
       display: inline-block;
       opacity: 0;
-      animation: charBounce 0.7s var(--ease-spring) forwards;
+      animation: charBounce 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     }
 
     /* 入场动画 — 副标题 */
@@ -409,17 +409,18 @@
       100% { transform: translateY(0); opacity: 1; }
     }
     .home-enter-subtitle {
-      animation: subtitleFade 0.6s var(--ease-out) forwards;
+      opacity: 0;
+      animation: subtitleFade 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
     }
 
     /* 入场动画 — 按钮 */
     @keyframes btnSlideUp {
-    0%   { transform: translateY(30px) scale(0.9); opacity: 0; }
-    100% { transform: translateY(0) scale(1); opacity: 1; }
+      0%   { transform: translateY(24px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
     }
     .home-enter-btn {
-    opacity: 0;
-    animation: btnSlideUp 0.5s var(--ease-out) forwards;
+      opacity: 0;
+      animation: btnSlideUp 0.45s cubic-bezier(0.23, 1, 0.32, 1) forwards;
     }
 
     /* 减少动效适配 */
