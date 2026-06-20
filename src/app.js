@@ -986,10 +986,12 @@
         // 防 Android 系统返回手势（会触发 popstate）
         history.pushState(null, '', location.href);
         window.addEventListener('popstate', this.handleSystemBack);
-        // 首屏入场动画 — nextTick → requestAnimationFrame 确保初始状态已被 paint
+        // 首屏入场动画 — 双 rAF：第一帧 paint 初始隐藏状态，第二帧再切 class
         this.$nextTick(() => {
           requestAnimationFrame(() => {
-            this.homeReady = true;
+            requestAnimationFrame(() => {
+              this.homeReady = true;
+            });
           });
         });
       },

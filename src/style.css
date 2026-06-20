@@ -402,6 +402,9 @@
     .home-view.home-ready .home-char {
       transform: translateY(0) scale(1);
       opacity: 1;
+      background: inherit;
+      -webkit-background-clip: text;
+      background-clip: text;
     }
     .home-view.home-ready .home-enter-subtitle {
       transform: translateY(0);
@@ -423,6 +426,11 @@
         transition: none !important;
         transform: none !important;
         opacity: 1 !important;
+      }
+      .home-view .home-char {
+        background: inherit !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
       }
       .home-view.home-ready .home-view__logo {
         animation: none !important;
