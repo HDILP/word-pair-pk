@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260620215448" />
+  <meta name="build-revision" content="20260620222141" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1814,22 +1814,29 @@
       opacity: 0.3;
     }
     .app-footer__update {
-      display: inline-block;
-      font-size: 12px;
-      color: var(--primary);
-      opacity: 0.8;
-      letter-spacing: 0.3px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #fff;
       cursor: pointer;
       user-select: none;
       text-decoration: none;
-      padding: 4px 12px;
-      border-radius: 6px;
-      background: rgba(255,170,178,0.15);
-      transition: opacity 0.2s, background 0.2s;
+      padding: 10px 20px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      box-shadow: 0 2px 12px rgba(255,170,178,0.35);
+      transition: transform 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
+      pointer-events: auto;
+      line-height: 1.3;
     }
     .app-footer__update:hover {
-      opacity: 1;
-      background: rgba(255,170,178,0.3);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(255,170,178,0.5);
+    }
+    .app-footer__update:active {
+      transform: scale(0.97);
     }
 
     /* ==========================================
@@ -2573,12 +2580,14 @@
 
     <!-- 🦶 页脚 — 更新提醒 + 版本号 + 下载离线版 -->
     <footer class="app-footer">
-      <a
+      <div
         v-if="updateAvailable"
         class="app-footer__update"
-        href="#"
-        @click.prevent="downloadUpdate"
-      >📦 新版本 {{ remoteVersion.slice(0,8) }} 可用 · 点击更新</a>
+        @click="downloadUpdate"
+      >
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        <span>新版本 <strong>{{ remoteVersion.slice(0,8) }}</strong> 可用 — 点击更新</span>
+      </div>
       <span v-if="buildVersion" class="app-footer__group">
         <span class="app-footer__text" @click="showBuildToast">{{ buildVersion }}</span>
         <span
@@ -3128,7 +3137,7 @@
               const url = URL.createObjectURL(blob);
               const a = document.createElement('a');
               a.href = url;
-              a.download = 'index.html';
+              a.download = '词对 PK.html';
               document.body.appendChild(a);
               a.click();
               document.body.removeChild(a);

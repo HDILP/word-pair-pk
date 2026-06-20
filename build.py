@@ -146,7 +146,7 @@ with open(VERJS, 'w', encoding='utf-8') as f:
         f'.then(function(blob){{'
         f'var u=URL.createObjectURL(blob);'
         f'var a=document.createElement("a");'
-        f'a.href=u;a.download="index.html";'
+        f'a.href=u;a.download="词对 PK.html";'
         f'document.body.appendChild(a);a.click();'
         f'document.body.removeChild(a);'
         f'setTimeout(function(){{URL.revokeObjectURL(u)}},5e3)}})'

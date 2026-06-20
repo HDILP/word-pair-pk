@@ -519,12 +519,14 @@
 
     <!-- 🦶 页脚 — 更新提醒 + 版本号 + 下载离线版 -->
     <footer class="app-footer">
-      <a
+      <div
         v-if="updateAvailable"
         class="app-footer__update"
-        href="#"
-        @click.prevent="downloadUpdate"
-      >📦 新版本 {{ remoteVersion.slice(0,8) }} 可用 · 点击更新</a>
+        @click="downloadUpdate"
+      >
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        <span>新版本 <strong>{{ remoteVersion.slice(0,8) }}</strong> 可用 — 点击更新</span>
+      </div>
       <span v-if="buildVersion" class="app-footer__group">
         <span class="app-footer__text" @click="showBuildToast">{{ buildVersion }}</span>
         <span

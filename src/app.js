@@ -521,7 +521,7 @@
               const url = URL.createObjectURL(blob);
               const a = document.createElement('a');
               a.href = url;
-              a.download = 'index.html';
+              a.download = '词对 PK.html';
               document.body.appendChild(a);
               a.click();
               document.body.removeChild(a);
