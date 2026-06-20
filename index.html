@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260620234025" />
+  <meta name="build-revision" content="20260620235138" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -2372,6 +2372,7 @@
                 <div
                   v-for="(card, ci) in p1Cards"
                   :key="card.id"
+                  v-if="!card._done"
                   class="game-card"
                   :style="{animationDelay: (ci * 40) + 'ms'}"
                   :class="{
@@ -2405,6 +2406,7 @@
               <div
                 v-for="(card, ci) in p2Cards"
                 :key="card.id"
+                v-if="!card._done"
                 class="game-card"
                 :style="{animationDelay: (ci * 40) + 'ms'}"
                 :class="{
@@ -2443,6 +2445,7 @@
               <div
                 v-for="(card, ci) in p1Cards"
                 :key="card.id"
+                v-if="!card._done"
                 class="game-card"
                 :style="{animationDelay: (ci * 40) + 'ms'}"
                 :class="{
@@ -2598,6 +2601,7 @@
               <div
                 v-for="(card, ci) in reviewCards"
                 :key="card.id"
+                v-if="!card._done"
                 class="game-card"
                 :style="{animationDelay: (ci * 40) + 'ms'}"
                 :class="{
@@ -2980,6 +2984,7 @@
               matched: false,
               selected: false,
               wrong: false,
+              _done: false,
               _word: word,
             });
             allCards.push({
@@ -2990,6 +2995,7 @@
               matched: false,
               selected: false,
               wrong: false,
+              _done: false,
               _word: word,
             });
           });
@@ -3065,6 +3071,9 @@
               firstCard.matched = true;
               card.matched = true;
               this.reviewMatchSet.add(firstCard.pairId);
+
+              // 400ms 后从 DOM 移除已消卡片（动画播完）
+              setTimeout(() => { firstCard._done = true; card._done = true; }, 400);
 
               // TTS
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
@@ -3306,6 +3315,7 @@
               matched: false,
               selected: false,
               wrong: false,
+              _done: false,
             });
             allCards.push({
               id: 'zh-' + idx,
@@ -3315,6 +3325,7 @@
               matched: false,
               selected: false,
               wrong: false,
+              _done: false,
             });
           });
 
@@ -3459,6 +3470,9 @@
               firstCard.matched = true;
               card.matched = true;
               matchSet.add(firstCard.pairId);
+
+              // 400ms 后从 DOM 移除已消卡片（动画播完）
+              setTimeout(() => { firstCard._done = true; card._done = true; }, 400);
 
               // 用 speechSynthesis 念英文
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;

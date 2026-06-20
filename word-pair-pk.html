@@ -247,6 +247,7 @@
                 <div
                   v-for="(card, ci) in p1Cards"
                   :key="card.id"
+                  v-if="!card._done"
                   class="game-card"
                   :style="{animationDelay: (ci * 40) + 'ms'}"
                   :class="{
@@ -280,6 +281,7 @@
               <div
                 v-for="(card, ci) in p2Cards"
                 :key="card.id"
+                v-if="!card._done"
                 class="game-card"
                 :style="{animationDelay: (ci * 40) + 'ms'}"
                 :class="{
@@ -318,6 +320,7 @@
               <div
                 v-for="(card, ci) in p1Cards"
                 :key="card.id"
+                v-if="!card._done"
                 class="game-card"
                 :style="{animationDelay: (ci * 40) + 'ms'}"
                 :class="{
@@ -473,6 +476,7 @@
               <div
                 v-for="(card, ci) in reviewCards"
                 :key="card.id"
+                v-if="!card._done"
                 class="game-card"
                 :style="{animationDelay: (ci * 40) + 'ms'}"
                 :class="{
