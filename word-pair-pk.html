@@ -350,6 +350,88 @@
       pointer-events: none;
     }
 
+    /* ==========================================
+       首页 — 史诗入场动画
+       ========================================== */
+    /* 浮动字母环境 */
+    .home-ambient {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .home-ambient__letter {
+      position: absolute;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: "SF Mono", "Cascadia Code", "Fira Code", monospace;
+      color: var(--primary);
+      opacity: 0;
+      user-select: none;
+      animation: letterFloat 8s var(--ease-in-out) infinite;
+    }
+    @keyframes letterFloat {
+      0%   { transform: translateY(100%) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.12; }
+      90%  { opacity: 0.12; }
+      100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* 入场动画 — logo */
+    @keyframes logoReveal {
+      0%   { transform: scale(0) rotate(-20deg); opacity: 0; }
+      50%  { transform: scale(1.18) rotate(4deg); opacity: 1; }
+      70%  { transform: scale(0.95) rotate(-2deg); }
+      85%  { transform: scale(1.03) rotate(1deg); }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+    .home-enter-logo {
+      animation: logoReveal 1s var(--ease-spring) forwards;
+    }
+
+    /* 入场动画 — 标题单字 */
+    @keyframes charBounce {
+      0%   { transform: translateY(60px) scale(0.6); opacity: 0; }
+      60%  { transform: translateY(-8px) scale(1.05); opacity: 1; }
+      80%  { transform: translateY(3px) scale(0.98); }
+      100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
+    .home-char {
+      display: inline-block;
+      opacity: 0;
+      animation: charBounce 0.7s var(--ease-spring) forwards;
+    }
+
+    /* 入场动画 — 副标题 */
+    @keyframes subtitleFade {
+      0%   { transform: translateY(20px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    .home-enter-subtitle {
+      animation: subtitleFade 0.6s var(--ease-out) forwards;
+    }
+
+    /* 入场动画 — 按钮 */
+    @keyframes btnSlideUp {
+    0%   { transform: translateY(30px) scale(0.9); opacity: 0; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
+    .home-enter-btn {
+    opacity: 0;
+    animation: btnSlideUp 0.5s var(--ease-out) forwards;
+    }
+
+    /* 减少动效适配 */
+    @media (prefers-reduced-motion: reduce) {
+    .home-ambient { display: none; }
+    .home-enter-logo { animation: none !important; opacity: 1 !important; }
+    .home-char { animation: none !important; opacity: 1 !important; }
+    .home-enter-subtitle { animation: none !important; opacity: 1 !important; }
+    .home-enter-btn { animation: none !important; opacity: 1 !important; }
+    @keyframes logoFloat { 0% { transform: none; } 100% { transform: none; } }
+    }
+
     .home-view__logo {
       font-size: 56px;
       line-height: 1;
@@ -1701,7 +1783,26 @@
              视图 1：首页视图
              ========================================== -->
         <div v-if="currentView === 'home'" key="home" class="card home-view">
-          <div class="home-view__logo">
+          <!-- 浮动字母环境 -->
+          <div class="home-ambient">
+            <span class="home-ambient__letter" style="left:10%;animation-delay:0s;animation-duration:9s">a</span>
+            <span class="home-ambient__letter" style="left:20%;animation-delay:1.2s;animation-duration:11s">e</span>
+            <span class="home-ambient__letter" style="left:35%;animation-delay:0.5s;animation-duration:8s">n</span>
+            <span class="home-ambient__letter" style="left:50%;animation-delay:2s;animation-duration:10s">t</span>
+            <span class="home-ambient__letter" style="left:65%;animation-delay:0.8s;animation-duration:7.5s">o</span>
+            <span class="home-ambient__letter" style="left:78%;animation-delay:1.5s;animation-duration:12s">s</span>
+            <span class="home-ambient__letter" style="left:88%;animation-delay:2.5s;animation-duration:9.5s">i</span>
+            <span class="home-ambient__letter" style="left:5%;animation-delay:3s;animation-duration:10.5s">p</span>
+            <span class="home-ambient__letter" style="left:42%;animation-delay:3.5s;animation-duration:8.5s">r</span>
+            <span class="home-ambient__letter" style="left:72%;animation-delay:1.8s;animation-duration:13s">c</span>
+            <span class="home-ambient__letter" style="left:28%;animation-delay:4s;animation-duration:7s">m</span>
+            <span class="home-ambient__letter" style="left:55%;animation-delay:2.8s;animation-duration:11.5s">l</span>
+            <span class="home-ambient__letter" style="left:92%;animation-delay:0.3s;animation-duration:9s">d</span>
+            <span class="home-ambient__letter" style="left:15%;animation-delay:1s;animation-duration:10s">u</span>
+            <span class="home-ambient__letter" style="left:60%;animation-delay:3.2s;animation-duration:8s">g</span>
+          </div>
+
+          <div class="home-view__logo home-enter-logo">
             <svg viewBox="0 0 24 24" width="56" height="56" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
               <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
@@ -1710,12 +1811,18 @@
               <circle cx="8" cy="15" r="1" fill="var(--primary)"/>
             </svg>
           </div>
-          <div class="home-view__title">词对 PK</div>
-          <div class="home-view__subtitle">双人单词对战 · 中英配对 · 谁更快？</div>
+          <div class="home-view__title">
+            <span class="home-char" style="animation-delay:500ms">词</span>
+            <span class="home-char" style="animation-delay:620ms">对</span>
+            <span class="home-char" style="animation-delay:740ms">&nbsp;</span>
+            <span class="home-char" style="animation-delay:860ms">P</span>
+            <span class="home-char" style="animation-delay:980ms">K</span>
+          </div>
+          <div class="home-view__subtitle home-enter-subtitle" style="animation-delay:1.2s">双人单词对战 · 中英配对 · 谁更快？</div>
           <div class="home-view__actions">
-            <button class="btn btn--primary" @click="goSelect('dual')">开始 PK</button>
-            <button class="btn btn--accent" @click="goSelect('single')">单人挑战</button>
-            <button class="btn btn--ghost" @click="goReviewHome">
+            <button class="btn btn--primary home-enter-btn" style="animation-delay:1.5s" @click="goSelect('dual')">开始 PK</button>
+            <button class="btn btn--accent home-enter-btn" style="animation-delay:1.64s" @click="goSelect('single')">单人挑战</button>
+            <button class="btn btn--ghost home-enter-btn" style="animation-delay:1.78s" @click="goReviewHome">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;vertical-align:-3px;">
                 <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
                 <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
@@ -1724,7 +1831,7 @@
               </svg>
               单词复习
             </button>
-            <button class="btn btn--ghost" @click="currentView = 'leaderboard'">排行榜</button>
+            <button class="btn btn--ghost home-enter-btn" style="animation-delay:1.92s" @click="currentView = 'leaderboard'">排行榜</button>
           </div>
         </div>
 
