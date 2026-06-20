@@ -56,6 +56,8 @@
           singleGameWords: [], // 单人模式下抽到的 8 个词
           // 版本戳
           buildVersion: '',
+          remoteVersion: null,
+          updateAvailable: false,
           // 首屏入场动画
           homeReady: false,
           // 边缘滑动手势检测
@@ -471,19 +473,22 @@
           const h = d.slice(8,10), mi = d.slice(10,12), s = d.slice(12,14);
           alert(`词对 PK · r${d}\n构建于 ${y}年${mo}月${day}日 ${h}:${mi}:${s}`);
         },
-        // 下载最新版 / 离线版 — 本地 file:// 加载远程 version.js（同源 fetch），在线拉自身
+        // 下载最新版 / 离线版 — 本地调远程 version.js，在线拉自身
         downloadUpdate() {
           if (window.location.protocol === 'file:') {
-            // 加载远程 version.js — 同源 fetch /index.html，不受 CORS 限制
+            this.updateAvailable = false;
+            if (typeof window.__downloadLatest === 'function') {
+              window.__downloadLatest();
+              return;
+            }
+            // version.js 尚未加载（异常情况）→ 即时加载
             const s = document.createElement('script');
             s.src = 'https://word-pair-pk.hdilp.top/version.js?t=' + Date.now();
             s.onerror = () => {
-              alert('下载失败，请手动访问 https://word-pair-pk.hdilp.top 保存页面');
-              if (s.parentNode) s.parentNode.removeChild(s);
+              alert('下载失败，请手动访问 https://word-pair-pk.hdilp.top');
             };
             s.onload = () => { if (s.parentNode) s.parentNode.removeChild(s); };
             document.head.appendChild(s);
-            this.downloadingUpdate = false;
             return;
           }
           fetch('index.html?t=' + Date.now(), { cache: 'no-store' })
@@ -971,11 +976,25 @@
           const v = localStorage.getItem('wordpair_pb');
           if (v) this.singlePlayerPb = parseFloat(v);
         } catch(e) {}
-        // 读取构建版本号（仅用于页脚显示，不做更新检测）
+        // 读取构建版本号
         try {
           const el = document.querySelector('meta[name="build-revision"]');
           if (el) this.buildVersion = el.content;
         } catch(e) {}
+        // 本地 file:// 版加载远程 version.js 检查更新
+        if (this.buildVersion && window.location.protocol === 'file:') {
+          const s = document.createElement('script');
+          s.src = 'https://word-pair-pk.hdilp.top/version.js?t=' + Date.now();
+          s.onload = () => {
+            if (window.__remoteRevision && window.__remoteRevision !== this.buildVersion) {
+              this.remoteVersion = window.__remoteRevision;
+              this.updateAvailable = true;
+            }
+            if (s.parentNode) s.parentNode.removeChild(s);
+          };
+          s.onerror = () => {};
+          document.head.appendChild(s);
+        }
         // 防 Android 系统返回手势（会触发 popstate）
         history.pushState(null, '', location.href);
         window.addEventListener('popstate', this.handleSystemBack);

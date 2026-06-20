@@ -163,14 +163,11 @@ touchstart → touchend → (浏览器合成) click
 - 新版本提示（`updateAvailable`）：显示粉色提示条「📦 新版本 xxx 可用 · 点击更新」
 - 版本号旁边有 `↓` 下载按钮，点击直接下载最新的 `index.html`（通过 Blob 触发浏览器下载）
 
-### 更新检测机制
+### 离线版下载（↓ 按钮）
 
-1. `build.py` 生成 `version.js`（`window.__remoteRevision = "20260620153454"`）随构建部署
-2. Vue `mounted()` 中：在线版（Vercel）永远是最新版，跳过检查；本地 `file://` 版动态创建 `<script>` 加载远程 `https://word-pair-pk.hdilp.top/version.js`
-3. 脚本加载后对比 `__remoteRevision` 与本地 `<meta name="build-revision">` 的 content
-4. 不一致 → `updateAvailable = true` → 底部显示更新提醒
-5. 点击 → 在线版 fetch 最新 `index.html` 下载，本地版打开网站引导
-6. 离线/无网络 → script onerror 静默忽略，不影响任何功能
+- 本地 `file://` 版：动态创建 `<script>` 加载远程 `version.js`（Vercel 同源），内部 `fetch('/index.html')` 是纯同源请求，产生 Blob 触发浏览器下载
+- 在线 Vercel 版：直接 `fetch('index.html?t=...')` 下载自身作为离线备份
+- 离线/无网络 → `version.js` 加载失败时 alert 提示手动访问网站
 
 ### 首页史诗入场动画
 
