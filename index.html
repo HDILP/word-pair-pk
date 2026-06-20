@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260620215252" />
+  <meta name="build-revision" content="20260620215448" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1723,19 +1723,22 @@
     /* 大屏: ≥ 1400px — 文字随卡片等比例放大 */
     @media (min-width: 1400px) {
       .game-card {
-        font-size: clamp(16px, 1.3vw, 28px);
-        padding: 8px 12px;
-        border-radius: var(--radius-lg);
+        font-size: clamp(20px, 2vw, 38px);
+        padding: 12px 16px;
+        border-radius: var(--radius-xl);
       }
       .card-text {
         -webkit-line-clamp: 3;
-        padding: 4px;
+        padding: 6px;
       }
       .game-card--en {
-        border-left-width: 4px;
+        border-left-width: 5px;
       }
       .game-card--zh {
-        border-left-width: 4px;
+        border-left-width: 5px;
+      }
+      .card-grid {
+        gap: 10px;
       }
     }
 
