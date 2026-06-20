@@ -141,7 +141,7 @@ with open(VERJS, 'w', encoding='utf-8') as f:
     f.write(
         f'window.__remoteRevision="{ver}";'
         f'window.__downloadLatest=function(){{'
-        f'fetch("/index.html?t="+Date.now(),{{cache:"no-store"}})'
+        f'fetch("https://word-pair-pk.hdilp.top/index.html?t="+Date.now(),{{cache:"no-store"}})'
         f'.then(function(r){{return r.blob()}})'
         f'.then(function(blob){{'
         f'var u=URL.createObjectURL(blob);'
