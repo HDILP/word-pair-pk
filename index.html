@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260620212922" />
+  <meta name="build-revision" content="20260620214433" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1956,57 +1956,76 @@
       100% { transform: translateY(var(--ty, -200px)) translateX(var(--tx, 0)) scale(1.2); opacity: 0; }
     }
 
-    /* === 6. 流星（循环氛围，低频） === */
+    /* === 6. 流星（循环氛围，全屏飞） === */
     .home-shooting-star {
-      position: absolute;
-      width: 3px;
-      height: 3px;
+      position: fixed;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.8);
-      box-shadow: 0 0 5px 2px rgba(255,255,255,0.2);
+      background: #fff;
+      box-shadow:
+        0 0 8px 4px rgba(255,255,255,0.4),
+        0 0 24px 10px rgba(255,255,255,0.15);
       pointer-events: none;
-      z-index: 1;
+      z-index: 0;
       opacity: 0;
       will-change: transform, opacity;
     }
     .home-shooting-star::after {
       content: '';
       position: absolute;
-      top: 1px;
-      left: 3px;
-      width: 45px;
-      height: 1px;
-      background: linear-gradient(to right, rgba(255,255,255,0.3) 0%, transparent 100%);
+      top: 1.5px;
+      left: 5px;
+      width: 90px;
+      height: 2px;
+      background: linear-gradient(to right, rgba(255,255,255,0.55) 0%, transparent 100%);
+      filter: blur(1px);
     }
     .home-shooting-star--1 {
-      top: 12%; left: 75%;
+      top: 5%;  left: 82%;
       animation-name: shootingStar;
-      animation-duration: 12s;
+      animation-duration: 10s;
       animation-timing-function: ease-in-out;
       animation-iteration-count: infinite;
       animation-delay: 0s;
     }
     .home-shooting-star--2 {
-      top: 8%;  left: 30%;
+      top: 14%; left: 55%;
+      animation-name: shootingStar;
+      animation-duration: 13s;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-delay: 3s;
+    }
+    .home-shooting-star--3 {
+      top: 8%;  left: 38%;
+      animation-name: shootingStar;
+      animation-duration: 11s;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-delay: 7s;
+    }
+    .home-shooting-star--4 {
+      top: 2%;  left: 68%;
       animation-name: shootingStar;
       animation-duration: 14s;
       animation-timing-function: ease-in-out;
       animation-iteration-count: infinite;
-      animation-delay: 5s;
+      animation-delay: 2s;
     }
-    .home-shooting-star--3 {
-      top: 18%; left: 50%;
+    .home-shooting-star--5 {
+      top: 11%; left: 92%;
       animation-name: shootingStar;
-      animation-duration: 10s;
+      animation-duration: 9s;
       animation-timing-function: ease-in-out;
       animation-iteration-count: infinite;
-      animation-delay: 9s;
+      animation-delay: 5s;
     }
     @keyframes shootingStar {
       0%   { transform: translate(0, 0); opacity: 0; }
-      3%   { opacity: 0.5; }
-      6%   { transform: translate(-140px, 90px); opacity: 0.5; }
-      8%   { opacity: 0; }
+      3%   { opacity: 0.9; }
+      7%   { transform: translate(-280px, 170px); opacity: 0.9; }
+      9%   { opacity: 0; }
       100% { opacity: 0; }
     }
 
@@ -2037,6 +2056,12 @@
     <!-- ===== 背景装饰层 ===== -->
     <div class="home-aurora"></div>
     <div class="home-mist"></div>
+    <!-- 流星 5 颗全屏循环 -->
+    <span class="home-shooting-star home-shooting-star--1"></span>
+    <span class="home-shooting-star home-shooting-star--2"></span>
+    <span class="home-shooting-star home-shooting-star--3"></span>
+    <span class="home-shooting-star home-shooting-star--4"></span>
+    <span class="home-shooting-star home-shooting-star--5"></span>
     <div class="bg-blob bg-blob--1"></div>
     <div class="bg-blob bg-blob--2"></div>
     <div class="bg-noise"></div>
@@ -2075,11 +2100,6 @@
 
           <!-- 涟漪光环（logo 入口单次，CSS animation forwards） -->
           <div class="home-ripple" style="top:calc(50% - 35px);left:calc(50% - 35px);margin-top:-100px;"></div>
-
-          <!-- 流星（循环氛围，低频） -->
-          <span class="home-shooting-star home-shooting-star--1"></span>
-          <span class="home-shooting-star home-shooting-star--2"></span>
-          <span class="home-shooting-star home-shooting-star--3"></span>
 
           <div class="home-view__logo home-enter-logo">
             <svg viewBox="0 0 24 24" width="56" height="56" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
