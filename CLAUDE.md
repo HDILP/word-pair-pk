@@ -1,6 +1,6 @@
 # 词对 PK (word-pair-pk)
 
-英语单词配对双人 PK 游戏，单 HTML 文件，教室一体机 / 手机浏览器均可运行。
+英语单词配对双人 PK 游戏，三文件源码（HTML 模板 + src/style.css + src/app.js），build.py 内联合并为单 HTML 部署。
 
 ## 项目结构
 
@@ -174,13 +174,15 @@ touchstart → touchend → (浏览器合成) click
 
 ### 首页史诗入场动画
 
-- **驱动方式**：Vue `mounted()` → `$nextTick()` → 设置 `homeReady = true` → 添加 `.home-ready` class
+- **驱动方式**：Vue `mounted()` → `$nextTick()` → **双 `requestAnimationFrame`** → `homeReady = true` → 添加 `.home-ready` class
+- **关键修复（2026-06-20）**：单 `rAF` 在首次绘制前就触发了 class 切换，浏览器从没见过初始隐藏状态 → transition 无始值可对比 → 跳过动画。改为双 rAF 后第一帧 paint 初始态，下一帧再切 class
 - **动画方式**：CSS `transition`（非 `@keyframes`），由 class 切换触发
-- **关键修复**：之前使用 `@keyframes` + `animation: forwards` + `opacity: 0`，部分浏览器中 `var()` 在 animation 简写里解析失败导致动画不触发，元素永久隐藏 → 改用 Vue `$nextTick` + CSS transition，100% 可靠
+- **关键修复（v1）**：之前使用 `@keyframes` + `animation: forwards` + `opacity: 0`，部分浏览器中 `var()` 在 animation 简写里解析失败导致动画不触发，元素永久隐藏 → 改用 Vue `$nextTick` + CSS transition
+- **关键修复（标题文字）**：`.home-view__title` 的 `-webkit-text-fill-color: transparent` 继承给子 `.home-char`，但 `background-clip: text` 不继承 → 文字透明不可见。`.home-char` 加 `background: inherit; background-clip: text` 修复
 - **入场层次**：
   - 背景层：15 个英文字母从底部浮到顶部（`@keyframes letterFloat`，持续 7-13s）
   - logo：`scale(0) rotate(-20deg)` → `scale(1) rotate(0deg)`，1s 弹跳曲线
-  - 标题："词对 PK" 5 个字符逐个 `translateY(60px) scale(0.6)` → 归位，间隔 120ms
+  - 标题："词对 PK" 5 个字符逐个 `translateY(60px) scale(0.6)` → 归位，间隔 120ms（`transition-delay` 驱动）
   - 副标题：`translateY(20px)` → 归位，0.6s，delay 1.2s
   - 按钮：4 个按钮 `translateY(24px)` → 归位，0.45s，间隔 140ms
 - **`prefers-reduced-motion`**：环境粒子隐藏 + 所有 transition 跳过，元素直接可见

@@ -13,18 +13,21 @@
 
 ```
 📁 项目结构
-├── word-pair-pk.html      ← Vue 3 模板（入口文件）
-├── words/                  ← 词库目录（每个 unit 独立 JSON）
+├── src/                    ← 源码
+│   ├── style.css           ← 全部样式（44KB）
+│   └── app.js              ← Vue 3 应用代码（35KB）
+├── word-pair-pk.html       ← HTML 模板（引入 src/）
+├── words/                   ← 词库目录（每个单元独立 JSON）
 │   ├── 必修一/             ← 子目录 = 教材
 │   │   ├── Welcome Unit.json
 │   │   ├── Unit 1 Teenage Life.json
 │   │   └── ...
 │   ├── 必修二/
 │   └── ...
-├── build.py                ← 构建脚本：合并词库 → index.html + version.json
-├── index.html              ← 构建产物（由 build.py 生成，双击即玩）
-├── version.json            ← 构建产物（build.py 生成，供线上更新检测）
-├── vercel.json             ← Vercel 部署配置
+├── build.py                 ← 构建脚本：内联 src/* + 词库 → index.html + version.json
+├── index.html               ← 构建产物（双击即玩）
+├── version.json             ← 构建产物（供线上更新检测）
+├── vercel.json              ← Vercel 部署配置
 └── README.md
 ```
 

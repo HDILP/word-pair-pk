@@ -478,7 +478,7 @@
         downloadUpdate() {
           this.downloadingUpdate = true;
           this.updateAvailable = false; // 马上隐藏提醒
-          fetch('/index.html?t=' + Date.now(), { cache: 'no-store' })
+          fetch('index.html?t=' + Date.now(), { cache: 'no-store' })
             .then(r => r.blob())
             .then(blob => {
               const url = URL.createObjectURL(blob);
@@ -973,7 +973,7 @@
         } catch(e) {}
         // 检查线上更新
         if (this.buildVersion) {
-          fetch('/version.json?t=' + Date.now(), { cache: 'no-store' })
+          fetch('version.json?t=' + Date.now(), { cache: 'no-store' })
             .then(r => r.ok ? r.json() : null)
             .then(data => {
               if (data && data.revision && data.revision !== this.buildVersion) {
