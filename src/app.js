@@ -468,6 +468,11 @@
           this.reviewPopup = null;
         },
         // 点击版本号弹窗
+        footerDotTitle() {
+          return this.versionJsLoaded
+            ? (window.location.protocol === 'file:' ? '远程检测 ✓' : '在线版')
+            : '远程检测未连接';
+        },
         showBuildToast() {
           const d = this.buildVersion;
           const y = d.slice(0,4), mo = d.slice(4,6), day = d.slice(6,8);

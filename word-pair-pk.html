@@ -519,9 +519,7 @@
         <span
           class="app-footer__dot"
           :class="versionJsLoaded ? 'app-footer__dot--ok' : 'app-footer__dot--none'"
-          :title="versionJsLoaded
-            ? (location.protocol === 'file:' ? '远程检测 ✓' : '在线版')
-            : '远程检测未连接'"
+          :title="footerDotTitle()"
         ></span>
         <a class="app-footer__dl" href="#" @click.prevent="downloadUpdate" title="下载离线版">↓</a>
       </span>

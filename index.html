@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260620200621" />
+  <meta name="build-revision" content="20260620201736" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -2310,9 +2310,7 @@
         <span
           class="app-footer__dot"
           :class="versionJsLoaded ? 'app-footer__dot--ok' : 'app-footer__dot--none'"
-          :title="versionJsLoaded
-            ? (location.protocol === 'file:' ? '远程检测 ✓' : '在线版')
-            : '远程检测未连接'"
+          :title="footerDotTitle()"
         ></span>
         <a class="app-footer__dl" href="#" @click.prevent="downloadUpdate" title="下载离线版">↓</a>
       </span>
@@ -2803,6 +2801,11 @@
           this.reviewPopup = null;
         },
         // 点击版本号弹窗
+        footerDotTitle() {
+          return this.versionJsLoaded
+            ? (window.location.protocol === 'file:' ? '远程检测 ✓' : '在线版')
+            : '远程检测未连接';
+        },
         showBuildToast() {
           const d = this.buildVersion;
           const y = d.slice(0,4), mo = d.slice(4,6), day = d.slice(6,8);
