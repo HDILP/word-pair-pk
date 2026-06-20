@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260620203806" />
+  <meta name="build-revision" content="20260620204453" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -2848,7 +2848,7 @@
             document.head.appendChild(s);
             return;
           }
-          fetch('index.html?t=' + Date.now(), { cache: 'no-store' })
+          fetch('/?t=' + Date.now(), { cache: 'no-store' })
             .then(r => r.blob())
             .then(blob => {
               const url = URL.createObjectURL(blob);

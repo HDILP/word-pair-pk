@@ -515,7 +515,7 @@
             document.head.appendChild(s);
             return;
           }
-          fetch('index.html?t=' + Date.now(), { cache: 'no-store' })
+          fetch('/?t=' + Date.now(), { cache: 'no-store' })
             .then(r => r.blob())
             .then(blob => {
               const url = URL.createObjectURL(blob);
