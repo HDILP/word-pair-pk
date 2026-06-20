@@ -117,9 +117,10 @@ if placeholder not in html:
 
 html = html.replace(placeholder, new, 1)
 
-# 注入构建日期
-today = __import__('datetime').date.today().isoformat()  # 2026-06-20
-html = html.replace('<!-- BUILD_DATE -->', today, 1)
+# 注入构建版本号（精确到秒，无符号紧凑格式 e.g. 20260620144233）
+now = __import__('datetime').datetime.now()
+ver = now.strftime('%Y%m%d%H%M%S')
+html = html.replace('<!-- BUILD_VER -->', ver, 1)
 
 # ── 5. 写入输出 ──────────────────────────────────────────────
 with open(OUTPUT, 'w', encoding='utf-8') as f:
