@@ -1700,6 +1700,25 @@
       }
     }
 
+    /* 大屏: ≥ 1400px — 文字随卡片等比例放大 */
+    @media (min-width: 1400px) {
+      .game-card {
+        font-size: clamp(16px, 1.3vw, 28px);
+        padding: 8px 12px;
+        border-radius: var(--radius-lg);
+      }
+      .card-text {
+        -webkit-line-clamp: 3;
+        padding: 4px;
+      }
+      .game-card--en {
+        border-left-width: 4px;
+      }
+      .game-card--zh {
+        border-left-width: 4px;
+      }
+    }
+
     /* ===== 页脚 — 构建版本号 ===== */
     .app-footer {
       position: fixed;
