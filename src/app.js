@@ -299,7 +299,16 @@
             selectedWords = shuffled.slice(0, Math.min(8, shuffled.length));
           }
 
-          // 设配对数量
+          // 设配对数量 — 去重前先记一下原始数量，去重后更新
+
+          // 去重：同一单词在不同单元可能出现多次，保留首次出现的
+          const seenKeys = new Set();
+          selectedWords = selectedWords.filter(w => {
+            const key = this.getWordKey(w);
+            if (seenKeys.has(key)) return false;
+            seenKeys.add(key);
+            return true;
+          });
           this.reviewCardPairCount = selectedWords.length;
 
           // 生成卡片

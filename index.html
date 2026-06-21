@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260621133045" />
+  <meta name="build-revision" content="20260621133712" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -3052,7 +3052,16 @@
             selectedWords = shuffled.slice(0, Math.min(8, shuffled.length));
           }
 
-          // 设配对数量
+          // 设配对数量 — 去重前先记一下原始数量，去重后更新
+
+          // 去重：同一单词在不同单元可能出现多次，保留首次出现的
+          const seenKeys = new Set();
+          selectedWords = selectedWords.filter(w => {
+            const key = this.getWordKey(w);
+            if (seenKeys.has(key)) return false;
+            seenKeys.add(key);
+            return true;
+          });
           this.reviewCardPairCount = selectedWords.length;
 
           // 生成卡片
