@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260621134412" />
+  <meta name="build-revision" content="20260621134627" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1792,30 +1792,37 @@
       }
     }
 
-    /* 大屏: ≥ 1400px — 轻微放大，但保持紧凑 */
+    /* 大屏: ≥ 1400px — 卡片网格整体放大 */
     @media (min-width: 1400px) {
       .card-grid {
-        max-width: 420px;
-        gap: 8px;
+        max-width: 560px;
+        gap: 10px;
       }
       .game-card {
-        font-size: clamp(12px, 1vw, 18px);
-        padding: 6px 10px;
-        border-radius: var(--radius-md);
+        font-size: clamp(15px, 1.4vw, 24px);
+        padding: 10px 14px;
+        border-radius: var(--radius-lg);
       }
       .card-text {
         -webkit-line-clamp: 3;
-        padding: 3px;
+        padding: 4px;
       }
       .game-card--en {
-        border-left-width: 3px;
+        border-left-width: 4px;
       }
       .game-card--zh {
-        border-left-width: 3px;
+        border-left-width: 4px;
       }
       .btn {
-        padding: 10px 24px;
-        font-size: 14px;
+        padding: 12px 28px;
+        font-size: 15px;
+      }
+      .home-view__title {
+        font-size: 52px;
+      }
+      .home-view__actions .btn {
+        padding: 16px 40px;
+        font-size: 18px;
       }
     }
 
