@@ -1040,7 +1040,9 @@
       mounted() {
         this.initBooks();
         this.loadLeaderboardFromStorage();
-        // 预热 TTS 引擎 — 用真实词 + 触发 getVoices 加载语音列表
+        // 全局预热 TTS — 首次用户交互时加载语音引擎+英文语音数据
+        document.addEventListener('pointerdown', () => this.warmupTTS(), { once: true });
+        // mounted 时也试试（兼容 autoplay 宽松的浏览器）
         this.warmupTTS();
         // 加载单人模式个人最快记录
         try {
