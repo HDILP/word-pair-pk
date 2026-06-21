@@ -18,8 +18,40 @@
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
 
     <link rel="stylesheet" href="src/style.css" />
+
+  <!-- 加载进度条 — 页面完全准备好之前显示 -->
+  <style>
+    .page-loader {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 9999;
+      height: 3px;
+      background: rgba(255,170,178,0.15);
+      overflow: hidden;
+      opacity: 1;
+      transition: opacity 0.4s ease;
+    }
+    .page-loader--done {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .page-loader__bar {
+      height: 100%;
+      width: 40%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 2px;
+      animation: loaderSlide 1.4s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+    }
+    @keyframes loaderSlide {
+      0%   { transform: translateX(-100%); }
+      100% { transform: translateX(350%); }
+    }
+  </style>
 </head>
 <body>
+  <div class="page-loader" id="pageLoader">
+    <div class="page-loader__bar"></div>
+  </div>
   <div id="app" @touchstart="handleEdgeTouch" @touchmove="handleEdgeMove" @touchend="handleEdgeEnd">
     <!-- ===== 背景装饰层 ===== -->
     <div class="home-aurora"></div>

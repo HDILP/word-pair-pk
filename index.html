@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260621124317" />
+  <meta name="build-revision" content="20260621124734" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -2171,8 +2171,40 @@
       }
     }
   </style>
+
+  <!-- 加载进度条 — 页面完全准备好之前显示 -->
+  <style>
+    .page-loader {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 9999;
+      height: 3px;
+      background: rgba(255,170,178,0.15);
+      overflow: hidden;
+      opacity: 1;
+      transition: opacity 0.4s ease;
+    }
+    .page-loader--done {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .page-loader__bar {
+      height: 100%;
+      width: 40%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 2px;
+      animation: loaderSlide 1.4s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+    }
+    @keyframes loaderSlide {
+      0%   { transform: translateX(-100%); }
+      100% { transform: translateX(350%); }
+    }
+  </style>
 </head>
 <body>
+  <div class="page-loader" id="pageLoader">
+    <div class="page-loader__bar"></div>
+  </div>
   <div id="app" @touchstart="handleEdgeTouch" @touchmove="handleEdgeMove" @touchend="handleEdgeEnd">
     <!-- ===== 背景装饰层 ===== -->
     <div class="home-aurora"></div>
@@ -3791,6 +3823,17 @@
               // 星尘升腾 ✦
               this._spawnStardust();
             });
+          });
+        });
+
+        // 加载完成后隐藏进度条
+        this.$nextTick(() => {
+          // 等待字体也加载完成（Google Fonts 可能晚于 Vue）
+          Promise.allSettled([
+            document.fonts ? document.fonts.ready : Promise.resolve(),
+          ]).then(() => {
+            const loader = document.getElementById('pageLoader');
+            if (loader) loader.classList.add('page-loader--done');
           });
         });
       },

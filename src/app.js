@@ -1081,6 +1081,17 @@
             });
           });
         });
+
+        // 加载完成后隐藏进度条
+        this.$nextTick(() => {
+          // 等待字体也加载完成（Google Fonts 可能晚于 Vue）
+          Promise.allSettled([
+            document.fonts ? document.fonts.ready : Promise.resolve(),
+          ]).then(() => {
+            const loader = document.getElementById('pageLoader');
+            if (loader) loader.classList.add('page-loader--done');
+          });
+        });
       },
       beforeUnmount() {
         clearInterval(this.p1Timer);
