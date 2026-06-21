@@ -839,7 +839,7 @@
       padding: 4px;
       cursor: pointer;
       transition: transform 200ms var(--ease-out);
-      touch-action: manipulation;
+      touch-action: none;
       min-height: 0;
       overflow: hidden;
       box-shadow: var(--shadow-xs);

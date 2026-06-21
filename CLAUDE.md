@@ -86,6 +86,7 @@ JSON 格式：`{ "name": "单元名", "words": [{"en": "...", "zh": "..."}, ...]
 - 配对成功：高亮 + TTS 朗读英文
 - 配对失败：闪红 300ms
 - 双人模式各自独立匹配集
+- 消除动画：`matchFlash` 280ms spring曲线 `cubic-bezier(0.34,1.56,0.64,1)`，`animation-delay:0ms !important` 确保 EN/ZH 卡同步消除。消除后保留 DOM（`animation-fill-mode: forwards` 停在 `opacity:0`）不移位。
 
 ### 触摸事件处理
 
@@ -127,7 +128,9 @@ touchstart → touchend → (浏览器合成) click
 
 - 每张 `.game-card` 使用 `display: flex; align-items: center; justify-content: center` 居中文字
 - 文字包裹于 `<span class="card-text">` 内，该 span 使用 `-webkit-line-clamp: 2` 实现多行截断
-- `font-size` 使用 `clamp(13px, 2.5vw, 17px)` 根据屏幕宽度自动调整
+- `font-size` 响应式：默认 `clamp(11px, 1.6vw, 15px)`，平板 `clamp(10px, 3vw, 14px)`，手机 `clamp(9px, 3vw, 12px)`，大屏(≥1400px) `clamp(12px, 1vw, 18px)`
+- 卡片网格 `max-width`：默认/平板 380px（gap 6px），手机 320px（gap 4px），大屏 560px（gap 10px，仅放大宽+间距，字号不动）
+- `.card-grid` 使用 `aspect-ratio: 1` 保持正方形
 
 ### 页面布局与滚动
 
@@ -142,6 +145,24 @@ touchstart → touchend → (浏览器合成) click
 - 原 `.main { justify-content: center }` 因与 `overflow-y: auto` 在 flexbox 中存在浏览器兼容冲突，已移除
 - `html, body { overflow: hidden }` 防止 body 弹跳
 
+### 加载进度条
+
+- 页面 `<body>` 顶部有 `.page-loader`（3px 固定条），粉蓝渐变滑块无限左右滑动
+- 初始 `#app { opacity: 0 }` 隐藏所有 v-if 残留内容
+- `mounted()` 结束后等待 `document.fonts.ready`，完成后同时淡出进度条 + 淡入 `#app`
+
+### 倒计时
+
+- `Ready?`（粉蓝渐变弹入，1.2s）→ `GO!`（金色弹入，450ms）→ `playing` 开始计时
+- 不再使用 3-2-1 数字倒计时
+
+### TTS 朗读
+
+- **预热策略（三重）**：`mounted()` 时预热 + 首次 `pointerdown` 全局监听预热 + `startGame()`/`startReviewGame()` 时预热
+- 预热参数：`utterance('ready', volume=0.01, lang='en-US', rate=0.9)` + 选择英文语音
+- 匹配发音时：**不调用 `speechSynthesis.cancel()`**（cancel 会重置引擎状态导致首次延迟）
+- 使用极低音量（0.01）而非 0，volume=0 的 utterance 在部分浏览器中引擎跳过不加载
+
 ### 复习系统（利特纳盒子）
 
 - 存储键：`wordpair_review`
@@ -150,6 +171,7 @@ touchstart → touchend → (浏览器合成) click
 - 单人模式完成后自动同步到复习系统
 - `reviewStoreVersion` 计数器确保 `localStorage` 变化能触发 Vue computed 重新计算（`void this.reviewStoreVersion`）
 - 低时渲染的 `reviewData` / `reviewBox1Count` / `reviewDueToday` 为 computed 属性
+- 选词时按 `getWordKey()`（`word.en` 转小写下划线）去重，避免同一单词跨单元重复生成卡片
 
 ### 复盘弹窗（复习模式结束）
 
@@ -201,7 +223,7 @@ touchstart → touchend → (浏览器合成) click
 
 ## 数据来源
 
-人教版高中英语 7 册，共 2373 词，从百词斩 app 数据转换。注重数据完整性——缺释义时必须主动告知。
+人教版高中英语 7 册 + 课外词汇 2 单元，共 **5254 词**，从百词斩 app 数据转换。注重数据完整性——缺释义时必须主动告知。
 
 ## 部署
 
