@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260621145423" />
+  <meta name="build-revision" content="20260621145752" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -84,7 +84,6 @@
         radial-gradient(circle at 50% 80%, rgba(245, 220, 180, 0.1) 0%, transparent 50%);
       color: var(--text);
       overflow: hidden;
-      touch-action: manipulation;
       -webkit-tap-highlight-color: transparent;
       user-select: none;
       overscroll-behavior-x: none;
@@ -240,6 +239,8 @@
       padding: 8px 16px;
       overflow-y: auto;
       position: relative;
+      touch-action: manipulation;
+      -webkit-overflow-scrolling: touch;
     }
 
     .main > .home-view {
