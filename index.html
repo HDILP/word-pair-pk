@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260621131914" />
+  <meta name="build-revision" content="20260621132524" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -3146,7 +3146,6 @@
               // TTS 先触发 — 在动画之前出声，消除听觉延迟
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
               try {
-                speechSynthesis.cancel();
                 const utter = new SpeechSynthesisUtterance(enText);
                 utter.lang = 'en-US';
                 utter.rate = 0.9;
@@ -3541,7 +3540,6 @@
               // TTS 先触发 — 在动画之前出声
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
               try {
-                speechSynthesis.cancel();
                 const utter = new SpeechSynthesisUtterance(enText);
                 utter.lang = 'en-US';
                 utter.rate = 0.9;

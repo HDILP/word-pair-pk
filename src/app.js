@@ -393,7 +393,6 @@
               // TTS 先触发 — 在动画之前出声，消除听觉延迟
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
               try {
-                speechSynthesis.cancel();
                 const utter = new SpeechSynthesisUtterance(enText);
                 utter.lang = 'en-US';
                 utter.rate = 0.9;
@@ -788,7 +787,6 @@
               // TTS 先触发 — 在动画之前出声
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
               try {
-                speechSynthesis.cancel();
                 const utter = new SpeechSynthesisUtterance(enText);
                 utter.lang = 'en-US';
                 utter.rate = 0.9;
