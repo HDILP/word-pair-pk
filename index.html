@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260621122529" />
+  <meta name="build-revision" content="20260621122933" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -2432,7 +2432,6 @@
               <div class="card-grid" @click="handleClick($event, 'p2')">
               <template v-for="(card, ci) in p2Cards" :key="card.id">
               <div
-                v-if="!card._done"
                 class="game-card"
                 :style="{animationDelay: (ci * 40) + 'ms'}"
                 :class="{
@@ -2471,7 +2470,6 @@
               <div class="card-grid" @click="handleClick($event, 'p1')">
               <template v-for="(card, ci) in p1Cards" :key="card.id">
               <div
-                v-if="!card._done"
                 class="game-card"
                 :style="{animationDelay: (ci * 40) + 'ms'}"
                 :class="{
@@ -2627,7 +2625,6 @@
             <div class="card-grid" @touchstart="handleReviewTouchStart($event)" @touchend="handleReviewTouchEnd($event)" @click="handleReviewClick($event)">
               <template v-for="(card, ci) in reviewCards" :key="card.id">
               <div
-                v-if="!card._done"
                 class="game-card"
                 :style="{animationDelay: (ci * 40) + 'ms'}"
                 :class="{
@@ -3097,12 +3094,6 @@
               card.matched = true;
               this.reviewMatchSet.add(firstCard.pairId);
 
-              // 动画结束后从 DOM 移除
-              setTimeout(() => {
-                firstCard._done = true;
-                card._done = true;
-              }, 320);
-
               // TTS
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
               try {
@@ -3496,12 +3487,6 @@
               firstCard.matched = true;
               card.matched = true;
               matchSet.add(firstCard.pairId);
-
-              // 动画 (280ms) 结束后从 DOM 移除
-              setTimeout(() => {
-                firstCard._done = true;
-                card._done = true;
-              }, 320);
 
               // 用 speechSynthesis 念英文
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
