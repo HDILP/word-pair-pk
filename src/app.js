@@ -356,6 +356,7 @@
           this.processReviewCardClick(cardId);
         },
         handleReviewTouchStart(event) {
+          if (event.cancelable) event.preventDefault();
           const touch = event.changedTouches[0];
           if (!touch) return;
           const el = document.elementFromPoint(touch.clientX, touch.clientY);
@@ -736,6 +737,8 @@
         // 多点触控：在 .game-board 级别处理，支持 P1+P2 同时点击
         handleBoardTouch(event) {
           if (this.countdownState !== 'playing' || this.gameResult) return;
+          // 阻止浏览器默认触控行为（长按菜单、双击缩放等）
+          if (event.cancelable) event.preventDefault();
           for (const touch of event.changedTouches) {
             const el = document.elementFromPoint(touch.clientX, touch.clientY);
             if (!el) continue;
