@@ -377,12 +377,7 @@
             const isMatch = firstCard.pairId === card.pairId && firstCard.type !== card.type;
 
             if (isMatch) {
-              firstCard.selected = false;
-              firstCard.matched = true;
-              card.matched = true;
-              this.reviewMatchSet.add(firstCard.pairId);
-
-              // TTS
+              // TTS 先触发 — 在动画之前出声，消除听觉延迟
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
               try {
                 const utter = new SpeechSynthesisUtterance(enText);
@@ -390,6 +385,11 @@
                 utter.rate = 0.9;
                 speechSynthesis.speak(utter);
               } catch(e) {}
+
+              firstCard.selected = false;
+              firstCard.matched = true;
+              card.matched = true;
+              this.reviewMatchSet.add(firstCard.pairId);
 
               this.reviewSelected = null;
 
@@ -770,13 +770,7 @@
             const isMatch = firstCard.pairId === card.pairId && firstCard.type !== card.type;
 
             if (isMatch) {
-              // 配对成功
-              firstCard.selected = false;
-              firstCard.matched = true;
-              card.matched = true;
-              matchSet.add(firstCard.pairId);
-
-              // 用 speechSynthesis 念英文
+              // TTS 先触发 — 在动画之前出声
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
               try {
                 const utter = new SpeechSynthesisUtterance(enText);
@@ -784,6 +778,12 @@
                 utter.rate = 0.9;
                 speechSynthesis.speak(utter);
               } catch(e) {}
+
+              // 配对成功
+              firstCard.selected = false;
+              firstCard.matched = true;
+              card.matched = true;
+              matchSet.add(firstCard.pairId);
 
               this[selectedRef] = null;
 
@@ -995,6 +995,12 @@
       mounted() {
         this.initBooks();
         this.loadLeaderboardFromStorage();
+        // 预热 TTS 引擎，减少首次匹配时的发音延迟
+        try {
+          const warm = new SpeechSynthesisUtterance('');
+          warm.volume = 0;
+          speechSynthesis.speak(warm);
+        } catch(e) {}
         // 加载单人模式个人最快记录
         try {
           const v = localStorage.getItem('wordpair_pb');
