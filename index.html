@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260621134251" />
+  <meta name="build-revision" content="20260621134412" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -720,7 +720,7 @@
     @keyframes readyBounce {
       0% { transform: scale(1.6); opacity: 0; }
       60% { transform: scale(1.0); opacity: 1; }
-      100% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 1; }
     }
     .countdown-text {
       font-size: 80px;
@@ -3458,7 +3458,7 @@
               this.countdownState = 'playing';
               this.startTimers();
             }, 450);
-          }, 800);
+          }, 1200);
         },
 
         startTimers() {
