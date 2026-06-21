@@ -698,23 +698,14 @@
 
         // ===== 倒计时 =====
         startCountdown() {
-          this.countdownState = 3;
-          const step = (val) => {
-            if (val > 1) {
-              this.countdownState = val;
-              setTimeout(() => step(val - 1), 900);
-            } else if (val === 1) {
-              this.countdownState = 1;
-              setTimeout(() => {
-                this.countdownState = 'go';
-                setTimeout(() => {
-                  this.countdownState = 'playing';
-                  this.startTimers();
-                }, 600);
-              }, 900);
-            }
-          };
-          step(3);
+          this.countdownState = 'ready';
+          setTimeout(() => {
+            this.countdownState = 'go';
+            setTimeout(() => {
+              this.countdownState = 'playing';
+              this.startTimers();
+            }, 450);
+          }, 500);
         },
 
         startTimers() {

@@ -685,22 +685,22 @@
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
     }
-    .countdown-number {
-      font-size: 140px;
+    .countdown-text--ready {
+      font-size: 72px;
       font-weight: 900;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation-name: countBounce;
+      animation-name: readyBounce;
       animation-duration: 500ms;
       animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
       animation-fill-mode: forwards;
     }
-    @keyframes countBounce {
-      0% { transform: scale(1.8); opacity: 0; }
-      50% { transform: scale(1.0); opacity: 1; }
-      100% { transform: scale(0.95); opacity: 0.6; }
+    @keyframes readyBounce {
+      0% { transform: scale(1.6); opacity: 0; }
+      60% { transform: scale(1.0); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.8; }
     }
     .countdown-text {
       font-size: 80px;
@@ -1501,8 +1501,8 @@
       .card-text {
         -webkit-line-clamp: 2;
       }
-      .countdown-number {
-        font-size: 100px;
+      .countdown-text--ready {
+        font-size: 56px;
       }
       .countdown-text {
         font-size: 60px;
@@ -1688,8 +1688,8 @@
       }
 
       /* 倒计时 */
-      .countdown-number {
-        font-size: 72px;
+      .countdown-text--ready {
+        font-size: 40px;
       }
       .countdown-text {
         font-size: 48px;

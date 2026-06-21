@@ -207,8 +207,8 @@
 
         <!-- 倒计时覆盖层 -->
         <div v-if="countdownState !== 'playing'" class="countdown-overlay">
-          <div v-if="countdownState === 3 || countdownState === 2 || countdownState === 1" class="countdown-number" :key="countdownState">
-            {{ countdownState }}
+          <div v-if="countdownState === 'ready'" class="countdown-text countdown-text--ready" :key="countdownState">
+            Ready?
           </div>
           <div v-else-if="countdownState === 'go'" class="countdown-text">
             GO !
