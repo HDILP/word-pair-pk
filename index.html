@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260620235754" />
+  <meta name="build-revision" content="20260621121453" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -237,7 +237,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 16px 24px;
+      padding: 12px 20px;
       overflow-y: auto;
       position: relative;
     }
@@ -748,22 +748,22 @@
     .game-side {
       display: flex;
       flex-direction: column;
-      padding: 8px 10px;
+      padding: 6px 8px;
       overflow: hidden;
       position: relative;
     }
     .game-side--p1 {
-      padding-right: 4px;
+      padding-right: 3px;
     }
     .game-side--p2 {
-      padding-left: 4px;
+      padding-left: 3px;
     }
 
     .game-side__header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 4px 6px 8px 6px;
+      padding: 2px 4px 6px 4px;
     }
 
     .game-side__player-label {
@@ -833,6 +833,7 @@
       grid-template-rows: repeat(4, 1fr);
       gap: 8px;
       width: 100%;
+      max-width: 480px;
       max-height: 100%;
       aspect-ratio: 1;
     }
@@ -1489,6 +1490,7 @@
       .card-grid {
         gap: 6px;
         width: 100%;
+        max-width: 480px;
         max-height: 100%;
         aspect-ratio: 1;
       }
@@ -1674,6 +1676,7 @@
       .card-grid {
         gap: 4px;
         width: 100%;
+        max-width: 380px;
         max-height: 100%;
         aspect-ratio: 1;
       }
@@ -1769,25 +1772,30 @@
       }
     }
 
-    /* 大屏: ≥ 1400px — 文字随卡片等比例放大 */
+    /* 大屏: ≥ 1400px — 轻微放大，但保持紧凑 */
     @media (min-width: 1400px) {
+      .card-grid {
+        max-width: 520px;
+        gap: 10px;
+      }
       .game-card {
-        font-size: clamp(20px, 2vw, 38px);
-        padding: 12px 16px;
-        border-radius: var(--radius-xl);
+        font-size: clamp(14px, 1.2vw, 22px);
+        padding: 8px 12px;
+        border-radius: var(--radius-md);
       }
       .card-text {
         -webkit-line-clamp: 3;
-        padding: 6px;
+        padding: 4px;
       }
       .game-card--en {
-        border-left-width: 5px;
+        border-left-width: 4px;
       }
       .game-card--zh {
-        border-left-width: 5px;
+        border-left-width: 4px;
       }
-      .card-grid {
-        gap: 10px;
+      .btn {
+        padding: 12px 28px;
+        font-size: 15px;
       }
     }
 
