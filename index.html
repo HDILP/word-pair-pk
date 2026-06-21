@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260621123356" />
+  <meta name="build-revision" content="20260621123818" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -2836,6 +2836,18 @@
       },
 
       methods: {
+        // ===== TTS 预热 =====
+        warmupTTS() {
+          try {
+            // 触发语音列表加载（部分浏览器需要用户手势后加载）
+            speechSynthesis.getVoices();
+            // 用真实词预热引擎，volume 0 静音不扰民
+            const w = new SpeechSynthesisUtterance('hello');
+            w.volume = 0;
+            w.rate = 1;
+            speechSynthesis.speak(w);
+          } catch(e) {}
+        },
         // ===== 视图导航 =====
         goHome() {
           this.currentView = 'home';
@@ -2923,6 +2935,7 @@
 
         // ===== 开始复习游戏 =====
         startReviewGame(mode) {
+          this.warmupTTS();
           this.reviewMode = mode;
           let selectedWords = [];
 
@@ -3092,6 +3105,7 @@
               // TTS 先触发 — 在动画之前出声，消除听觉延迟
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
               try {
+                speechSynthesis.cancel();
                 const utter = new SpeechSynthesisUtterance(enText);
                 utter.lang = 'en-US';
                 utter.rate = 0.9;
@@ -3306,6 +3320,7 @@
             this.startReviewGame('free');
             return;
           }
+          this.warmupTTS();
           const selectedWords = [];
           let bookName = '';
           for (const b of this.books) {
@@ -3485,6 +3500,7 @@
               // TTS 先触发 — 在动画之前出声
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
               try {
+                speechSynthesis.cancel();
                 const utter = new SpeechSynthesisUtterance(enText);
                 utter.lang = 'en-US';
                 utter.rate = 0.9;
@@ -3707,12 +3723,8 @@
       mounted() {
         this.initBooks();
         this.loadLeaderboardFromStorage();
-        // 预热 TTS 引擎，减少首次匹配时的发音延迟
-        try {
-          const warm = new SpeechSynthesisUtterance('');
-          warm.volume = 0;
-          speechSynthesis.speak(warm);
-        } catch(e) {}
+        // 预热 TTS 引擎 — 用真实词 + 触发 getVoices 加载语音列表
+        this.warmupTTS();
         // 加载单人模式个人最快记录
         try {
           const v = localStorage.getItem('wordpair_pb');
