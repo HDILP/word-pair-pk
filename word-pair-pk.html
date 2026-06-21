@@ -272,7 +272,7 @@
         </div>
 
         <!-- 游戏面板 - 双人模式 -->
-        <div v-if="gameMode === 'dual'" class="game-board" @touchstart="handleBoardTouch($event)" @touchend="handleBoardTouchEnd($event)">
+        <div v-if="gameMode === 'dual'" class="game-board" @touchstart.prevent="handleBoardTouch($event)" @touchend="handleBoardTouchEnd($event)">
           <!-- P1 -->
           <div class="game-side game-side--p1">
             <div class="game-side__header">
@@ -338,7 +338,7 @@
         </div>
 
         <!-- 游戏面板 - 单人模式 -->
-        <div v-else class="game-board" style="grid-template-columns:1fr;" @touchstart="handleBoardTouch($event)" @touchend="handleBoardTouchEnd($event)">
+        <div v-else class="game-board" style="grid-template-columns:1fr;" @touchstart.prevent="handleBoardTouch($event)" @touchend="handleBoardTouchEnd($event)">
           <div class="game-side game-side--p1">
             <div class="game-side__header">
               <span class="game-side__player-label p1">

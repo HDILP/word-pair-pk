@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260621145105" />
+  <meta name="build-revision" content="20260621145423" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -757,6 +757,7 @@
       padding: 4px 6px;
       overflow: hidden;
       position: relative;
+      touch-action: none;
     }
     .game-side--p1 {
       padding-right: 2px;
@@ -2432,7 +2433,7 @@
         </div>
 
         <!-- 游戏面板 - 双人模式 -->
-        <div v-if="gameMode === 'dual'" class="game-board" @touchstart="handleBoardTouch($event)" @touchend="handleBoardTouchEnd($event)">
+        <div v-if="gameMode === 'dual'" class="game-board" @touchstart.prevent="handleBoardTouch($event)" @touchend="handleBoardTouchEnd($event)">
           <!-- P1 -->
           <div class="game-side game-side--p1">
             <div class="game-side__header">
@@ -2498,7 +2499,7 @@
         </div>
 
         <!-- 游戏面板 - 单人模式 -->
-        <div v-else class="game-board" style="grid-template-columns:1fr;" @touchstart="handleBoardTouch($event)" @touchend="handleBoardTouchEnd($event)">
+        <div v-else class="game-board" style="grid-template-columns:1fr;" @touchstart.prevent="handleBoardTouch($event)" @touchend="handleBoardTouchEnd($event)">
           <div class="game-side game-side--p1">
             <div class="game-side__header">
               <span class="game-side__player-label p1">
@@ -3497,8 +3498,6 @@
         // 多点触控：在 .game-board 级别处理，支持 P1+P2 同时点击
         handleBoardTouch(event) {
           if (this.countdownState !== 'playing' || this.gameResult) return;
-          // 阻止浏览器默认触控行为（长按菜单、双击缩放等）
-          if (event.cancelable) event.preventDefault();
           for (const touch of event.changedTouches) {
             const el = document.elementFromPoint(touch.clientX, touch.clientY);
             if (!el) continue;

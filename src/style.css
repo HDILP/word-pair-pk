@@ -737,6 +737,7 @@
       padding: 4px 6px;
       overflow: hidden;
       position: relative;
+      touch-action: none;
     }
     .game-side--p1 {
       padding-right: 2px;
