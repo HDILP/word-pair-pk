@@ -1090,6 +1090,8 @@
           ]).then(() => {
             const loader = document.getElementById('pageLoader');
             if (loader) loader.classList.add('page-loader--done');
+            const app = document.getElementById('app');
+            if (app) app.classList.add('app--ready');
           });
         });
       },
