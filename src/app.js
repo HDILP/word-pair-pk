@@ -1006,6 +1006,33 @@
           history.pushState(null, '', location.href);
           this.navigateBack();
         },
+        // 星尘粒子 — tiny 银白颗粒从底部缓缓上升消散
+        _spawnStardust() {
+          const homeView = document.querySelector('.home-view');
+          if (!homeView || !homeView.classList.contains('home-ready')) return;
+          const count = 22;
+          const container = document.createElement('div');
+          container.className = 'home-stardust-container';
+          const frag = document.createDocumentFragment();
+          for (let i = 0; i < count; i++) {
+            const p = document.createElement('div');
+            p.className = 'home-stardust';
+            const size = 1.5 + Math.random() * 2.5;
+            const x = 10 + Math.random() * 80;
+            const drift = (Math.random() - 0.5) * 40;
+            const rise = 120 + Math.random() * 200;
+            const dur = (2 + Math.random() * 2).toFixed(1);
+            const delay = (Math.random() * 1.2).toFixed(2);
+            p.style.cssText =
+              `left:${x}%;--ty:-${rise}px;--tx:${drift}px;--dur:${dur}s;--size:${size}px;animation-delay:${delay}s;`;
+            frag.appendChild(p);
+          }
+          container.appendChild(frag);
+          homeView.appendChild(container);
+          setTimeout(() => {
+            if (container.parentNode) container.parentNode.removeChild(container);
+          }, 5000);
+        },
       },
 
       mounted() {
@@ -1054,33 +1081,6 @@
             });
           });
         });
-      },
-      // 星尘粒子 — tiny 银白颗粒从底部缓缓上升消散
-      _spawnStardust() {
-        const homeView = document.querySelector('.home-view');
-        if (!homeView || !homeView.classList.contains('home-ready')) return;
-        const count = 22;
-        const container = document.createElement('div');
-        container.className = 'home-stardust-container';
-        const frag = document.createDocumentFragment();
-        for (let i = 0; i < count; i++) {
-          const p = document.createElement('div');
-          p.className = 'home-stardust';
-          const size = 1.5 + Math.random() * 2.5;
-          const x = 10 + Math.random() * 80; // left offset %
-          const drift = (Math.random() - 0.5) * 40; // slight horizontal drift
-          const rise = 120 + Math.random() * 200;
-          const dur = (2 + Math.random() * 2).toFixed(1);
-          const delay = (Math.random() * 1.2).toFixed(2);
-          p.style.cssText =
-            `left:${x}%;--ty:-${rise}px;--tx:${drift}px;--dur:${dur}s;--size:${size}px;animation-delay:${delay}s;`;
-          frag.appendChild(p);
-        }
-        container.appendChild(frag);
-        homeView.appendChild(container);
-        setTimeout(() => {
-          if (container.parentNode) container.parentNode.removeChild(container);
-        }, 5000);
       },
       beforeUnmount() {
         clearInterval(this.p1Timer);
