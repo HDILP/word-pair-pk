@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260621121914" />
+  <meta name="build-revision" content="20260621122529" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -712,7 +712,10 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: countBounce 500ms var(--ease-bounce) forwards;
+      animation-name: countBounce;
+      animation-duration: 500ms;
+      animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+      animation-fill-mode: forwards;
     }
     @keyframes countBounce {
       0% { transform: scale(1.8); opacity: 0; }
@@ -726,7 +729,10 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: goBounce 600ms var(--ease-bounce) forwards;
+      animation-name: goBounce;
+      animation-duration: 600ms;
+      animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+      animation-fill-mode: forwards;
     }
     @keyframes goBounce {
       0% { transform: scale(0.5); opacity: 0; }
@@ -911,9 +917,10 @@
     /* matched = 绿光缩小消失 — GPU only */
     .game-card.matched {
       animation-name: matchFlash;
-      animation-duration: 350ms;
-      animation-timing-function: var(--ease-out);
+      animation-duration: 280ms;
+      animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
       animation-fill-mode: forwards;
+      animation-delay: 0ms !important;
       pointer-events: none;
     }
     .game-card.matched::after {
@@ -921,22 +928,25 @@
       box-shadow: 0 0 16px rgba(125, 211, 160, 0.25);
       border-color: var(--success);
       animation-name: matchGlow;
-      animation-duration: 350ms;
-      animation-timing-function: var(--ease-out);
+      animation-duration: 280ms;
+      animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
       animation-fill-mode: forwards;
+      animation-delay: 0ms !important;
     }
     .game-card.wrong {
       animation-name: wrongShake;
-      animation-duration: 350ms;
-      animation-timing-function: var(--ease-out);
+      animation-duration: 300ms;
+      animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+      animation-delay: 0ms !important;
     }
     .game-card.wrong::after {
       background: rgba(240, 98, 146, 0.15);
       border-color: var(--error);
       animation-name: wrongGlow;
-      animation-duration: 350ms;
-      animation-timing-function: var(--ease-out);
+      animation-duration: 300ms;
+      animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
       animation-fill-mode: forwards;
+      animation-delay: 0ms !important;
     }
 
     /* 卡片入场动画 — 纯 GPU */
@@ -948,14 +958,14 @@
     /* 消除动画 — 卡片本身只动 transform + opacity */
     @keyframes matchFlash {
       0%   { transform: scale(1);     opacity: 1; }
-      40%  { transform: scale(1.06);  opacity: 1; }
-      100% { transform: scale(0.92);  opacity: 0; }
+      35%  { transform: scale(1.08);  opacity: 1; }
+      100% { transform: scale(0.88);  opacity: 0; }
     }
     /* 消除绿光 — ::after 负责视觉反馈，keyframes 只动 opacity */
     @keyframes matchGlow {
       0%   { opacity: 0; }
-      25%  { opacity: 1; }
-      60%  { opacity: 0.5; }
+      20%  { opacity: 1; }
+      50%  { opacity: 0.4; }
       100% { opacity: 0; }
     }
 
@@ -1006,7 +1016,10 @@
 
     /* ===== 错位入场辅助 ===== */
     .stagger-enter {
-      animation: cardEnter 400ms var(--ease-out) backwards;
+      animation-name: cardEnter;
+      animation-duration: 400ms;
+      animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+      animation-fill-mode: backwards;
     }
 
     /* 结果弹窗 */
@@ -1031,7 +1044,9 @@
       max-width: 480px;
       text-align: center;
       box-shadow: var(--shadow-lg);
-      animation: modalIn 350ms var(--ease-out);
+      animation-name: modalIn;
+      animation-duration: 350ms;
+      animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
     }
     @keyframes modalIn {
       0% { transform: scale(0.85); opacity: 0; }
@@ -1135,7 +1150,10 @@
       background: var(--bg);
       border-radius: var(--radius-md);
       min-height: 52px;
-      animation: cardEnter 400ms var(--ease-out) backwards;
+      animation-name: cardEnter;
+      animation-duration: 400ms;
+      animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+      animation-fill-mode: backwards;
     }
     .leaderboard-view__item.rank-1 {
       background: linear-gradient(135deg, #fff7e0, #ffefc0);
@@ -1377,7 +1395,9 @@
       display: flex;
       flex-direction: column;
       box-shadow: var(--shadow-lg);
-      animation: modalIn 350ms var(--ease-out);
+      animation-name: modalIn;
+      animation-duration: 350ms;
+      animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
     }
     .review-popup__title {
       font-size: 22px;
@@ -3077,6 +3097,12 @@
               card.matched = true;
               this.reviewMatchSet.add(firstCard.pairId);
 
+              // 动画结束后从 DOM 移除
+              setTimeout(() => {
+                firstCard._done = true;
+                card._done = true;
+              }, 320);
+
               // TTS
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
               try {
@@ -3470,6 +3496,12 @@
               firstCard.matched = true;
               card.matched = true;
               matchSet.add(firstCard.pairId);
+
+              // 动画 (280ms) 结束后从 DOM 移除
+              setTimeout(() => {
+                firstCard._done = true;
+                card._done = true;
+              }, 320);
 
               // 用 speechSynthesis 念英文
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;

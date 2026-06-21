@@ -382,6 +382,12 @@
               card.matched = true;
               this.reviewMatchSet.add(firstCard.pairId);
 
+              // 动画结束后从 DOM 移除
+              setTimeout(() => {
+                firstCard._done = true;
+                card._done = true;
+              }, 320);
+
               // TTS
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
               try {
@@ -775,6 +781,12 @@
               firstCard.matched = true;
               card.matched = true;
               matchSet.add(firstCard.pairId);
+
+              // 动画 (280ms) 结束后从 DOM 移除
+              setTimeout(() => {
+                firstCard._done = true;
+                card._done = true;
+              }, 320);
 
               // 用 speechSynthesis 念英文
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
