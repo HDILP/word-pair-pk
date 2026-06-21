@@ -127,11 +127,11 @@
         // ===== TTS 预热 =====
         warmupTTS() {
           try {
-            // 触发语音列表加载（部分浏览器需要用户手势后加载）
+            // 触发语音列表加载
             speechSynthesis.getVoices();
-            // 用真实词预热引擎，volume 0 静音不扰民
-            const w = new SpeechSynthesisUtterance('hello');
-            w.volume = 0;
+            // 极低音量真实词预热引擎（volume 0.01 几乎无声但引擎会加载）
+            const w = new SpeechSynthesisUtterance('the');
+            w.volume = 0.01;
             w.rate = 1;
             speechSynthesis.speak(w);
           } catch(e) {}
