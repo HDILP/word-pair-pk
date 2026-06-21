@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260621133925" />
+  <meta name="build-revision" content="20260621134251" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -713,7 +713,7 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       animation-name: readyBounce;
-      animation-duration: 500ms;
+      animation-duration: 700ms;
       animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
       animation-fill-mode: forwards;
     }
@@ -2360,7 +2360,7 @@
 
         <!-- 倒计时覆盖层 -->
         <div v-if="countdownState !== 'playing'" class="countdown-overlay">
-          <div v-if="countdownState === 'ready'" class="countdown-text countdown-text--ready" :key="countdownState">
+          <div v-if="countdownState === 'ready'" class="countdown-text--ready" :key="countdownState">
             Ready?
           </div>
           <div v-else-if="countdownState === 'go'" class="countdown-text">
@@ -3458,7 +3458,7 @@
               this.countdownState = 'playing';
               this.startTimers();
             }, 450);
-          }, 500);
+          }, 800);
         },
 
         startTimers() {

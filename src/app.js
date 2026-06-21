@@ -705,7 +705,7 @@
               this.countdownState = 'playing';
               this.startTimers();
             }, 450);
-          }, 500);
+          }, 800);
         },
 
         startTimers() {
