@@ -128,11 +128,15 @@
         warmupTTS() {
           try {
             // 触发语音列表加载
-            speechSynthesis.getVoices();
-            // 极低音量真实词预热引擎（volume 0.01 几乎无声但引擎会加载）
-            const w = new SpeechSynthesisUtterance('the');
+            const voices = speechSynthesis.getVoices();
+            // 非零音量 + 明确语言 + 真实语速预热英文语音数据
+            const w = new SpeechSynthesisUtterance('ready');
             w.volume = 0.01;
-            w.rate = 1;
+            w.lang = 'en-US';
+            w.rate = 0.9;
+            // 选择一个英文语音（如果有的话）
+            const enVoice = voices.find(v => v.lang && v.lang.startsWith('en'));
+            if (enVoice) w.voice = enVoice;
             speechSynthesis.speak(w);
           } catch(e) {}
         },
