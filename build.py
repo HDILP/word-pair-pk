@@ -93,6 +93,20 @@ with open(TEMPLATE, 'r', encoding='utf-8') as f:
 
 src_dir = os.path.join(os.path.dirname(TEMPLATE), 'src')
 
+# 内联 Vue 3（提前下载好 src/vue.global.prod.js）
+vue_path = os.path.join(src_dir, 'vue.global.prod.js')
+if os.path.exists(vue_path):
+    with open(vue_path, 'r', encoding='utf-8') as f:
+        vue_content = f.read()
+    html = html.replace(
+        '<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>',
+        f'<script>\n{vue_content}\n</script>',
+        1
+    )
+    print('✅ Vue 3 已内联')
+else:
+    print('⚠️  未找到 src/vue.global.prod.js，使用 CDN 版本')
+
 # 内联 CSS
 css_path = os.path.join(src_dir, 'style.css')
 with open(css_path, 'r', encoding='utf-8') as f:
