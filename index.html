@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260621145752" />
+  <meta name="build-revision" content="20260627230135" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -221,6 +221,31 @@
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
       position: relative;
       z-index: 10;
+    }
+
+    .header__back {
+      position: absolute;
+      left: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #fff;
+      padding: 8px;
+      cursor: pointer;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      opacity: 0.85;
+    }
+    .header__back:hover {
+      background: rgba(255,255,255,0.15);
+      opacity: 1;
+    }
+    .header__back:active {
+      opacity: 0.6;
     }
 
     .header__title {
@@ -1794,29 +1819,29 @@
       }
     }
 
-    /* 大屏: ≥ 1400px — 卡片网格整体放大 */
+    /* 大屏: ≥ 1400px — 保持跟默认一致，不再放大（教室希沃4K一体机需要紧凑） */
     @media (min-width: 1400px) {
       .card-grid {
-        max-width: 560px;
-        gap: 10px;
+        max-width: 380px;
+        gap: 6px;
       }
       .game-card {
-        font-size: clamp(12px, 1vw, 18px);
-        padding: 10px 14px;
-        border-radius: var(--radius-lg);
+        font-size: clamp(11px, 1.6vw, 15px);
+        padding: 4px;
+        border-radius: var(--radius-md);
       }
       .card-text {
-        -webkit-line-clamp: 3;
-        padding: 4px;
+        -webkit-line-clamp: 2;
+        padding: 2px;
       }
       .game-card--en {
-        border-left-width: 4px;
+        border-left-width: 3px;
       }
       .game-card--zh {
-        border-left-width: 4px;
+        border-left-width: 3px;
       }
       .btn {
-        padding: 12px 28px;
+        padding: 10px 24px;
         font-size: 14px;
       }
       .home-view__title {
@@ -1825,6 +1850,9 @@
       .home-view__actions .btn {
         padding: 14px 32px;
         font-size: 16px;
+      }
+      .game-side {
+        padding: 4px 6px;
       }
     }
 
@@ -2240,6 +2268,9 @@
 
     <!-- ===== 顶部标题栏 ===== -->
     <header class="header">
+      <button v-if="currentView !== 'home'" class="header__back" @click="navigateBack">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
       <span class="header__title">词对 PK</span>
     </header>
 
@@ -2895,7 +2926,7 @@
             const w = new SpeechSynthesisUtterance('ready');
             w.volume = 0.01;
             w.lang = 'en-US';
-            w.rate = 0.9;
+            w.rate = 1.5;
             // 选择一个英文语音（如果有的话）
             const enVoice = voices.find(v => v.lang && v.lang.startsWith('en'));
             if (enVoice) w.voice = enVoice;
@@ -3169,9 +3200,10 @@
               // TTS 先触发 — 在动画之前出声，消除听觉延迟
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
               try {
+                speechSynthesis.cancel();
                 const utter = new SpeechSynthesisUtterance(enText);
                 utter.lang = 'en-US';
-                utter.rate = 0.9;
+                utter.rate = 1.5;
                 speechSynthesis.speak(utter);
               } catch(e) {}
 
@@ -3554,9 +3586,10 @@
               // TTS 先触发 — 在动画之前出声
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
               try {
+                speechSynthesis.cancel();
                 const utter = new SpeechSynthesisUtterance(enText);
                 utter.lang = 'en-US';
-                utter.rate = 0.9;
+                utter.rate = 1.5;
                 speechSynthesis.speak(utter);
               } catch(e) {}
 

@@ -203,6 +203,31 @@
       z-index: 10;
     }
 
+    .header__back {
+      position: absolute;
+      left: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #fff;
+      padding: 8px;
+      cursor: pointer;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      opacity: 0.85;
+    }
+    .header__back:hover {
+      background: rgba(255,255,255,0.15);
+      opacity: 1;
+    }
+    .header__back:active {
+      opacity: 0.6;
+    }
+
     .header__title {
       font-size: 18px;
       font-weight: 700;
@@ -1774,29 +1799,29 @@
       }
     }
 
-    /* 大屏: ≥ 1400px — 卡片网格整体放大 */
+    /* 大屏: ≥ 1400px — 保持跟默认一致，不再放大（教室希沃4K一体机需要紧凑） */
     @media (min-width: 1400px) {
       .card-grid {
-        max-width: 560px;
-        gap: 10px;
+        max-width: 380px;
+        gap: 6px;
       }
       .game-card {
-        font-size: clamp(12px, 1vw, 18px);
-        padding: 10px 14px;
-        border-radius: var(--radius-lg);
+        font-size: clamp(11px, 1.6vw, 15px);
+        padding: 4px;
+        border-radius: var(--radius-md);
       }
       .card-text {
-        -webkit-line-clamp: 3;
-        padding: 4px;
+        -webkit-line-clamp: 2;
+        padding: 2px;
       }
       .game-card--en {
-        border-left-width: 4px;
+        border-left-width: 3px;
       }
       .game-card--zh {
-        border-left-width: 4px;
+        border-left-width: 3px;
       }
       .btn {
-        padding: 12px 28px;
+        padding: 10px 24px;
         font-size: 14px;
       }
       .home-view__title {
@@ -1805,6 +1830,9 @@
       .home-view__actions .btn {
         padding: 14px 32px;
         font-size: 16px;
+      }
+      .game-side {
+        padding: 4px 6px;
       }
     }
 

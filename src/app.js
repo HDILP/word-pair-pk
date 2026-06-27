@@ -133,7 +133,7 @@
             const w = new SpeechSynthesisUtterance('ready');
             w.volume = 0.01;
             w.lang = 'en-US';
-            w.rate = 0.9;
+            w.rate = 1.5;
             // 选择一个英文语音（如果有的话）
             const enVoice = voices.find(v => v.lang && v.lang.startsWith('en'));
             if (enVoice) w.voice = enVoice;
@@ -407,9 +407,10 @@
               // TTS 先触发 — 在动画之前出声，消除听觉延迟
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
               try {
+                speechSynthesis.cancel();
                 const utter = new SpeechSynthesisUtterance(enText);
                 utter.lang = 'en-US';
-                utter.rate = 0.9;
+                utter.rate = 1.5;
                 speechSynthesis.speak(utter);
               } catch(e) {}
 
@@ -792,9 +793,10 @@
               // TTS 先触发 — 在动画之前出声
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
               try {
+                speechSynthesis.cancel();
                 const utter = new SpeechSynthesisUtterance(enText);
                 utter.lang = 'en-US';
-                utter.rate = 0.9;
+                utter.rate = 1.5;
                 speechSynthesis.speak(utter);
               } catch(e) {}
 
