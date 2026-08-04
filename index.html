@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260627230450" />
+  <meta name="build-revision" content="20260804210003" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -2808,6 +2808,9 @@
       <script>
     const { createApp, ref, computed, watch, onMounted, onUnmounted, nextTick } = Vue;
 
+    // 模块级 TTS 预热标志：整个页面生命周期只 speak 一次 'ready'
+    let ttsWarmedUp = false;
+
     createApp({
       data() {
         return {
@@ -2932,8 +2935,70 @@
       },
 
       methods: {
+        // ===== TTS =====
+        // 统一单词发音：空闲直说 / 忙时 150ms 延时打断 / token 防排队 / 看门狗自愈
+        speakWord(text) {
+          if (!text) return;
+          try {
+            // token：每次调用递增，延时/看门狗回调里对比，过期请求一律作废
+            const token = (this._speakToken = (this._speakToken || 0) + 1);
+            const doSpeak = () => {
+              if (token !== this._speakToken) return; // 已被更新的词顶掉
+              const utter = new SpeechSynthesisUtterance(text);
+              utter.lang = 'en-US';
+              utter.rate = 1.5;
+              let fired = false;
+              const myGen = (this._ttsWatchdogGen = (this._ttsWatchdogGen || 0) + 1);
+              // 事件后清看门狗；仅当仍是本轮 generation 时才清，避免被 cancel 的旧 utterance 迟到事件误清新词看门狗
+              const clearWatchdog = () => {
+                if (fired) return;
+                fired = true;
+                if (myGen === this._ttsWatchdogGen && this._ttsWatchdog) {
+                  clearTimeout(this._ttsWatchdog);
+                  this._ttsWatchdog = null;
+                }
+              };
+              utter.addEventListener('start', clearWatchdog);
+              utter.addEventListener('end', clearWatchdog);
+              utter.addEventListener('error', clearWatchdog);
+              // 看门狗：2.5s 无任何事件 → 引擎疑似死锁 → cancel+resume 同 token 重试一次
+              this._ttsWatchdog = setTimeout(() => {
+                if (token !== this._speakToken) return; // 已过期
+                if (fired) return; // 事件其实来过
+                if (this._ttsStuckToken === token) {
+                  // 第二次也卡死，不再折腾（避免无限重试）
+                  this._ttsStuckToken = null;
+                  this._ttsWatchdog = null;
+                  console.warn('[TTS] watchdog gave up:', text);
+                  return;
+                }
+                this._ttsStuckToken = token;
+                this._ttsWatchdog = null;
+                this._ttsWatchdogGen = (this._ttsWatchdogGen || 0) + 1; // 作废旧 generation，防迟到事件误清新看门狗
+                try { speechSynthesis.cancel(); } catch(e) {}
+                try { speechSynthesis.resume(); } catch(e) {}
+                doSpeak(); // 同一个 token 重试
+              }, 2500);
+              try {
+                speechSynthesis.speak(utter);
+              } catch(e) {
+                clearWatchdog();
+              }
+            };
+            // 空闲直说：speaking/pending 均 false → 不 cancel 直接 speak
+            if (speechSynthesis.speaking === false && speechSynthesis.pending === false) {
+              doSpeak();
+            } else {
+              // 忙时打断：cancel + 150ms 延时（给引擎恢复时间，Chromium 吞音/死锁规避）
+              try { speechSynthesis.cancel(); } catch(e) {}
+              setTimeout(doSpeak, 150);
+            }
+          } catch(e) {}
+        },
         // ===== TTS 预热 =====
         warmupTTS() {
+          if (ttsWarmedUp) return;
+          ttsWarmedUp = true;
           try {
             // 触发语音列表加载
             const voices = speechSynthesis.getVoices();
@@ -3035,7 +3100,6 @@
 
         // ===== 开始复习游戏 =====
         startReviewGame(mode) {
-          this.warmupTTS();
           this.reviewMode = mode;
           let selectedWords = [];
 
@@ -3214,13 +3278,7 @@
             if (isMatch) {
               // TTS 先触发 — 在动画之前出声，消除听觉延迟
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
-              try {
-                speechSynthesis.cancel();
-                const utter = new SpeechSynthesisUtterance(enText);
-                utter.lang = 'en-US';
-                utter.rate = 1.5;
-                speechSynthesis.speak(utter);
-              } catch(e) {}
+              this.speakWord(enText);
 
               firstCard.selected = false;
               firstCard.matched = true;
@@ -3430,7 +3488,6 @@
             this.startReviewGame('free');
             return;
           }
-          this.warmupTTS();
           const selectedWords = [];
           let bookName = '';
           for (const b of this.books) {
@@ -3600,13 +3657,7 @@
             if (isMatch) {
               // TTS 先触发 — 在动画之前出声
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
-              try {
-                speechSynthesis.cancel();
-                const utter = new SpeechSynthesisUtterance(enText);
-                utter.lang = 'en-US';
-                utter.rate = 1.5;
-                speechSynthesis.speak(utter);
-              } catch(e) {}
+              this.speakWord(enText);
 
               // 配对成功
               firstCard.selected = false;
@@ -3851,10 +3902,8 @@
       mounted() {
         this.initBooks();
         this.loadLeaderboardFromStorage();
-        // 全局预热 TTS — 首次用户交互时加载语音引擎+英文语音数据
+        // 全局预热 TTS — 首次用户交互时加载语音引擎+英文语音数据（整个生命周期只 speak 一次）
         document.addEventListener('pointerdown', () => this.warmupTTS(), { once: true });
-        // mounted 时也试试（兼容 autoplay 宽松的浏览器）
-        this.warmupTTS();
         // 加载单人模式个人最快记录
         try {
           const v = localStorage.getItem('wordpair_pb');
