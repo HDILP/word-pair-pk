@@ -180,14 +180,26 @@
           }
           return false;
         },
-        // 颜色判定：Off 模式（复习）恒黄 > 触摸/笔恒黄 > 左键黄 / 右键蓝 / 其他红
-        // 返回 key（yellow/blue/red），对应 fx-hit--* 类
+        // 颜色判定：Off 模式（复习）恒黄 > 右键蓝/其他键红（保留按键规格）> 左键/触摸/笔按连击变色
+        // 连击变色：0-2 黄 / 3-5 蓝 / 6+ 红（Phigros 连击升温感）
         fxColorFromEvent(event) {
           if (this.currentView === 'reviewGame') return 'yellow';
-          if (event.pointerType === 'touch' || event.pointerType === 'pen') return 'yellow';
-          if (event.button === 0) return 'yellow';
           if (event.button === 2) return 'blue';
-          return 'red';
+          if (event.button !== 0) return 'red';
+          const combo = this.comboAtPoint(event.clientX, event.clientY);
+          if (combo >= 6) return 'red';
+          if (combo >= 3) return 'blue';
+          return 'yellow';
+        },
+        // 点击位置所属玩家的当前连击数（双人分边，单人取 singleCombo）
+        comboAtPoint(x, y) {
+          if (this.currentView === 'reviewGame') return this.reviewCombo || 0;
+          const el = document.elementFromPoint(x, y);
+          if (!el) return 0;
+          const sideEl = el.closest('.game-side');
+          const side = sideEl && sideEl.classList.contains('game-side--p2') ? 'p2' : 'p1';
+          if (side === 'p2') return this.p2Combo || 0;
+          return this.gameMode === 'single' ? (this.singleCombo || 0) : (this.p1Combo || 0);
         },
         // 音效：drag(黄) / tap(蓝) / flick(红)；独立 Audio 实例可重叠；失败静音降级
         playSfx(key, volume) {
@@ -235,15 +247,15 @@
             wrap.className = 'fx-arc-wrap ' + cls;
             const svg = document.createElementNS(ns, 'svg');
             svg.setAttribute('class', 'fx-arc');
-            svg.setAttribute('viewBox', '0 0 144 144');
-            svg.setAttribute('width', '144');
-            svg.setAttribute('height', '144');
+            svg.setAttribute('viewBox', '0 0 105 105');
+            svg.setAttribute('width', '105');
+            svg.setAttribute('height', '105');
             const c = document.createElementNS(ns, 'circle');
-            c.setAttribute('cx', '72');
-            c.setAttribute('cy', '72');
-            c.setAttribute('r', '66');
+            c.setAttribute('cx', '52.5');
+            c.setAttribute('cy', '52.5');
+            c.setAttribute('r', '48');
             c.setAttribute('fill', 'none');
-            c.setAttribute('stroke-dasharray', '103.7 310.9');
+            c.setAttribute('stroke-dasharray', '75.4 226.2');
             svg.appendChild(c);
             wrap.appendChild(svg);
             return wrap;
@@ -260,10 +272,10 @@
             const p = document.createElement('div');
             p.className = 'fx-particle';
             const angle = Math.random() * Math.PI * 2;
-            const dist = 55 + Math.random() * 65;
+            const dist = 40 + Math.random() * 47;
             p.style.setProperty('--px', (Math.cos(angle) * dist).toFixed(1) + 'px');
             p.style.setProperty('--py', (Math.sin(angle) * dist).toFixed(1) + 'px');
-            p.style.setProperty('--p-size', (4 + Math.random() * 8).toFixed(1) + 'px');
+            p.style.setProperty('--p-size', (3 + Math.random() * 6).toFixed(1) + 'px');
             p.style.setProperty('--p-o', (0.35 + Math.random() * 0.65).toFixed(2));
             hit.appendChild(p);
           }
