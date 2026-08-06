@@ -130,6 +130,20 @@
             <span class="home-char" style="transition-delay:980ms">K</span>
           </div>
           <div class="home-view__subtitle home-enter-subtitle" style="transition-delay:1.2s">双人单词对战 · 中英配对 · 谁更快？</div>
+
+          <!-- 每日挑战入口卡（WAVE1） -->
+          <div class="daily-card" style="transition-delay:1.35s" @click="startDailyChallenge">
+            <div class="daily-card__icon">⚡</div>
+            <div class="daily-card__info">
+              <div class="daily-card__title">今日挑战</div>
+              <div class="daily-card__status">
+                <span v-if="dailyChallengeDone" class="daily-card__status--done">✓ 已完成 · 最快 {{ formatTime(dailyChallengeBest) }} · 连续 {{ dailyStreak }} 天</span>
+                <span v-else>未完成 · 连续 {{ dailyStreak }} 天</span>
+              </div>
+            </div>
+            <svg class="daily-card__arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+
           <div class="home-view__actions">
             <button class="btn btn--primary home-enter-btn" style="transition-delay:1.5s" @click="goSelect('dual')">开始 PK</button>
             <button class="btn btn--accent home-enter-btn" style="transition-delay:1.64s" @click="goSelect('single')">单人挑战</button>
@@ -213,6 +227,9 @@
           <div v-if="countdownState === 'ready'" class="countdown-text--ready" :key="countdownState">
             Ready?
           </div>
+          <div v-else-if="countdownState === '3'" class="countdown-text--num" :key="countdownState">3</div>
+          <div v-else-if="countdownState === '2'" class="countdown-text--num" :key="countdownState">2</div>
+          <div v-else-if="countdownState === '1'" class="countdown-text--num" :key="countdownState">1</div>
           <div v-else-if="countdownState === 'go'" class="countdown-text">
             GO !
           </div>
@@ -274,13 +291,46 @@
           </div>
         </div>
 
+        <!-- 随机事件横幅（WAVE1）：开局显示 2s -->
+        <div v-if="eventBannerVisible && currentEvent === 'fog'" class="event-banner event-banner--fog">🌫 迷雾开局</div>
+        <div v-else-if="eventBannerVisible && currentEvent === 'reshuffle'" class="event-banner event-banner--reshuffle">🃏 中途洗牌</div>
+        <div v-else-if="eventBannerVisible && currentEvent === 'mirror'" class="event-banner event-banner--mirror">🪞 全牌翻转</div>
+
+        <!-- 弱点雷达（WAVE1）：双人结算弹层，关闭后走原 saveResult 流程 -->
+        <div v-if="gameResultPopup" class="result-overlay" @click.self="closeRadarPopup">
+          <div class="review-popup radar-popup">
+            <div class="review-popup__title">🎯 弱点雷达</div>
+            <div class="review-popup__subtitle">
+              {{ gameResultPopup.winner === 'p1' ? 'P1' : 'P2' }} 获胜 · 用时 {{ formatTime(gameResultPopup.time) }}
+            </div>
+            <div v-if="gameResultPopup.top3.length === 0" class="review-popup__empty">
+              零失误，完美局！
+            </div>
+            <div v-else class="review-popup__list">
+              <div v-for="(w, i) in gameResultPopup.top3" :key="i" class="review-popup__word">
+                <span class="review-popup__word-en">{{ w.en }}</span>
+                <span class="review-popup__word-zh">{{ w.zh }}</span>
+                <span class="review-popup__word-errors">错 {{ w.count }} 次</span>
+              </div>
+            </div>
+            <div v-if="gameResultPopup.top3.length > 0" class="radar-popup__note">已加入今日复习</div>
+            <div class="review-popup__actions">
+              <button class="btn btn--primary" @click="closeRadarPopup">确定</button>
+            </div>
+          </div>
+        </div>
+
         <!-- 游戏面板 - 双人模式 -->
-        <div v-if="gameMode === 'dual'" class="game-board" @touchstart.prevent="handleBoardTouch($event)" @touchend="handleBoardTouchEnd($event)">
+        <div v-if="gameMode === 'dual'" class="game-board" :class="currentEvent ? 'fx-event--' + currentEvent : ''" @touchstart.prevent="handleBoardTouch($event)" @touchend="handleBoardTouchEnd($event)">
           <!-- P1 -->
           <div class="game-side game-side--p1">
             <div class="game-side__header">
               <span class="game-side__player-label p1">P1</span>
               <span class="game-side__progress-text">{{ p1MatchedCount }}/8</span>
+            </div>
+            <div class="combo-banner" :class="{ 'combo-banner--show': p1Combo >= 2, 'combo-banner--break': comboBreakP1 }">
+              <span v-if="p1Combo >= 2" :key="'c' + p1Combo" class="combo-banner__num">{{ p1Combo }} Combo</span>
+              <span v-else-if="comboBreakP1" :key="'b' + p1Combo" class="combo-banner__break">Combo 断</span>
             </div>
             <div class="game-side__progress-bar">
               <div class="game-side__progress-fill p1" :style="{width: (p1MatchedCount/8*100)+'%'}"></div>
@@ -315,6 +365,10 @@
               <span class="game-side__player-label p2">P2</span>
               <span class="game-side__progress-text">{{ p2MatchedCount }}/8</span>
             </div>
+            <div class="combo-banner" :class="{ 'combo-banner--show': p2Combo >= 2, 'combo-banner--break': comboBreakP2 }">
+              <span v-if="p2Combo >= 2" :key="'c' + p2Combo" class="combo-banner__num">{{ p2Combo }} Combo</span>
+              <span v-else-if="comboBreakP2" :key="'b' + p2Combo" class="combo-banner__break">Combo 断</span>
+            </div>
             <div class="game-side__progress-bar">
               <div class="game-side__progress-fill p2" :style="{width: (p2MatchedCount/8*100)+'%'}"></div>
             </div>
@@ -341,7 +395,7 @@
         </div>
 
         <!-- 游戏面板 - 单人模式 -->
-        <div v-else class="game-board" style="grid-template-columns:1fr;" @touchstart.prevent="handleBoardTouch($event)" @touchend="handleBoardTouchEnd($event)">
+        <div v-else class="game-board" :class="currentEvent ? 'fx-event--' + currentEvent : ''" style="grid-template-columns:1fr;" @touchstart.prevent="handleBoardTouch($event)" @touchend="handleBoardTouchEnd($event)">
           <div class="game-side game-side--p1">
             <div class="game-side__header">
               <span class="game-side__player-label p1">
@@ -352,6 +406,10 @@
                 单人模式
               </span>
               <span class="game-side__progress-text">{{ p1MatchedCount }}/8</span>
+            </div>
+            <div class="combo-banner" :class="{ 'combo-banner--show': singleCombo >= 2, 'combo-banner--break': comboBreakP1 }">
+              <span v-if="singleCombo >= 2" :key="'c' + singleCombo" class="combo-banner__num">{{ singleCombo }} Combo</span>
+              <span v-else-if="comboBreakP1" :key="'b' + singleCombo" class="combo-banner__break">Combo 断</span>
             </div>
             <div class="game-side__progress-bar">
               <div class="game-side__progress-fill p1" :style="{width: (p1MatchedCount/8*100)+'%'}"></div>
@@ -508,6 +566,10 @@
           <div class="game-side__header">
             <span class="game-side__label">{{ reviewModeLabel }}</span>
             <span class="game-side__progress-text">{{ reviewMatchedCount }}/{{ reviewCardPairCount }}</span>
+          </div>
+          <div class="combo-banner" :class="{ 'combo-banner--show': reviewCombo >= 2, 'combo-banner--break': comboBreakReview }">
+            <span v-if="reviewCombo >= 2" :key="'c' + reviewCombo" class="combo-banner__num">{{ reviewCombo }} Combo</span>
+            <span v-else-if="comboBreakReview" :key="'b' + reviewCombo" class="combo-banner__break">Combo 断</span>
           </div>
           <div class="game-side__progress-bar">
             <div class="game-side__progress-fill" :style="{width: (reviewMatchedCount/reviewCardPairCount*100)+'%'}"></div>

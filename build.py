@@ -121,6 +121,23 @@ html = html.replace(
 js_path = os.path.join(src_dir, 'app.js')
 with open(js_path, 'r', encoding='utf-8') as f:
     js_content = f.read()
+
+# WAVE1：内联 Phigros 打击音效（wav → base64 注入，源文件在仓库外；不存在则保留占位符 → 静音降级）
+import base64 as _b64
+_SFX_SOURCES = {
+    '@@DRAG_B64@@': r'D:\Downloads\phigros_drag.wav',
+    '@@TAP_B64@@': r'D:\Downloads\phigros_tap.wav',
+    '@@FLICK_B64@@': r'D:\Downloads\phigros_flick.wav',
+}
+for _ph, _wav in _SFX_SOURCES.items():
+    if _ph in js_content:
+        if os.path.exists(_wav):
+            with open(_wav, 'rb') as _f:
+                js_content = js_content.replace(_ph, _b64.b64encode(_f.read()).decode('ascii'), 1)
+            print(f'✅ 音效已内联 {os.path.basename(_wav)}')
+        else:
+            print(f'⚠️  未找到 {_wav}，保留占位符（播放静音降级）')
+
 html = html.replace(
     '<script src="src/app.js"></script>',
     f'  <script>\n{js_content}\n  </script>',
@@ -146,27 +163,10 @@ html = html.replace('<!-- BUILD_VER -->', ver, 1)
 with open(OUTPUT, 'w', encoding='utf-8') as f:
     f.write(html)
 
-# ── 6. 写入 version.json + version.js ──────────────────────
+# ── 6. 写入 version.json（version.js 已废弃：不再加载远程脚本，本地版直接 fetch version.json 检测更新）──
 VERJSON = 'version.json'
 with open(VERJSON, 'w', encoding='utf-8') as f:
     f.write(f'{{"revision":"{ver}"}}\n')
-VERJS = 'version.js'
-with open(VERJS, 'w', encoding='utf-8') as f:
-    f.write(
-        f'window.__remoteRevision="{ver}";'
-        f'window.__downloadLatest=function(){{'
-        f'fetch("https://word-pair-pk.hdilp.top/?t="+Date.now(),{{cache:"no-store"}})'
-        f'.then(function(r){{return r.blob()}})'
-        f'.then(function(blob){{'
-        f'var u=URL.createObjectURL(blob);'
-        f'var a=document.createElement("a");'
-        f'a.href=u;a.download="词对 PK.html";'
-        f'document.body.appendChild(a);a.click();'
-        f'document.body.removeChild(a);'
-        f'setTimeout(function(){{URL.revokeObjectURL(u)}},5e3)}})'
-        f'.catch(function(){{alert("下载失败，请手动访问 https://word-pair-pk.hdilp.top")}})'
-        f'}};\n'
-    )
 
 size_kb = os.path.getsize(OUTPUT) / 1024
 print(f'✅ 已生成 {OUTPUT}  ({size_kb:.0f} KB)')

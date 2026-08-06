@@ -3,6 +3,25 @@
     // 模块级 TTS 预热标志：整个页面生命周期只 speak 一次 'ready'
     let ttsWarmedUp = false;
 
+    // ===== Phigros 打击特效（WAVE1）=====
+    // 三个真实 wav 转 base64 内联（构建时由脚本替换占位符），零网络请求
+    const PHIGROS_SFX = {
+      drag: 'data:audio/wav;base64,@@DRAG_B64@@',
+      tap: 'data:audio/wav;base64,@@TAP_B64@@',
+      flick: 'data:audio/wav;base64,@@FLICK_B64@@',
+    };
+    // 三色常量（无白色，全局默认黄）
+    const FX_COLORS = { yellow: '#FFD84D', blue: '#4D9DFF', red: '#FF5A5A' };
+    // 特效实例队列（并发上限 6，超出丢最旧）
+    const fxQueue = [];
+    // 全局 reduced-motion 偏好（模块级惰性求值）
+    let fxReducedMotion = false;
+    try {
+      fxReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    } catch(e) {}
+    // EaseOutCubic 缓动曲线（规格硬参数）
+    const FX_EASE = 'cubic-bezier(0.215, 0.61, 0.355, 1)';
+
     createApp({
       data() {
         return {
@@ -30,6 +49,20 @@
           p2Counted: false,
           gameResult: null,
           gameOverInternal: false,
+          // 弱点雷达（WAVE1）：双人结算弹层数据，关闭后走原 saveResult
+          gameResultPopup: null,
+          // 双人 PK 各自错词（WAVE1）：{ enText: 次数 }
+          p1Errors: {},
+          p2Errors: {},
+
+          // 连击（WAVE1）：PK 双人独立 / 单人 / 复习各自一个
+          p1Combo: 0,
+          p2Combo: 0,
+          singleCombo: 0,
+          reviewCombo: 0,
+          comboBreakP1: false,
+          comboBreakP2: false,
+          comboBreakReview: false,
 
           // 结算
           winnerName: '',
@@ -64,6 +97,15 @@
           versionJsLoaded: false,
           // 首屏入场动画
           homeReady: false,
+          // 每日挑战（WAVE1）
+          dailyMode: false,
+          dailyPick: null,
+          dailyChallengeDone: false,
+          dailyChallengeBest: null,
+          dailyStreak: 0,
+          // 随机事件卡（WAVE1）：fog / reshuffle / mirror；banner 独立显示 2s
+          currentEvent: null,
+          eventBannerVisible: false,
           // 边缘滑动手势检测
           _edgeSwipeX: null,
           _edgeSwipeY: null,
@@ -127,6 +169,125 @@
       },
 
       methods: {
+        // ===== Phigros 打击特效（WAVE1）=====
+        // 触发条件（死规矩）：仅游戏对局内；游戏外一律不创建不发声
+        canSpawnFx() {
+          if (this.currentView === 'game') {
+            return this.countdownState === 'playing' && !this.gameResult && !this.gameResultPopup;
+          }
+          if (this.currentView === 'reviewGame') {
+            return !this.reviewPopup && !this.reviewProcessing;
+          }
+          return false;
+        },
+        // 颜色判定：Off 模式（复习）恒黄 > 触摸/笔恒黄 > 左键黄 / 右键蓝 / 其他红
+        // 返回 key（yellow/blue/red），对应 fx-hit--* 类
+        fxColorFromEvent(event) {
+          if (this.currentView === 'reviewGame') return 'yellow';
+          if (event.pointerType === 'touch' || event.pointerType === 'pen') return 'yellow';
+          if (event.button === 0) return 'yellow';
+          if (event.button === 2) return 'blue';
+          return 'red';
+        },
+        // 音效：drag(黄) / tap(蓝) / flick(红)；独立 Audio 实例可重叠；失败静音降级
+        playSfx(key, volume) {
+          try {
+            const a = new Audio(PHIGROS_SFX[key]);
+            a.volume = volume || 1;
+            a.play().catch(() => {});
+          } catch(e) {}
+        },
+        // 生成 6 元素打击特效 + 粒子（声先到：调用方先 playSfx 再进这里）
+        spawnHitFx(x, y, colorKey) {
+          // 并发上限 6：超出丢最旧
+          while (fxQueue.length >= 6) {
+            const old = fxQueue.shift();
+            clearTimeout(old.timer);
+            if (old.el.parentNode) old.el.parentNode.removeChild(old.el);
+          }
+          let layer = document.querySelector('.fx-layer');
+          if (!layer) {
+            layer = document.createElement('div');
+            layer.className = 'fx-layer';
+            document.body.appendChild(layer);
+          }
+          const hit = document.createElement('div');
+          hit.className = 'fx-hit fx-hit--' + colorKey;
+          hit.style.left = x + 'px';
+          hit.style.top = y + 'px';
+
+          // 1 主方框（border 单元素，四边严密闭合，线宽不变）
+          const sq = document.createElement('div');
+          sq.className = 'fx-sq';
+          // 2 旋转 45° 方框
+          const sqRot = document.createElement('div');
+          sqRot.className = 'fx-sq-rot';
+          // 3 收缩实心圆
+          const cShrink = document.createElement('div');
+          cShrink.className = 'fx-circle-shrink';
+          // 4 扩张半透明圆
+          const cGrow = document.createElement('div');
+          cGrow.className = 'fx-circle-grow';
+          // 5 双 90° 圆弧（SVG circle dasharray，单元素闭合弧）
+          const ns = 'http://www.w3.org/2000/svg';
+          const mkArc = (cls, anim) => {
+            const wrap = document.createElement('div');
+            wrap.className = 'fx-arc-wrap ' + cls;
+            const svg = document.createElementNS(ns, 'svg');
+            svg.setAttribute('class', 'fx-arc');
+            svg.setAttribute('viewBox', '0 0 144 144');
+            svg.setAttribute('width', '144');
+            svg.setAttribute('height', '144');
+            const c = document.createElementNS(ns, 'circle');
+            c.setAttribute('cx', '72');
+            c.setAttribute('cy', '72');
+            c.setAttribute('r', '66');
+            c.setAttribute('fill', 'none');
+            c.setAttribute('stroke-dasharray', '103.7 310.9');
+            svg.appendChild(c);
+            wrap.appendChild(svg);
+            return wrap;
+          };
+          hit.appendChild(sq);
+          hit.appendChild(sqRot);
+          hit.appendChild(cShrink);
+          hit.appendChild(cGrow);
+          hit.appendChild(mkArc('fx-arc-wrap--1'));
+          hit.appendChild(mkArc('fx-arc-wrap--2'));
+          // 6 方形粒子 8-12 个：大小/透明度各异，EaseOutCubic 飞散，到位淡出
+          const n = 8 + Math.floor(Math.random() * 5);
+          for (let i = 0; i < n; i++) {
+            const p = document.createElement('div');
+            p.className = 'fx-particle';
+            const angle = Math.random() * Math.PI * 2;
+            const dist = 55 + Math.random() * 65;
+            p.style.setProperty('--px', (Math.cos(angle) * dist).toFixed(1) + 'px');
+            p.style.setProperty('--py', (Math.sin(angle) * dist).toFixed(1) + 'px');
+            p.style.setProperty('--p-size', (4 + Math.random() * 8).toFixed(1) + 'px');
+            p.style.setProperty('--p-o', (0.35 + Math.random() * 0.65).toFixed(2));
+            hit.appendChild(p);
+          }
+          layer.appendChild(hit);
+          // 主动画 260ms 完成后统一 300ms 淡出（280ms 开始淡 → 580ms 完成 → 600ms 移除 DOM 无残留）
+          setTimeout(() => {
+            hit.classList.add('fx-hit--fade');
+          }, 280);
+          const timer2 = setTimeout(() => {
+            if (hit.parentNode) hit.parentNode.removeChild(hit);
+          }, 600);
+          fxQueue.push({ el: hit, timer: timer2 });
+        },
+        // window pointerdown 入口：游戏内才触发；不 preventDefault / 不 stopPropagation
+        handleFxPointerDown(event) {
+          if (fxReducedMotion) return;
+          if (!this.canSpawnFx()) return;
+          const colorKey = this.fxColorFromEvent(event);
+          // 先出声再出视觉（打击感"声先到"）
+          const sfxKey = colorKey === 'yellow' ? 'drag' : colorKey === 'blue' ? 'tap' : 'flick';
+          this.playSfx(sfxKey, 1);
+          this.spawnHitFx(event.clientX, event.clientY, colorKey);
+        },
+
         // ===== TTS =====
         // 统一单词发音：空闲直说 / 忙时 150ms 延时打断 / token 防排队 / 看门狗自愈
         speakWord(text) {
@@ -209,15 +370,206 @@
         goHome() {
           this.currentView = 'home';
           this.gameResult = null;
+          this.gameResultPopup = null;
           this.gameOverInternal = false;
           this.winnerName = '';
         },
         goSelect(mode) {
           if (mode) this.gameMode = mode;
           this.gameResult = null;
+          this.gameResultPopup = null;
           this.gameOverInternal = false;
           this.winnerName = '';
           this.currentView = 'select';
+        },
+
+        // ===== 每日挑战（WAVE1）=====
+        // 日期种子 = 字符码求和；同一天全设备同一批词
+        dailySeedHash(dateStr) {
+          let sum = 0;
+          for (const ch of dateStr) sum += ch.charCodeAt(0);
+          return sum;
+        },
+        // 可复现伪随机（LCG，种子来自日期）
+        seededRandom(seed) {
+          let s = seed >>> 0;
+          return function() {
+            s = (s * 1664525 + 1013904223) >>> 0;
+            return s / 4294967296;
+          };
+        },
+        todayStr() {
+          return new Date().toISOString().slice(0, 10);
+        },
+        loadDailyChallenge() {
+          try { return JSON.parse(localStorage.getItem('wordpair_daily_challenge') || 'null'); } catch(e) { return null; }
+        },
+        loadDailyLog() {
+          try { return JSON.parse(localStorage.getItem('wordpair_daily_log') || '[]'); } catch(e) { return []; }
+        },
+        // 全局词库按日期种子抽：种子 % 单元总数 → 单元；单元内种子洗牌取 8（与勾选词表无关）
+        pickDailyWords() {
+          const date = this.todayStr();
+          const hash = this.dailySeedHash(date);
+          const units = [];
+          for (const b of ALL_WORDS_DATA.books) {
+            for (const u of (b.units || [])) units.push(u);
+          }
+          if (!units.length) return null;
+          const unit = units[hash % units.length];
+          const rng = this.seededRandom(hash + 1);
+          const arr = [...(unit.words || [])];
+          for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(rng() * (i + 1));
+            const tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+          }
+          return { unit: unit.name, words: arr.slice(0, Math.min(8, arr.length)) };
+        },
+        // 连续天数：从今天往前数连续存在于 log 的天数
+        computeDailyStreak() {
+          const set = new Set(this.loadDailyLog());
+          let streak = 0;
+          const d = new Date();
+          while (true) {
+            const key = d.toISOString().slice(0, 10);
+            if (set.has(key)) { streak++; d.setDate(d.getDate() - 1); }
+            else break;
+          }
+          return streak;
+        },
+        refreshDailyChallenge() {
+          const saved = this.loadDailyChallenge();
+          const today = this.todayStr();
+          this.dailyChallengeDone = !!(saved && saved.date === today && saved.done);
+          this.dailyChallengeBest = (saved && saved.date === today) ? saved.bestTime : null;
+          this.dailyStreak = this.computeDailyStreak();
+        },
+        // 今日挑战入口：已完成 → 提示最快时间不重置；未完成 → 复用单人骨架开局
+        startDailyChallenge() {
+          const today = this.todayStr();
+          const saved = this.loadDailyChallenge();
+          if (saved && saved.date === today && saved.done) {
+            alert('今日已完成，最快 ' + this.formatTime(saved.bestTime));
+            return;
+          }
+          const pick = this.pickDailyWords();
+          if (!pick || pick.words.length < 8) {
+            alert('今日词库不足 8 词');
+            return;
+          }
+          this.dailyMode = true;
+          this.dailyPick = pick;
+          this.gameMode = 'single';
+          const chosen = pick.words;
+          this.dualGameWords = chosen;
+          this.singleGameWords = chosen; // endGame single 分支沿用（错词同步复习）
+          // 生成卡片（与 startGame 相同逻辑）
+          let allCards = [];
+          chosen.forEach((word, idx) => {
+            allCards.push({ id: 'en-' + idx, text: word.en, pairId: idx, type: 'en', matched: false, selected: false, wrong: false });
+            allCards.push({ id: 'zh-' + idx, text: word.zh, pairId: idx, type: 'zh', matched: false, selected: false, wrong: false });
+          });
+          const p1En = allCards.filter(c => c.type === 'en').map(c => ({...c, id: 'p1-' + c.id}));
+          const p1Zh = allCards.filter(c => c.type === 'zh').map(c => ({...c, id: 'p1-' + c.id}));
+          this.p1Cards = [...p1En, ...p1Zh].sort(() => Math.random() - 0.5);
+          this.p2Cards = [];
+          this.reviewGameErrors = {};
+          this.gameBookName = '今日挑战 · ' + pick.unit;
+          this._p1MatchSet = new Set();
+          this._p2MatchSet = new Set();
+          this._processingClick = { p1: false, p2: false };
+          this.p1Selected = null;
+          this.p2Selected = null;
+          this.p1Matched = 0;
+          this.p2Matched = 0;
+          this.p1Time = 0;
+          this.p2Time = 0;
+          this.gameResult = null;
+          this.gameResultPopup = null;
+          this.gameOverInternal = false;
+          this.p1Counted = false;
+          this.p2Counted = false;
+          this.p1Combo = 0;
+          this.p2Combo = 0;
+          this.singleCombo = 0;
+          this.comboBreakP1 = false;
+          this.comboBreakP2 = false;
+          this.p1Errors = {};
+          this.p2Errors = {};
+          this.pickEvent(); // 每日挑战同样抽公平事件（单人）
+          this.currentView = 'game';
+          this.startCountdown();
+        },
+        // 完成今日挑战：写存储 + log 去重追加；重复完成不重置 done 不重复写 log
+        completeDailyChallenge(time) {
+          const today = this.todayStr();
+          const saved = this.loadDailyChallenge();
+          const entry = {
+            date: today,
+            unit: this.dailyPick ? this.dailyPick.unit : (saved ? saved.unit : ''),
+            words: this.dailyPick ? this.dailyPick.words.map(w => w.en) : [],
+            done: true,
+            bestTime: time,
+          };
+          if (saved && saved.date === today && saved.done) {
+            entry.bestTime = Math.min(saved.bestTime, time);
+          }
+          localStorage.setItem('wordpair_daily_challenge', JSON.stringify(entry));
+          const log = this.loadDailyLog();
+          if (!log.includes(today)) {
+            log.push(today);
+            localStorage.setItem('wordpair_daily_log', JSON.stringify(log));
+          }
+          this.dailyMode = false;
+          this.refreshDailyChallenge();
+        },
+
+        // ===== 随机事件卡（WAVE1）=====
+        // 开局必抽 1 个公平事件（fog 迷雾 2.5s / reshuffle 5s 后洗牌 / mirror 整局倒置）
+        pickEvent() {
+          const events = ['fog', 'reshuffle', 'mirror'];
+          const ev = events[Math.floor(Math.random() * events.length)];
+          // 清理上一局残留定时器（无残留）
+          clearTimeout(this._fogFadeTimer);
+          clearTimeout(this._reshuffleTimer);
+          clearTimeout(this._eventBannerTimer);
+          this.currentEvent = ev;
+          this.eventBannerVisible = true;
+          this._eventBannerTimer = setTimeout(() => { this.eventBannerVisible = false; }, 2000);
+          if (ev === 'fog') {
+            // 2.5s 迷雾结束 → 渐显 1.5s → 移除事件类
+            this._fogFadeTimer = setTimeout(() => {
+              this.currentEvent = 'fog-fade';
+              clearTimeout(this._fogFadeTimer);
+              this._fogFadeTimer = setTimeout(() => {
+                this.currentEvent = null;
+                this._fogFadeTimer = null;
+              }, 1500);
+            }, 2500);
+          } else if (ev === 'reshuffle') {
+            // 开局 5s 后未匹配卡片重排一次（已匹配不动）
+            this._reshuffleTimer = setTimeout(() => {
+              this.doReshuffle();
+              this.currentEvent = null;
+              this._reshuffleTimer = null;
+            }, 5000);
+          }
+          // mirror 整局持续（新一局 pickEvent 重置）
+        },
+        // reshuffle：双方未匹配卡各自洗牌重排（matched 保持原顺序不动）
+        doReshuffle() {
+          const sides = [['p1Cards', this._p1MatchSet], ['p2Cards', this._p2MatchSet]];
+          for (const [cardsRef, matchSet] of sides) {
+            const cards = this[cardsRef];
+            if (!cards || !cards.length) continue;
+            const matched = cards.filter(c => c.matched);
+            const unmatched = cards.filter(c => !c.matched);
+            for (let i = unmatched.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              const tmp = unmatched[i]; unmatched[i] = unmatched[j]; unmatched[j] = tmp;
+            }
+            this[cardsRef] = [...matched, ...unmatched];
+          }
         },
 
         // ===== 复习系统 =====
@@ -408,6 +760,9 @@
           this.reviewPopup = null;
           this.reviewGameWords = selectedWords;
           this.reviewGameErrors = {};
+          // 连击归零（新开一局）
+          this.reviewCombo = 0;
+          this.comboBreakReview = false;
           this.currentView = 'reviewGame';
         },
 
@@ -468,6 +823,12 @@
             const isMatch = firstCard.pairId === card.pairId && firstCard.type !== card.type;
 
             if (isMatch) {
+              // 配对成功：连击 +1 + tap 音（音量随连击增益，≥5 叠加 flick）
+              this.reviewCombo++;
+              this.comboBreakReview = false;
+              const n = this.reviewCombo;
+              this.playSfx('tap', Math.min(1 + n * 0.05, 1.5));
+              if (n >= 5) this.playSfx('flick', 1);
               // TTS 先触发 — 在动画之前出声，消除听觉延迟
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
               this.speakWord(enText);
@@ -485,7 +846,12 @@
                 return;
               }
             } else {
-              // 配对失败 — 记录错误
+              // 配对失败 — 连击清零 + 断连显示 + 低频失败音 + 记录错误
+              this.reviewCombo = 0;
+              this.comboBreakReview = true;
+              this.playSfx('flick', 0.6);
+              clearTimeout(this._comboBreakReviewTimer);
+              this._comboBreakReviewTimer = setTimeout(() => { this.comboBreakReview = false; }, 900);
               firstCard.selected = false;
               firstCard.wrong = true;
               card.wrong = true;
@@ -580,38 +946,26 @@
             `Powered by 晗菌 💕\n` +
             `${line}\n` +
             `${verSrc}\n` +
-            `version.js：${loaded}`
+            `远程检测：${loaded}`
           );
         },
-        // 下载最新版 / 离线版 — 本地调远程 version.js，在线拉自身
+        // 下载最新版 / 离线版 — 本地版拉远程首页，在线版拉自身（CORS: Access-Control-Allow-Origin: null 匹配 file:// 的 Origin）
         downloadUpdate() {
-          if (this._isLocal()) {
-            this.updateAvailable = false;
-            if (typeof window.__downloadLatest === 'function') {
-              window.__downloadLatest();
-              return;
-            }
-            // version.js 尚未加载（异常情况）→ 即时加载
-            const s = document.createElement('script');
-            s.src = 'https://word-pair-pk.hdilp.top/version.js?t=' + Date.now();
-            s.onerror = () => {
-              alert('下载失败，请手动访问 https://word-pair-pk.hdilp.top');
-            };
-            s.onload = () => { if (s.parentNode) s.parentNode.removeChild(s); };
-            document.head.appendChild(s);
-            return;
-          }
-          fetch('/?t=' + Date.now(), { cache: 'no-store' })
+          this.updateAvailable = false;
+          const remoteUrl = this._isLocal()
+            ? 'https://word-pair-pk.hdilp.top/?t=' + Date.now()
+            : '/?t=' + Date.now();
+          fetch(remoteUrl, { cache: 'no-store' })
             .then(r => r.blob())
             .then(blob => {
-              const url = URL.createObjectURL(blob);
+              const blobUrl = URL.createObjectURL(blob);
               const a = document.createElement('a');
-              a.href = url;
+              a.href = blobUrl;
               a.download = '词对 PK.html';
               document.body.appendChild(a);
               a.click();
               document.body.removeChild(a);
-              setTimeout(() => URL.revokeObjectURL(url), 5000);
+              setTimeout(() => URL.revokeObjectURL(blobUrl), 5000);
             })
             .catch(() => {
               alert('下载失败，请手动访问 https://word-pair-pk.hdilp.top 保存页面');
@@ -696,6 +1050,9 @@
           const shuffled = [...selectedWords].sort(() => Math.random() - 0.5);
           const chosen = shuffled.slice(0, 8);
 
+          // WAVE1：本局 8 词（双人错词入库用，单独存不影响 single 流程）
+          this.dualGameWords = chosen;
+
           // 生成卡片
           // 每张卡片：{id, text, pairId, type: 'en'|'zh', matched, selected, wrong}
           let allCards = [];
@@ -750,21 +1107,45 @@
           this.gameOverInternal = false;
           this.p1Counted = false;
           this.p2Counted = false;
+          // 连击归零（新开一局）
+          this.p1Combo = 0;
+          this.p2Combo = 0;
+          this.singleCombo = 0;
+          this.comboBreakP1 = false;
+          this.comboBreakP2 = false;
+          // 双人错词表重置（新开一局）
+          this.p1Errors = {};
+          this.p2Errors = {};
+          this.gameResultPopup = null;
+          // 随机事件卡：PK/单人开局必抽 1 个公平事件（复习模式走 startReviewGame 不触发）
+          this.pickEvent();
 
           this.currentView = 'game';
           this.startCountdown();
         },
 
-        // ===== 倒计时 =====
+        // ===== 倒计时（WAVE1 升级：ready 0.8s → 3/2/1 各 600ms + tick 音 → GO 450ms → playing）=====
         startCountdown() {
           this.countdownState = 'ready';
           setTimeout(() => {
-            this.countdownState = 'go';
+            this.countdownState = '3';
+            this.playSfx('drag', 0.4); // tick 音（短促 drag，音量 0.4；不走 speechSynthesis）
             setTimeout(() => {
-              this.countdownState = 'playing';
-              this.startTimers();
-            }, 450);
-          }, 1200);
+              this.countdownState = '2';
+              this.playSfx('drag', 0.4);
+              setTimeout(() => {
+                this.countdownState = '1';
+                this.playSfx('drag', 0.4);
+                setTimeout(() => {
+                  this.countdownState = 'go';
+                  setTimeout(() => {
+                    this.countdownState = 'playing';
+                    this.startTimers();
+                  }, 450);
+                }, 600);
+              }, 600);
+            }, 600);
+          }, 800);
         },
 
         startTimers() {
@@ -824,10 +1205,18 @@
           const cards = side === 'p1' ? this.p1Cards : this.p2Cards;
           const matchSet = side === 'p1' ? this._p1MatchSet : this._p2MatchSet;
           const selectedRef = side === 'p1' ? 'p1Selected' : 'p2Selected';
+          // 连击引用：单人走 singleCombo，双人各走 p1/p2Combo
+          const comboRef = side === 'p1' ? (this.gameMode === 'single' ? 'singleCombo' : 'p1Combo') : 'p2Combo';
+          const breakRef = side === 'p1' ? 'comboBreakP1' : 'comboBreakP2';
 
           // 找到卡片
           const card = cards.find(c => c.id === cardId);
-          if (!card || card.matched) return;
+          if (!card) return;
+          // 点击已匹配卡 → 连击清零（死规矩）
+          if (card.matched) {
+            this[comboRef] = 0;
+            return;
+          }
 
           this._processingClick[side] = true;
 
@@ -847,6 +1236,12 @@
             const isMatch = firstCard.pairId === card.pairId && firstCard.type !== card.type;
 
             if (isMatch) {
+              // 配对成功：连击 +1 + tap 音（音量随连击增益，≥5 叠加 flick）
+              this[comboRef]++;
+              this[breakRef] = false;
+              const n = this[comboRef];
+              this.playSfx('tap', Math.min(1 + n * 0.05, 1.5));
+              if (n >= 5) this.playSfx('flick', 1);
               // TTS 先触发 — 在动画之前出声
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
               this.speakWord(enText);
@@ -866,14 +1261,22 @@
                 return;
               }
             } else {
-              // 配对失败
+              // 配对失败：连击清零 + 断连显示 + 低频失败音（flick 0.6）
+              this[comboRef] = 0;
+              this[breakRef] = true;
+              this.playSfx('flick', 0.6);
+              clearTimeout(this._comboBreakTimer);
+              this._comboBreakTimer = setTimeout(() => { this[breakRef] = false; }, 900);
               firstCard.selected = false;
               firstCard.wrong = true;
               card.wrong = true;
-              // 单人模式：记录错词
-              if (side === 'p1' && this.gameMode === 'single') {
-                const enText = firstCard.type === 'en' ? firstCard.text : card.text;
+              // 记录错词：单人走 reviewGameErrors（原逻辑），双人各走 p1/p2Errors（WAVE1）
+              const enText = firstCard.type === 'en' ? firstCard.text : card.text;
+              if (this.gameMode === 'single') {
                 this.reviewGameErrors[enText] = (this.reviewGameErrors[enText] || 0) + 1;
+              } else {
+                const errs = side === 'p1' ? this.p1Errors : this.p2Errors;
+                errs[enText] = (errs[enText] || 0) + 1;
               }
               this[selectedRef] = null;
               setTimeout(() => {
@@ -915,6 +1318,10 @@
               this.updateReviewBoxes(this.singleGameWords, this.reviewGameErrors);
               this.reviewGameWords = this.singleGameWords; // 给复盘弹窗用
             }
+            // 每日挑战：完成写入存储（WAVE1）
+            if (this.dailyMode) {
+              this.completeDailyChallenge(t);
+            }
             return;
           }
 
@@ -923,6 +1330,31 @@
             winner: side,
             time: winnerTime,
           };
+
+          // WAVE1：双人 PK 双方错词合并 → 复习盒子（有错→box 重置 1）；单人流程零改动
+          const mergedErrors = {};
+          for (const en in this.p1Errors) mergedErrors[en] = (mergedErrors[en] || 0) + this.p1Errors[en];
+          for (const en in this.p2Errors) mergedErrors[en] = (mergedErrors[en] || 0) + this.p2Errors[en];
+          if (this.dualGameWords && this.dualGameWords.length > 0) {
+            this.updateReviewBoxes(this.dualGameWords, mergedErrors);
+          }
+          // 弱点雷达：合并错词 Top3（次数降序，并列按字母序）
+          const wordMap = {};
+          for (const w of (this.dualGameWords || [])) wordMap[w.en] = w;
+          const radar = [];
+          for (const en in mergedErrors) {
+            radar.push({ en: en, zh: (wordMap[en] || {}).zh || '', count: mergedErrors[en] });
+          }
+          radar.sort((a, b) => (b.count - a.count) || a.en.localeCompare(b.en));
+          this.gameResultPopup = {
+            winner: side,
+            time: winnerTime,
+            top3: radar.slice(0, 3),
+          };
+        },
+        // 弱点雷达弹层关闭 → 露出原 result-overlay（姓名输入 → saveResult 排行榜照旧）
+        closeRadarPopup() {
+          this.gameResultPopup = null;
         },
 
         // ===== 结算 =====
@@ -1094,6 +1526,10 @@
       mounted() {
         this.initBooks();
         this.loadLeaderboardFromStorage();
+        // 每日挑战状态（WAVE1）
+        this.refreshDailyChallenge();
+        // WAVE1：全局 pointerdown 打击特效监听（零 preventDefault/stopPropagation，不干扰现有触摸链）
+        window.addEventListener('pointerdown', this.handleFxPointerDown);
         // 全局预热 TTS — 首次用户交互时加载语音引擎+英文语音数据（整个生命周期只 speak 一次）
         document.addEventListener('pointerdown', () => this.warmupTTS(), { once: true });
         // 加载单人模式个人最快记录
@@ -1106,20 +1542,18 @@
           const el = document.querySelector('meta[name="build-revision"]');
           if (el) this.buildVersion = el.content;
         } catch(e) {}
-        // 本地 file:// 版加载远程 version.js 检查更新
+        // 本地 file:// 版 fetch 远程 version.json 检查更新（只拉数据，不加载远程 JS）
         if (this.buildVersion && this._isLocal()) {
-          const s = document.createElement('script');
-          s.src = 'https://word-pair-pk.hdilp.top/version.js?t=' + Date.now();
-          s.onload = () => {
-            this.versionJsLoaded = true;
-            if (window.__remoteRevision && window.__remoteRevision !== this.buildVersion) {
-              this.remoteVersion = window.__remoteRevision;
-              this.updateAvailable = true;
-            }
-            if (s.parentNode) s.parentNode.removeChild(s);
-          };
-          s.onerror = () => {};
-          document.head.appendChild(s);
+          fetch('https://word-pair-pk.hdilp.top/version.json?t=' + Date.now(), { cache: 'no-store' })
+            .then(r => { if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
+            .then(data => {
+              this.versionJsLoaded = true;
+              if (data.revision && data.revision !== this.buildVersion) {
+                this.remoteVersion = data.revision;
+                this.updateAvailable = true;
+              }
+            })
+            .catch(() => {});
         } else if (this.buildVersion) {
           this.versionJsLoaded = true; // 在线版无需远程检测
         }
@@ -1155,6 +1589,7 @@
         clearInterval(this.p1Timer);
         clearInterval(this.p2Timer);
         window.removeEventListener('popstate', this.handleSystemBack);
+        window.removeEventListener('pointerdown', this.handleFxPointerDown);
       },
     }).mount('#app');
   

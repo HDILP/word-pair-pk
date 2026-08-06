@@ -2187,3 +2187,351 @@
         opacity: 0 !important;
       }
     }
+    /* ==========================================
+       WAVE1：Phigros 点击打击特效
+       z-index 体系：游戏卡片无显式层叠(0) < fx-layer(60) < 倒计时(100) < 弹窗(200)
+       ========================================== */
+    .fx-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .fx-hit {
+      position: absolute;
+      width: 0;
+      height: 0;
+      opacity: 0.8;
+      --fx-c: #FFD84D; /* 全局默认色=黄 */
+      transition: opacity 300ms ease;
+    }
+    .fx-hit--yellow { --fx-c: #FFD84D; }
+    .fx-hit--blue { --fx-c: #4D9DFF; }
+    .fx-hit--red { --fx-c: #FF5A5A; }
+    .fx-hit--fade { opacity: 0; }
+    .fx-hit > * {
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform-origin: center center;
+    }
+    /* 1 主方框：50%→100% 宽高动画，线宽不变，opacity 100%，border 单元素闭合 */
+    .fx-sq {
+      width: 44px;
+      height: 44px;
+      border: 3px solid var(--fx-c);
+      opacity: 1;
+      transform: translate(-50%, -50%);
+      animation: fxSqGrow 260ms cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+    }
+    @keyframes fxSqGrow {
+      from { width: 44px; height: 44px; }
+      to { width: 88px; height: 88px; }
+    }
+    /* 2 旋转 45° 方框：等大(边长120%=105.6px)，线宽 粗(=内切边长37.3px)→细(3px)，opacity 50% */
+    .fx-sq-rot {
+      width: 52.8px;
+      height: 52.8px;
+      border: 37.3px solid var(--fx-c);
+      opacity: 0.5;
+      transform: translate(-50%, -50%) rotate(45deg);
+      animation: fxSqRotGrow 260ms cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+    }
+    @keyframes fxSqRotGrow {
+      from {
+        width: 52.8px;
+        height: 52.8px;
+        border-width: 37.3px;
+      }
+      to {
+        width: 105.6px;
+        height: 105.6px;
+        border-width: 3px;
+      }
+    }
+    /* 3 收缩实心圆：44px→4px 小圆点，opacity 100% */
+    .fx-circle-shrink {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--fx-c);
+      opacity: 1;
+      transform: translate(-50%, -50%);
+      animation: fxCircleShrink 260ms cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+    }
+    @keyframes fxCircleShrink {
+      from { width: 44px; height: 44px; }
+      to { width: 4px; height: 4px; }
+    }
+    /* 4 扩张半透明圆：4px→8px（小圆点最终半径2px的200%），opacity 50% */
+    .fx-circle-grow {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--fx-c);
+      opacity: 0.5;
+      transform: translate(-50%, -50%);
+      animation: fxCircleGrow 260ms cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+    }
+    @keyframes fxCircleGrow {
+      from { width: 4px; height: 4px; }
+      to { width: 8px; height: 8px; }
+    }
+    /* 5 双 90° 圆弧：半径66px(88×75%)，线宽6px(3×200%)，opacity 100%
+       弧1：-105°→-75°（结束=东北逆时针30°）顺时针扫 30°；弧2：105°→135°（西南逆时针30°）镜像 */
+    .fx-arc-wrap {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0;
+      height: 0;
+      transform: rotate(-30deg); /* 整体逆时针偏 30° */
+    }
+    .fx-arc {
+      transform: translate(-50%, -50%);
+    }
+    .fx-arc-wrap--1 .fx-arc {
+      animation: fxArcSweep1 260ms cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+    }
+    .fx-arc-wrap--2 .fx-arc {
+      animation: fxArcSweep2 260ms cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+    }
+    @keyframes fxArcSweep1 {
+      from { transform: translate(-50%, -50%) rotate(-75deg); }
+      to { transform: translate(-50%, -50%) rotate(-45deg); }
+    }
+    @keyframes fxArcSweep2 {
+      from { transform: translate(-50%, -50%) rotate(105deg); }
+      to { transform: translate(-50%, -50%) rotate(135deg); }
+    }
+    .fx-arc circle {
+      fill: none;
+      stroke: var(--fx-c);
+      stroke-width: 6;
+      stroke-linecap: butt;
+    }
+    /* 6 方形粒子：纯正方形不旋转，EaseOutCubic 飞散，到位淡出 */
+    .fx-particle {
+      width: var(--p-size);
+      height: var(--p-size);
+      background: var(--fx-c);
+      opacity: var(--p-o);
+      transform: translate(-50%, -50%);
+      animation: fxParticle 380ms cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+    }
+    @keyframes fxParticle {
+      0% {
+        transform: translate(-50%, -50%);
+        opacity: var(--p-o);
+      }
+      72% {
+        transform: translate(calc(-50% + var(--px)), calc(-50% + var(--py)));
+        opacity: var(--p-o);
+      }
+      100% {
+        transform: translate(calc(-50% + var(--px)), calc(-50% + var(--py)));
+        opacity: 0;
+      }
+    }
+    /* 弱动效偏好：特效层整体隐藏（JS 侧也不创建） */
+    @media (prefers-reduced-motion: reduce) {
+      .fx-layer {
+        display: none !important;
+      }
+    }
+
+    /* ==========================================
+       WAVE1：连击 Combo 大字（game-side__header 下方，absolute 不挤压卡片）
+       ========================================== */
+    .combo-banner {
+      position: absolute;
+      top: 34px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 30;
+      pointer-events: none;
+      white-space: nowrap;
+      font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      letter-spacing: 1px;
+      height: 0;
+      overflow: visible;
+      display: flex;
+      justify-content: center;
+    }
+    .combo-banner__num {
+      background: linear-gradient(135deg, #ffd700 0%, #ffb347 45%, #ff8c00 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 2px 14px rgba(255, 180, 60, 0.35);
+      filter: drop-shadow(0 2px 6px rgba(255, 160, 40, 0.35));
+      animation: comboPop 380ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+    .combo-banner__break {
+      color: #ff7a7a;
+      font-size: 17px;
+      letter-spacing: 3px;
+      filter: drop-shadow(0 2px 6px rgba(255, 90, 90, 0.3));
+      animation: comboBreakIn 300ms ease both;
+    }
+    @keyframes comboPop {
+      0%   { transform: scale(1.9); opacity: 0; }
+      55%  { transform: scale(0.92); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    @keyframes comboBreakIn {
+      0%   { transform: scale(1.3); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .combo-banner__num,
+      .combo-banner__break {
+        animation: none !important;
+      }
+    }
+
+    /* ==========================================
+       WAVE1：3-2-1 擂台倒计时数字（渐变金字 + readyBounce 弹入曲线）
+       ========================================== */
+    .countdown-text--num {
+      font-size: 100px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #ffd700 0%, #ffb347 50%, #ff8c00 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 4px 18px rgba(255, 170, 50, 0.45));
+      animation-name: readyBounce;
+      animation-duration: 600ms;
+      animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+      animation-fill-mode: forwards;
+    }
+
+    /* ==========================================
+       WAVE1：弱点雷达弹层（复用 review-popup 卡片式弹窗）
+       ========================================== */
+    .radar-popup__note {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--secondary-dark);
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    /* ==========================================
+       WAVE1：每日挑战入口卡（首页）
+       ========================================== */
+    .daily-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 14px auto 4px;
+      padding: 10px 18px;
+      max-width: 400px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(255, 216, 77, 0.18), rgba(255, 170, 178, 0.12));
+      border: 1.5px solid rgba(255, 200, 90, 0.45);
+      cursor: pointer;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+    }
+    .daily-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(255, 180, 70, 0.25);
+    }
+    .daily-card__icon {
+      font-size: 22px;
+      filter: drop-shadow(0 2px 6px rgba(255, 200, 80, 0.5));
+    }
+    .daily-card__info {
+      flex: 1;
+      text-align: left;
+    }
+    .daily-card__title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: 1px;
+    }
+    .daily-card__status {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+    .daily-card__status--done {
+      color: var(--secondary-dark);
+      font-weight: 600;
+    }
+    .daily-card__arrow {
+      color: var(--text-secondary);
+      flex-shrink: 0;
+    }
+
+    /* ==========================================
+       WAVE1：随机事件卡（fog 迷雾 / reshuffle 洗牌 / mirror 倒置）
+       ========================================== */
+    .event-banner {
+      position: fixed;
+      top: 64px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 90; /* 高于卡片/fx-layer(60)，低于倒计时(100) */
+      pointer-events: none;
+      white-space: nowrap;
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      padding: 8px 26px;
+      border-radius: 999px;
+      animation: eventBannerIn 420ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+    .event-banner--fog {
+      color: #fff;
+      background: linear-gradient(135deg, rgba(165, 216, 255, 0.85), rgba(120, 160, 220, 0.85));
+      box-shadow: 0 6px 20px rgba(140, 180, 240, 0.4);
+    }
+    .event-banner--reshuffle {
+      color: #fff;
+      background: linear-gradient(135deg, rgba(255, 216, 77, 0.9), rgba(255, 160, 60, 0.9));
+      box-shadow: 0 6px 20px rgba(255, 190, 70, 0.4);
+    }
+    .event-banner--mirror {
+      color: #fff;
+      background: linear-gradient(135deg, rgba(200, 150, 255, 0.9), rgba(140, 110, 240, 0.9));
+      box-shadow: 0 6px 20px rgba(170, 130, 250, 0.4);
+    }
+    @keyframes eventBannerIn {
+      0%   { transform: translateX(-50%) scale(0.4) rotate(-4deg); opacity: 0; }
+      60%  { transform: translateX(-50%) scale(1.12) rotate(1deg); opacity: 1; }
+      100% { transform: translateX(-50%) scale(1) rotate(0); opacity: 1; }
+    }
+    /* fog：开局 2.5s 半透明（opacity .3），结束渐显 1.5s */
+    .fx-event--fog .game-card {
+      opacity: 0.3;
+    }
+    .fx-event--fog-fade .game-card {
+      opacity: 1;
+      transition: opacity 1.4s ease;
+    }
+    /* reshuffle：洗牌瞬间卡片弹跳感（仅过渡） */
+    .fx-event--reshuffle .game-card {
+      animation: reshufflePop 380ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      animation-delay: 0ms !important; /* 覆盖入场错位 delay */
+    }
+    @keyframes reshufflePop {
+      0%   { transform: scale(0.82); opacity: 0.4; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    /* mirror：牌面文字整体倒置，整局持续 */
+    .fx-event--mirror .game-card .card-text {
+      transform: rotate(180deg);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .event-banner,
+      .fx-event--reshuffle .game-card {
+        animation: none !important;
+      }
+    }
