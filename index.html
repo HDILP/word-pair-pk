@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260807104124" />
+  <meta name="build-revision" content="20260807112623" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -2506,14 +2506,14 @@
     }
 
     /* ==========================================
-       WAVE1：随机事件卡（fog 迷雾 / reshuffle 洗牌 / mirror 倒置）
+       WAVE1：随机事件卡（fog 迷雾 / reshuffle 洗牌）
        ========================================== */
     .event-banner {
       position: fixed;
       top: 64px;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 90; /* 高于卡片/fx-layer(60)，低于倒计时(100) */
+      z-index: 120; /* 高于倒计时 overlay(100)，不被 3-2-1 遮住；低于弹窗(200) */
       pointer-events: none;
       white-space: nowrap;
       font-size: 26px;
@@ -2532,11 +2532,6 @@
       color: #fff;
       background: linear-gradient(135deg, rgba(255, 216, 77, 0.9), rgba(255, 160, 60, 0.9));
       box-shadow: 0 6px 20px rgba(255, 190, 70, 0.4);
-    }
-    .event-banner--mirror {
-      color: #fff;
-      background: linear-gradient(135deg, rgba(200, 150, 255, 0.9), rgba(140, 110, 240, 0.9));
-      box-shadow: 0 6px 20px rgba(170, 130, 250, 0.4);
     }
     @keyframes eventBannerIn {
       0%   { transform: translateX(-50%) scale(0.4) rotate(-4deg); opacity: 0; }
@@ -2560,10 +2555,7 @@
       0%   { transform: scale(0.82); opacity: 0.4; }
       100% { transform: scale(1); opacity: 1; }
     }
-    /* mirror：牌面文字整体倒置，整局持续 */
-    .fx-event--mirror .game-card .card-text {
-      transform: rotate(180deg);
-    }
+    /* mirror 已移除（汉字倒置体验差，2026-08-07） */
     @media (prefers-reduced-motion: reduce) {
       .event-banner,
       .fx-event--reshuffle .game-card {
@@ -2846,9 +2838,8 @@
         </div>
 
         <!-- 随机事件横幅（WAVE1）：开局显示 2s -->
-        <div v-if="eventBannerVisible && currentEvent === 'fog'" class="event-banner event-banner--fog">🌫 迷雾开局</div>
-        <div v-else-if="eventBannerVisible && currentEvent === 'reshuffle'" class="event-banner event-banner--reshuffle">🃏 中途洗牌</div>
-        <div v-else-if="eventBannerVisible && currentEvent === 'mirror'" class="event-banner event-banner--mirror">🪞 全牌翻转</div>
+        <div v-if="eventBannerVisible && currentEvent === 'fog'" class="event-banner event-banner--fog">🌫️ 迷雾开局</div>
+        <div v-else-if="eventBannerVisible && currentEvent === 'reshuffle'" class="event-banner event-banner--reshuffle">🔀 中途洗牌</div>
 
         <!-- 弱点雷达（WAVE1）：双人结算弹层，关闭后走原 saveResult 流程 -->
         <div v-if="gameResultPopup" class="result-overlay" @click.self="closeRadarPopup">
@@ -3322,7 +3313,7 @@
           dailyChallengeDone: false,
           dailyChallengeBest: null,
           dailyStreak: 0,
-          // 随机事件卡（WAVE1）：fog / reshuffle / mirror；banner 独立显示 2s
+          // 随机事件卡（WAVE1）：fog / reshuffle；banner 独立显示 2s
           currentEvent: null,
           eventBannerVisible: false,
           // 边缘滑动手势检测
@@ -3756,9 +3747,9 @@
         },
 
         // ===== 随机事件卡（WAVE1）=====
-        // 开局必抽 1 个公平事件（fog 迷雾 2.5s / reshuffle 5s 后洗牌 / mirror 整局倒置）
+        // 开局必抽 1 个公平事件（fog 迷雾 2.5s / reshuffle 5s 后洗牌；mirror 已移除——汉字倒置体验差）
         pickEvent() {
-          const events = ['fog', 'reshuffle', 'mirror'];
+          const events = ['fog', 'reshuffle'];
           const ev = events[Math.floor(Math.random() * events.length)];
           // 清理上一局残留定时器（无残留）
           clearTimeout(this._fogFadeTimer);
@@ -3785,7 +3776,6 @@
               this._reshuffleTimer = null;
             }, 5000);
           }
-          // mirror 整局持续（新一局 pickEvent 重置）
         },
         // reshuffle：双方未匹配卡各自洗牌重排（matched 保持原顺序不动）
         doReshuffle() {

@@ -103,7 +103,7 @@
           dailyChallengeDone: false,
           dailyChallengeBest: null,
           dailyStreak: 0,
-          // 随机事件卡（WAVE1）：fog / reshuffle / mirror；banner 独立显示 2s
+          // 随机事件卡（WAVE1）：fog / reshuffle；banner 独立显示 2s
           currentEvent: null,
           eventBannerVisible: false,
           // 边缘滑动手势检测
@@ -537,9 +537,9 @@
         },
 
         // ===== 随机事件卡（WAVE1）=====
-        // 开局必抽 1 个公平事件（fog 迷雾 2.5s / reshuffle 5s 后洗牌 / mirror 整局倒置）
+        // 开局必抽 1 个公平事件（fog 迷雾 2.5s / reshuffle 5s 后洗牌；mirror 已移除——汉字倒置体验差）
         pickEvent() {
-          const events = ['fog', 'reshuffle', 'mirror'];
+          const events = ['fog', 'reshuffle'];
           const ev = events[Math.floor(Math.random() * events.length)];
           // 清理上一局残留定时器（无残留）
           clearTimeout(this._fogFadeTimer);
@@ -566,7 +566,6 @@
               this._reshuffleTimer = null;
             }, 5000);
           }
-          // mirror 整局持续（新一局 pickEvent 重置）
         },
         // reshuffle：双方未匹配卡各自洗牌重排（matched 保持原顺序不动）
         doReshuffle() {

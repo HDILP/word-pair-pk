@@ -2471,14 +2471,14 @@
     }
 
     /* ==========================================
-       WAVE1：随机事件卡（fog 迷雾 / reshuffle 洗牌 / mirror 倒置）
+       WAVE1：随机事件卡（fog 迷雾 / reshuffle 洗牌）
        ========================================== */
     .event-banner {
       position: fixed;
       top: 64px;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 90; /* 高于卡片/fx-layer(60)，低于倒计时(100) */
+      z-index: 120; /* 高于倒计时 overlay(100)，不被 3-2-1 遮住；低于弹窗(200) */
       pointer-events: none;
       white-space: nowrap;
       font-size: 26px;
@@ -2497,11 +2497,6 @@
       color: #fff;
       background: linear-gradient(135deg, rgba(255, 216, 77, 0.9), rgba(255, 160, 60, 0.9));
       box-shadow: 0 6px 20px rgba(255, 190, 70, 0.4);
-    }
-    .event-banner--mirror {
-      color: #fff;
-      background: linear-gradient(135deg, rgba(200, 150, 255, 0.9), rgba(140, 110, 240, 0.9));
-      box-shadow: 0 6px 20px rgba(170, 130, 250, 0.4);
     }
     @keyframes eventBannerIn {
       0%   { transform: translateX(-50%) scale(0.4) rotate(-4deg); opacity: 0; }
@@ -2525,10 +2520,7 @@
       0%   { transform: scale(0.82); opacity: 0.4; }
       100% { transform: scale(1); opacity: 1; }
     }
-    /* mirror：牌面文字整体倒置，整局持续 */
-    .fx-event--mirror .game-card .card-text {
-      transform: rotate(180deg);
-    }
+    /* mirror 已移除（汉字倒置体验差，2026-08-07） */
     @media (prefers-reduced-motion: reduce) {
       .event-banner,
       .fx-event--reshuffle .game-card {
