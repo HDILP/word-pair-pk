@@ -122,21 +122,27 @@ js_path = os.path.join(src_dir, 'app.js')
 with open(js_path, 'r', encoding='utf-8') as f:
     js_content = f.read()
 
-# WAVE1：内联 Phigros 打击音效（wav → base64 注入，源文件在仓库外；不存在则保留占位符 → 静音降级）
+# WAVE1：内联 Phigros 打击音效（wav → base64 注入；优先仓库内 src/audio/，云端构建可找到；回退本机路径）
 import base64 as _b64
+_SFX_CANDIDATES = [
+    (r'src\audio\phigros_drag.wav', r'D:\Downloads\phigros_drag.wav'),
+    (r'src\audio\phigros_tap.wav', r'D:\Downloads\phigros_tap.wav'),
+    (r'src\audio\phigros_flick.wav', r'D:\Downloads\phigros_flick.wav'),
+]
 _SFX_SOURCES = {
-    '@@DRAG_B64@@': r'D:\Downloads\phigros_drag.wav',
-    '@@TAP_B64@@': r'D:\Downloads\phigros_tap.wav',
-    '@@FLICK_B64@@': r'D:\Downloads\phigros_flick.wav',
+    '@@DRAG_B64@@': _SFX_CANDIDATES[0],
+    '@@TAP_B64@@': _SFX_CANDIDATES[1],
+    '@@FLICK_B64@@': _SFX_CANDIDATES[2],
 }
-for _ph, _wav in _SFX_SOURCES.items():
+for _ph, _paths in _SFX_SOURCES.items():
     if _ph in js_content:
-        if os.path.exists(_wav):
+        _wav = next((p for p in _paths if os.path.exists(p)), None)
+        if _wav:
             with open(_wav, 'rb') as _f:
                 js_content = js_content.replace(_ph, _b64.b64encode(_f.read()).decode('ascii'), 1)
             print(f'✅ 音效已内联 {os.path.basename(_wav)}')
         else:
-            print(f'⚠️  未找到 {_wav}，保留占位符（播放静音降级）')
+            print(f'⚠️  未找到 {_paths}，保留占位符（播放静音降级）')
 
 html = html.replace(
     '<script src="src/app.js"></script>',
