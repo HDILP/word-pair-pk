@@ -125,9 +125,9 @@ with open(js_path, 'r', encoding='utf-8') as f:
 # WAVE1：内联 Phigros 打击音效（wav → base64 注入；优先仓库内 src/audio/，云端构建可找到；回退本机路径）
 import base64 as _b64
 _SFX_CANDIDATES = [
-    (r'src\audio\phigros_drag.wav', r'D:\Downloads\phigros_drag.wav'),
-    (r'src\audio\phigros_tap.wav', r'D:\Downloads\phigros_tap.wav'),
-    (r'src\audio\phigros_flick.wav', r'D:\Downloads\phigros_flick.wav'),
+    ('src/audio/phigros_drag.wav', r'D:\Downloads\phigros_drag.wav'),
+    ('src/audio/phigros_tap.wav', r'D:\Downloads\phigros_tap.wav'),
+    ('src/audio/phigros_flick.wav', r'D:\Downloads\phigros_flick.wav'),
 ]
 _SFX_SOURCES = {
     '@@DRAG_B64@@': _SFX_CANDIDATES[0],
