@@ -106,7 +106,8 @@
           dailyChallengeBest: null,
           dailyStreak: 0,
           // 随机事件卡（WAVE1）：fog / reshuffle；banner 独立显示 2s
-          currentEvent: null,
+          currentEvent: null, // 当前生效的事件效果（fog 推迟到 playing 才生效）
+          eventBannerName: null, // banner 显示的事件名（fog/reshuffle），不受效果推迟影响
           eventBannerVisible: false,
           // 边缘滑动手势检测
           _edgeSwipeX: null,
@@ -554,13 +555,15 @@
           clearTimeout(this._reshuffleTimer);
           clearTimeout(this._eventBannerTimer);
           this._fogPending = false;
-          this.currentEvent = ev;
+          this.eventBannerName = ev;
           this.eventBannerVisible = true;
           this._eventBannerTimer = setTimeout(() => { this.eventBannerVisible = false; }, 2000);
           if (ev === 'fog') {
-            // 迷雾计时推迟到 playing 再启动（倒计时 overlay 会遮住效果，见 startCountdown playing 分支）
+            // 迷雾效果推迟到 playing 才生效（倒计时 overlay 会遮住，且不能让玩家从倒计时就开始半透明）
+            this.currentEvent = null;
             this._fogPending = true;
           } else if (ev === 'reshuffle') {
+            this.currentEvent = ev;
             // 开局 5s 后未匹配卡片重排一次（已匹配不动）
             this._reshuffleTimer = setTimeout(() => {
               this.doReshuffle();
@@ -1150,6 +1153,7 @@
                     // fog 迷雾在 playing 才开始：2.5s 半透明 → 渐显 1.5s → 移除事件类
                     if (this._fogPending) {
                       this._fogPending = false;
+                      this.currentEvent = 'fog';
                       this._fogFadeTimer = setTimeout(() => {
                         this.currentEvent = 'fog-fade';
                         clearTimeout(this._fogFadeTimer);

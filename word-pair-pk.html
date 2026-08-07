@@ -297,8 +297,8 @@
         </div>
 
         <!-- 随机事件横幅（WAVE1）：开局显示 2s -->
-        <div v-if="eventBannerVisible && currentEvent === 'fog'" class="event-banner event-banner--fog">🌫️ 迷雾开局</div>
-        <div v-else-if="eventBannerVisible && currentEvent === 'reshuffle'" class="event-banner event-banner--reshuffle">🔀 中途洗牌</div>
+        <div v-if="eventBannerVisible && eventBannerName === 'fog'" class="event-banner event-banner--fog">🌫️ 迷雾开局</div>
+        <div v-else-if="eventBannerVisible && eventBannerName === 'reshuffle'" class="event-banner event-banner--reshuffle">🔀 中途洗牌</div>
 
         <!-- 弱点雷达（WAVE1）：双人结算弹层，关闭后走原 saveResult 流程 -->
         <div v-if="gameResultPopup" class="result-overlay" @click.self="closeRadarPopup">
