@@ -842,12 +842,9 @@
             const isMatch = firstCard.pairId === card.pairId && firstCard.type !== card.type;
 
             if (isMatch) {
-              // 配对成功：连击 +1 + tap 音（音量随连击增益，≥5 叠加 flick）
+              // 配对成功：连击 +1（Phigros 音效仅点击打击特效使用，配对不放音）
               this.reviewCombo++;
               this.comboBreakReview = false;
-              const n = this.reviewCombo;
-              this.playSfx('tap', Math.min(1 + n * 0.05, 1.5));
-              if (n >= 5) this.playSfx('flick', 1);
               // TTS 先触发 — 在动画之前出声，消除听觉延迟
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
               this.speakWord(enText);
@@ -865,10 +862,9 @@
                 return;
               }
             } else {
-              // 配对失败 — 连击清零 + 断连显示 + 低频失败音 + 记录错误
+              // 配对失败 — 连击清零 + 断连显示 + 记录错误
               this.reviewCombo = 0;
               this.comboBreakReview = true;
-              this.playSfx('flick', 0.6);
               clearTimeout(this._comboBreakReviewTimer);
               this._comboBreakReviewTimer = setTimeout(() => { this.comboBreakReview = false; }, 900);
               firstCard.selected = false;
@@ -1143,18 +1139,15 @@
           this.startCountdown();
         },
 
-        // ===== 倒计时（WAVE1 升级：ready 0.8s → 3/2/1 各 600ms + tick 音 → GO 450ms → playing）=====
+        // ===== 倒计时（WAVE1 升级：ready 0.8s → 3/2/1 各 600ms → GO 450ms → playing）=====
         startCountdown() {
           this.countdownState = 'ready';
           setTimeout(() => {
             this.countdownState = '3';
-            this.playSfx('drag', 0.4); // tick 音（短促 drag，音量 0.4；不走 speechSynthesis）
             setTimeout(() => {
               this.countdownState = '2';
-              this.playSfx('drag', 0.4);
               setTimeout(() => {
                 this.countdownState = '1';
-                this.playSfx('drag', 0.4);
                 setTimeout(() => {
                   this.countdownState = 'go';
                   setTimeout(() => {
@@ -1255,12 +1248,9 @@
             const isMatch = firstCard.pairId === card.pairId && firstCard.type !== card.type;
 
             if (isMatch) {
-              // 配对成功：连击 +1 + tap 音（音量随连击增益，≥5 叠加 flick）
+              // 配对成功：连击 +1（Phigros 音效仅点击打击特效使用，配对不放音）
               this[comboRef]++;
               this[breakRef] = false;
-              const n = this[comboRef];
-              this.playSfx('tap', Math.min(1 + n * 0.05, 1.5));
-              if (n >= 5) this.playSfx('flick', 1);
               // TTS 先触发 — 在动画之前出声
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
               this.speakWord(enText);
@@ -1280,10 +1270,9 @@
                 return;
               }
             } else {
-              // 配对失败：连击清零 + 断连显示 + 低频失败音（flick 0.6）
+              // 配对失败：连击清零 + 断连显示（Phigros 音效仅点击打击特效使用）
               this[comboRef] = 0;
               this[breakRef] = true;
-              this.playSfx('flick', 0.6);
               clearTimeout(this._comboBreakTimer);
               this._comboBreakTimer = setTimeout(() => { this[breakRef] = false; }, 900);
               firstCard.selected = false;
