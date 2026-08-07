@@ -553,19 +553,13 @@
           clearTimeout(this._fogFadeTimer);
           clearTimeout(this._reshuffleTimer);
           clearTimeout(this._eventBannerTimer);
+          this._fogPending = false;
           this.currentEvent = ev;
           this.eventBannerVisible = true;
           this._eventBannerTimer = setTimeout(() => { this.eventBannerVisible = false; }, 2000);
           if (ev === 'fog') {
-            // 2.5s 迷雾结束 → 渐显 1.5s → 移除事件类
-            this._fogFadeTimer = setTimeout(() => {
-              this.currentEvent = 'fog-fade';
-              clearTimeout(this._fogFadeTimer);
-              this._fogFadeTimer = setTimeout(() => {
-                this.currentEvent = null;
-                this._fogFadeTimer = null;
-              }, 1500);
-            }, 2500);
+            // 迷雾计时推迟到 playing 再启动（倒计时 overlay 会遮住效果，见 startCountdown playing 分支）
+            this._fogPending = true;
           } else if (ev === 'reshuffle') {
             // 开局 5s 后未匹配卡片重排一次（已匹配不动）
             this._reshuffleTimer = setTimeout(() => {
@@ -1153,6 +1147,18 @@
                   setTimeout(() => {
                     this.countdownState = 'playing';
                     this.startTimers();
+                    // fog 迷雾在 playing 才开始：2.5s 半透明 → 渐显 1.5s → 移除事件类
+                    if (this._fogPending) {
+                      this._fogPending = false;
+                      this._fogFadeTimer = setTimeout(() => {
+                        this.currentEvent = 'fog-fade';
+                        clearTimeout(this._fogFadeTimer);
+                        this._fogFadeTimer = setTimeout(() => {
+                          this.currentEvent = null;
+                          this._fogFadeTimer = null;
+                        }, 1500);
+                      }, 2500);
+                    }
                   }, 450);
                 }, 600);
               }, 600);
