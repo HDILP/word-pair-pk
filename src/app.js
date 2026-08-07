@@ -97,6 +97,8 @@
           versionJsLoaded: false,
           // 首屏入场动画
           homeReady: false,
+          // 打击特效开关（localStorage wordpair_fx 持久化，默认开）
+          fxEnabled: true,
           // 每日挑战（WAVE1）
           dailyMode: false,
           dailyPick: null,
@@ -179,6 +181,11 @@
             return !this.reviewPopup && !this.reviewProcessing;
           }
           return false;
+        },
+        // 打击特效开关：持久化到 localStorage（'0'=关，其余=开）
+        toggleFx() {
+          this.fxEnabled = !this.fxEnabled;
+          try { localStorage.setItem('wordpair_fx', this.fxEnabled ? '1' : '0'); } catch(e) {}
         },
         // 颜色判定：Off 模式（复习）恒黄 > 右键蓝/其他键红（保留按键规格）> 左键/触摸/笔按连击变色
         // 连击变色：0-2 黄 / 3-5 蓝 / 6+ 红（Phigros 连击升温感）
@@ -292,6 +299,7 @@
         // window pointerdown 入口：游戏内才触发；不 preventDefault / 不 stopPropagation
         handleFxPointerDown(event) {
           if (fxReducedMotion) return;
+          if (!this.fxEnabled) return;
           if (!this.canSpawnFx()) return;
           const colorKey = this.fxColorFromEvent(event);
           // 先出声再出视觉（打击感"声先到"）
@@ -1552,6 +1560,10 @@
         try {
           const el = document.querySelector('meta[name="build-revision"]');
           if (el) this.buildVersion = el.content;
+        } catch(e) {}
+        // 读取打击特效开关（默认开）
+        try {
+          if (localStorage.getItem('wordpair_fx') === '0') this.fxEnabled = false;
         } catch(e) {}
         // 本地 file:// 版 fetch 远程 version.json 检查更新（只拉数据，不加载远程 JS）
         if (this.buildVersion && this._isLocal()) {

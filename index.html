@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260807112623" />
+  <meta name="build-revision" content="20260807113331" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -2377,6 +2377,60 @@
     }
 
     /* ==========================================
+       WAVE1：打击特效开关（首页 actions 下方小药丸）
+       ========================================== */
+    .fx-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin: 10px auto 0;
+      padding: 5px 14px;
+      border-radius: 999px;
+      border: 1.5px solid rgba(255, 170, 178, 0.45);
+      background: rgba(255, 255, 255, 0.55);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, opacity 0.2s ease;
+      box-shadow: 0 2px 8px rgba(255, 170, 178, 0.18);
+    }
+    .fx-toggle:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(255, 170, 178, 0.28);
+    }
+    .fx-toggle__icon {
+      color: #ffb347;
+      filter: drop-shadow(0 1px 4px rgba(255, 180, 70, 0.5));
+    }
+    .fx-toggle__state {
+      padding: 1px 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #ffd700, #ffb347);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .fx-toggle--off {
+      opacity: 0.65;
+      border-color: rgba(150, 150, 150, 0.4);
+      background: rgba(240, 240, 240, 0.6);
+    }
+    .fx-toggle--off .fx-toggle__icon {
+      color: #aaa;
+      filter: none;
+    }
+    .fx-toggle--off .fx-toggle__state {
+      background: #b0b0b0;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .fx-toggle {
+        transition: none;
+      }
+    }
+
+    /* ==========================================
        WAVE1：连击 Combo 大字（game-side__header 下方，absolute 不挤压卡片）
        ========================================== */
     .combo-banner {
@@ -2704,6 +2758,11 @@
             </button>
             <button class="btn btn--ghost home-enter-btn" style="transition-delay:1.92s" @click="currentView = 'leaderboard'">排行榜</button>
           </div>
+          <button class="fx-toggle" :class="{ 'fx-toggle--off': !fxEnabled }" @click="toggleFx" title="Phigros 点击打击特效开关">
+            <span class="fx-toggle__icon">✦</span>
+            <span>打击特效</span>
+            <span class="fx-toggle__state">{{ fxEnabled ? '开' : '关' }}</span>
+          </button>
         </div>
 
         <!-- ==========================================
@@ -3307,6 +3366,8 @@
           versionJsLoaded: false,
           // 首屏入场动画
           homeReady: false,
+          // 打击特效开关（localStorage wordpair_fx 持久化，默认开）
+          fxEnabled: true,
           // 每日挑战（WAVE1）
           dailyMode: false,
           dailyPick: null,
@@ -3389,6 +3450,11 @@
             return !this.reviewPopup && !this.reviewProcessing;
           }
           return false;
+        },
+        // 打击特效开关：持久化到 localStorage（'0'=关，其余=开）
+        toggleFx() {
+          this.fxEnabled = !this.fxEnabled;
+          try { localStorage.setItem('wordpair_fx', this.fxEnabled ? '1' : '0'); } catch(e) {}
         },
         // 颜色判定：Off 模式（复习）恒黄 > 右键蓝/其他键红（保留按键规格）> 左键/触摸/笔按连击变色
         // 连击变色：0-2 黄 / 3-5 蓝 / 6+ 红（Phigros 连击升温感）
@@ -3502,6 +3568,7 @@
         // window pointerdown 入口：游戏内才触发；不 preventDefault / 不 stopPropagation
         handleFxPointerDown(event) {
           if (fxReducedMotion) return;
+          if (!this.fxEnabled) return;
           if (!this.canSpawnFx()) return;
           const colorKey = this.fxColorFromEvent(event);
           // 先出声再出视觉（打击感"声先到"）
@@ -4762,6 +4829,10 @@
         try {
           const el = document.querySelector('meta[name="build-revision"]');
           if (el) this.buildVersion = el.content;
+        } catch(e) {}
+        // 读取打击特效开关（默认开）
+        try {
+          if (localStorage.getItem('wordpair_fx') === '0') this.fxEnabled = false;
         } catch(e) {}
         // 本地 file:// 版 fetch 远程 version.json 检查更新（只拉数据，不加载远程 JS）
         if (this.buildVersion && this._isLocal()) {

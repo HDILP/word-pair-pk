@@ -158,6 +158,11 @@
             </button>
             <button class="btn btn--ghost home-enter-btn" style="transition-delay:1.92s" @click="currentView = 'leaderboard'">排行榜</button>
           </div>
+          <button class="fx-toggle" :class="{ 'fx-toggle--off': !fxEnabled }" @click="toggleFx" title="Phigros 点击打击特效开关">
+            <span class="fx-toggle__icon">✦</span>
+            <span>打击特效</span>
+            <span class="fx-toggle__state">{{ fxEnabled ? '开' : '关' }}</span>
+          </button>
         </div>
 
         <!-- ==========================================
