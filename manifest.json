@@ -1,0 +1,25 @@
+{
+  "name": "词对 PK",
+  "short_name": "词对PK",
+  "description": "英语单词配对双人 PK 游戏：双人对战、抢答、听力挑战、单词图鉴，离线可玩",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#ffaab2",
+  "background_color": "#fff5f6",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

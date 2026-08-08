@@ -4,7 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260807124954" />
+  <meta name="build-revision" content="20260808160254" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#ffaab2" />
+  <link rel="icon" type="image/png" href="assets/icons/icon-192.png" />
 
   <!-- Google Fonts: Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -836,6 +839,23 @@
       color: var(--text-secondary);
     }
 
+    /* 心形生命值（WAVE2）：单人/听力，5 颗，灭掉的灰色 */
+    .hearts {
+      display: inline-flex;
+      gap: 2px;
+      font-size: 15px;
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+    .heart {
+      color: #ff5a7a;
+      text-shadow: 0 1px 2px rgba(255, 90, 122, 0.25);
+    }
+    .heart--lost {
+      color: #d5d0d2;
+      text-shadow: none;
+    }
+
     .game-side__progress-bar {
       width: 100%;
       height: 6px;
@@ -1410,6 +1430,230 @@
       border-radius: 4px;
       transition: width 300ms var(--ease-out);
       background: linear-gradient(90deg, var(--secondary), var(--secondary-dark));
+    }
+
+    /* 听力挑战（WAVE2） */
+    .listen-game-view {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .listen-header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+    .listen-header__info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .listen-header__label {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      padding: 5px 14px;
+      border-radius: 8px;
+      letter-spacing: 1px;
+    }
+    .listen-header__round {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+    .listen-header__stats {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .listen-header__score {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      background: rgba(255, 170, 178, 0.18);
+      padding: 4px 12px;
+      border-radius: 8px;
+    }
+    .listen-replay-btn {
+      padding: 5px 12px;
+      font-size: 13px;
+    }
+    .listen-question {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+    }
+    .listen-options {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .listen-option {
+      background: var(--card-bg, #fff);
+      border: 2px solid var(--secondary);
+      border-radius: 14px;
+      padding: 18px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 72px;
+      cursor: pointer;
+      transition: transform 160ms var(--ease-out), box-shadow 160ms var(--ease-out), border-color 160ms var(--ease-out);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    .listen-option:active {
+      transform: scale(0.96);
+      border-color: var(--primary);
+      box-shadow: 0 4px 14px rgba(255, 170, 178, 0.35);
+    }
+
+    /* 单词图鉴（WAVE2） */
+    .codex-view {
+      width: 100%;
+      max-width: 720px;
+      max-height: 100%;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      margin: 0 auto;
+    }
+    .codex-view .card {
+      display: flex;
+      flex-direction: column;
+      max-height: 100%;
+      min-height: 0;
+    }
+    .codex-stats {
+      margin: 4px 0 12px 0;
+    }
+    .codex-stats__text {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    .codex-stats__text strong {
+      color: var(--primary-dark);
+      font-size: 16px;
+    }
+    .codex-stats__bar {
+      margin-top: 6px;
+      height: 8px;
+      background: #f0eaec;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .codex-stats__fill {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width 300ms var(--ease-out);
+    }
+    .codex-search {
+      margin-bottom: 12px;
+    }
+    .codex-search__input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 2px solid #f0e6e8;
+      border-radius: 10px;
+      font-size: 14px;
+      background: #fff;
+      color: var(--text);
+      outline: none;
+      transition: border-color 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
+    }
+    .codex-search__input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(255, 170, 178, 0.25);
+    }
+    .codex-books {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+    }
+    .codex-book {
+      margin-bottom: 8px;
+      border: 1px solid #f0e6e8;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .codex-book__header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      cursor: pointer;
+      background: linear-gradient(135deg, rgba(255, 170, 178, 0.12), rgba(165, 216, 255, 0.10));
+      transition: background 160ms var(--ease-out);
+    }
+    .codex-book__header:hover {
+      background: linear-gradient(135deg, rgba(255, 170, 178, 0.22), rgba(165, 216, 255, 0.18));
+    }
+    .codex-book__name {
+      font-size: 15px;
+      font-weight: 700;
+      flex: 1;
+    }
+    .codex-book__count {
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+    .codex-book__words {
+      max-height: 320px;
+      overflow-y: auto;
+      padding: 4px 0;
+    }
+    .codex-word {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 16px;
+      font-size: 14px;
+      border-bottom: 1px solid #f7f0f2;
+    }
+    .codex-word:last-child {
+      border-bottom: none;
+    }
+    .codex-word__en {
+      font-weight: 600;
+      color: var(--text);
+      min-width: 120px;
+    }
+    .codex-word__en--clickable {
+      cursor: pointer;
+      border-bottom: 1px dashed var(--secondary-dark);
+    }
+    .codex-word__zh {
+      flex: 1;
+      color: var(--text-secondary);
+    }
+    .codex-word__mark {
+      font-size: 12px;
+      color: #4caf7d;
+      font-weight: 600;
+    }
+    .codex-word--uncollected {
+      opacity: 0.45;
+      filter: grayscale(1);
+    }
+    .codex-word--uncollected .codex-word__zh {
+      letter-spacing: 4px;
     }
 
     /* 复盘弹窗 */
@@ -2746,7 +2990,9 @@
 
           <div class="home-view__actions">
             <button class="btn btn--primary home-enter-btn" style="transition-delay:1.5s" @click="goSelect('dual')">开始 PK</button>
-            <button class="btn btn--accent home-enter-btn" style="transition-delay:1.64s" @click="goSelect('single')">单人挑战</button>
+            <button class="btn btn--primary home-enter-btn" style="transition-delay:1.64s" @click="goSelect('rush')">抢答 PK</button>
+            <button class="btn btn--accent home-enter-btn" style="transition-delay:1.78s" @click="goSelect('single')">单人挑战</button>
+            <button class="btn btn--accent home-enter-btn" style="transition-delay:1.92s" @click="goSelect('listen')">听力挑战</button>
             <button class="btn btn--ghost home-enter-btn" style="transition-delay:1.78s" @click="goReviewHome">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;vertical-align:-3px;">
                 <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
@@ -2860,7 +3106,7 @@
               <button class="btn btn--primary" @click="saveResult">确定</button>
             </div>
             <div class="result-modal__actions">
-              <button class="btn btn--secondary" @click="goSelect('dual')">再来一局</button>
+              <button class="btn btn--secondary" @click="goSelect(gameMode === 'rush' ? 'rush' : 'dual')">再来一局</button>
               <button class="btn btn--ghost" @click="goHome">返回首页</button>
             </div>
           </div>
@@ -2924,12 +3170,12 @@
           </div>
         </div>
 
-        <!-- 游戏面板 - 双人模式 -->
-        <div v-if="gameMode === 'dual'" class="game-board" :class="currentEvent ? 'fx-event--' + currentEvent : ''" @touchstart.prevent="handleBoardTouch($event)" @touchend="handleBoardTouchEnd($event)">
+        <!-- 游戏面板 - 双人模式 / 抢答模式（WAVE2：rush 共用 dual 布局，公共池 p1Cards 双网格同数组） -->
+        <div v-if="gameMode === 'dual' || gameMode === 'rush'" class="game-board" :class="currentEvent ? 'fx-event--' + currentEvent : ''" @touchstart.prevent="handleBoardTouch($event)" @touchend="handleBoardTouchEnd($event)">
           <!-- P1 -->
           <div class="game-side game-side--p1">
             <div class="game-side__header">
-              <span class="game-side__player-label p1">P1</span>
+              <span class="game-side__player-label p1">{{ gameMode === 'rush' ? '抢答 P1' : 'P1' }}</span>
               <span class="game-side__progress-text">{{ p1MatchedCount }}/8</span>
             </div>
             <div class="combo-banner" :class="{ 'combo-banner--show': p1Combo >= 2, 'combo-banner--break': comboBreakP1 }">
@@ -2966,7 +3212,7 @@
           <!-- P2 -->
           <div class="game-side game-side--p2">
             <div class="game-side__header">
-              <span class="game-side__player-label p2">P2</span>
+              <span class="game-side__player-label p2">{{ gameMode === 'rush' ? '抢答 P2' : 'P2' }}</span>
               <span class="game-side__progress-text">{{ p2MatchedCount }}/8</span>
             </div>
             <div class="combo-banner" :class="{ 'combo-banner--show': p2Combo >= 2, 'combo-banner--break': comboBreakP2 }">
@@ -2979,7 +3225,7 @@
             <div class="game-side__timer">{{ formatTime(p2Time) }}</div>
             <div class="card-grid-wrapper">
               <div class="card-grid" @click="handleClick($event, 'p2')">
-              <template v-for="(card, ci) in p2Cards" :key="card.id">
+              <template v-for="(card, ci) in (gameMode === 'rush' ? p1Cards : p2Cards)" :key="card.id">
               <div
                 class="game-card"
                 :style="{animationDelay: (ci * 40) + 'ms'}"
@@ -3008,6 +3254,9 @@
                   <polyline points="12 6 12 12 16 14"/>
                 </svg>
                 单人模式
+              </span>
+              <span v-if="gameMode === 'single' && !dailyMode" class="hearts" title="生命值：配错 -1">
+                <span v-for="i in maxHearts" :key="i" class="heart" :class="{ 'heart--lost': i > hearts }">♥</span>
               </span>
               <span class="game-side__progress-text">{{ p1MatchedCount }}/8</span>
             </div>
@@ -3156,6 +3405,23 @@
                 <div class="review-mode-btn__count">{{ reviewBox1Count > 0 ? reviewBox1Count + ' 词' : '暂无' }}</div>
               </div>
             </div>
+            <div class="review-view__codex" @click="currentView = 'codex'">
+              <div class="review-mode-btn">
+                <div class="review-mode-btn__icon">
+                  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="var(--secondary-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                    <path d="M12 7v6"/>
+                    <path d="M9 10h6"/>
+                  </svg>
+                </div>
+                <div class="review-mode-btn__info">
+                  <div class="review-mode-btn__title">单词图鉴</div>
+                  <div class="review-mode-btn__desc">配对过的单词自动收集成卡册，支持搜索与发音</div>
+                </div>
+                <div class="review-mode-btn__count">{{ codexCount > 0 ? codexCount + ' 词' : '暂无' }}</div>
+              </div>
+            </div>
             <div style="text-align:center;margin-top:20px;">
               <button class="btn btn--ghost" @click="currentView = 'home'">返回首页</button>
             </div>
@@ -3223,6 +3489,110 @@
           </div>
         </div>
       </div>
+
+        <!-- ==========================================
+             视图 8：听力挑战（WAVE2）
+             ========================================== -->
+        <div v-else-if="currentView === 'listenGame'" key="listenGame" class="listen-game-view">
+          <div class="listen-header">
+            <div class="listen-header__info">
+              <span class="listen-header__label">🎧 听力挑战</span>
+              <span class="listen-header__round">第 {{ listenIndex + 1 }} / {{ listenWords.length }} 轮</span>
+            </div>
+            <div class="listen-header__stats">
+              <span class="hearts" title="生命值：答错 -1">
+                <span v-for="i in maxHearts" :key="i" class="heart" :class="{ 'heart--lost': i > hearts }">♥</span>
+              </span>
+              <span class="listen-header__score">得分 {{ listenScore }}</span>
+              <button class="btn btn--ghost listen-replay-btn" @click="listenWords[listenIndex] ? speakWord(listenWords[listenIndex].en) : null">🔊 重听</button>
+            </div>
+          </div>
+          <div class="listen-question">听发音，选出对应的中文释义</div>
+          <div class="listen-options">
+            <div
+              v-for="(opt, i) in listenOptions"
+              :key="i"
+              class="listen-option"
+              @click="listenPick(opt)"
+            ><span class="card-text">{{ opt.text }}</span></div>
+          </div>
+
+          <!-- 听力结算弹窗 — 放 listenGameView 内部（同 reviewPopup 教训，不跟 Transition 抢孩子位） -->
+          <div v-if="listenPopup" class="review-popup-overlay">
+            <div class="review-popup">
+              <div class="review-popup__title">🎧 听力结算</div>
+              <div class="review-popup__subtitle">
+                答对 {{ listenPopup.score }} / {{ listenPopup.total }} · 错词 {{ listenPopup.wrong.length }} 个
+              </div>
+              <div v-if="listenPopup.wrong.length === 0" class="review-popup__empty">
+                全部答对！听力大师 🎉
+              </div>
+              <div v-else class="review-popup__list">
+                <div v-for="(w, i) in listenPopup.wrong" :key="i" class="review-popup__word">
+                  <span class="review-popup__word-en">{{ w.en }}</span>
+                  <span class="review-popup__word-zh">{{ w.zh }}</span>
+                </div>
+              </div>
+              <div v-if="listenPopup.wrong.length > 0" class="radar-popup__note">错词已加入复习系统</div>
+              <div class="review-popup__actions">
+                <button class="btn btn--secondary" @click="rerunListenGame">再来一轮</button>
+                <button class="btn btn--ghost" @click="closeListenPopup">返回首页</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             视图 9：单词图鉴（WAVE2）
+             ========================================== -->
+        <div v-else-if="currentView === 'codex'" key="codex" class="codex-view">
+          <div class="card">
+            <h2>
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;vertical-align:-3px;">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                <path d="M12 7v6"/>
+                <path d="M9 10h6"/>
+              </svg>
+              单词图鉴
+            </h2>
+
+            <!-- 统计栏：已收集 / 总词数 + 进度条 -->
+            <div class="codex-stats">
+              <span class="codex-stats__text">已收集 <strong>{{ codexCount }}</strong> / {{ codexTotal }} 词</span>
+              <div class="codex-stats__bar">
+                <div class="codex-stats__fill" :style="{width: (codexTotal ? (codexCount / codexTotal * 100) : 0) + '%'}"></div>
+              </div>
+            </div>
+
+            <!-- 搜索框 -->
+            <div class="codex-search">
+              <input v-model="codexSearch" class="codex-search__input" placeholder="🔍 搜索英文或中文…" />
+            </div>
+
+            <!-- 教材分组折叠列表 -->
+            <div class="codex-books">
+              <div v-for="(g, gi) in codexGroups" :key="gi" class="codex-book">
+                <div class="codex-book__header" @click="toggleCodexBook(g.name)">
+                  <span class="book-arrow" :class="{expanded: codexExpanded[g.name]}">▶</span>
+                  <span class="codex-book__name">{{ g.name }}</span>
+                  <span class="codex-book__count">{{ g.collected }}/{{ g.total }}</span>
+                </div>
+                <div v-if="codexExpanded[g.name]" class="codex-book__words">
+                  <div v-for="w in g.words" :key="w.key" class="codex-word" :class="{ 'codex-word--uncollected': !w.collected }">
+                    <span class="codex-word__en" :class="{ 'codex-word__en--clickable': w.collected }" @click="w.collected ? speakWord(w.en) : null">{{ w.en }}</span>
+                    <span class="codex-word__zh">{{ w.collected ? w.zh : '•••' }}</span>
+                    <span v-if="w.collected" class="codex-word__mark">✓ 已收集</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="text-align:center;margin-top:16px;">
+              <button class="btn btn--ghost" @click="goCodexHome">返回复习</button>
+            </div>
+          </div>
+        </div>
     </Transition>
 
     </main>
@@ -3296,7 +3666,7 @@
         return {
           // 视图状态
           currentView: 'home',
-          gameMode: 'dual', // 'dual' | 'single'
+          gameMode: 'dual', // 'dual' | 'single' | 'rush' | 'listen'
           singlePlayerPb: null,
 
           // 词表
@@ -3308,6 +3678,24 @@
           p2Cards: [],
           p1Selected: null,
           p2Selected: null,
+          // 抢答（WAVE2）：全局唯一"悬空选中" + 选中者
+          rushSelected: null,
+          rushOwner: null,
+          // 心形生命值（WAVE2）：单人挑战 + 听力挑战，开局 5 颗，配对/答错 -1
+          hearts: 5,
+          maxHearts: 5,
+          // 听力挑战（WAVE2）
+          listenWords: [], // 本局 8 个词 {en, zh, ...}
+          listenIndex: 0, // 当前轮次 0-7
+          listenScore: 0,
+          listenOptions: [], // 当前轮 4 个中文选项 {text, pairId, correct}
+          listenWrong: [], // 错词 [{en, zh}]
+          listenFinished: false,
+          listenPopup: null,
+          // 单词图鉴（WAVE2）：wordpair_codex，配对成功自动收集
+          codexSearch: '',
+          codexStoreVersion: 0, // 触发 codex computed 重新计算
+          codexExpanded: {}, // { bookName: true } 教材分组折叠
           p1Matched: 0,
           p2Matched: 0,
           p1Time: 0,
@@ -3437,6 +3825,51 @@
             if ((data[key].box || 1) === 1) count++;
           }
           return count;
+        },
+
+        // ===== 单词图鉴（WAVE2）computed =====
+        codexData() {
+          // 用 codexStoreVersion 触发重新计算（localStorage 非响应式）
+          void this.codexStoreVersion;
+          try {
+            return JSON.parse(localStorage.getItem('wordpair_codex') || '{}');
+          } catch(e) { return {}; }
+        },
+        codexCount() {
+          return Object.keys(this.codexData).length;
+        },
+        codexTotal() {
+          // 统计总数 = ALL_WORDS_DATA 全部词数（构建注入，约 5254）
+          let n = 0;
+          for (const b of ALL_WORDS_DATA.books) {
+            for (const u of (b.units || [])) n += (u.words || []).length;
+          }
+          return n;
+        },
+        // 按教材分组（全部词，已收集带标记；未收集灰色占位不显示释义防剧透）；支持搜索过滤
+        codexGroups() {
+          const data = this.codexData;
+          const q = (this.codexSearch || '').trim().toLowerCase();
+          const groups = [];
+          for (const b of ALL_WORDS_DATA.books) {
+            const words = [];
+            let collected = 0;
+            let total = 0;
+            for (const u of (b.units || [])) {
+              for (const w of (u.words || [])) {
+                total++;
+                const key = this.getWordKey(w);
+                const entry = data[key];
+                if (entry) collected++;
+                if (!q || key.indexOf(q) !== -1 || (w.zh || '').toLowerCase().indexOf(q) !== -1) {
+                  words.push({ key, en: w.en, zh: w.zh || '', collected: !!entry, date: entry ? entry.date : null });
+                }
+              }
+            }
+            if (!words.length) continue;
+            groups.push({ name: b.name, total, collected, words });
+          }
+          return groups;
         },
       },
 
@@ -3889,6 +4322,49 @@
         getWordKey(word) {
           return (word.en || '').trim().toLowerCase().replace(/\s+/g, '_').slice(0, 60);
         },
+        // ===== 单词图鉴（WAVE2）=====
+        // 配对成功自动收集；wordpair_codex 结构 { [enKey]: { en, zh, book, unit, date } }
+        // 重复收集不覆盖原日期（已存在直接跳过）
+        collectWord(word) {
+          if (!word || !word.en) return;
+          const key = this.getWordKey(word);
+          const data = this.loadCodex();
+          if (!data[key]) {
+            let book = '';
+            let unit = '';
+            for (const b of ALL_WORDS_DATA.books) {
+              for (const u of (b.units || [])) {
+                if ((u.words || []).some(w => this.getWordKey(w) === key)) {
+                  book = b.name;
+                  unit = u.name;
+                  break;
+                }
+              }
+              if (book) break;
+            }
+            data[key] = {
+              en: word.en,
+              zh: word.zh || '',
+              book: book,
+              unit: unit,
+              date: new Date().toISOString().slice(0, 10),
+            };
+            this.saveCodex(data);
+          }
+          this.codexStoreVersion++;
+        },
+        loadCodex() {
+          try { return JSON.parse(localStorage.getItem('wordpair_codex') || '{}'); } catch(e) { return {}; }
+        },
+        saveCodex(data) {
+          localStorage.setItem('wordpair_codex', JSON.stringify(data));
+        },
+        toggleCodexBook(name) {
+          this.codexExpanded = { ...this.codexExpanded, [name]: !this.codexExpanded[name] };
+        },
+        goCodexHome() {
+          this.currentView = 'review';
+        },
         loadReviewStore() {
           try {
             return JSON.parse(localStorage.getItem('wordpair_review') || '{}');
@@ -4119,6 +4595,8 @@
               firstCard.matched = true;
               card.matched = true;
               this.reviewMatchSet.add(firstCard.pairId);
+              // 单词图鉴（WAVE2）：复习配对成功同样收集
+              this.collectWord(firstCard._word || card._word);
 
               this.reviewSelected = null;
 
@@ -4307,12 +4785,132 @@
           }
         },
 
+        // ===== 听力挑战（WAVE2）=====
+        // 每轮 TTS 读英文 → 4 张中文卡（1 正确 + 3 全局词库随机干扰）→ 点对 +1 分进下一轮 / 点错 -1 心也进下一轮
+        startListenGame() {
+          const selectedWords = [];
+          let bookName = '';
+          for (const b of this.books) {
+            for (const u of (b.units || [])) {
+              if (u._checked) {
+                selectedWords.push(...(u.words || []));
+                if (!bookName) bookName = b.name + ' - ' + u.name;
+              }
+            }
+          }
+          if (selectedWords.length < 8) return;
+
+          const shuffled = [...selectedWords].sort(() => Math.random() - 0.5);
+          const chosen = shuffled.slice(0, 8);
+          this.listenWords = chosen;
+          this.listenGameWords = chosen;
+          this.listenIndex = 0;
+          this.listenScore = 0;
+          this.listenWrong = [];
+          this.listenFinished = false;
+          this.listenPopup = null;
+          this.hearts = this.maxHearts; // 听力挑战带心形生命值
+          this.reviewCombo = 0;
+          this.comboBreakReview = false;
+          this.gameBookName = bookName;
+          this.dualGameWords = chosen;
+          this.currentView = 'listenGame';
+          this.prepareListenRound();
+        },
+        // 组装当前轮 4 个选项：正确项 pairId=当前轮次；干扰项从全局词库随机抽（去重，不得与正确项同 key）
+        prepareListenRound() {
+          const word = this.listenWords[this.listenIndex];
+          const key = this.getWordKey(word);
+          const pool = [];
+          for (const b of ALL_WORDS_DATA.books) {
+            for (const u of (b.units || [])) {
+              for (const w of (u.words || [])) {
+                const k = this.getWordKey(w);
+                if (k === key) continue;
+                if (!w.zh || w.zh === word.zh) continue;
+                if (pool.some(p => this.getWordKey(p) === k)) continue;
+                pool.push(w);
+              }
+            }
+          }
+          const dist = [...pool].sort(() => Math.random() - 0.5).slice(0, 3);
+          const options = [{ text: word.zh, pairId: this.listenIndex, correct: true }];
+          for (const w of dist) {
+            options.push({ text: w.zh, pairId: -1, correct: false });
+          }
+          this.listenOptions = options.sort(() => Math.random() - 0.5);
+          // 自动读当前词
+          this.speakWord(word.en);
+        },
+        listenPick(option) {
+          if (this.listenFinished || !option) return;
+          const word = this.listenWords[this.listenIndex];
+          if (option.correct) {
+            // 答对：+1 分 + combo + 下一轮自动读
+            this.listenScore++;
+            this.reviewCombo++;
+            this.comboBreakReview = false;
+            // 单词图鉴（WAVE2）：听力答对同样收集
+            this.collectWord(word);
+            this.advanceListen();
+          } else {
+            // 答错：-1 心 + 记错（进复习盒子 box 重置 1）+ 下一轮
+            this.hearts--;
+            this.reviewCombo = 0;
+            this.comboBreakReview = true;
+            clearTimeout(this._comboBreakTimer);
+            this._comboBreakTimer = setTimeout(() => { this.comboBreakReview = false; }, 900);
+            this.listenWrong.push({ en: word.en, zh: word.zh });
+            if (this.hearts <= 0) {
+              this.finishListenGame();
+              return;
+            }
+            this.advanceListen();
+          }
+        },
+        advanceListen() {
+          if (this.listenIndex + 1 >= this.listenWords.length) {
+            this.finishListenGame();
+            return;
+          }
+          this.listenIndex++;
+          this.prepareListenRound();
+        },
+        // 8 轮结束或 0 心 → 结算；错词进复习盒子（学习闭环与单人一致）
+        finishListenGame() {
+          if (this.listenFinished) return;
+          this.listenFinished = true;
+          if (this.listenWrong.length > 0) {
+            const errMap = {};
+            for (const w of this.listenWrong) errMap[w.en] = (errMap[w.en] || 0) + 1;
+            this.updateReviewBoxes(this.listenGameWords || this.listenWords, errMap);
+          }
+          this.listenPopup = {
+            score: this.listenScore,
+            total: this.listenWords.length,
+            wrong: this.listenWrong,
+          };
+        },
+        rerunListenGame() {
+          this.listenPopup = null;
+          this.startListenGame();
+        },
+        closeListenPopup() {
+          this.listenPopup = null;
+          this.goHome();
+        },
+
         // ===== 开始游戏 =====
         startGame() {
           // 如果是从复习页来的，走自由练习
           if (this.pendingReview) {
             this.pendingReview = false;
             this.startReviewGame('free');
+            return;
+          }
+          // 听力挑战：选词完成后进入听力流程（不走配对 startGame）
+          if (this.gameMode === 'listen') {
+            this.startListenGame();
             return;
           }
           const selectedWords = [];
@@ -4380,6 +4978,9 @@
           this._processingClick = { p1: false, p2: false };
           this.p1Selected = null;
           this.p2Selected = null;
+          this.rushSelected = null; // 抢答全局悬空选中（WAVE2）
+          this.rushOwner = null;
+          this.hearts = this.maxHearts; // 心形生命值重置（WAVE2）
           this.p1Matched = 0;
           this.p2Matched = 0;
           this.p1Time = 0;
@@ -4445,7 +5046,7 @@
           this.p1Time = 0;
           this.p2Time = 0;
           this.p1Timer = setInterval(() => { this.p1Time += 0.1; }, 100);
-          if (this.gameMode === 'dual') {
+          if (this.gameMode === 'dual' || this.gameMode === 'rush') {
             this.p2Timer = setInterval(() => { this.p2Time += 0.1; }, 100);
           }
         },
@@ -4461,7 +5062,11 @@
           const cardId = cardEl.dataset.cardId;
           if (!cardId) return;
 
-          this.processCardClick(cardId, side);
+          if (this.gameMode === 'rush') {
+            this.processRushClick(cardId, side);
+          } else {
+            this.processCardClick(cardId, side);
+          }
         },
 
         // 多点触控：在 .game-board 级别处理，支持 P1+P2 同时点击
@@ -4486,7 +5091,11 @@
             const entry = this._touchMap[touch.identifier];
             if (!entry) continue;
             delete this._touchMap[touch.identifier];
-            this.processCardClick(entry.cardId, entry.side);
+            if (this.gameMode === 'rush') {
+              this.processRushClick(entry.cardId, entry.side);
+            } else {
+              this.processCardClick(entry.cardId, entry.side);
+            }
           }
         },
 
@@ -4530,6 +5139,9 @@
               // 配对成功：连击 +1（Phigros 音效仅点击打击特效使用，配对不放音）
               this[comboRef]++;
               this[breakRef] = false;
+              // 单词图鉴（WAVE2）：配对成功自动收集
+              const pairWord = this.dualGameWords[firstCard.pairId];
+              if (pairWord) this.collectWord(pairWord);
               // TTS 先触发 — 在动画之前出声
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
               this.speakWord(enText);
@@ -4565,6 +5177,16 @@
                 const errs = side === 'p1' ? this.p1Errors : this.p2Errors;
                 errs[enText] = (errs[enText] || 0) + 1;
               }
+              // 心形生命值（WAVE2）：单人挑战扣心（每日挑战除外）；0 心提前结束走现有 endGame（错词已入库）
+              if (this.gameMode === 'single' && !this.dailyMode) {
+                this.hearts--;
+                if (this.hearts <= 0) {
+                  this[selectedRef] = null;
+                  this.endGame('p1');
+                  this._processingClick[side] = false;
+                  return;
+                }
+              }
               this[selectedRef] = null;
               setTimeout(() => {
                 firstCard.wrong = false;
@@ -4575,6 +5197,86 @@
             // 选中卡片
             card.selected = true;
             this[selectedRef] = card;
+          }
+
+          this._processingClick[side] = false;
+        },
+
+        // ===== 抢答 PK（WAVE2）=====
+        // 公共牌池 = p1Cards 单份（16 张），双方在各自的 game-side 网格上操作同一数组；
+        // 全局唯一"悬空选中" rushSelected + 选中者 rushOwner（不按 side 分选中）
+        // 状态机（拍板第 1 条 a/b/c）：
+        //   a) 无选中 → 点击卡 C 被选中，owner=点击者
+        //   b) 有选中且 owner=自己：C 与选中卡配对 → 归自己（得分+1）；C==选中卡 → 取消；否则无效（不惩罚不顶替）
+        //   c) 有选中且 owner=对方：C 与选中卡配对 → 归自己（抢！）；否则无效点击（不许顶掉对方选中）
+        // 配对归属永远属于"完成配对的那次点击"
+        processRushClick(cardId, side) {
+          if (this._processingClick[side]) return;
+
+          const card = this.p1Cards.find(c => c.id === cardId);
+          if (!card) return;
+          // 已匹配卡不可再点（无效点击不惩罚）
+          if (card.matched) return;
+
+          this._processingClick[side] = true;
+
+          if (this.rushSelected) {
+            const firstCard = this.rushSelected;
+
+            // 点同一张卡：仅 owner 自己能取消；对方点它 = 无效（不许顶掉）
+            if (firstCard.id === cardId) {
+              if (side === this.rushOwner) {
+                firstCard.selected = false;
+                this.rushSelected = null;
+                this.rushOwner = null;
+              }
+              this._processingClick[side] = false;
+              return;
+            }
+
+            const isMatch = firstCard.pairId === card.pairId && firstCard.type !== card.type;
+
+            if (isMatch) {
+              // 配对成功：归属 = 完成配对的那次点击（side）；对方完成 = 抢！
+              const matchSet = side === 'p1' ? this._p1MatchSet : this._p2MatchSet;
+              if (side === 'p1') { this.p1Combo++; this.comboBreakP1 = false; }
+              else { this.p2Combo++; this.comboBreakP2 = false; }
+              // TTS 先触发 — 在动画之前出声
+              const enText = firstCard.type === 'en' ? firstCard.text : card.text;
+              this.speakWord(enText);
+              firstCard.selected = false;
+              firstCard.matched = true;
+              card.matched = true;
+              matchSet.add(firstCard.pairId);
+              // 单词图鉴（WAVE2）：抢答配对成功同样收集
+              const pairWord = this.dualGameWords[firstCard.pairId];
+              if (pairWord) this.collectWord(pairWord);
+              this.rushSelected = null;
+              this.rushOwner = null;
+              // 公共池 8 对全消 → 结束（得分多者胜，平分比用时，endGame 内判定）
+              if (this._p1MatchSet.size + this._p2MatchSet.size >= 8 && !this.gameOverInternal) {
+                this.endGame('rush');
+                this._processingClick[side] = false;
+                return;
+              }
+            } else {
+              // 无效点击：不扣分不惩罚、不顶掉对方选中；错词记录（谁点错记谁的，与 dual 一致）
+              const enText = firstCard.type === 'en' ? firstCard.text : card.text;
+              const errs = side === 'p1' ? this.p1Errors : this.p2Errors;
+              errs[enText] = (errs[enText] || 0) + 1;
+              firstCard.wrong = true;
+              card.wrong = true;
+              setTimeout(() => {
+                firstCard.wrong = false;
+                card.wrong = false;
+              }, 300);
+              // 选中保持（owner 不变）
+            }
+          } else {
+            // 无悬空选中 → 选中，owner=点击者
+            card.selected = true;
+            this.rushSelected = card;
+            this.rushOwner = side;
           }
 
           this._processingClick[side] = false;
@@ -4609,6 +5311,40 @@
             if (this.dailyMode) {
               this.completeDailyChallenge(t);
             }
+            return;
+          }
+
+          if (this.gameMode === 'rush') {
+            // 抢答结算（WAVE2）：得分多者胜；平分 → 用时少者胜
+            const p1Score = this._p1MatchSet.size;
+            const p2Score = this._p2MatchSet.size;
+            let winner = 'p1';
+            if (p2Score > p1Score) winner = 'p2';
+            else if (p1Score === p2Score) winner = (this.p1Time <= this.p2Time) ? 'p1' : 'p2';
+            const winnerTime = winner === 'p1' ? this.p1Time : this.p2Time;
+            this.gameResult = {
+              winner: winner,
+              time: winnerTime,
+            };
+            // 双方错词合并 → 复习盒子 + 弱点雷达（与 dual 一致）
+            const rMerged = {};
+            for (const en in this.p1Errors) rMerged[en] = (rMerged[en] || 0) + this.p1Errors[en];
+            for (const en in this.p2Errors) rMerged[en] = (rMerged[en] || 0) + this.p2Errors[en];
+            if (this.dualGameWords && this.dualGameWords.length > 0) {
+              this.updateReviewBoxes(this.dualGameWords, rMerged);
+            }
+            const rWordMap = {};
+            for (const w of (this.dualGameWords || [])) rWordMap[w.en] = w;
+            const rRadar = [];
+            for (const en in rMerged) {
+              rRadar.push({ en: en, zh: (rWordMap[en] || {}).zh || '', count: rMerged[en] });
+            }
+            rRadar.sort((a, b) => (b.count - a.count) || a.en.localeCompare(b.en));
+            this.gameResultPopup = {
+              winner: winner,
+              time: winnerTime,
+              top3: rRadar.slice(0, 3),
+            };
             return;
           }
 
@@ -4768,9 +5504,13 @@
             case 'reviewGame':
               this.currentView = 'review';
               break;
+            case 'codex':
+              this.goCodexHome();
+              break;
             case 'game':
             case 'review':
             case 'leaderboard':
+            case 'listenGame':
               this.goHome();
               break;
             // home: 最顶层，不处理
@@ -4833,6 +5573,10 @@
         try {
           if (localStorage.getItem('wordpair_fx') === '0') this.fxEnabled = false;
         } catch(e) {}
+        // WAVE2：PWA 离线安装 — 在线版注册 service worker（file:// 不注册，本地版本来就是单文件离线）；失败静默
+        if ('serviceWorker' in navigator && !this._isLocal()) {
+          navigator.serviceWorker.register('sw.js').catch(() => {});
+        }
         // 本地 file:// 版 fetch 远程 version.json 检查更新（只拉数据，不加载远程 JS）
         if (this.buildVersion && this._isLocal()) {
           fetch('https://word-pair-pk.hdilp.top/version.json?t=' + Date.now(), { cache: 'no-store' })

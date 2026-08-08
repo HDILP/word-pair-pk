@@ -27,7 +27,7 @@
         return {
           // 视图状态
           currentView: 'home',
-          gameMode: 'dual', // 'dual' | 'single'
+          gameMode: 'dual', // 'dual' | 'single' | 'rush' | 'listen'
           singlePlayerPb: null,
 
           // 词表
@@ -39,6 +39,24 @@
           p2Cards: [],
           p1Selected: null,
           p2Selected: null,
+          // 抢答（WAVE2）：全局唯一"悬空选中" + 选中者
+          rushSelected: null,
+          rushOwner: null,
+          // 心形生命值（WAVE2）：单人挑战 + 听力挑战，开局 5 颗，配对/答错 -1
+          hearts: 5,
+          maxHearts: 5,
+          // 听力挑战（WAVE2）
+          listenWords: [], // 本局 8 个词 {en, zh, ...}
+          listenIndex: 0, // 当前轮次 0-7
+          listenScore: 0,
+          listenOptions: [], // 当前轮 4 个中文选项 {text, pairId, correct}
+          listenWrong: [], // 错词 [{en, zh}]
+          listenFinished: false,
+          listenPopup: null,
+          // 单词图鉴（WAVE2）：wordpair_codex，配对成功自动收集
+          codexSearch: '',
+          codexStoreVersion: 0, // 触发 codex computed 重新计算
+          codexExpanded: {}, // { bookName: true } 教材分组折叠
           p1Matched: 0,
           p2Matched: 0,
           p1Time: 0,
@@ -168,6 +186,51 @@
             if ((data[key].box || 1) === 1) count++;
           }
           return count;
+        },
+
+        // ===== 单词图鉴（WAVE2）computed =====
+        codexData() {
+          // 用 codexStoreVersion 触发重新计算（localStorage 非响应式）
+          void this.codexStoreVersion;
+          try {
+            return JSON.parse(localStorage.getItem('wordpair_codex') || '{}');
+          } catch(e) { return {}; }
+        },
+        codexCount() {
+          return Object.keys(this.codexData).length;
+        },
+        codexTotal() {
+          // 统计总数 = ALL_WORDS_DATA 全部词数（构建注入，约 5254）
+          let n = 0;
+          for (const b of ALL_WORDS_DATA.books) {
+            for (const u of (b.units || [])) n += (u.words || []).length;
+          }
+          return n;
+        },
+        // 按教材分组（全部词，已收集带标记；未收集灰色占位不显示释义防剧透）；支持搜索过滤
+        codexGroups() {
+          const data = this.codexData;
+          const q = (this.codexSearch || '').trim().toLowerCase();
+          const groups = [];
+          for (const b of ALL_WORDS_DATA.books) {
+            const words = [];
+            let collected = 0;
+            let total = 0;
+            for (const u of (b.units || [])) {
+              for (const w of (u.words || [])) {
+                total++;
+                const key = this.getWordKey(w);
+                const entry = data[key];
+                if (entry) collected++;
+                if (!q || key.indexOf(q) !== -1 || (w.zh || '').toLowerCase().indexOf(q) !== -1) {
+                  words.push({ key, en: w.en, zh: w.zh || '', collected: !!entry, date: entry ? entry.date : null });
+                }
+              }
+            }
+            if (!words.length) continue;
+            groups.push({ name: b.name, total, collected, words });
+          }
+          return groups;
         },
       },
 
@@ -620,6 +683,49 @@
         getWordKey(word) {
           return (word.en || '').trim().toLowerCase().replace(/\s+/g, '_').slice(0, 60);
         },
+        // ===== 单词图鉴（WAVE2）=====
+        // 配对成功自动收集；wordpair_codex 结构 { [enKey]: { en, zh, book, unit, date } }
+        // 重复收集不覆盖原日期（已存在直接跳过）
+        collectWord(word) {
+          if (!word || !word.en) return;
+          const key = this.getWordKey(word);
+          const data = this.loadCodex();
+          if (!data[key]) {
+            let book = '';
+            let unit = '';
+            for (const b of ALL_WORDS_DATA.books) {
+              for (const u of (b.units || [])) {
+                if ((u.words || []).some(w => this.getWordKey(w) === key)) {
+                  book = b.name;
+                  unit = u.name;
+                  break;
+                }
+              }
+              if (book) break;
+            }
+            data[key] = {
+              en: word.en,
+              zh: word.zh || '',
+              book: book,
+              unit: unit,
+              date: new Date().toISOString().slice(0, 10),
+            };
+            this.saveCodex(data);
+          }
+          this.codexStoreVersion++;
+        },
+        loadCodex() {
+          try { return JSON.parse(localStorage.getItem('wordpair_codex') || '{}'); } catch(e) { return {}; }
+        },
+        saveCodex(data) {
+          localStorage.setItem('wordpair_codex', JSON.stringify(data));
+        },
+        toggleCodexBook(name) {
+          this.codexExpanded = { ...this.codexExpanded, [name]: !this.codexExpanded[name] };
+        },
+        goCodexHome() {
+          this.currentView = 'review';
+        },
         loadReviewStore() {
           try {
             return JSON.parse(localStorage.getItem('wordpair_review') || '{}');
@@ -850,6 +956,8 @@
               firstCard.matched = true;
               card.matched = true;
               this.reviewMatchSet.add(firstCard.pairId);
+              // 单词图鉴（WAVE2）：复习配对成功同样收集
+              this.collectWord(firstCard._word || card._word);
 
               this.reviewSelected = null;
 
@@ -1038,12 +1146,132 @@
           }
         },
 
+        // ===== 听力挑战（WAVE2）=====
+        // 每轮 TTS 读英文 → 4 张中文卡（1 正确 + 3 全局词库随机干扰）→ 点对 +1 分进下一轮 / 点错 -1 心也进下一轮
+        startListenGame() {
+          const selectedWords = [];
+          let bookName = '';
+          for (const b of this.books) {
+            for (const u of (b.units || [])) {
+              if (u._checked) {
+                selectedWords.push(...(u.words || []));
+                if (!bookName) bookName = b.name + ' - ' + u.name;
+              }
+            }
+          }
+          if (selectedWords.length < 8) return;
+
+          const shuffled = [...selectedWords].sort(() => Math.random() - 0.5);
+          const chosen = shuffled.slice(0, 8);
+          this.listenWords = chosen;
+          this.listenGameWords = chosen;
+          this.listenIndex = 0;
+          this.listenScore = 0;
+          this.listenWrong = [];
+          this.listenFinished = false;
+          this.listenPopup = null;
+          this.hearts = this.maxHearts; // 听力挑战带心形生命值
+          this.reviewCombo = 0;
+          this.comboBreakReview = false;
+          this.gameBookName = bookName;
+          this.dualGameWords = chosen;
+          this.currentView = 'listenGame';
+          this.prepareListenRound();
+        },
+        // 组装当前轮 4 个选项：正确项 pairId=当前轮次；干扰项从全局词库随机抽（去重，不得与正确项同 key）
+        prepareListenRound() {
+          const word = this.listenWords[this.listenIndex];
+          const key = this.getWordKey(word);
+          const pool = [];
+          for (const b of ALL_WORDS_DATA.books) {
+            for (const u of (b.units || [])) {
+              for (const w of (u.words || [])) {
+                const k = this.getWordKey(w);
+                if (k === key) continue;
+                if (!w.zh || w.zh === word.zh) continue;
+                if (pool.some(p => this.getWordKey(p) === k)) continue;
+                pool.push(w);
+              }
+            }
+          }
+          const dist = [...pool].sort(() => Math.random() - 0.5).slice(0, 3);
+          const options = [{ text: word.zh, pairId: this.listenIndex, correct: true }];
+          for (const w of dist) {
+            options.push({ text: w.zh, pairId: -1, correct: false });
+          }
+          this.listenOptions = options.sort(() => Math.random() - 0.5);
+          // 自动读当前词
+          this.speakWord(word.en);
+        },
+        listenPick(option) {
+          if (this.listenFinished || !option) return;
+          const word = this.listenWords[this.listenIndex];
+          if (option.correct) {
+            // 答对：+1 分 + combo + 下一轮自动读
+            this.listenScore++;
+            this.reviewCombo++;
+            this.comboBreakReview = false;
+            // 单词图鉴（WAVE2）：听力答对同样收集
+            this.collectWord(word);
+            this.advanceListen();
+          } else {
+            // 答错：-1 心 + 记错（进复习盒子 box 重置 1）+ 下一轮
+            this.hearts--;
+            this.reviewCombo = 0;
+            this.comboBreakReview = true;
+            clearTimeout(this._comboBreakTimer);
+            this._comboBreakTimer = setTimeout(() => { this.comboBreakReview = false; }, 900);
+            this.listenWrong.push({ en: word.en, zh: word.zh });
+            if (this.hearts <= 0) {
+              this.finishListenGame();
+              return;
+            }
+            this.advanceListen();
+          }
+        },
+        advanceListen() {
+          if (this.listenIndex + 1 >= this.listenWords.length) {
+            this.finishListenGame();
+            return;
+          }
+          this.listenIndex++;
+          this.prepareListenRound();
+        },
+        // 8 轮结束或 0 心 → 结算；错词进复习盒子（学习闭环与单人一致）
+        finishListenGame() {
+          if (this.listenFinished) return;
+          this.listenFinished = true;
+          if (this.listenWrong.length > 0) {
+            const errMap = {};
+            for (const w of this.listenWrong) errMap[w.en] = (errMap[w.en] || 0) + 1;
+            this.updateReviewBoxes(this.listenGameWords || this.listenWords, errMap);
+          }
+          this.listenPopup = {
+            score: this.listenScore,
+            total: this.listenWords.length,
+            wrong: this.listenWrong,
+          };
+        },
+        rerunListenGame() {
+          this.listenPopup = null;
+          this.startListenGame();
+        },
+        closeListenPopup() {
+          this.listenPopup = null;
+          this.goHome();
+        },
+
         // ===== 开始游戏 =====
         startGame() {
           // 如果是从复习页来的，走自由练习
           if (this.pendingReview) {
             this.pendingReview = false;
             this.startReviewGame('free');
+            return;
+          }
+          // 听力挑战：选词完成后进入听力流程（不走配对 startGame）
+          if (this.gameMode === 'listen') {
+            this.startListenGame();
             return;
           }
           const selectedWords = [];
@@ -1111,6 +1339,9 @@
           this._processingClick = { p1: false, p2: false };
           this.p1Selected = null;
           this.p2Selected = null;
+          this.rushSelected = null; // 抢答全局悬空选中（WAVE2）
+          this.rushOwner = null;
+          this.hearts = this.maxHearts; // 心形生命值重置（WAVE2）
           this.p1Matched = 0;
           this.p2Matched = 0;
           this.p1Time = 0;
@@ -1176,7 +1407,7 @@
           this.p1Time = 0;
           this.p2Time = 0;
           this.p1Timer = setInterval(() => { this.p1Time += 0.1; }, 100);
-          if (this.gameMode === 'dual') {
+          if (this.gameMode === 'dual' || this.gameMode === 'rush') {
             this.p2Timer = setInterval(() => { this.p2Time += 0.1; }, 100);
           }
         },
@@ -1192,7 +1423,11 @@
           const cardId = cardEl.dataset.cardId;
           if (!cardId) return;
 
-          this.processCardClick(cardId, side);
+          if (this.gameMode === 'rush') {
+            this.processRushClick(cardId, side);
+          } else {
+            this.processCardClick(cardId, side);
+          }
         },
 
         // 多点触控：在 .game-board 级别处理，支持 P1+P2 同时点击
@@ -1217,7 +1452,11 @@
             const entry = this._touchMap[touch.identifier];
             if (!entry) continue;
             delete this._touchMap[touch.identifier];
-            this.processCardClick(entry.cardId, entry.side);
+            if (this.gameMode === 'rush') {
+              this.processRushClick(entry.cardId, entry.side);
+            } else {
+              this.processCardClick(entry.cardId, entry.side);
+            }
           }
         },
 
@@ -1261,6 +1500,9 @@
               // 配对成功：连击 +1（Phigros 音效仅点击打击特效使用，配对不放音）
               this[comboRef]++;
               this[breakRef] = false;
+              // 单词图鉴（WAVE2）：配对成功自动收集
+              const pairWord = this.dualGameWords[firstCard.pairId];
+              if (pairWord) this.collectWord(pairWord);
               // TTS 先触发 — 在动画之前出声
               const enText = firstCard.type === 'en' ? firstCard.text : card.text;
               this.speakWord(enText);
@@ -1296,6 +1538,16 @@
                 const errs = side === 'p1' ? this.p1Errors : this.p2Errors;
                 errs[enText] = (errs[enText] || 0) + 1;
               }
+              // 心形生命值（WAVE2）：单人挑战扣心（每日挑战除外）；0 心提前结束走现有 endGame（错词已入库）
+              if (this.gameMode === 'single' && !this.dailyMode) {
+                this.hearts--;
+                if (this.hearts <= 0) {
+                  this[selectedRef] = null;
+                  this.endGame('p1');
+                  this._processingClick[side] = false;
+                  return;
+                }
+              }
               this[selectedRef] = null;
               setTimeout(() => {
                 firstCard.wrong = false;
@@ -1306,6 +1558,86 @@
             // 选中卡片
             card.selected = true;
             this[selectedRef] = card;
+          }
+
+          this._processingClick[side] = false;
+        },
+
+        // ===== 抢答 PK（WAVE2）=====
+        // 公共牌池 = p1Cards 单份（16 张），双方在各自的 game-side 网格上操作同一数组；
+        // 全局唯一"悬空选中" rushSelected + 选中者 rushOwner（不按 side 分选中）
+        // 状态机（拍板第 1 条 a/b/c）：
+        //   a) 无选中 → 点击卡 C 被选中，owner=点击者
+        //   b) 有选中且 owner=自己：C 与选中卡配对 → 归自己（得分+1）；C==选中卡 → 取消；否则无效（不惩罚不顶替）
+        //   c) 有选中且 owner=对方：C 与选中卡配对 → 归自己（抢！）；否则无效点击（不许顶掉对方选中）
+        // 配对归属永远属于"完成配对的那次点击"
+        processRushClick(cardId, side) {
+          if (this._processingClick[side]) return;
+
+          const card = this.p1Cards.find(c => c.id === cardId);
+          if (!card) return;
+          // 已匹配卡不可再点（无效点击不惩罚）
+          if (card.matched) return;
+
+          this._processingClick[side] = true;
+
+          if (this.rushSelected) {
+            const firstCard = this.rushSelected;
+
+            // 点同一张卡：仅 owner 自己能取消；对方点它 = 无效（不许顶掉）
+            if (firstCard.id === cardId) {
+              if (side === this.rushOwner) {
+                firstCard.selected = false;
+                this.rushSelected = null;
+                this.rushOwner = null;
+              }
+              this._processingClick[side] = false;
+              return;
+            }
+
+            const isMatch = firstCard.pairId === card.pairId && firstCard.type !== card.type;
+
+            if (isMatch) {
+              // 配对成功：归属 = 完成配对的那次点击（side）；对方完成 = 抢！
+              const matchSet = side === 'p1' ? this._p1MatchSet : this._p2MatchSet;
+              if (side === 'p1') { this.p1Combo++; this.comboBreakP1 = false; }
+              else { this.p2Combo++; this.comboBreakP2 = false; }
+              // TTS 先触发 — 在动画之前出声
+              const enText = firstCard.type === 'en' ? firstCard.text : card.text;
+              this.speakWord(enText);
+              firstCard.selected = false;
+              firstCard.matched = true;
+              card.matched = true;
+              matchSet.add(firstCard.pairId);
+              // 单词图鉴（WAVE2）：抢答配对成功同样收集
+              const pairWord = this.dualGameWords[firstCard.pairId];
+              if (pairWord) this.collectWord(pairWord);
+              this.rushSelected = null;
+              this.rushOwner = null;
+              // 公共池 8 对全消 → 结束（得分多者胜，平分比用时，endGame 内判定）
+              if (this._p1MatchSet.size + this._p2MatchSet.size >= 8 && !this.gameOverInternal) {
+                this.endGame('rush');
+                this._processingClick[side] = false;
+                return;
+              }
+            } else {
+              // 无效点击：不扣分不惩罚、不顶掉对方选中；错词记录（谁点错记谁的，与 dual 一致）
+              const enText = firstCard.type === 'en' ? firstCard.text : card.text;
+              const errs = side === 'p1' ? this.p1Errors : this.p2Errors;
+              errs[enText] = (errs[enText] || 0) + 1;
+              firstCard.wrong = true;
+              card.wrong = true;
+              setTimeout(() => {
+                firstCard.wrong = false;
+                card.wrong = false;
+              }, 300);
+              // 选中保持（owner 不变）
+            }
+          } else {
+            // 无悬空选中 → 选中，owner=点击者
+            card.selected = true;
+            this.rushSelected = card;
+            this.rushOwner = side;
           }
 
           this._processingClick[side] = false;
@@ -1340,6 +1672,40 @@
             if (this.dailyMode) {
               this.completeDailyChallenge(t);
             }
+            return;
+          }
+
+          if (this.gameMode === 'rush') {
+            // 抢答结算（WAVE2）：得分多者胜；平分 → 用时少者胜
+            const p1Score = this._p1MatchSet.size;
+            const p2Score = this._p2MatchSet.size;
+            let winner = 'p1';
+            if (p2Score > p1Score) winner = 'p2';
+            else if (p1Score === p2Score) winner = (this.p1Time <= this.p2Time) ? 'p1' : 'p2';
+            const winnerTime = winner === 'p1' ? this.p1Time : this.p2Time;
+            this.gameResult = {
+              winner: winner,
+              time: winnerTime,
+            };
+            // 双方错词合并 → 复习盒子 + 弱点雷达（与 dual 一致）
+            const rMerged = {};
+            for (const en in this.p1Errors) rMerged[en] = (rMerged[en] || 0) + this.p1Errors[en];
+            for (const en in this.p2Errors) rMerged[en] = (rMerged[en] || 0) + this.p2Errors[en];
+            if (this.dualGameWords && this.dualGameWords.length > 0) {
+              this.updateReviewBoxes(this.dualGameWords, rMerged);
+            }
+            const rWordMap = {};
+            for (const w of (this.dualGameWords || [])) rWordMap[w.en] = w;
+            const rRadar = [];
+            for (const en in rMerged) {
+              rRadar.push({ en: en, zh: (rWordMap[en] || {}).zh || '', count: rMerged[en] });
+            }
+            rRadar.sort((a, b) => (b.count - a.count) || a.en.localeCompare(b.en));
+            this.gameResultPopup = {
+              winner: winner,
+              time: winnerTime,
+              top3: rRadar.slice(0, 3),
+            };
             return;
           }
 
@@ -1499,9 +1865,13 @@
             case 'reviewGame':
               this.currentView = 'review';
               break;
+            case 'codex':
+              this.goCodexHome();
+              break;
             case 'game':
             case 'review':
             case 'leaderboard':
+            case 'listenGame':
               this.goHome();
               break;
             // home: 最顶层，不处理
@@ -1564,6 +1934,10 @@
         try {
           if (localStorage.getItem('wordpair_fx') === '0') this.fxEnabled = false;
         } catch(e) {}
+        // WAVE2：PWA 离线安装 — 在线版注册 service worker（file:// 不注册，本地版本来就是单文件离线）；失败静默
+        if ('serviceWorker' in navigator && !this._isLocal()) {
+          navigator.serviceWorker.register('sw.js').catch(() => {});
+        }
         // 本地 file:// 版 fetch 远程 version.json 检查更新（只拉数据，不加载远程 JS）
         if (this.buildVersion && this._isLocal()) {
           fetch('https://word-pair-pk.hdilp.top/version.json?t=' + Date.now(), { cache: 'no-store' })

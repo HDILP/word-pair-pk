@@ -801,6 +801,23 @@
       color: var(--text-secondary);
     }
 
+    /* 心形生命值（WAVE2）：单人/听力，5 颗，灭掉的灰色 */
+    .hearts {
+      display: inline-flex;
+      gap: 2px;
+      font-size: 15px;
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+    .heart {
+      color: #ff5a7a;
+      text-shadow: 0 1px 2px rgba(255, 90, 122, 0.25);
+    }
+    .heart--lost {
+      color: #d5d0d2;
+      text-shadow: none;
+    }
+
     .game-side__progress-bar {
       width: 100%;
       height: 6px;
@@ -1375,6 +1392,230 @@
       border-radius: 4px;
       transition: width 300ms var(--ease-out);
       background: linear-gradient(90deg, var(--secondary), var(--secondary-dark));
+    }
+
+    /* 听力挑战（WAVE2） */
+    .listen-game-view {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .listen-header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+    .listen-header__info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .listen-header__label {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      padding: 5px 14px;
+      border-radius: 8px;
+      letter-spacing: 1px;
+    }
+    .listen-header__round {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+    .listen-header__stats {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .listen-header__score {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      background: rgba(255, 170, 178, 0.18);
+      padding: 4px 12px;
+      border-radius: 8px;
+    }
+    .listen-replay-btn {
+      padding: 5px 12px;
+      font-size: 13px;
+    }
+    .listen-question {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+    }
+    .listen-options {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .listen-option {
+      background: var(--card-bg, #fff);
+      border: 2px solid var(--secondary);
+      border-radius: 14px;
+      padding: 18px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 72px;
+      cursor: pointer;
+      transition: transform 160ms var(--ease-out), box-shadow 160ms var(--ease-out), border-color 160ms var(--ease-out);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    .listen-option:active {
+      transform: scale(0.96);
+      border-color: var(--primary);
+      box-shadow: 0 4px 14px rgba(255, 170, 178, 0.35);
+    }
+
+    /* 单词图鉴（WAVE2） */
+    .codex-view {
+      width: 100%;
+      max-width: 720px;
+      max-height: 100%;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      margin: 0 auto;
+    }
+    .codex-view .card {
+      display: flex;
+      flex-direction: column;
+      max-height: 100%;
+      min-height: 0;
+    }
+    .codex-stats {
+      margin: 4px 0 12px 0;
+    }
+    .codex-stats__text {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    .codex-stats__text strong {
+      color: var(--primary-dark);
+      font-size: 16px;
+    }
+    .codex-stats__bar {
+      margin-top: 6px;
+      height: 8px;
+      background: #f0eaec;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .codex-stats__fill {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width 300ms var(--ease-out);
+    }
+    .codex-search {
+      margin-bottom: 12px;
+    }
+    .codex-search__input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 2px solid #f0e6e8;
+      border-radius: 10px;
+      font-size: 14px;
+      background: #fff;
+      color: var(--text);
+      outline: none;
+      transition: border-color 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
+    }
+    .codex-search__input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(255, 170, 178, 0.25);
+    }
+    .codex-books {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+    }
+    .codex-book {
+      margin-bottom: 8px;
+      border: 1px solid #f0e6e8;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .codex-book__header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      cursor: pointer;
+      background: linear-gradient(135deg, rgba(255, 170, 178, 0.12), rgba(165, 216, 255, 0.10));
+      transition: background 160ms var(--ease-out);
+    }
+    .codex-book__header:hover {
+      background: linear-gradient(135deg, rgba(255, 170, 178, 0.22), rgba(165, 216, 255, 0.18));
+    }
+    .codex-book__name {
+      font-size: 15px;
+      font-weight: 700;
+      flex: 1;
+    }
+    .codex-book__count {
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+    .codex-book__words {
+      max-height: 320px;
+      overflow-y: auto;
+      padding: 4px 0;
+    }
+    .codex-word {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 16px;
+      font-size: 14px;
+      border-bottom: 1px solid #f7f0f2;
+    }
+    .codex-word:last-child {
+      border-bottom: none;
+    }
+    .codex-word__en {
+      font-weight: 600;
+      color: var(--text);
+      min-width: 120px;
+    }
+    .codex-word__en--clickable {
+      cursor: pointer;
+      border-bottom: 1px dashed var(--secondary-dark);
+    }
+    .codex-word__zh {
+      flex: 1;
+      color: var(--text-secondary);
+    }
+    .codex-word__mark {
+      font-size: 12px;
+      color: #4caf7d;
+      font-weight: 600;
+    }
+    .codex-word--uncollected {
+      opacity: 0.45;
+      filter: grayscale(1);
+    }
+    .codex-word--uncollected .codex-word__zh {
+      letter-spacing: 4px;
     }
 
     /* 复盘弹窗 */
