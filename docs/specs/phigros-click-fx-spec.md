@@ -1,7 +1,7 @@
 # Phigros 风格点击特效 — 实现规格
 
 > 来源：用户需求（2026-08-05），原样记录，参数为最终约束
-> 状态：待实现
+> 状态：**已实现**（WAVE1，2026-08-06 交付；2026-08-07 缩小基准至 64px、颜色改连击变色）
 > 相关：太虚五转 D1 手感层（docs/reports/word-pair-pk-freshness-taixu-summary-20260805.md）
 
 ## 需求
@@ -58,25 +58,25 @@
 - 位移使用 EaseOutCubic
 - 到位后慢慢淡出
 
-## 变色规则
+## 变色规则（现行实现，2026-08-07 更新）
 
 - 事件源：`pointerdown`（监听 window，不 preventDefault/stopPropagation）
-- 左键（button===0）→ 黄色；右键（button===2）→ 蓝色；其他键 → 红色
-- 触摸 / 笔（pointerType==='touch'|'pen'）→ 黄色（无视 button）
-- Off 模式（复习三模式，currentView==='reviewGame'）→ 恒黄色，无视一切按键
-- 优先级：Off 模式 > 按键
+- 优先级：Off 模式（复习，currentView==='reviewGame'）恒黄 > 右键（button===2）蓝 / 其他键红 > 左键/触摸/笔按连击变色
+- **连击变色**：连击 0-2 → 黄、3-5 → 蓝、6+ → 红（谁配对成功谁的连击；断连回黄）——手机触摸也能看到颜色变化
 - 所有 6 元素 + 粒子统一使用当前特效色（无白色）
+- 基准尺寸 64px（2026-08-07 从 88px 缩小，约卡片 3/4）
 
 ## 音频（真实文件）
 
-| 按键 | 颜色 | 音频文件 |
+| 按键/状态 | 颜色 | 音频文件 |
 |------|------|---------|
-| 左键 | 黄色 | D:\Downloads\phigros_drag.wav（96,400 字节） |
-| 右键 | 蓝色 | D:\Downloads\phigros_tap.wav（17,320 字节） |
-| 其他键 | 红色 | D:\Downloads\phigros_flick.wav（68,792 字节） |
+| 左键/触摸/连击 0-2 | 黄色 | phigros_drag.wav |
+| 右键/连击 3-5 | 蓝色 | phigros_tap.wav |
+| 中键/连击 6+ | 红色 | phigros_flick.wav |
 
-- 实现方式：三个 wav 转 base64 内联进 src/app.js（data URI 常量），播放用 `new Audio(dataURI).play()`——保持单文件完全离线，零网络请求（因此与 CORS 无关）
-- 源文件位于仓库外，不复制进仓库
+- 实现方式：三个 wav 转 base64 内联（src/app.js 占位符 → build.py 构建期注入），播放用 `new Audio(dataURI).play()`——单文件完全离线，零网络请求（因此与 CORS 无关）
+- **源文件已入库 `src/audio/`（2026-08-07）**：build.py 优先读仓库内文件（Vercel 云端构建可找到），`D:\Downloads\` 仅作本机回退；路径必须用正斜杠（Linux 上反斜杠是合法文件名字符，会永远找不到）
+- **音效仅用于点击打击特效**（2026-08-08）：配对成功/失败、倒计时 tick 不再播 Phigros 音，回归纯视觉反馈；首页有打击特效总开关（localStorage wordpair_fx）
 
 ## 生命周期
 
