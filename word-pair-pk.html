@@ -103,11 +103,12 @@
             <p>16 张卡片（8 英文 + 8 中文），点一张再点它的对应卡即可配对。配对正确消除 + 朗读英文 + 连击 +1；配错红闪、连击清零。手机可多点触控，双人同屏对战。</p>
           </section>
           <section class="help-sec">
-            <h3>六种模式</h3>
+            <h3>七种模式</h3>
             <ul class="help-list">
               <li><b>双人 PK</b>：分边各 8 对，先配完者胜，胜者进排行榜。</li>
               <li><b>单人挑战</b>：计时冲 PB；5 颗心，配错 -1，0 心提前结束。</li>
               <li><b>抢答 PK</b>：公共 16 张牌双方共抢；选中可被对方抢走——谁先点到配对卡这对归谁；错误点击不惩罚；8 对全消后得分多者胜，平分比用时。</li>
+              <li><b>例句配对</b>：读英文例句配对中文释义，句中目标词加粗高亮；配对成功朗读整句例句，错词进复习系统。</li>
               <li><b>听力挑战</b>：听英文选中文（4 选 1），答对 +1 分，答错 -1 心，共 8 轮。</li>
               <li><b>单词复习</b>：自由练习 / 今日复习（记忆曲线到期词）/ 错题特训（顽固错词）。</li>
               <li><b>每日挑战</b>：每天固定一批词（同天同词），完成记最快时间与连续天数。</li>
@@ -212,6 +213,7 @@
             <button class="btn btn--primary home-enter-btn" style="transition-delay:1.64s" @click="goSelect('rush')">抢答 PK</button>
             <button class="btn btn--accent home-enter-btn" style="transition-delay:1.78s" @click="goSelect('single')">单人挑战</button>
             <button class="btn btn--accent home-enter-btn" style="transition-delay:1.92s" @click="goSelect('listen')">听力挑战</button>
+            <button class="btn btn--accent home-enter-btn" style="transition-delay:2.2s" @click="goSelect('sentence')">例句配对</button>
             <button class="btn btn--ghost home-enter-btn" style="transition-delay:1.78s" @click="goReviewHome">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;vertical-align:-3px;">
                 <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
@@ -240,6 +242,16 @@
         <div v-else-if="currentView === 'select'" key="select" class="word-select-view">
         <div class="card">
           <h2>选择词表</h2>
+          <!-- 模式选择（D5）：选词视图内可切换模式，开始按钮随模式变化 -->
+          <div class="select-modes">
+            <button
+              v-for="m in selectModes"
+              :key="m.key"
+              class="select-mode-chip"
+              :class="{ 'select-mode-chip--on': gameMode === m.key && !pendingReview }"
+              @click="pickSelectMode(m.key)"
+            >{{ m.label }}</button>
+          </div>
           <div class="book-list">
             <div
               v-for="(book, idx) in books"
@@ -285,7 +297,7 @@
                 class="btn btn--primary"
                 :disabled="selectedWordCount < 8"
                 @click="startGame"
-              >{{ pendingReview ? '开始自由练习' : '开始 PK' }}</button>
+              >{{ pendingReview ? '开始自由练习' : startGameLabel() }}</button>
             </div>
           </div>
         </div>
@@ -764,6 +776,70 @@
             </div>
           </div>
         </div>
+
+        <!-- ==========================================
+             视图 9.5：例句配对（D5 试点版）
+             ========================================== -->
+        <div v-else-if="currentView === 'sentenceGame'" key="sentenceGame" class="sentence-game-view">
+        <div class="game-side">
+          <div class="game-side__header">
+            <span class="game-side__label">💬 例句配对</span>
+            <span class="game-side__timer" style="text-align:left;margin-bottom:0;">用时 {{ formatTime(sentenceTime) }}</span>
+            <span class="game-side__progress-text">{{ sentenceMatchedCount }}/{{ sentenceCardPairCount }}</span>
+          </div>
+          <div class="combo-banner" :class="{ 'combo-banner--show': sentenceCombo >= 2, 'combo-banner--break': comboBreakSentence }">
+            <span v-if="sentenceCombo >= 2" :key="'sc' + sentenceCombo" class="combo-banner__num">{{ sentenceCombo }} Combo</span>
+            <span v-else-if="comboBreakSentence" :key="'sb' + sentenceCombo" class="combo-banner__break">Combo 断</span>
+          </div>
+          <div class="game-side__progress-bar">
+            <div class="game-side__progress-fill" :style="{width: (sentenceMatchedCount/sentenceCardPairCount*100)+'%'}"></div>
+          </div>
+          <div class="card-grid-wrapper">
+            <div class="card-grid sentence-grid" @touchstart="handleSentenceTouchStart($event)" @touchend="handleSentenceTouchEnd($event)" @click="handleSentenceClick($event)">
+              <template v-for="(card, ci) in sentenceCards" :key="card.id">
+              <div
+                class="game-card sentence-card"
+                :style="{animationDelay: (ci * 40) + 'ms'}"
+                :class="{
+                  selected: card.selected,
+                  matched: card.matched,
+                  wrong: card.wrong,
+                  'game-card--en': card.type === 'en',
+                  'game-card--zh': card.type === 'zh',
+                }"
+                :data-card-id="card.id"
+              ><span v-if="card.type === 'en'" class="sentence-text"><span class="sentence-text__plain">{{ card._sBefore }}</span><b v-if="card._sWord" class="sentence-text__hl">{{ card._sWord }}</b><span class="sentence-text__plain">{{ card._sAfter }}</span></span>
+              <span v-else class="card-text">{{ card.text }}</span></div>
+              </template>
+            </div>
+          </div>
+
+          <!-- 例句配对结算弹窗 — 放 sentenceGameView 内部（同 reviewPopup/listenPopup 教训，不跟 Transition 抢孩子位） -->
+          <div v-if="sentencePopup" class="review-popup-overlay">
+            <div class="review-popup">
+              <div class="review-popup__title">💬 例句配对 · 完成</div>
+              <div class="review-popup__subtitle">
+                用时 {{ formatTime(sentencePopup.time) }} · 全对 {{ sentencePopup.total - sentencePopup.wrong.length }} / {{ sentencePopup.total }}
+              </div>
+              <div v-if="sentencePopup.wrong.length === 0" class="review-popup__empty">
+                全部配对正确！例句大师 🎉
+              </div>
+              <div v-else class="review-popup__list">
+                <div v-for="(w, i) in sentencePopup.wrong" :key="i" class="review-popup__word">
+                  <span class="review-popup__word-en">{{ w.en }}</span>
+                  <span class="review-popup__word-zh">{{ w.zh }}</span>
+                  <span class="review-popup__word-errors" v-if="w.count > 1">错 {{ w.count }} 次</span>
+                </div>
+              </div>
+              <div v-if="sentencePopup.wrong.length > 0" class="radar-popup__note">错词已加入复习系统</div>
+              <div class="review-popup__actions">
+                <button class="btn btn--secondary" @click="rerunSentenceGame">再来一轮</button>
+                <button class="btn btn--ghost" @click="closeSentencePopup">返回首页</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
         <!-- ==========================================
              视图 9：单词图鉴（WAVE2）

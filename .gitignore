@@ -40,3 +40,4 @@ split_units.py
 voice-memos/
 bash-scripts/
 .vercel
+.agents/

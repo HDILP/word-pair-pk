@@ -53,6 +53,28 @@
           listenWrong: [], // 错词 [{en, zh}]
           listenFinished: false,
           listenPopup: null,
+          // 例句配对（D5）：8 对 = 英文例句卡（example 目标词高亮）+ 中文释义卡
+          sentenceWords: [], // 本局 8 词 {en, zh, example}
+          sentenceCards: [], // 16 卡：8 例句(en) + 8 释义(zh)，id 格式 s-en-N / s-zh-N
+          sentenceSelected: null,
+          sentenceMatchSet: new Set(),
+          sentenceProcessing: false,
+          sentenceCombo: 0,
+          comboBreakSentence: false,
+          sentenceErrors: {}, // { en: 次数 }（按词 key，复习盒子/复盘用）
+          sentenceCardPairCount: 8,
+          sentenceTime: 0,
+          sentencePopup: null,
+          sentenceFinished: false,
+          sentenceTouchProcessed: false, // 防止 touchend+click 重复触发
+          // 选词视图模式选择（D5）
+          selectModes: [
+            { key: 'dual', label: '双人 PK' },
+            { key: 'single', label: '单人挑战' },
+            { key: 'rush', label: '抢答 PK' },
+            { key: 'sentence', label: '例句配对' },
+            { key: 'listen', label: '听力挑战' },
+          ],
           // 单词图鉴（WAVE2）：wordpair_codex，配对成功自动收集
           codexSearch: '',
           codexStoreVersion: 0, // 触发 codex computed 重新计算
@@ -153,6 +175,7 @@
 
         // ===== 复习系统 computed =====
         reviewMatchedCount() { return this.reviewMatchSet.size; },
+        sentenceMatchedCount() { return this.sentenceMatchSet.size; },
         reviewModeLabel() {
           const labels = { free: '自由练习', due: '今日复习', hard: '错题特训' };
           return labels[this.reviewMode] || '复习';
@@ -246,6 +269,9 @@
           if (this.currentView === 'reviewGame') {
             return !this.reviewPopup && !this.reviewProcessing;
           }
+          if (this.currentView === 'sentenceGame') {
+            return !this.sentencePopup && !this.sentenceProcessing;
+          }
           return false;
         },
         // 打击特效开关：持久化到 localStorage（'0'=关，其余=开）
@@ -256,7 +282,7 @@
         // 颜色判定：Off 模式（复习）恒黄 > 右键蓝/其他键红（保留按键规格）> 左键/触摸/笔按连击变色
         // 连击变色：0-2 黄 / 3-5 蓝 / 6+ 红（Phigros 连击升温感）
         fxColorFromEvent(event) {
-          if (this.currentView === 'reviewGame') return 'yellow';
+          if (this.currentView === 'reviewGame' || this.currentView === 'sentenceGame') return 'yellow';
           if (event.button === 2) return 'blue';
           if (event.button !== 0) return 'red';
           const combo = this.comboAtPoint(event.clientX, event.clientY);
@@ -267,6 +293,7 @@
         // 点击位置所属玩家的当前连击数（双人分边，单人取 singleCombo）
         comboAtPoint(x, y) {
           if (this.currentView === 'reviewGame') return this.reviewCombo || 0;
+          if (this.currentView === 'sentenceGame') return this.sentenceCombo || 0;
           const el = document.elementFromPoint(x, y);
           if (!el) return 0;
           const sideEl = el.closest('.game-side');
@@ -467,6 +494,16 @@
           this.gameOverInternal = false;
           this.winnerName = '';
           this.currentView = 'select';
+        },
+        // 选词视图开始按钮文案（D5：模式选择后按钮随模式变化）
+        startGameLabel() {
+          const labels = { dual: '开始 PK', single: '开始单人', rush: '开始抢答', sentence: '开始例句配对', listen: '开始听力' };
+          return labels[this.gameMode] || '开始';
+        },
+        // 选词视图模式选择（D5）：切换即清掉复习入口标记（选了模式 = 走常规游戏）
+        pickSelectMode(mode) {
+          this.pendingReview = false;
+          this.gameMode = mode;
         },
 
         // ===== 每日挑战（WAVE1）=====
@@ -1263,6 +1300,207 @@
           this.goHome();
         },
 
+        // ===== 例句配对（D5 试点版）=====
+        // 玩法：8 对卡片 = 英文例句卡（词的 example，目标词加粗高亮/下划线）+ 中文释义卡；
+        // 例句 ↔ 释义配对，成功高亮 + TTS 朗读整句例句，失败红闪（复用 .game-card matched/wrong 视觉）；
+        // 容错：example 缺失/为空的词不报错——优先抽带例句的词，不足 8 个用普通 en 卡面回退补齐
+        startSentenceGame() {
+          const selectedWords = [];
+          for (const b of this.books) {
+            for (const u of (b.units || [])) {
+              if (u._checked) selectedWords.push(...(u.words || []));
+            }
+          }
+          if (selectedWords.length < 8) return;
+          const hasEx = w => !!(w && w.example && String(w.example).trim());
+          const shuffle = arr => [...arr].sort(() => Math.random() - 0.5);
+          const exPool = selectedWords.filter(hasEx);
+          const plainPool = selectedWords.filter(w => !hasEx(w));
+          const chosen = [...shuffle(exPool), ...shuffle(plainPool)].slice(0, 8);
+          this.sentenceWords = chosen;
+
+          // 生成 16 卡：例句卡（type 'en'，目标词拆分三 span 高亮）+ 释义卡（type 'zh'）
+          const cards = [];
+          chosen.forEach((word, idx) => {
+            const sent = hasEx(word) ? String(word.example).trim() : String(word.en || '');
+            const split = this.splitExampleSentence(sent, word.en);
+            cards.push({
+              id: 's-en-' + idx,
+              text: sent,
+              pairId: idx,
+              type: 'en',
+              matched: false,
+              selected: false,
+              wrong: false,
+              _word: word,
+              _sBefore: split.before,
+              _sWord: split.word,
+              _sAfter: split.after,
+            });
+            cards.push({
+              id: 's-zh-' + idx,
+              text: word.zh || '',
+              pairId: idx,
+              type: 'zh',
+              matched: false,
+              selected: false,
+              wrong: false,
+              _word: word,
+            });
+          });
+          this.sentenceCards = cards.sort(() => Math.random() - 0.5);
+          this.sentenceMatchSet = new Set();
+          this.sentenceSelected = null;
+          this.sentenceProcessing = false;
+          this.sentenceCombo = 0;
+          this.comboBreakSentence = false;
+          this.sentenceErrors = {};
+          this.sentenceCardPairCount = chosen.length;
+          this.sentenceTime = 0;
+          this.sentencePopup = null;
+          this.sentenceFinished = false;
+          this.sentenceTouchProcessed = false;
+          clearInterval(this.p1Timer);
+          this.p1Timer = setInterval(() => { this.sentenceTime += 0.1; }, 100);
+          this.currentView = 'sentenceGame';
+        },
+        // 目标词在例句中定位：大小写不敏感；找不到 → 整句放 before（不报错，仅不高亮）
+        // 词边界校验：命中位置前后字符必须是字母/数字以外的字符，否则是跨词子串（如 'sweep' 嵌在 'swept' 里）
+        // → 走无高亮回退（同 scripts/example-highlight-scan.py split_sim 规则；短词 'go'/'to' 同理）
+        splitExampleSentence(sentence, en) {
+          const s = String(sentence || '');
+          const w = String(en || '').trim();
+          if (!w) return { before: s, word: '', after: '' };
+          const idx = s.toLowerCase().indexOf(w.toLowerCase());
+          if (idx < 0) return { before: s, word: '', after: '' };
+          const end = idx + w.length;
+          const beforeOk = idx === 0 || !/[\p{L}\p{N}]/u.test(s[idx - 1]);
+          const afterOk = end >= s.length || !/[\p{L}\p{N}]/u.test(s[end]);
+          if (!beforeOk || !afterOk) return { before: s, word: '', after: '' };
+          return { before: s.slice(0, idx), word: s.slice(idx, end), after: s.slice(end) };
+        },
+        handleSentenceClick(event) {
+          // 触摸设备上 click 会在 touchend 后触发，防重复处理（同 handleReviewClick 守卫）
+          if (this.sentenceTouchProcessed) {
+            this.sentenceTouchProcessed = false;
+            return;
+          }
+          const cardEl = event.target.closest('.game-card');
+          if (!cardEl) return;
+          const cardId = cardEl.dataset.cardId;
+          if (!cardId) return;
+          this.processSentenceCardClick(cardId);
+        },
+        handleSentenceTouchStart(event) {
+          if (event.cancelable) event.preventDefault();
+          const touch = event.changedTouches[0];
+          if (!touch) return;
+          const el = document.elementFromPoint(touch.clientX, touch.clientY);
+          if (!el) return;
+          const cardEl = el.closest('.game-card');
+          if (!cardEl) return;
+          this._sentenceTouchId = cardEl.dataset.cardId;
+        },
+        handleSentenceTouchEnd(event) {
+          if (!this._sentenceTouchId) return;
+          this.sentenceTouchProcessed = true;
+          this.processSentenceCardClick(this._sentenceTouchId);
+          this._sentenceTouchId = null;
+        },
+        // 配对判定落点（与 processReviewCardClick 同构）：pairId 相同 + type 不同 = 配对成功
+        processSentenceCardClick(cardId) {
+          if (this.sentenceProcessing) return;
+          if (this.sentencePopup) return;
+          const card = this.sentenceCards.find(c => c.id === cardId);
+          if (!card || card.matched) return;
+
+          this.sentenceProcessing = true;
+
+          if (this.sentenceSelected) {
+            const firstCard = this.sentenceSelected;
+
+            if (firstCard.id === cardId) {
+              card.selected = false;
+              this.sentenceSelected = null;
+              this.sentenceProcessing = false;
+              return;
+            }
+
+            const isMatch = firstCard.pairId === card.pairId && firstCard.type !== card.type;
+
+            if (isMatch) {
+              // 配对成功：连击 +1（Phigros 音效仅点击打击特效使用，配对不放音）
+              this.sentenceCombo++;
+              this.comboBreakSentence = false;
+              // TTS 先触发 — 朗读英文例句（动画之前出声）
+              const enText = firstCard.type === 'en' ? firstCard.text : card.text;
+              this.speakWord(enText);
+
+              firstCard.selected = false;
+              firstCard.matched = true;
+              card.matched = true;
+              this.sentenceMatchSet.add(firstCard.pairId);
+              // 单词图鉴（D5）：配对成功同样收集（与既有四处收集点一致）
+              const pairWord = firstCard._word || card._word;
+              if (pairWord) this.collectWord(pairWord);
+
+              this.sentenceSelected = null;
+
+              if (this.sentenceMatchSet.size >= this.sentenceCardPairCount) {
+                this.finishSentenceGame();
+                this.sentenceProcessing = false;
+                return;
+              }
+            } else {
+              // 配对失败：连击清零 + 断连 + 红闪（wrong class 300ms 自动复位）
+              this.sentenceCombo = 0;
+              this.comboBreakSentence = true;
+              clearTimeout(this._comboBreakSentenceTimer);
+              this._comboBreakSentenceTimer = setTimeout(() => { this.comboBreakSentence = false; }, 900);
+              const errWord = firstCard._word || card._word;
+              if (errWord && errWord.en) this.sentenceErrors[errWord.en] = (this.sentenceErrors[errWord.en] || 0) + 1;
+              firstCard.selected = false;
+              firstCard.wrong = true;
+              card.wrong = true;
+              this.sentenceSelected = null;
+              setTimeout(() => {
+                firstCard.wrong = false;
+                card.wrong = false;
+              }, 300);
+            }
+          } else {
+            card.selected = true;
+            this.sentenceSelected = card;
+          }
+
+          this.sentenceProcessing = false;
+        },
+        // 8 对全消 → 结算：错词进复习盒子（学习闭环与其它模式一致）
+        finishSentenceGame() {
+          if (this.sentenceFinished) return;
+          this.sentenceFinished = true;
+          clearInterval(this.p1Timer);
+          this.updateReviewBoxes(this.sentenceWords, this.sentenceErrors);
+          const wrongWords = [];
+          for (const w of this.sentenceWords) {
+            const c = this.sentenceErrors[w.en] || 0;
+            if (c > 0) wrongWords.push({ en: w.en, zh: w.zh, count: c });
+          }
+          this.sentencePopup = {
+            time: this.sentenceTime,
+            total: this.sentenceCardPairCount,
+            wrong: wrongWords,
+          };
+        },
+        rerunSentenceGame() {
+          this.sentencePopup = null;
+          this.startSentenceGame();
+        },
+        closeSentencePopup() {
+          this.sentencePopup = null;
+          this.goHome();
+        },
+
         // ===== 开始游戏 =====
         startGame() {
           // 如果是从复习页来的，走自由练习
@@ -1274,6 +1512,11 @@
           // 听力挑战：选词完成后进入听力流程（不走配对 startGame）
           if (this.gameMode === 'listen') {
             this.startListenGame();
+            return;
+          }
+          // 例句配对（D5）：选词完成后进入例句游戏（不走配对 startGame）
+          if (this.gameMode === 'sentence') {
+            this.startSentenceGame();
             return;
           }
           const selectedWords = [];
@@ -1874,6 +2117,8 @@
             case 'review':
             case 'leaderboard':
             case 'listenGame':
+            case 'sentenceGame':
+              clearInterval(this.p1Timer);
               this.goHome();
               break;
             // home: 最顶层，不处理
