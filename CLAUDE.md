@@ -128,6 +128,16 @@ JSON 格式：`{ "name": "单元名", "words": [{"en": "...", "zh": "..."}, ...]
 - 弹层 `helpVisible` 控制，z-index 230，粉白渐变头 + 六节内容（怎么玩/七模式/连击特效/随机事件/学习系统/安装离线）；点遮罩或 ✕ 关闭
 - 完整说明书：docs/game-guide.md
 
+### 例句配对（WAVE3 / D5）
+
+- 玩法：8 对卡片（英文例句 ↔ 中文释义），选词视图 `selectModes` chips 切换模式（5 个），`startGame` 里 `gameMode==='sentence'` 提前分支到 `startSentenceGame()`
+- 视图 `sentenceGame`（v-else-if 链尾，插在 listenGame 之后）；结算弹窗在视图 div 内部（同 reviewPopup 教训）
+- 高亮：`splitExampleSentence()` 用子串匹配 + **词边界校验**（前后字符 `!/[\p{L}\p{N}]/u`），命中 → `_sBefore/_sWord/_sAfter` 拆分（`_sWord` 保留原文大小写）；短语动词例句词形变化时 `indexOf` 不命中 → `_sWord=''` 整句回退无高亮（合法行为，非 bug）
+- 触摸：完整复制复习模式三件套（grid @touchstart preventDefault + handleSentenceTouchEnd 置位 + handleSentenceClick 开头守卫 `if (this.sentenceTouchProcessed) {...}`）——**守卫丢失是历史 HIGH bug**
+- 图鉴：第 5 处收集点（复用 collectWord）；错词进复习盒子
+- 数据：words JSON 的 words[] 加 `example` 字段；全量 5254 词已注入（AI 生成，`example` 缺失回退 en 卡面）；生成脚本 `.agents/scripts/gen_examples.py`（幂等断点续跑，opencode-go 直连 API）
+- 探针：probe_d5.js 30 断言；高亮断言必须数据感知（`hlCount===splitFoundCount`、splitOk 三段式），别写死 8
+
 ### 触摸事件处理
 
 ```
