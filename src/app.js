@@ -115,6 +115,8 @@
           versionJsLoaded: false,
           // 首屏入场动画
           homeReady: false,
+          // 玩法说明弹层
+          helpVisible: false,
           // 打击特效开关（localStorage wordpair_fx 持久化，默认开）
           fxEnabled: true,
           // 每日挑战（WAVE1）

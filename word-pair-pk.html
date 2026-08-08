@@ -85,7 +85,67 @@
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
       </button>
       <span class="header__title">词对 PK</span>
+      <button class="header__help" @click="helpVisible = true" title="玩法说明">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </button>
     </header>
+
+    <!-- ===== 玩法说明弹层（WAVE2.5）===== -->
+    <div v-if="helpVisible" class="help-overlay" @click.self="helpVisible = false">
+      <div class="help-panel">
+        <div class="help-panel__head">
+          <span class="help-panel__title">玩法说明</span>
+          <button class="help-panel__close" @click="helpVisible = false">✕</button>
+        </div>
+        <div class="help-panel__body">
+          <section class="help-sec">
+            <h3>怎么玩</h3>
+            <p>16 张卡片（8 英文 + 8 中文），点一张再点它的对应卡即可配对。配对正确消除 + 朗读英文 + 连击 +1；配错红闪、连击清零。手机可多点触控，双人同屏对战。</p>
+          </section>
+          <section class="help-sec">
+            <h3>六种模式</h3>
+            <ul class="help-list">
+              <li><b>双人 PK</b>：分边各 8 对，先配完者胜，胜者进排行榜。</li>
+              <li><b>单人挑战</b>：计时冲 PB；5 颗心，配错 -1，0 心提前结束。</li>
+              <li><b>抢答 PK</b>：公共 16 张牌双方共抢；选中可被对方抢走——谁先点到配对卡这对归谁；错误点击不惩罚；8 对全消后得分多者胜，平分比用时。</li>
+              <li><b>听力挑战</b>：听英文选中文（4 选 1），答对 +1 分，答错 -1 心，共 8 轮。</li>
+              <li><b>单词复习</b>：自由练习 / 今日复习（记忆曲线到期词）/ 错题特训（顽固错词）。</li>
+              <li><b>每日挑战</b>：每天固定一批词（同天同词），完成记最快时间与连续天数。</li>
+            </ul>
+          </section>
+          <section class="help-sec">
+            <h3>连击与特效</h3>
+            <ul class="help-list">
+              <li>连击 0-2 特效黄色 → 3-5 蓝色 → 6+ 红色（越连越热）；配错断连回黄。</li>
+              <li>左键黄 / 右键蓝 / 中键红；触摸黄；复习模式恒黄。</li>
+              <li>首页可关闭打击特效（状态自动记住）。</li>
+            </ul>
+          </section>
+          <section class="help-sec">
+            <h3>随机事件</h3>
+            <ul class="help-list">
+              <li>🌫️ <b>迷雾开局</b>：倒计时结束后卡片半透明 2.5 秒，凭记忆抢开局。</li>
+              <li>🔀 <b>中途洗牌</b>：开局 5 秒后未配对卡片重新洗牌。</li>
+            </ul>
+          </section>
+          <section class="help-sec">
+            <h3>学习系统</h3>
+            <ul class="help-list">
+              <li>所有模式的错词自动进<u>复习盒子</u>（间隔 0/1/2/4/8/16 天，错得越多越常出现）。</li>
+              <li>双人 PK 赛后弹<u>弱点雷达</u>：双方错词 Top 3。</li>
+              <li>配对成功的词自动收集进<u>单词图鉴</u>，可搜索 / 分组 / 发音。</li>
+            </ul>
+          </section>
+          <section class="help-sec">
+            <h3>安装与离线</h3>
+            <ul class="help-list">
+              <li>在线版可"安装到桌面"（Chrome/Edge 菜单或地址栏图标），装完离线也能玩。</li>
+              <li>页脚"↓"可下载单文件离线版，双击即玩；本地版会自动检测新版本。</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </div>
 
     <!-- ===== 主内容区 ===== -->
     <main class="main">
