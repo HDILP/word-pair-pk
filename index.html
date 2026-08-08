@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260808164731" />
+  <meta name="build-revision" content="20260808170917" />
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#ffaab2" />
   <link rel="icon" type="image/png" href="assets/icons/icon-192.png" />
@@ -2685,8 +2685,8 @@
       width: 36px;
       height: 36px;
       border: none;
-      background: transparent;
-      color: var(--text-soft, #8a8f98);
+      background: rgba(255, 170, 178, 0.18);
+      color: #ff8fa0;
       border-radius: 10px;
       cursor: pointer;
       transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
@@ -3186,6 +3186,10 @@
               单词复习
             </button>
             <button class="btn btn--ghost home-enter-btn" style="transition-delay:1.92s" @click="currentView = 'leaderboard'">排行榜</button>
+            <button class="btn btn--ghost home-enter-btn" style="transition-delay:2.06s" @click="helpVisible = true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;vertical-align:-3px;"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              玩法说明
+            </button>
           </div>
           <button class="fx-toggle" :class="{ 'fx-toggle--off': !fxEnabled }" @click="toggleFx" title="Phigros 点击打击特效开关">
             <span class="fx-toggle__icon">✦</span>
