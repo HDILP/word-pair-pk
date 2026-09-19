@@ -844,6 +844,17 @@
       color: #d5d0d2;
       text-shadow: none;
     }
+    /* 马拉松总进度（已消对数/总对数），替代心形位置 */
+    .marathon-progress {
+      font-size: 13px;
+      font-weight: 800;
+      color: #2d9669;
+      background: rgba(94, 197, 141, 0.15);
+      border: 1px solid rgba(94, 197, 141, 0.45);
+      border-radius: 999px;
+      padding: 1px 10px;
+      line-height: 1.4;
+    }
 
     .game-side__progress-bar {
       width: 100%;
@@ -3019,6 +3030,13 @@
       color: #fff;
       background: linear-gradient(135deg, rgba(255, 216, 77, 0.9), rgba(255, 160, 60, 0.9));
       box-shadow: 0 6px 20px rgba(255, 190, 70, 0.4);
+    }
+    /* 马拉松组间横幅：绿色冲线 + 金字（跑完一组 → 自动开下一组） */
+    .event-banner--marathon {
+      color: #fff;
+      background: linear-gradient(135deg, rgba(94, 197, 141, 0.92), rgba(45, 150, 105, 0.92));
+      box-shadow: 0 6px 20px rgba(94, 197, 141, 0.45);
+      text-shadow: 0 1px 4px rgba(20, 90, 60, 0.5);
     }
     @keyframes eventBannerIn {
       0%   { transform: translateX(-50%) scale(0.4) rotate(-4deg); opacity: 0; }

@@ -67,6 +67,14 @@
           sentencePopup: null,
           sentenceFinished: false,
           sentenceTouchProcessed: false, // 防止 touchend+click 重复触发
+          // 马拉松模式：一次打完选中范围的全部词，按 8 词一组连续开新组，总计时不停表
+          marathonMode: false,
+          marathonRounds: [], // 洗牌后切好的组队列 [[w1..w8], ...]
+          marathonRoundIndex: 0, // 当前组（0 起）
+          marathonRoundTime: 0, // 本组用时
+          marathonRoundTimes: [], // 每组用时
+          marathonTotalErrors: 0, // 全程配错次数
+          marathonTotalWords: 0, // 总词数（进度 = 已消对数/总对数）
           // 选词视图模式选择（D5）
           selectModes: [
             { key: 'dual', label: '双人 PK' },
@@ -74,6 +82,7 @@
             { key: 'rush', label: '抢答 PK' },
             { key: 'sentence', label: '例句配对' },
             { key: 'listen', label: '听力挑战' },
+            { key: 'marathon', label: '马拉松' },
           ],
           // 单词图鉴（WAVE2）：wordpair_codex，配对成功自动收集
           codexSearch: '',
@@ -290,7 +299,7 @@
           if (combo >= 3) return 'blue';
           return 'yellow';
         },
-        // 点击位置所属玩家的当前连击数（双人分边，单人取 singleCombo）
+        // 点击位置所属玩家的当前连击数（双人分边，单人取 singleCombo，马拉松沿用单人通道）
         comboAtPoint(x, y) {
           if (this.currentView === 'reviewGame') return this.reviewCombo || 0;
           if (this.currentView === 'sentenceGame') return this.sentenceCombo || 0;
@@ -481,6 +490,7 @@
         },
         // ===== 视图导航 =====
         goHome() {
+          if (this.marathonMode) this.resetMarathon();
           this.currentView = 'home';
           this.gameResult = null;
           this.gameResultPopup = null;
@@ -488,6 +498,7 @@
           this.winnerName = '';
         },
         goSelect(mode) {
+          if (this.marathonMode) this.resetMarathon();
           if (mode) this.gameMode = mode;
           this.gameResult = null;
           this.gameResultPopup = null;
@@ -497,7 +508,7 @@
         },
         // 选词视图开始按钮文案（D5：模式选择后按钮随模式变化）
         startGameLabel() {
-          const labels = { dual: '开始 PK', single: '开始单人', rush: '开始抢答', sentence: '开始例句配对', listen: '开始听力' };
+          const labels = { dual: '开始 PK', single: '开始单人', rush: '开始抢答', sentence: '开始例句配对', listen: '开始听力', marathon: '开始马拉松' };
           return labels[this.gameMode] || '开始';
         },
         // 选词视图模式选择（D5）：切换即清掉复习入口标记（选了模式 = 走常规游戏）
@@ -1519,6 +1530,11 @@
             this.startSentenceGame();
             return;
           }
+          // 马拉松：选词完成后按 8 词一组连续开局（不走普通 startGame 抽 8 词）
+          if (this.gameMode === 'marathon') {
+            this.startMarathonGame();
+            return;
+          }
           const selectedWords = [];
           let bookName = '';
           for (const b of this.books) {
@@ -1612,6 +1628,118 @@
           this.startCountdown();
         },
 
+        // ===== 马拉松模式：一次打完选中范围全部词 =====
+        // 选区洗牌 → 按 8 词切组 → 复用单人生成/配对链路逐组开局；
+        // 组间横幅自动续组，总计时（p1Timer）全程不停表；走单人 endGame 结算。
+        startMarathonGame() {
+          if (this.pendingReview) {
+            this.pendingReview = false;
+            this.startReviewGame('free');
+            return;
+          }
+          const selectedWords = [];
+          let bookName = '';
+          for (const b of this.books) {
+            for (const u of (b.units || [])) {
+              if (u._checked) {
+                selectedWords.push(...(u.words || []));
+                if (!bookName) bookName = b.name + ' - ' + u.name;
+              }
+            }
+          }
+          if (selectedWords.length < 8) return;
+          const shuffled = [...selectedWords].sort(() => Math.random() - 0.5);
+          const rounds = [];
+          for (let i = 0; i < shuffled.length; i += 8) {
+            rounds.push(shuffled.slice(i, i + 8));
+          }
+          this.marathonMode = true;
+          this.marathonRounds = rounds;
+          this.marathonRoundTimes = [];
+          this.marathonTotalErrors = 0;
+          this.marathonTotalWords = shuffled.length;
+          this.gameBookName = bookName;
+          this.startMarathonRound(0);
+        },
+        // 开第 N 组：照抄单人生成链路（含 reset 集合、心形、事件、倒计时）
+        startMarathonRound(idx) {
+          const chosen = this.marathonRounds[idx];
+          if (!chosen || chosen.length === 0) return;
+          this.marathonRoundIndex = idx;
+          this.dualGameWords = chosen;
+          this.singleGameWords = chosen;
+          this.marathonRoundTime = 0;
+          let allCards = [];
+          chosen.forEach((word, i) => {
+            allCards.push({ id: 'en-' + i, text: word.en, pairId: i, type: 'en', matched: false, selected: false, wrong: false });
+            allCards.push({ id: 'zh-' + i, text: word.zh, pairId: i, type: 'zh', matched: false, selected: false, wrong: false });
+          });
+          const p1En = allCards.filter(c => c.type === 'en').map(c => ({...c, id: 'p1-' + c.id}));
+          const p1Zh = allCards.filter(c => c.type === 'zh').map(c => ({...c, id: 'p1-' + c.id}));
+          this.p1Cards = [...p1En, ...p1Zh].sort(() => Math.random() - 0.5);
+          this.p2Cards = [];
+          this.gameMode = 'single';
+          this.dailyMode = false;
+          this.reviewGameErrors = {};
+          this._p1MatchSet = new Set();
+          this._p2MatchSet = new Set();
+          this._processingClick = { p1: false, p2: false };
+          this.p1Selected = null;
+          this.p2Selected = null;
+          this.hearts = this.maxHearts;
+          this.p1Matched = 0;
+          this.p2Matched = 0;
+          this.p1Time = 0;
+          this.p2Time = 0;
+          this.p1Counted = false;
+          this.p2Counted = false;
+          this.p1Combo = 0;
+          this.p2Combo = 0;
+          this.singleCombo = 0;
+          this.comboBreakP1 = false;
+          this.comboBreakP2 = false;
+          this.p1Errors = {};
+          this.p2Errors = {};
+          this.gameResult = null;
+          this.gameResultPopup = null;
+          this.gameOverInternal = false;
+          this.pickEvent();
+          this.currentView = 'game';
+          this.startCountdown();
+        },
+        // 一组配完 → 组间横幅 1.6s → 自动开下一组；最后一组 → 单人结算
+        advanceMarathonRound() {
+          this.marathonRoundTimes.push(this.marathonRoundTime);
+          this.marathonTotalErrors += Object.values(this.reviewGameErrors).reduce((s, v) => s + v, 0);
+          const next = this.marathonRoundIndex + 1;
+          if (next >= this.marathonRounds.length) {
+            this.endGame('p1');
+            return;
+          }
+          this.gameOverInternal = true; // 挡住组间隙的点击与特效
+          this.eventBannerName = 'marathon';
+          this.eventBannerVisible = true;
+          clearTimeout(this._marathonBannerTimer);
+          this._marathonBannerTimer = setTimeout(() => {
+            this.eventBannerVisible = false;
+            this.startMarathonRound(next);
+          }, 1600);
+        },
+        // 退出马拉松（返回首页/选词/再来一局前调用）：停表 + 清横幅定时器
+        resetMarathon() {
+          clearInterval(this.p1Timer);
+          clearInterval(this.p2Timer);
+          clearTimeout(this._marathonBannerTimer);
+          this.marathonMode = false;
+          this.marathonRounds = [];
+          this.marathonRoundIndex = 0;
+          this.marathonRoundTime = 0;
+          this.marathonRoundTimes = [];
+          this.marathonTotalErrors = 0;
+          this.marathonTotalWords = 0;
+          this.eventBannerVisible = false;
+        },
+
         // ===== 倒计时（WAVE1 升级：ready 0.8s → 3/2/1 各 600ms → GO 450ms → playing）=====
         startCountdown() {
           this.countdownState = 'ready';
@@ -1649,6 +1777,16 @@
         startTimers() {
           clearInterval(this.p1Timer);
           clearInterval(this.p2Timer);
+          if (this.marathonMode) {
+            // 马拉松：总计时（p1Time）全程不停表；marathonRoundTime 单独记本组用时
+            this.p1Time = this.marathonRoundTimes.reduce((s, v) => s + v, 0);
+            this.p2Time = 0;
+            this.p1Timer = setInterval(() => {
+              this.p1Time += 0.1;
+              this.marathonRoundTime += 0.1;
+            }, 100);
+            return;
+          }
           this.p1Time = 0;
           this.p2Time = 0;
           this.p1Timer = setInterval(() => { this.p1Time += 0.1; }, 100);
@@ -1760,8 +1898,15 @@
 
               this[selectedRef] = null;
 
-              // 检查胜利
-              if (matchSet.size >= 8 && !this.gameOverInternal) {
+              // 检查胜利（马拉松末组可能不足 8 对——按当前组实际对数判定）
+              const winPairCount = this.marathonMode ? (this.dualGameWords || []).length : 8;
+              if (matchSet.size >= winPairCount && !this.gameOverInternal) {
+                // 马拉松：本组 8 对配完 → 组间横幅自动续组（最后一组在 advanceMarathonRound 内走单人 endGame）
+                if (this.marathonMode) {
+                  this.advanceMarathonRound();
+                  this._processingClick[side] = false;
+                  return;
+                }
                 this.endGame(side);
                 this._processingClick[side] = false;
                 return;
@@ -1784,7 +1929,8 @@
                 errs[enText] = (errs[enText] || 0) + 1;
               }
               // 心形生命值（WAVE2）：单人挑战扣心（每日挑战除外）；0 心提前结束走现有 endGame（错词已入库）
-              if (this.gameMode === 'single' && !this.dailyMode) {
+              // 马拉松：同每日挑战不扣心——中途打死会误标"提前结束"且长局 5 心太苛刻
+              if (this.gameMode === 'single' && !this.dailyMode && !this.marathonMode) {
                 this.hearts--;
                 if (this.hearts <= 0) {
                   this[selectedRef] = null;
@@ -1899,10 +2045,12 @@
             this.gameResult = { winner: 'single', time: t };
             // 保存个人最快记录
             try {
-              const pb = localStorage.getItem('wordpair_pb');
+              // 马拉松 PB 独立存储（词表范围可大可小，与普通单人同场比较不公平）
+              const pbKey = this.marathonMode ? 'wordpair_pb_marathon' : 'wordpair_pb';
+              const pb = localStorage.getItem(pbKey);
               const prev = pb ? parseFloat(pb) : null;
               if (prev === null || t < prev) {
-                localStorage.setItem('wordpair_pb', String(t));
+                localStorage.setItem(pbKey, String(t));
                 this.singlePlayerPb = t;
               } else {
                 this.singlePlayerPb = prev;
@@ -1988,6 +2136,7 @@
 
         // ===== 结算 =====
         saveResult() {
+          if (this.marathonMode) this.resetMarathon(); // 马拉松结算进榜后清 marathonMode，否则排行榜页残留中途状态
           if (!this.winnerName.trim()) {
             this.winnerName = this.gameResult.winner === 'p1' ? 'P1玩家' : 'P2玩家';
           }
@@ -2118,6 +2267,7 @@
             case 'leaderboard':
             case 'listenGame':
             case 'sentenceGame':
+              if (this.marathonMode) this.resetMarathon();
               clearInterval(this.p1Timer);
               this.goHome();
               break;
