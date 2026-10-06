@@ -18,7 +18,8 @@ word-pair-pk-todo.md
 .skillhub/
 .vscode/
 .vercel/
-.github/
+.github/*
+!.github/workflows/
 .zinit/
 .zsh_history
 .zshrc*
@@ -41,3 +42,5 @@ voice-memos/
 bash-scripts/
 .vercel
 .agents/
+node_modules/
+tests/probes/package-lock.json

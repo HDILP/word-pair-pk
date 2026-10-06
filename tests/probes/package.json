@@ -1,0 +1,12 @@
+{
+  "name": "word-pair-pk-probes",
+  "private": true,
+  "description": "浏览器探针测试（puppeteer-core 驱动本地 Chrome，对 build 产物 index.html 做 30+ 断言组验收）",
+  "scripts": {
+    "serve": "python3 -m http.server 8080 --directory ..",
+    "test": "node run_all.js"
+  },
+  "dependencies": {
+    "puppeteer-core": "^23.11.1"
+  }
+}

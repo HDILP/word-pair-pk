@@ -555,6 +555,21 @@
       color: #fff;
       font-weight: 700;
     }
+    /* 马拉松开关 chip：绿色系（开启后与普通模式选中粉色区分） */
+    .select-mode-chip--marathon {
+      border-color: rgba(94, 197, 141, 0.55);
+      color: #2d9669;
+    }
+    .select-mode-chip--marathon.select-mode-chip--on {
+      background: linear-gradient(135deg, #5ec58d, #2d9669);
+      border-color: #2d9669;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(20, 90, 60, 0.35);
+    }
+    .select-summary__marathon {
+      color: #2d9669;
+      font-weight: 600;
+    }
 
     .book-list {
       flex: 1;

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>词对 PK — 单词对战游戏</title>
-  <meta name="build-revision" content="20260919151115" />
+  <meta name="build-revision" content="20261006193639" />
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#ffaab2" />
   <link rel="icon" type="image/png" href="assets/icons/icon-192.png" />
@@ -592,6 +592,21 @@
       border-color: var(--primary);
       color: #fff;
       font-weight: 700;
+    }
+    /* 马拉松开关 chip：绿色系（开启后与普通模式选中粉色区分） */
+    .select-mode-chip--marathon {
+      border-color: rgba(94, 197, 141, 0.55);
+      color: #2d9669;
+    }
+    .select-mode-chip--marathon.select-mode-chip--on {
+      background: linear-gradient(135deg, #5ec58d, #2d9669);
+      border-color: #2d9669;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(20, 90, 60, 0.35);
+    }
+    .select-summary__marathon {
+      color: #2d9669;
+      font-weight: 600;
     }
 
     .book-list {
@@ -3189,14 +3204,14 @@
             <p>16 张卡片（8 英文 + 8 中文），点一张再点它的对应卡即可配对。配对正确消除 + 朗读英文 + 连击 +1；配错红闪、连击清零。手机可多点触控，双人同屏对战。</p>
           </section>
           <section class="help-sec">
-            <h3>八种模式</h3>
+            <h3>七种模式</h3>
             <ul class="help-list">
               <li><b>双人 PK</b>：分边各 8 对，先配完者胜，胜者进排行榜。</li>
               <li><b>单人挑战</b>：计时冲 PB；5 颗心，配错 -1，0 心提前结束。</li>
               <li><b>抢答 PK</b>：公共 16 张牌双方共抢；选中可被对方抢走——谁先点到配对卡这对归谁；错误点击不惩罚；8 对全消后得分多者胜，平分比用时。</li>
               <li><b>例句配对</b>：读英文例句配对中文释义，句中目标词加粗高亮；配对成功朗读整句例句，错词进复习系统。</li>
               <li><b>听力挑战</b>：听英文选中文（4 选 1），答对 +1 分，答错 -1 心，共 8 轮。</li>
-              <li><b>马拉松</b>：一次打完选中范围的所有词——每 8 词一组连续开局，一组配完自动换下一组新牌，总计时不停表；不扣心，PB 独立记录。</li>
+              <li><b>马拉松开关</b>：选词视图可开启——对所有模式生效（单人/双人/抢答/例句）。开启后一次打完选中范围全部词：每 8 词一组连续打完，一组配完自动无缝换下一组新牌（不重抽事件、不重新倒计时）；总计时不停表；单人模式不扣心；个人最佳独立记录。</li>
               <li><b>单词复习</b>：自由练习 / 今日复习（记忆曲线到期词）/ 错题特训（顽固错词）。</li>
               <li><b>每日挑战</b>：每天固定一批词（同天同词），完成记最快时间与连续天数。</li>
             </ul>
@@ -3301,7 +3316,6 @@
             <button class="btn btn--accent home-enter-btn" style="transition-delay:1.78s" @click="goSelect('single')">单人挑战</button>
             <button class="btn btn--accent home-enter-btn" style="transition-delay:1.92s" @click="goSelect('listen')">听力挑战</button>
             <button class="btn btn--accent home-enter-btn" style="transition-delay:2.2s" @click="goSelect('sentence')">例句配对</button>
-            <button class="btn btn--accent home-enter-btn" style="transition-delay:2.34s" @click="goSelect('marathon')">🏃 马拉松</button>
             <button class="btn btn--ghost home-enter-btn" style="transition-delay:1.78s" @click="goReviewHome">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;vertical-align:-3px;">
                 <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
@@ -3339,6 +3353,12 @@
               :class="{ 'select-mode-chip--on': gameMode === m.key && !pendingReview }"
               @click="pickSelectMode(m.key)"
             >{{ m.label }}</button>
+            <!-- 马拉松开关（toggle）：对所有模式生效——一次打完选中范围全部词，无缝连续续局 -->
+            <button
+              class="select-mode-chip select-mode-chip--marathon"
+              :class="{ 'select-mode-chip--on': marathonOn && !pendingReview }"
+              @click="toggleMarathon"
+            >🏃 马拉松 {{ marathonOn ? '开' : '关' }}</button>
           </div>
           <div class="book-list">
             <div
@@ -3378,6 +3398,7 @@
             <div class="select-summary__info">
               已选 <strong>{{ selectedWordCount }}</strong> 词，
               可开局 <strong>{{ maxRounds }}</strong> 局
+              <span v-if="marathonOn && !pendingReview" class="select-summary__marathon">· 🏃 马拉松：一次打完 {{ selectedWordCount }} 词（{{ Math.ceil(selectedWordCount / 8) }} 组连续）</span>
             </div>
             <div class="select-summary__actions">
               <button class="btn btn--ghost" @click="cancelReviewSelect">返回</button>
@@ -3444,8 +3465,8 @@
             <div class="result-modal__time">
               用时 {{ formatTime(gameResult.time) }}
             </div>
-            <div v-if="marathonMode" class="result-modal__time" style="font-size:13px;color:var(--text-secondary);margin-top:-14px;margin-bottom:10px;">
-              🏃 马拉松 · {{ marathonTotalWords }} 词 {{ marathonRounds.length }} 组 · 全程错 {{ marathonTotalErrors }} 次
+            <div v-if="marathonOn" class="result-modal__time" style="font-size:13px;color:var(--text-secondary);margin-top:-14px;margin-bottom:10px;">
+              🏃 马拉松 · {{ marathonTotalWords }} 词 · 全程错 {{ marathonTotalErrors }} 次
             </div>
             <div v-if="singlePlayerPb !== null" class="result-modal__time" style="font-size:14px;color:var(--text-secondary);margin-top:-16px;margin-bottom:24px;">
               最快记录: {{ formatTime(singlePlayerPb) }}
@@ -3471,9 +3492,9 @@
         <!-- 随机事件横幅（WAVE1）：开局显示 2s -->
         <div v-if="eventBannerVisible && eventBannerName === 'fog'" class="event-banner event-banner--fog">🌫️ 迷雾开局</div>
         <div v-else-if="eventBannerVisible && eventBannerName === 'reshuffle'" class="event-banner event-banner--reshuffle">🔀 中途洗牌</div>
-        <!-- 马拉松组间横幅：一组配完 → 显示 1.6s → 自动开下一组 -->
+        <!-- 马拉松无缝续组横幅：400ms 绿横幅，不重抽事件不倒计时 -->
         <div v-else-if="eventBannerVisible && eventBannerName === 'marathon'" class="event-banner event-banner--marathon">
-          🏃 第 {{ marathonRoundIndex + 1 }}/{{ marathonRounds.length }} 组完成
+          🏃 马拉松 · 还剩 {{ marathonRoundsLeft }} 组
         </div>
 
         <!-- 弱点雷达（WAVE1）：双人结算弹层，关闭后走原 saveResult 流程 -->
@@ -3506,14 +3527,15 @@
           <div class="game-side game-side--p1">
             <div class="game-side__header">
               <span class="game-side__player-label p1">{{ gameMode === 'rush' ? '抢答 P1' : 'P1' }}</span>
-              <span class="game-side__progress-text">{{ p1MatchedCount }}/8</span>
+              <span v-if="marathonOn && gameMode === 'rush'" class="marathon-progress" title="马拉松总进度：公共池已消对数 / 总对数">{{ p1MatchedCount + p2MatchedCount + donePairs() }}/{{ marathonTotalWords }}</span>
+              <span class="game-side__progress-text">{{ p1MatchedCount }}/{{ curRoundPairs }}</span>
             </div>
             <div class="combo-banner" :class="{ 'combo-banner--show': p1Combo >= 2, 'combo-banner--break': comboBreakP1 }">
               <span v-if="p1Combo >= 2" :key="'c' + p1Combo" class="combo-banner__num">{{ p1Combo }} Combo</span>
               <span v-else-if="comboBreakP1" :key="'b' + p1Combo" class="combo-banner__break">Combo 断</span>
             </div>
             <div class="game-side__progress-bar">
-              <div class="game-side__progress-fill p1" :style="{width: (p1MatchedCount/8*100)+'%'}"></div>
+              <div class="game-side__progress-fill p1" :style="{width: (p1MatchedCount/Math.max(curRoundPairs,1)*100)+'%'}"></div>
             </div>
             <div class="game-side__timer">{{ formatTime(p1Time) }}</div>
             <div class="card-grid-wrapper">
@@ -3543,7 +3565,7 @@
           <div class="game-side game-side--p2">
             <div class="game-side__header">
               <span class="game-side__player-label p2">{{ gameMode === 'rush' ? '抢答 P2' : 'P2' }}</span>
-              <span class="game-side__progress-text">{{ p2MatchedCount }}/8</span>
+              <span class="game-side__progress-text">{{ p2MatchedCount }}/{{ curRoundPairs }}</span>
             </div>
             <div class="combo-banner" :class="{ 'combo-banner--show': p2Combo >= 2, 'combo-banner--break': comboBreakP2 }">
               <span v-if="p2Combo >= 2" :key="'c' + p2Combo" class="combo-banner__num">{{ p2Combo }} Combo</span>
@@ -3585,18 +3607,18 @@
                 </svg>
                 单人模式
               </span>
-              <span v-if="gameMode === 'single' && !dailyMode && !marathonMode" class="hearts" title="生命值：配错 -1">
+              <span v-if="gameMode === 'single' && !dailyMode && !marathonOn" class="hearts" title="生命值：配错 -1">
                 <span v-for="i in maxHearts" :key="i" class="heart" :class="{ 'heart--lost': i > hearts }">♥</span>
               </span>
-              <span v-if="marathonMode" class="marathon-progress" title="马拉松总进度：已消对数 / 总对数">{{ p1MatchedCount + marathonRoundIndex * 8 }}/{{ marathonTotalWords }}</span>
-              <span class="game-side__progress-text">{{ p1MatchedCount }}/8</span>
+              <span v-if="marathonOn && gameMode !== 'rush'" class="marathon-progress" title="马拉松总进度：已消对数 / 总对数">{{ p1MatchedCount + donePairs() }}/{{ marathonTotalWords }}</span>
+              <span class="game-side__progress-text">{{ p1MatchedCount }}/{{ curRoundPairs }}</span>
             </div>
             <div class="combo-banner" :class="{ 'combo-banner--show': singleCombo >= 2, 'combo-banner--break': comboBreakP1 }">
               <span v-if="singleCombo >= 2" :key="'c' + singleCombo" class="combo-banner__num">{{ singleCombo }} Combo</span>
               <span v-else-if="comboBreakP1" :key="'b' + singleCombo" class="combo-banner__break">Combo 断</span>
             </div>
             <div class="game-side__progress-bar">
-              <div class="game-side__progress-fill p1" :style="{width: (p1MatchedCount/8*100)+'%'}"></div>
+              <div class="game-side__progress-fill p1" :style="{width: (p1MatchedCount/Math.max(curRoundPairs,1)*100)+'%'}"></div>
             </div>
             <div class="game-side__timer">{{ formatTime(p1Time) }}</div>
             <div class="card-grid-wrapper">
@@ -4101,14 +4123,21 @@
           sentencePopup: null,
           sentenceFinished: false,
           sentenceTouchProcessed: false, // 防止 touchend+click 重复触发
-          // 马拉松模式：一次打完选中范围的全部词，按 8 词一组连续开新组，总计时不停表
-          marathonMode: false,
-          marathonRounds: [], // 洗牌后切好的组队列 [[w1..w8], ...]
-          marathonRoundIndex: 0, // 当前组（0 起）
-          marathonRoundTime: 0, // 本组用时
-          marathonRoundTimes: [], // 每组用时
-          marathonTotalErrors: 0, // 全程配错次数
+          sentenceMarathonIndex: 0, // 例句马拉松：当前组索引
+          // 马拉松开关（选词视图 toggle chip）：对所有模式生效——一次打完选中范围全部词，
+          // 按局切组连续打；组间 400ms 绿横幅无缝续组（不重抽事件、不重新倒计时）；总计时不停表
+          marathonOn: false,
+          marathonRounds: [], // 预切好的组队列 [[w1..w8], ...]（开局/prepareMarathonRounds 填充）
           marathonTotalWords: 0, // 总词数（进度 = 已消对数/总对数）
+          marathonRoundsLeft: 0, // 剩余组数（当前局之后还要打的组数）
+          marathonTotalTime: 0, // 全程累计用时（结算写入 PB/排行榜）
+          marathonTotalErrors: 0, // 全程配错次数
+          marathonDoneWords: [], // 已打过的组的全部词（复习盒子全量同步用）
+          marathonAllErrors: {}, // 全程错词汇总 { en: 次数 }
+          marathonP1Wins: 0, // dual 马拉松：P1 赢的局数
+          marathonP2Wins: 0, // dual 马拉松：P2 赢的局数
+          marathonP1Score: 0, // rush 马拉松：P1 跨局总得分
+          marathonP2Score: 0, // rush 马拉松：P2 跨局总得分
           // 选词视图模式选择（D5）
           selectModes: [
             { key: 'dual', label: '双人 PK' },
@@ -4116,7 +4145,6 @@
             { key: 'rush', label: '抢答 PK' },
             { key: 'sentence', label: '例句配对' },
             { key: 'listen', label: '听力挑战' },
-            { key: 'marathon', label: '马拉松' },
           ],
           // 单词图鉴（WAVE2）：wordpair_codex，配对成功自动收集
           codexSearch: '',
@@ -4212,6 +4240,13 @@
         },
         maxRounds() {
           return Math.floor(this.selectedWordCount / 8);
+        },
+        // 马拉松当前局实际对数（末组可能 <8；非马拉松恒 8）
+        curRoundPairs() {
+          if (this.marathonOn && this.marathonRounds.length > 0) {
+            return (this.dualGameWords || []).length || 8;
+          }
+          return 8;
         },
         p1MatchedCount() { return this._p1MatchSet.size; },
         p2MatchedCount() { return this._p2MatchSet.size; },
@@ -4524,7 +4559,7 @@
         },
         // ===== 视图导航 =====
         goHome() {
-          if (this.marathonMode) this.resetMarathon();
+          if (this.marathonOn) this.resetMarathon();
           this.currentView = 'home';
           this.gameResult = null;
           this.gameResultPopup = null;
@@ -4532,7 +4567,7 @@
           this.winnerName = '';
         },
         goSelect(mode) {
-          if (this.marathonMode) this.resetMarathon();
+          if (this.marathonOn) this.resetMarathon();
           if (mode) this.gameMode = mode;
           this.gameResult = null;
           this.gameResultPopup = null;
@@ -4542,13 +4577,26 @@
         },
         // 选词视图开始按钮文案（D5：模式选择后按钮随模式变化）
         startGameLabel() {
-          const labels = { dual: '开始 PK', single: '开始单人', rush: '开始抢答', sentence: '开始例句配对', listen: '开始听力', marathon: '开始马拉松' };
+          const labels = { dual: '开始 PK', single: '开始单人', rush: '开始抢答', sentence: '开始例句配对', listen: '开始听力' };
           return labels[this.gameMode] || '开始';
         },
         // 选词视图模式选择（D5）：切换即清掉复习入口标记（选了模式 = 走常规游戏）
         pickSelectMode(mode) {
           this.pendingReview = false;
           this.gameMode = mode;
+        },
+        // 马拉松开关：toggle（复习入口 pendingReview 时不可开——复习玩法不马拉松）
+        toggleMarathon() {
+          if (this.pendingReview) return;
+          this.marathonOn = !this.marathonOn;
+        },
+        // 马拉松总进度：已打完组的对数（每组 8，末组可能不足）
+        donePairs() {
+          if (!this.marathonOn || !this.marathonRounds.length) return 0;
+          const doneRounds = this.marathonRounds.length - 1 - this.marathonRoundsLeft;
+          let pairs = 0;
+          for (let i = 0; i < doneRounds; i++) pairs += (this.marathonRounds[i] || []).length;
+          return pairs;
         },
 
         // ===== 每日挑战（WAVE1）=====
@@ -5350,6 +5398,11 @@
         // 例句 ↔ 释义配对，成功高亮 + TTS 朗读整句例句，失败红闪（复用 .game-card matched/wrong 视觉）；
         // 容错：example 缺失/为空的词不报错——优先抽带例句的词，不足 8 个用普通 en 卡面回退补齐
         startSentenceGame() {
+          // 马拉松开关：预切组后本局词 = 第一组；后续组在 finishSentenceGame 里无缝续
+          if (this.marathonOn) {
+            if (this.prepareMarathonRounds()) return;
+            this.sentenceMarathonIndex = 0;
+          }
           const selectedWords = [];
           for (const b of this.books) {
             for (const u of (b.units || [])) {
@@ -5359,9 +5412,15 @@
           if (selectedWords.length < 8) return;
           const hasEx = w => !!(w && w.example && String(w.example).trim());
           const shuffle = arr => [...arr].sort(() => Math.random() - 0.5);
-          const exPool = selectedWords.filter(hasEx);
-          const plainPool = selectedWords.filter(w => !hasEx(w));
-          const chosen = [...shuffle(exPool), ...shuffle(plainPool)].slice(0, 8);
+          let chosen;
+          if (this.marathonOn) {
+            // 本组 = 预切组当前索引（例句缺失的词照常回退普通卡面，不足 8 的末组同理）
+            chosen = this.marathonRounds[this.sentenceMarathonIndex] || [];
+          } else {
+            const exPool = selectedWords.filter(hasEx);
+            const plainPool = selectedWords.filter(w => !hasEx(w));
+            chosen = [...shuffle(exPool), ...shuffle(plainPool)].slice(0, 8);
+          }
           this.sentenceWords = chosen;
 
           // 生成 16 卡：例句卡（type 'en'，目标词拆分三 span 高亮）+ 释义卡（type 'zh'）
@@ -5521,9 +5580,46 @@
           this.sentenceProcessing = false;
         },
         // 8 对全消 → 结算：错词进复习盒子（学习闭环与其它模式一致）
+        // 马拉松：一局配完不弹结算——累计后无缝续组，最后一局才弹总结算
         finishSentenceGame() {
           if (this.sentenceFinished) return;
           this.sentenceFinished = true;
+          if (this.marathonOn) {
+            // 累计本局词与错词（复习盒子全量同步留给最后一局 finishMarathon→endGame）
+            for (const w of (this.sentenceWords || [])) this.marathonDoneWords.push(w);
+            for (const en in (this.sentenceErrors || {})) this.marathonAllErrors[en] = (this.marathonAllErrors[en] || 0) + this.sentenceErrors[en];
+            this.marathonTotalTime += this.sentenceTime;
+            if (this.sentenceMarathonIndex + 1 < this.marathonRounds.length) {
+              // 无缝续组：绿横幅 400ms → 直接换下一组例句牌，计时器不重置
+              this.sentenceMarathonIndex++;
+              this.gameOverInternal = true;
+              this.eventBannerName = 'marathon';
+              this.eventBannerVisible = true;
+              clearTimeout(this._marathonBannerTimer);
+              this._marathonBannerTimer = setTimeout(() => {
+                this.eventBannerVisible = false;
+                this.sentenceFinished = false;
+                this.sentencePopup = null;
+                this.startSentenceMarathonRound();
+              }, 400);
+              return;
+            }
+            // 最后一局：全量同步复习盒子 + 总结算弹窗
+            clearInterval(this.p1Timer);
+            this.updateReviewBoxes(this.marathonDoneWords, this.marathonAllErrors);
+            const wrongWords = [];
+            for (const w of this.marathonDoneWords) {
+              const c = this.marathonAllErrors[w.en] || 0;
+              if (c > 0) wrongWords.push({ en: w.en, zh: w.zh, count: c });
+            }
+            this.marathonTotalErrors = wrongWords.reduce((s, w) => s + w.count, 0);
+            this.sentencePopup = {
+              time: this.marathonTotalTime,
+              total: this.marathonTotalWords,
+              wrong: wrongWords,
+            };
+            return;
+          }
           clearInterval(this.p1Timer);
           this.updateReviewBoxes(this.sentenceWords, this.sentenceErrors);
           const wrongWords = [];
@@ -5536,6 +5632,51 @@
             total: this.sentenceCardPairCount,
             wrong: wrongWords,
           };
+        },
+        // 例句马拉松下一组：换词重发牌，倒计时/事件/计时全不动（无缝）
+        startSentenceMarathonRound() {
+          const chosen = this.marathonRounds[this.sentenceMarathonIndex] || [];
+          if (!chosen.length) return;
+          const hasEx = w => !!(w && w.example && String(w.example).trim());
+          const cards = [];
+          chosen.forEach((word, idx) => {
+            const sent = hasEx(word) ? String(word.example).trim() : String(word.en || '');
+            const split = this.splitExampleSentence(sent, word.en);
+            cards.push({
+              id: 's-en-' + idx,
+              text: sent,
+              pairId: idx,
+              type: 'en',
+              matched: false,
+              selected: false,
+              wrong: false,
+              _word: word,
+              _sBefore: split.before,
+              _sWord: split.word,
+              _sAfter: split.after,
+            });
+            cards.push({
+              id: 's-zh-' + idx,
+              text: word.zh || '',
+              pairId: idx,
+              type: 'zh',
+              matched: false,
+              selected: false,
+              wrong: false,
+              _word: word,
+            });
+          });
+          this.sentenceCards = cards.sort(() => Math.random() - 0.5);
+          this.sentenceMatchSet = new Set();
+          this.sentenceSelected = null;
+          this.sentenceProcessing = false;
+          this.sentenceCombo = 0;
+          this.comboBreakSentence = false;
+          this.sentenceErrors = {};
+          this.sentenceCardPairCount = chosen.length;
+          this.gameOverInternal = false;
+          this.dualGameWords = chosen;
+          // 计时器不重置——p1Timer 继续 sentenceTime 累加（跨组总时）
         },
         rerunSentenceGame() {
           this.sentencePopup = null;
@@ -5564,11 +5705,6 @@
             this.startSentenceGame();
             return;
           }
-          // 马拉松：选词完成后按 8 词一组连续开局（不走普通 startGame 抽 8 词）
-          if (this.gameMode === 'marathon') {
-            this.startMarathonGame();
-            return;
-          }
           const selectedWords = [];
           let bookName = '';
           for (const b of this.books) {
@@ -5581,9 +5717,31 @@
           }
           if (selectedWords.length < 8) return;
 
-          // 随机选 8 个不重复词
-          const shuffled = [...selectedWords].sort(() => Math.random() - 0.5);
-          const chosen = shuffled.slice(0, 8);
+          // 马拉松开关开时：本局词 = 预切好的第一组（不单独随机抽 8）
+          let chosen;
+          if (this.marathonOn) {
+            const shuffled = [...selectedWords].sort(() => Math.random() - 0.5);
+            const rounds = [];
+            for (let i = 0; i < shuffled.length; i += 8) {
+              rounds.push(shuffled.slice(i, i + 8));
+            }
+            this.marathonRounds = rounds;
+            this.marathonTotalWords = shuffled.length;
+            this.marathonRoundsLeft = rounds.length - 1;
+            this.marathonTotalTime = 0;
+            this.marathonTotalErrors = 0;
+            this.marathonDoneWords = [];
+            this.marathonAllErrors = {};
+            this.marathonP1Wins = 0;
+            this.marathonP2Wins = 0;
+            this.marathonP1Score = 0;
+            this.marathonP2Score = 0;
+            chosen = rounds[0];
+          } else {
+            // 随机选 8 个不重复词
+            const shuffled = [...selectedWords].sort(() => Math.random() - 0.5);
+            chosen = shuffled.slice(0, 8);
+          }
 
           // WAVE1：本局 8 词（双人错词入库用，单独存不影响 single 流程）
           this.dualGameWords = chosen;
@@ -5662,69 +5820,103 @@
           this.startCountdown();
         },
 
-        // ===== 马拉松模式：一次打完选中范围全部词 =====
-        // 选区洗牌 → 按 8 词切组 → 复用单人生成/配对链路逐组开局；
-        // 组间横幅自动续组，总计时（p1Timer）全程不停表；走单人 endGame 结算。
-        startMarathonGame() {
-          if (this.pendingReview) {
-            this.pendingReview = false;
-            this.startReviewGame('free');
-            return;
-          }
+        // ===== 马拉松开关（对所有模式生效）=====
+        // 选区洗牌按 8 词切组；常规模式走正常开局（本组词=第一组），例句配对单独取第一组；
+        // 一局配完 → 400ms 绿横幅无缝续组（不重抽事件、不重新倒计时）；总计时不停表。
+        // 切组入口（例句配对用）：预切组并初始化马拉松状态；返回 true = 词数不足直接取消
+        prepareMarathonRounds() {
           const selectedWords = [];
-          let bookName = '';
           for (const b of this.books) {
             for (const u of (b.units || [])) {
-              if (u._checked) {
-                selectedWords.push(...(u.words || []));
-                if (!bookName) bookName = b.name + ' - ' + u.name;
-              }
+              if (u._checked) selectedWords.push(...(u.words || []));
             }
           }
-          if (selectedWords.length < 8) return;
+          if (selectedWords.length < 8) return true;
           const shuffled = [...selectedWords].sort(() => Math.random() - 0.5);
           const rounds = [];
           for (let i = 0; i < shuffled.length; i += 8) {
             rounds.push(shuffled.slice(i, i + 8));
           }
-          this.marathonMode = true;
           this.marathonRounds = rounds;
-          this.marathonRoundTimes = [];
-          this.marathonTotalErrors = 0;
           this.marathonTotalWords = shuffled.length;
-          this.gameBookName = bookName;
-          this.startMarathonRound(0);
+          this.marathonRoundsLeft = rounds.length - 1;
+          this.marathonTotalTime = 0;
+          this.marathonTotalErrors = 0;
+          this.marathonDoneWords = [];
+          this.marathonAllErrors = {};
+          this.marathonP1Wins = 0;
+          this.marathonP2Wins = 0;
+          this.marathonP1Score = 0;
+          this.marathonP2Score = 0;
+          return false;
         },
-        // 开第 N 组：照抄单人生成链路（含 reset 集合、心形、事件、倒计时）
-        startMarathonRound(idx) {
-          const chosen = this.marathonRounds[idx];
+        // 当前组发牌：dual/rush 双方各一份，single 只发 P1（复用 startGame 的生成逻辑）
+        dealMarathonCards(chosen) {
+          let allCards = [];
+          chosen.forEach((word, idx) => {
+            allCards.push({ id: 'en-' + idx, text: word.en, pairId: idx, type: 'en', matched: false, selected: false, wrong: false });
+            allCards.push({ id: 'zh-' + idx, text: word.zh, pairId: idx, type: 'zh', matched: false, selected: false, wrong: false });
+          });
+          this.p1Cards = allCards.filter(c => c.type === 'en').map(c => ({ ...c, id: 'p1-' + c.id }))
+            .concat(allCards.filter(c => c.type === 'zh').map(c => ({ ...c, id: 'p1-' + c.id })))
+            .sort(() => Math.random() - 0.5);
+          if (this.gameMode === 'dual' || this.gameMode === 'rush') {
+            this.p2Cards = allCards.filter(c => c.type === 'en').map(c => ({ ...c, id: 'p2-' + c.id }))
+              .concat(allCards.filter(c => c.type === 'zh').map(c => ({ ...c, id: 'p2-' + c.id })))
+              .sort(() => Math.random() - 0.5);
+          } else {
+            this.p2Cards = [];
+          }
+        },
+        // 一局配完 → 400ms 绿横幅 → 无缝换下一组新牌（不重抽事件、不重新倒计时、总计时不停）
+        // 最后剩余 0 组 → 按模式结算（single/dual/rush 各走 endGame，胜负已由累计局分/得分判定）
+        // side = 本局先配完者（dual）/完成配对方（rush）；单人恒 'p1'
+        advanceMarathon(side) {
+          // 累计本局错词与词表（复习盒子全量同步 + 结算弹窗统计）
+          for (const w of (this.dualGameWords || [])) this.marathonDoneWords.push(w);
+          for (const en in (this.reviewGameErrors || {})) this.marathonAllErrors[en] = (this.marathonAllErrors[en] || 0) + this.reviewGameErrors[en];
+          for (const en in (this.p1Errors || {})) this.marathonAllErrors[en] = (this.marathonAllErrors[en] || 0) + this.p1Errors[en];
+          for (const en in (this.p2Errors || {})) this.marathonAllErrors[en] = (this.marathonAllErrors[en] || 0) + this.p2Errors[en];
+          // dual：本局先配完者进局分；rush：本局双方得分进跨局总分（最后一局 endGame 判定用）
+          if (this.gameMode === 'dual') {
+            if (side === 'p1') this.marathonP1Wins++; else this.marathonP2Wins++;
+          } else if (this.gameMode === 'rush') {
+            this.marathonP1Score += this._p1MatchSet.size;
+            this.marathonP2Score += this._p2MatchSet.size;
+          }
+          this.marathonTotalTime = this.marathonTotalTime + this.p1Time;
+          if (this.marathonRoundsLeft <= 0) {
+            this.finishMarathon(side);
+            return;
+          }
+          this.marathonRoundsLeft--;
+          this.gameOverInternal = true; // 挡住组间隙的点击与特效
+          this.eventBannerName = 'marathon';
+          this.eventBannerVisible = true;
+          clearTimeout(this._marathonBannerTimer);
+          this._marathonBannerTimer = setTimeout(() => {
+            this.eventBannerVisible = false;
+            this.startMarathonRound();
+          }, 400);
+        },
+        // 开下一组：无缝续——不重抽事件、不倒计时；保持当前模式重发牌 + 重置单局状态 + 计时器续跑
+        startMarathonRound() {
+          const next = this.marathonRounds.length - 1 - this.marathonRoundsLeft;
+          const chosen = this.marathonRounds[next];
           if (!chosen || chosen.length === 0) return;
-          this.marathonRoundIndex = idx;
           this.dualGameWords = chosen;
           this.singleGameWords = chosen;
-          this.marathonRoundTime = 0;
-          let allCards = [];
-          chosen.forEach((word, i) => {
-            allCards.push({ id: 'en-' + i, text: word.en, pairId: i, type: 'en', matched: false, selected: false, wrong: false });
-            allCards.push({ id: 'zh-' + i, text: word.zh, pairId: i, type: 'zh', matched: false, selected: false, wrong: false });
-          });
-          const p1En = allCards.filter(c => c.type === 'en').map(c => ({...c, id: 'p1-' + c.id}));
-          const p1Zh = allCards.filter(c => c.type === 'zh').map(c => ({...c, id: 'p1-' + c.id}));
-          this.p1Cards = [...p1En, ...p1Zh].sort(() => Math.random() - 0.5);
-          this.p2Cards = [];
-          this.gameMode = 'single';
-          this.dailyMode = false;
+          this.dealMarathonCards(chosen);
           this.reviewGameErrors = {};
           this._p1MatchSet = new Set();
           this._p2MatchSet = new Set();
           this._processingClick = { p1: false, p2: false };
           this.p1Selected = null;
           this.p2Selected = null;
-          this.hearts = this.maxHearts;
+          this.rushSelected = null;
+          this.rushOwner = null;
           this.p1Matched = 0;
           this.p2Matched = 0;
-          this.p1Time = 0;
-          this.p2Time = 0;
           this.p1Counted = false;
           this.p2Counted = false;
           this.p1Combo = 0;
@@ -5737,40 +5929,40 @@
           this.gameResult = null;
           this.gameResultPopup = null;
           this.gameOverInternal = false;
-          this.pickEvent();
-          this.currentView = 'game';
-          this.startCountdown();
+          this.startTimers();
         },
-        // 一组配完 → 组间横幅 1.6s → 自动开下一组；最后一组 → 单人结算
-        advanceMarathonRound() {
-          this.marathonRoundTimes.push(this.marathonRoundTime);
-          this.marathonTotalErrors += Object.values(this.reviewGameErrors).reduce((s, v) => s + v, 0);
-          const next = this.marathonRoundIndex + 1;
-          if (next >= this.marathonRounds.length) {
-            this.endGame('p1');
-            return;
+        // 全部组打完 → 结算：复习盒子用全量词+全量错词，PB/结算时间用全程总时
+        // lastSide = 最后一局先配完者（dual 并列兜底 / single 恒 p1 / rush 忽略）
+        finishMarathon(lastSide) {
+          // rush：累计得分写回 matchSet，endGame 原判定直接工作
+          if (this.gameMode === 'rush') {
+            this._p1MatchSet = new Set(Array.from({ length: this.marathonP1Score }, (_, i) => i));
+            this._p2MatchSet = new Set(Array.from({ length: this.marathonP2Score }, (_, i) => i));
           }
-          this.gameOverInternal = true; // 挡住组间隙的点击与特效
-          this.eventBannerName = 'marathon';
-          this.eventBannerVisible = true;
-          clearTimeout(this._marathonBannerTimer);
-          this._marathonBannerTimer = setTimeout(() => {
-            this.eventBannerVisible = false;
-            this.startMarathonRound(next);
-          }, 1600);
+          // 时间统一为全程总时（single 的 t / rush 平局 tie-break / dual 显示都用它）
+          this.p1Time = this.marathonTotalTime;
+          this.p2Time = this.marathonTotalTime;
+          // 全程错次 = 全量错词汇总次数（结算弹窗统计行）
+          this.marathonTotalErrors = Object.values(this.marathonAllErrors).reduce((s, v) => s + v, 0);
+          // 复习盒子：全量词 + 全量错词（endGame single 分支读 singleGameWords/reviewGameErrors）
+          this.singleGameWords = this.marathonDoneWords;
+          this.reviewGameErrors = { ...this.marathonAllErrors };
+          this.reviewGameWords = this.marathonDoneWords; // 复盘弹窗用
+          this.endGame(this.gameMode === 'rush' ? 'rush' : (lastSide || 'p1'));
         },
-        // 退出马拉松（返回首页/选词/再来一局前调用）：停表 + 清横幅定时器
+        // 退出马拉松（返回首页/选词/结算后调用）：停表 + 清横幅定时器 + 清运行态
+        // （marathonOn 开关保留——用户回选词视图还想要开着的状态，换局时重新初始化）
         resetMarathon() {
           clearInterval(this.p1Timer);
           clearInterval(this.p2Timer);
           clearTimeout(this._marathonBannerTimer);
-          this.marathonMode = false;
           this.marathonRounds = [];
-          this.marathonRoundIndex = 0;
-          this.marathonRoundTime = 0;
-          this.marathonRoundTimes = [];
+          this.marathonRoundsLeft = 0;
+          this.marathonTotalTime = 0;
           this.marathonTotalErrors = 0;
           this.marathonTotalWords = 0;
+          this.marathonDoneWords = [];
+          this.marathonAllErrors = {};
           this.eventBannerVisible = false;
         },
 
@@ -5811,14 +6003,15 @@
         startTimers() {
           clearInterval(this.p1Timer);
           clearInterval(this.p2Timer);
-          if (this.marathonMode) {
-            // 马拉松：总计时（p1Time）全程不停表；marathonRoundTime 单独记本组用时
-            this.p1Time = this.marathonRoundTimes.reduce((s, v) => s + v, 0);
-            this.p2Time = 0;
-            this.p1Timer = setInterval(() => {
-              this.p1Time += 0.1;
-              this.marathonRoundTime += 0.1;
-            }, 100);
+          if (this.marathonOn && this.marathonRounds.length > 0) {
+            // 马拉松：总计时不停表——p1/p2 从已累计的 marathonTotalTime 续跑，
+            // 结算时用 marathonTotalTime 精确值（PB/排行榜），显示层允许 ±0.1s 抖动
+            this.p1Time = this.marathonTotalTime;
+            this.p2Time = this.marathonTotalTime;
+            this.p1Timer = setInterval(() => { this.p1Time += 0.1; }, 100);
+            if (this.gameMode === 'dual' || this.gameMode === 'rush') {
+              this.p2Timer = setInterval(() => { this.p2Time += 0.1; }, 100);
+            }
             return;
           }
           this.p1Time = 0;
@@ -5933,11 +6126,11 @@
               this[selectedRef] = null;
 
               // 检查胜利（马拉松末组可能不足 8 对——按当前组实际对数判定）
-              const winPairCount = this.marathonMode ? (this.dualGameWords || []).length : 8;
+              const winPairCount = (this.marathonOn && this.marathonRounds.length > 0) ? (this.dualGameWords || []).length : 8;
               if (matchSet.size >= winPairCount && !this.gameOverInternal) {
-                // 马拉松：本组 8 对配完 → 组间横幅自动续组（最后一组在 advanceMarathonRound 内走单人 endGame）
-                if (this.marathonMode) {
-                  this.advanceMarathonRound();
+                // 马拉松：本局配完 → 无缝续组（最后一局在 advanceMarathon 内走 finishMarathon→endGame）
+                if (this.marathonOn && this.marathonRounds.length > 0) {
+                  this.advanceMarathon(side);
                   this._processingClick[side] = false;
                   return;
                 }
@@ -5964,7 +6157,7 @@
               }
               // 心形生命值（WAVE2）：单人挑战扣心（每日挑战除外）；0 心提前结束走现有 endGame（错词已入库）
               // 马拉松：同每日挑战不扣心——中途打死会误标"提前结束"且长局 5 心太苛刻
-              if (this.gameMode === 'single' && !this.dailyMode && !this.marathonMode) {
+              if (this.gameMode === 'single' && !this.dailyMode && !this.marathonOn) {
                 this.hearts--;
                 if (this.hearts <= 0) {
                   this[selectedRef] = null;
@@ -6039,8 +6232,15 @@
               if (pairWord) this.collectWord(pairWord);
               this.rushSelected = null;
               this.rushOwner = null;
-              // 公共池 8 对全消 → 结束（得分多者胜，平分比用时，endGame 内判定）
-              if (this._p1MatchSet.size + this._p2MatchSet.size >= 8 && !this.gameOverInternal) {
+              // 公共池全消 → 结束（得分多者胜，平分比用时，endGame 内判定）
+              // 马拉松末组可能不足 8 对——按当前组实际对数判定
+              const rushWinPairs = this.marathonOn && this.marathonRounds.length > 0 ? (this.dualGameWords || []).length : 8;
+              if (this._p1MatchSet.size + this._p2MatchSet.size >= rushWinPairs && !this.gameOverInternal) {
+                if (this.marathonOn && this.marathonRounds.length > 0) {
+                  this.advanceMarathon(side);
+                  this._processingClick[side] = false;
+                  return;
+                }
                 this.endGame('rush');
                 this._processingClick[side] = false;
                 return;
@@ -6068,19 +6268,40 @@
           this._processingClick[side] = false;
         },
 
+        // 结算公共尾部：复习盒子同步 + 弱点雷达构建（endGame 与 finishMarathon 共用）
+        buildResultAndPopup(winner, time, words, errorMap) {
+          const merged = {};
+          for (const en in errorMap) merged[en] = (merged[en] || 0) + errorMap[en];
+          if (words && words.length > 0) {
+            this.updateReviewBoxes(words, merged);
+          }
+          const wordMap = {};
+          for (const w of (words || [])) wordMap[w.en] = w;
+          const radar = [];
+          for (const en in merged) {
+            radar.push({ en: en, zh: (wordMap[en] || {}).zh || '', count: merged[en] });
+          }
+          radar.sort((a, b) => (b.count - a.count) || a.en.localeCompare(b.en));
+          this.gameResultPopup = {
+            winner: winner,
+            time: time,
+            top3: radar.slice(0, 3),
+          };
+        },
+
         endGame(side) {
           this.gameOverInternal = true;
           clearInterval(this.p1Timer);
           clearInterval(this.p2Timer);
 
           if (this.gameMode === 'single') {
-            // 单人模式：记录完成时间和个人最佳
+            // 单人模式：记录完成时间和个人最佳（马拉松 = 全程总时，finishMarathon 已写入 p1Time）
             const t = this.p1Time;
             this.gameResult = { winner: 'single', time: t };
             // 保存个人最快记录
             try {
               // 马拉松 PB 独立存储（词表范围可大可小，与普通单人同场比较不公平）
-              const pbKey = this.marathonMode ? 'wordpair_pb_marathon' : 'wordpair_pb';
+              const pbKey = this.marathonOn ? 'wordpair_pb_marathon' : 'wordpair_pb';
               const pb = localStorage.getItem(pbKey);
               const prev = pb ? parseFloat(pb) : null;
               if (prev === null || t < prev) {
@@ -6090,7 +6311,7 @@
                 this.singlePlayerPb = prev;
               }
             } catch(e) {}
-            // 单人模式：同步到复习系统
+            // 单人模式：同步到复习系统（马拉松 = 全量词 + 全量错词，finishMarathon 已备好）
             if (this.singleGameWords && this.singleGameWords.length > 0) {
               this.updateReviewBoxes(this.singleGameWords, this.reviewGameErrors);
               this.reviewGameWords = this.singleGameWords; // 给复盘弹窗用
@@ -6104,8 +6325,9 @@
 
           if (this.gameMode === 'rush') {
             // 抢答结算（WAVE2）：得分多者胜；平分 → 用时少者胜
-            const p1Score = this._p1MatchSet.size;
-            const p2Score = this._p2MatchSet.size;
+            // （马拉松：跨局得分已由 advanceMarathon 累计进 matchSet 前置值——finishMarathon 直接传 side）
+            const p1Score = this._p1MatchSet.size + (this.marathonOn ? this.marathonP1Score : 0);
+            const p2Score = this._p2MatchSet.size + (this.marathonOn ? this.marathonP2Score : 0);
             let winner = 'p1';
             if (p2Score > p1Score) winner = 'p2';
             else if (p1Score === p2Score) winner = (this.p1Time <= this.p2Time) ? 'p1' : 'p2';
@@ -6114,29 +6336,25 @@
               winner: winner,
               time: winnerTime,
             };
-            // 双方错词合并 → 复习盒子 + 弱点雷达（与 dual 一致）
-            const rMerged = {};
-            for (const en in this.p1Errors) rMerged[en] = (rMerged[en] || 0) + this.p1Errors[en];
-            for (const en in this.p2Errors) rMerged[en] = (rMerged[en] || 0) + this.p2Errors[en];
-            if (this.dualGameWords && this.dualGameWords.length > 0) {
-              this.updateReviewBoxes(this.dualGameWords, rMerged);
-            }
-            const rWordMap = {};
-            for (const w of (this.dualGameWords || [])) rWordMap[w.en] = w;
-            const rRadar = [];
-            for (const en in rMerged) {
-              rRadar.push({ en: en, zh: (rWordMap[en] || {}).zh || '', count: rMerged[en] });
-            }
-            rRadar.sort((a, b) => (b.count - a.count) || a.en.localeCompare(b.en));
-            this.gameResultPopup = {
-              winner: winner,
-              time: winnerTime,
-              top3: rRadar.slice(0, 3),
-            };
+            // 双方错词合并 → 复习盒子 + 弱点雷达（马拉松全量词+全量错词，finishMarathon 已备好）
+            const errSrc = this.marathonOn ? this.marathonAllErrors : this._mergeErrs();
+            const wordsForReview = this.marathonOn ? this.marathonDoneWords : this.dualGameWords;
+            this.buildResultAndPopup(winner, winnerTime, wordsForReview, errSrc);
             return;
           }
 
-          const winnerTime = side === 'p1' ? this.p1Time : this.p2Time;
+          // 双人 PK：马拉松最后一局也到这里——胜负按局分多者判（并列比用时），本局 side 只作并列兜底
+          let winner = side;
+          let winnerTime;
+          if (this.marathonOn) {
+            winner = this.marathonP1Wins > this.marathonP2Wins ? 'p1'
+              : (this.marathonP2Wins > this.marathonP1Wins ? 'p2' : side);
+            winnerTime = this.marathonTotalTime;
+            this.gameResult = { winner: winner, time: winnerTime };
+            this.buildResultAndPopup(winner, winnerTime, this.marathonDoneWords, this.marathonAllErrors);
+            return;
+          }
+          winnerTime = side === 'p1' ? this.p1Time : this.p2Time;
           this.gameResult = {
             winner: side,
             time: winnerTime,
@@ -6163,6 +6381,13 @@
             top3: radar.slice(0, 3),
           };
         },
+        // 双方错词合并（非马拉松 rush/dual 结算用）
+        _mergeErrs() {
+          const merged = {};
+          for (const en in this.p1Errors) merged[en] = (merged[en] || 0) + this.p1Errors[en];
+          for (const en in this.p2Errors) merged[en] = (merged[en] || 0) + this.p2Errors[en];
+          return merged;
+        },
         // 弱点雷达弹层关闭 → 露出原 result-overlay（姓名输入 → saveResult 排行榜照旧）
         closeRadarPopup() {
           this.gameResultPopup = null;
@@ -6170,7 +6395,7 @@
 
         // ===== 结算 =====
         saveResult() {
-          if (this.marathonMode) this.resetMarathon(); // 马拉松结算进榜后清 marathonMode，否则排行榜页残留中途状态
+          if (this.marathonOn && this.marathonRounds.length >= 0) this.resetMarathon(); // 马拉松结算后清运行态（marathonOn 开关保留）
           if (!this.winnerName.trim()) {
             this.winnerName = this.gameResult.winner === 'p1' ? 'P1玩家' : 'P2玩家';
           }
@@ -6301,7 +6526,7 @@
             case 'leaderboard':
             case 'listenGame':
             case 'sentenceGame':
-              if (this.marathonMode) this.resetMarathon();
+              if (this.marathonOn) this.resetMarathon();
               clearInterval(this.p1Timer);
               this.goHome();
               break;

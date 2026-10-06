@@ -1,0 +1,61 @@
+name: probes
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  probes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 稳定通道路径：setup-chrome 把 chrome 装到固定 cache-dir，CHROME_PATH 指向它
+      - name: Install Chrome for Testing
+        id: chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Install probe deps
+        working-directory: tests/probes
+        run: npm ci --no-audit --no-fund 2>/dev/null || npm install --no-audit --no-fund
+
+      - name: Build index.html
+        run: python3 build.py
+
+      - name: Start static server
+        run: |
+          python3 -m http.server 8080 --directory . &
+          for i in $(seq 1 30); do
+            curl -sf http://127.0.0.1:8080/index.html >/dev/null && break
+            sleep 1
+          done
+          curl -sf -o /dev/null http://127.0.0.1:8080/index.html && echo SERVER_READY
+
+      - name: Run all probes
+        working-directory: tests/probes
+        env:
+          PROBE_URL: http://127.0.0.1:8080/index.html
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: node run_all.js
+
+      - name: Upload failure artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: probe-failure-logs
+          path: |
+            tests/probes/*.log
+          if-no-files-found: ignore
+          retention-days: 7

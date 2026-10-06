@@ -103,14 +103,14 @@
             <p>16 张卡片（8 英文 + 8 中文），点一张再点它的对应卡即可配对。配对正确消除 + 朗读英文 + 连击 +1；配错红闪、连击清零。手机可多点触控，双人同屏对战。</p>
           </section>
           <section class="help-sec">
-            <h3>八种模式</h3>
+            <h3>七种模式</h3>
             <ul class="help-list">
               <li><b>双人 PK</b>：分边各 8 对，先配完者胜，胜者进排行榜。</li>
               <li><b>单人挑战</b>：计时冲 PB；5 颗心，配错 -1，0 心提前结束。</li>
               <li><b>抢答 PK</b>：公共 16 张牌双方共抢；选中可被对方抢走——谁先点到配对卡这对归谁；错误点击不惩罚；8 对全消后得分多者胜，平分比用时。</li>
               <li><b>例句配对</b>：读英文例句配对中文释义，句中目标词加粗高亮；配对成功朗读整句例句，错词进复习系统。</li>
               <li><b>听力挑战</b>：听英文选中文（4 选 1），答对 +1 分，答错 -1 心，共 8 轮。</li>
-              <li><b>马拉松</b>：一次打完选中范围的所有词——每 8 词一组连续开局，一组配完自动换下一组新牌，总计时不停表；不扣心，PB 独立记录。</li>
+              <li><b>马拉松开关</b>：选词视图可开启——对所有模式生效（单人/双人/抢答/例句）。开启后一次打完选中范围全部词：每 8 词一组连续打完，一组配完自动无缝换下一组新牌（不重抽事件、不重新倒计时）；总计时不停表；单人模式不扣心；个人最佳独立记录。</li>
               <li><b>单词复习</b>：自由练习 / 今日复习（记忆曲线到期词）/ 错题特训（顽固错词）。</li>
               <li><b>每日挑战</b>：每天固定一批词（同天同词），完成记最快时间与连续天数。</li>
             </ul>
@@ -215,7 +215,6 @@
             <button class="btn btn--accent home-enter-btn" style="transition-delay:1.78s" @click="goSelect('single')">单人挑战</button>
             <button class="btn btn--accent home-enter-btn" style="transition-delay:1.92s" @click="goSelect('listen')">听力挑战</button>
             <button class="btn btn--accent home-enter-btn" style="transition-delay:2.2s" @click="goSelect('sentence')">例句配对</button>
-            <button class="btn btn--accent home-enter-btn" style="transition-delay:2.34s" @click="goSelect('marathon')">🏃 马拉松</button>
             <button class="btn btn--ghost home-enter-btn" style="transition-delay:1.78s" @click="goReviewHome">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;vertical-align:-3px;">
                 <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
@@ -253,6 +252,12 @@
               :class="{ 'select-mode-chip--on': gameMode === m.key && !pendingReview }"
               @click="pickSelectMode(m.key)"
             >{{ m.label }}</button>
+            <!-- 马拉松开关（toggle）：对所有模式生效——一次打完选中范围全部词，无缝连续续局 -->
+            <button
+              class="select-mode-chip select-mode-chip--marathon"
+              :class="{ 'select-mode-chip--on': marathonOn && !pendingReview }"
+              @click="toggleMarathon"
+            >🏃 马拉松 {{ marathonOn ? '开' : '关' }}</button>
           </div>
           <div class="book-list">
             <div
@@ -292,6 +297,7 @@
             <div class="select-summary__info">
               已选 <strong>{{ selectedWordCount }}</strong> 词，
               可开局 <strong>{{ maxRounds }}</strong> 局
+              <span v-if="marathonOn && !pendingReview" class="select-summary__marathon">· 🏃 马拉松：一次打完 {{ selectedWordCount }} 词（{{ Math.ceil(selectedWordCount / 8) }} 组连续）</span>
             </div>
             <div class="select-summary__actions">
               <button class="btn btn--ghost" @click="cancelReviewSelect">返回</button>
@@ -358,8 +364,8 @@
             <div class="result-modal__time">
               用时 {{ formatTime(gameResult.time) }}
             </div>
-            <div v-if="marathonMode" class="result-modal__time" style="font-size:13px;color:var(--text-secondary);margin-top:-14px;margin-bottom:10px;">
-              🏃 马拉松 · {{ marathonTotalWords }} 词 {{ marathonRounds.length }} 组 · 全程错 {{ marathonTotalErrors }} 次
+            <div v-if="marathonOn" class="result-modal__time" style="font-size:13px;color:var(--text-secondary);margin-top:-14px;margin-bottom:10px;">
+              🏃 马拉松 · {{ marathonTotalWords }} 词 · 全程错 {{ marathonTotalErrors }} 次
             </div>
             <div v-if="singlePlayerPb !== null" class="result-modal__time" style="font-size:14px;color:var(--text-secondary);margin-top:-16px;margin-bottom:24px;">
               最快记录: {{ formatTime(singlePlayerPb) }}
@@ -385,9 +391,9 @@
         <!-- 随机事件横幅（WAVE1）：开局显示 2s -->
         <div v-if="eventBannerVisible && eventBannerName === 'fog'" class="event-banner event-banner--fog">🌫️ 迷雾开局</div>
         <div v-else-if="eventBannerVisible && eventBannerName === 'reshuffle'" class="event-banner event-banner--reshuffle">🔀 中途洗牌</div>
-        <!-- 马拉松组间横幅：一组配完 → 显示 1.6s → 自动开下一组 -->
+        <!-- 马拉松无缝续组横幅：400ms 绿横幅，不重抽事件不倒计时 -->
         <div v-else-if="eventBannerVisible && eventBannerName === 'marathon'" class="event-banner event-banner--marathon">
-          🏃 第 {{ marathonRoundIndex + 1 }}/{{ marathonRounds.length }} 组完成
+          🏃 马拉松 · 还剩 {{ marathonRoundsLeft }} 组
         </div>
 
         <!-- 弱点雷达（WAVE1）：双人结算弹层，关闭后走原 saveResult 流程 -->
@@ -420,14 +426,15 @@
           <div class="game-side game-side--p1">
             <div class="game-side__header">
               <span class="game-side__player-label p1">{{ gameMode === 'rush' ? '抢答 P1' : 'P1' }}</span>
-              <span class="game-side__progress-text">{{ p1MatchedCount }}/8</span>
+              <span v-if="marathonOn && gameMode === 'rush'" class="marathon-progress" title="马拉松总进度：公共池已消对数 / 总对数">{{ p1MatchedCount + p2MatchedCount + donePairs() }}/{{ marathonTotalWords }}</span>
+              <span class="game-side__progress-text">{{ p1MatchedCount }}/{{ curRoundPairs }}</span>
             </div>
             <div class="combo-banner" :class="{ 'combo-banner--show': p1Combo >= 2, 'combo-banner--break': comboBreakP1 }">
               <span v-if="p1Combo >= 2" :key="'c' + p1Combo" class="combo-banner__num">{{ p1Combo }} Combo</span>
               <span v-else-if="comboBreakP1" :key="'b' + p1Combo" class="combo-banner__break">Combo 断</span>
             </div>
             <div class="game-side__progress-bar">
-              <div class="game-side__progress-fill p1" :style="{width: (p1MatchedCount/8*100)+'%'}"></div>
+              <div class="game-side__progress-fill p1" :style="{width: (p1MatchedCount/Math.max(curRoundPairs,1)*100)+'%'}"></div>
             </div>
             <div class="game-side__timer">{{ formatTime(p1Time) }}</div>
             <div class="card-grid-wrapper">
@@ -457,7 +464,7 @@
           <div class="game-side game-side--p2">
             <div class="game-side__header">
               <span class="game-side__player-label p2">{{ gameMode === 'rush' ? '抢答 P2' : 'P2' }}</span>
-              <span class="game-side__progress-text">{{ p2MatchedCount }}/8</span>
+              <span class="game-side__progress-text">{{ p2MatchedCount }}/{{ curRoundPairs }}</span>
             </div>
             <div class="combo-banner" :class="{ 'combo-banner--show': p2Combo >= 2, 'combo-banner--break': comboBreakP2 }">
               <span v-if="p2Combo >= 2" :key="'c' + p2Combo" class="combo-banner__num">{{ p2Combo }} Combo</span>
@@ -499,18 +506,18 @@
                 </svg>
                 单人模式
               </span>
-              <span v-if="gameMode === 'single' && !dailyMode && !marathonMode" class="hearts" title="生命值：配错 -1">
+              <span v-if="gameMode === 'single' && !dailyMode && !marathonOn" class="hearts" title="生命值：配错 -1">
                 <span v-for="i in maxHearts" :key="i" class="heart" :class="{ 'heart--lost': i > hearts }">♥</span>
               </span>
-              <span v-if="marathonMode" class="marathon-progress" title="马拉松总进度：已消对数 / 总对数">{{ p1MatchedCount + marathonRoundIndex * 8 }}/{{ marathonTotalWords }}</span>
-              <span class="game-side__progress-text">{{ p1MatchedCount }}/8</span>
+              <span v-if="marathonOn && gameMode !== 'rush'" class="marathon-progress" title="马拉松总进度：已消对数 / 总对数">{{ p1MatchedCount + donePairs() }}/{{ marathonTotalWords }}</span>
+              <span class="game-side__progress-text">{{ p1MatchedCount }}/{{ curRoundPairs }}</span>
             </div>
             <div class="combo-banner" :class="{ 'combo-banner--show': singleCombo >= 2, 'combo-banner--break': comboBreakP1 }">
               <span v-if="singleCombo >= 2" :key="'c' + singleCombo" class="combo-banner__num">{{ singleCombo }} Combo</span>
               <span v-else-if="comboBreakP1" :key="'b' + singleCombo" class="combo-banner__break">Combo 断</span>
             </div>
             <div class="game-side__progress-bar">
-              <div class="game-side__progress-fill p1" :style="{width: (p1MatchedCount/8*100)+'%'}"></div>
+              <div class="game-side__progress-fill p1" :style="{width: (p1MatchedCount/Math.max(curRoundPairs,1)*100)+'%'}"></div>
             </div>
             <div class="game-side__timer">{{ formatTime(p1Time) }}</div>
             <div class="card-grid-wrapper">
