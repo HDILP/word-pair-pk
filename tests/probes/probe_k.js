@@ -24,14 +24,20 @@ function pngSize(file) {
   return { sig, w, h };
 }
 function stopServer() {
-  try {
-    const out = execSync('netstat -ano | findstr ":' + PROBE_PORT + '" | findstr "LISTENING"', { encoding: 'utf8' });
-    for (const line of out.trim().split('\n')) {
-      const parts = line.trim().split(/\s+/);
-      const pid = parts[parts.length - 1];
-      if (pid && pid !== '0') { try { execSync('taskkill /F /PID ' + pid, { stdio: 'ignore' }); } catch(e) {} }
-    }
-  } catch(e) {}
+  if (process.platform === 'win32') {
+    // Windows：netstat+taskkill 按端口找监听进程
+    try {
+      const out = execSync('netstat -ano | findstr ":' + PROBE_PORT + '" | findstr "LISTENING"', { encoding: 'utf8' });
+      for (const line of out.trim().split('\n')) {
+        const parts = line.trim().split(/\s+/);
+        const pid = parts[parts.length - 1];
+        if (pid && pid !== '0') { try { execSync('taskkill /F /PID ' + pid, { stdio: 'ignore' }); } catch(e) {} }
+      }
+    } catch(e) {}
+  } else {
+    // POSIX（CI Linux）：netstat/findstr/taskkill 均不存在，fuser 按端口杀监听进程
+    try { execSync('fuser -k ' + PROBE_PORT + '/tcp', { stdio: 'ignore' }); } catch(e) {}
+  }
 }
 function startServer() {
   spawn('python3', ['-m', 'http.server', PROBE_PORT], { cwd: ROOT, detached: true, stdio: 'ignore' }).unref();
