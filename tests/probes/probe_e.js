@@ -21,11 +21,28 @@ function check(name, cond, detail) {
   page.on('dialog', async d => { lastDialog = d.message(); await d.dismiss(); });
 
   // 1. 首页入口存在
-  const hasEntry = await page.evaluate(() => !!document.querySelector('.daily-card'));
+  let hasEntry = false;
+  for (let i = 0; i < 20; i++) {
+    hasEntry = await page.evaluate(() => !!document.querySelector('.daily-card'));
+    if (hasEntry) break;
+    await sleep(500);
+  }
   check('首页有今日挑战入口', hasEntry, '');
 
   // 2. 第一次进入 → game 视图；记录词序列
-  await page.evaluate(() => document.querySelector('.daily-card').click());
+  const clickDaily = async () => {
+    for (let i = 0; i < 10; i++) {
+      const ok = await page.evaluate(() => {
+        const el = document.querySelector('.daily-card');
+        if (el) { el.click(); return true; }
+        return false;
+      });
+      if (ok) return;
+      await sleep(500);
+    }
+    throw new Error('daily-card 不存在，无法点击');
+  };
+  await clickDaily();
   await sleep(500);
   const seq1 = await page.evaluate(() => {
     const proxy = document.querySelector('#app')._vnode.component.proxy;
@@ -46,7 +63,7 @@ function check(name, cond, detail) {
     proxy.goHome();
   });
   await sleep(300);
-  await page.evaluate(() => document.querySelector('.daily-card').click());
+  await clickDaily();
   await sleep(500);
   const seq2 = await page.evaluate(() => {
     const proxy = document.querySelector('#app')._vnode.component.proxy;
@@ -92,7 +109,7 @@ function check(name, cond, detail) {
   });
   await sleep(300);
   lastDialog = null;
-  await page.evaluate(() => document.querySelector('.daily-card').click());
+  await clickDaily();
   await sleep(400);
   check('重复进入提示已完成', lastDialog !== null && lastDialog.includes('今日已完成'), 'dialog=' + lastDialog);
   const dc2 = await page.evaluate(() => JSON.parse(localStorage.getItem('wordpair_daily_challenge') || 'null'));

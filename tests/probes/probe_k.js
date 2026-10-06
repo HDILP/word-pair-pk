@@ -7,7 +7,7 @@ const CHROME = process.env.CHROME_PATH || process.env.CHROME_PATH_64 || '/usr/bi
 const URL = process.env.PROBE_URL || 'http://127.0.0.1:8000/index.html';
 const PROBE_PORT = (URL.match(/:(\d+)/) || [null, '8000'])[1];
 const URL_ORIGIN = URL.replace(/^(https?:\/\/[^\/]+).*$/, '$1');
-const ROOT = process.env.PROBE_ROOT || 'D:/codingaria/word-pair-pk';
+const ROOT = process.env.PROBE_ROOT || require('path').resolve(__dirname, '..', '..');
 const SW_PATH = ROOT + '/sw.js';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
