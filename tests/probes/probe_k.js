@@ -5,7 +5,9 @@ const fs = require('fs');
 const { execSync, spawn } = require('child_process');
 const CHROME = process.env.CHROME_PATH || process.env.CHROME_PATH_64 || '/usr/bin/google-chrome';
 const URL = process.env.PROBE_URL || 'http://127.0.0.1:8000/index.html';
-const ROOT = 'D:/codingaria/word-pair-pk';
+const PROBE_PORT = (URL.match(/:(\d+)/) || [null, '8000'])[1];
+const URL_ORIGIN = URL.replace(/^(https?:\/\/[^\/]+).*$/, '$1');
+const ROOT = process.env.PROBE_ROOT || 'D:/codingaria/word-pair-pk';
 const SW_PATH = ROOT + '/sw.js';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
@@ -23,7 +25,7 @@ function pngSize(file) {
 }
 function stopServer() {
   try {
-    const out = execSync('netstat -ano | findstr ":8000" | findstr "LISTENING"', { encoding: 'utf8' });
+    const out = execSync('netstat -ano | findstr ":' + PROBE_PORT + '" | findstr "LISTENING"', { encoding: 'utf8' });
     for (const line of out.trim().split('\n')) {
       const parts = line.trim().split(/\s+/);
       const pid = parts[parts.length - 1];
@@ -32,13 +34,13 @@ function stopServer() {
   } catch(e) {}
 }
 function startServer() {
-  spawn('python3', ['-m', 'http.server', '8000'], { cwd: ROOT, detached: true, stdio: 'ignore' }).unref();
+  spawn('python3', ['-m', 'http.server', PROBE_PORT], { cwd: ROOT, detached: true, stdio: 'ignore' }).unref();
 }
 async function waitServerUp(page) {
   for (let i = 0; i < 30; i++) {
-    const ok = await page.evaluate(async () => {
-      try { await fetch('http://127.0.0.1:8000/__up__' + Date.now() + '.txt'); return true; } catch(e) { return false; }
-    });
+    const ok = await page.evaluate(async (uOrigin) => {
+      try { await fetch(uOrigin + '/__up__' + Date.now() + '.txt', { cache: 'no-store' }); return true; } catch(e) { return false; }
+    }, URL_ORIGIN);
     if (ok) return true;
     await sleep(500);
   }
@@ -68,7 +70,7 @@ async function waitServerUp(page) {
   check('icon-192.png 真实 PNG 且 192x192', p192.sig === '\x89PNG\r\n\x1a\n' && p192.w === 192 && p192.h === 192, JSON.stringify(p192));
   check('icon-512.png 真实 PNG 且 512x512', p512.sig === '\x89PNG\r\n\x1a\n' && p512.w === 512 && p512.h === 512, JSON.stringify(p512));
 
-  const browser = await puppeteer.launch({ executablePath: CHROME, headless: 'new', args: ['--autoplay-policy=no-user-gesture-required'] });
+  const browser = await puppeteer.launch({ executablePath: CHROME, headless: 'new', args: ['--autoplay-policy=no-user-gesture-required', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage'] });
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 800 });
   page.on('pageerror', e => console.log('[PAGEERROR]', e.message));
@@ -136,7 +138,7 @@ async function waitServerUp(page) {
   await sleep(500);
   // 诊断：确认 server 真的死了（fetch 新 URL 应 reject）
   const deadProbe = await page.evaluate(async () => {
-    try { await fetch('http://127.0.0.1:8000/__dead__' + Date.now() + '.txt'); return 'alive'; }
+    try { await fetch(URL_ORIGIN + '/__dead__' + Date.now() + '.txt'); return 'alive'; }
     catch(e) { return 'dead'; }
   });
   check('REVERSE: server 已停止（fetch 失败）', deadProbe === 'dead', deadProbe);
@@ -199,15 +201,15 @@ async function waitServerUp(page) {
   // 等原版 SW 预缓存（addAll 5 资源）完成，再离线验证
   let precached = false;
   for (let i = 0; i < 20; i++) {
-    precached = await page.evaluate(async () => {
+    precached = await page.evaluate(async (uOrigin) => {
       const keys = await caches.keys();
       for (const k of keys) {
         const c = await caches.open(k);
-        const hit = await c.match('http://127.0.0.1:8000/index.html');
+        const hit = await c.match(location.origin + '/index.html', { ignoreSearch: true, ignoreVary: true }) || await c.match(location.origin + '/', { ignoreSearch: true, ignoreVary: true });
         if (hit) return true;
       }
       return false;
-    });
+    }, URL_ORIGIN);
     if (precached) break;
     await sleep(500);
   }

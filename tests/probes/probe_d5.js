@@ -12,7 +12,7 @@ const CHROME = process.env.CHROME_PATH || process.env.CHROME_PATH_64 || '/usr/bi
   const browser = await puppeteer.launch({
     executablePath: CHROME,
     headless: 'new',
-    args: ['--no-sandbox', '--disable-gpu'],
+    args: ['--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage'],
   });
   const page = await browser.newPage();
   const pageErrors = [];

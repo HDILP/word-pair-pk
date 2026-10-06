@@ -5,7 +5,7 @@ const URL = process.env.PROBE_URL || 'http://127.0.0.1:8000/index.html';
 const CHROME = process.env.CHROME_PATH || process.env.CHROME_PATH_64 || '/usr/bin/google-chrome';
 
 (async () => {
-  const browser = await puppeteer.launch({ executablePath: CHROME, headless: 'new', args: ['--no-sandbox', '--disable-gpu'] });
+  const browser = await puppeteer.launch({ executablePath: CHROME, headless: 'new', args: ['--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage'] });
   const page = await browser.newPage();
   await page.goto(URL, { waitUntil: 'domcontentloaded', timeout: 20000 }).catch(() => {});
   await page.waitForSelector('#app', { timeout: 20000 });
