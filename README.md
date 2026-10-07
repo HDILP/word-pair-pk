@@ -32,6 +32,8 @@
 ├── manifest.json            ← PWA manifest（安装到桌面）
 ├── assets/icons/            ← PWA 图标（192/512 PNG）
 ├── docs/game-guide.md       ← 游戏说明书（用户向）
+├── tests/probes/            ← 浏览器探针测试（puppeteer-core）+ run_all.js 全量 runner
+├── .github/workflows/       ← GitHub Actions：push 自动跑全部探针
 ├── vercel.json              ← Vercel 部署配置
 └── README.md
 ```
@@ -58,6 +60,17 @@ python3 build.py
 
 生成新的 `index.html`，双击就能用 ✅
 
+### 测试
+
+`tests/probes/` 内置 14 个浏览器探针（puppeteer-core），push 后 GitHub Actions 自动全量跑；本地跑：
+
+```bash
+python3 -m http.server 8000 &   # 起静态服务器
+cd tests/probes && npm install
+PROBE_URL=http://127.0.0.1:8000/index.html \
+  CHROME_PATH='C:/Program Files/Google/Chrome/Application/chrome.exe' node run_all.js
+```
+
 ### 部署
 
 推送到 GitHub 后，Vercel 会自动：
@@ -73,6 +86,7 @@ python3 build.py
 - **听力挑战**：TTS 读英文 4 选 1 中文，8 轮，错词自动进复习系统
 - **例句配对**：读英文例句配对中文释义，句中目标词加粗高亮；配对成功朗读整句，错词进复习系统（全量 5254 词带例句）
 - **每日挑战**：每天固定一批词（同天同设备同词），连续打卡
+- **马拉松开关 🏃**：选词视图里的开关（非独立模式）——打开后所有 PK 模式一次打完选中范围全部词，每 8 词一组无缝连续（不重抽事件、不重新倒计时），总计时不停表、不扣心
 - **单词复习**：基于利特纳盒子的间隔重复系统
   - 自由练习：选词范围后不计时配对
   - 今日复习：自动捞取今天该复习的词

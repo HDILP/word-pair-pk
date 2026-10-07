@@ -20,6 +20,8 @@ words/               ← 词库目录
   必修一/              ← 教材目录
     Welcome Unit.json
     ...
+tests/probes/        ← 浏览器探针（puppeteer-core）+ run_all.js；CI 全量跑
+.github/workflows/probes.yml ← GitHub Actions：push main 自动跑 14 探针
 vercel.json          ← Vercel 部署配置（CORS: Access-Control-Allow-Origin: null）
 ```
 
@@ -44,6 +46,15 @@ python3 build.py output.html  # 自定义输出文件名
 - `index.html` — 注入词库数据 + 构建版本号（`<meta name="build-revision" content="20260620153454">`）
 - `version.json` — `{"revision":"20260620153454"}`（东八区，精确到秒，供线上更新检测）
 - 版本号格式：`YYYYMMDDHHMMSS`，build.py 中使用 `datetime.timezone(datetime.timedelta(hours=8))` 强制东八区
+
+**测试（探针 + CI）：**
+```bash
+cd tests/probes && PROBE_URL=http://127.0.0.1:8000/index.html node run_all.js   # 本地全量（需先起静态服务器 + CHROME_PATH 指向 Chrome）
+```
+- 14 个探针（probe_a..k + d5 + d5_fallback_branch + marathon），puppeteer-core 连本机 Chrome
+- 关键环境变量：`PROBE_URL`（默认 8080）、`CHROME_PATH`（默认 `/usr/bin/google-chrome`，Windows 本机传 `'C:/Program Files/Google/Chrome/Application/chrome.exe'`）
+- 推送 main 后 GitHub Actions（`.github/workflows/probes.yml`）自动全量跑，launch args 已带 `--no-sandbox --disable-gpu --disable-dev-shm-usage`（CI root 容器必需）
+- 探针坑：`stopServer` 平台分支（Windows netstat/taskkill，POSIX `fuser -k PORT/tcp`）；断言必须数据感知
 
 词库目录结构要求：
 ```
@@ -70,8 +81,8 @@ JSON 格式：`{ "name": "单元名", "words": [{"en": "...", "zh": "..."}, ...]
 
 所有视图通过 `currentView` 控制，`v-if`/`v-else-if` 切换：
 
-- `home` — 首页（双人 PK / 抢答 PK / 单人挑战 / 听力挑战 / 例句配对 / 马拉松 / 单词复习 / 排行榜 / 玩法说明 / 每日挑战卡 / 打击特效开关）
-- `select` — 选词视图（树形选择教材→单元）
+- `home` — 首页（双人 PK / 抢答 PK / 单人挑战 / 听力挑战 / 例句配对 / 单词复习 / 排行榜 / 玩法说明 / 每日挑战卡 / 打击特效开关）
+- `select` — 选词视图（树形选择教材→单元；5 个模式 chip + 🏃 马拉松 toggle chip）
 - `game` — 双人/单人/抢答游戏（含倒计时、配对逻辑）
 - `listenGame` — 听力挑战视图（TTS 读词 4 选 1）
 - `sentenceGame` — 例句配对视图（例句卡 ↔ 释义卡 8 对，目标词高亮）
@@ -87,7 +98,7 @@ JSON 格式：`{ "name": "单元名", "words": [{"en": "...", "zh": "..."}, ...]
 3. **抢答 PK（rush）**：公共牌池 16 张双方共抢，悬空选中唯一，**配对归完成者**（可抢对方选中），无效点击不惩罚不顶替；8 对全消后得分多者胜，平分比用时
 5. **听力挑战（listen）**：TTS 读英文 → 4 张中文卡选 1，8 轮，答对 +1 分、答错 -1 心；错词进复习盒子
 6. **例句配对（sentence）**：卡面换成英文例句（目标词加粗高亮）↔ 中文释义 8 对配对，配对成功 TTS 朗读整句；错词进复习盒子；**全量 5254 词带 example 字段**（短语动词例句词形变化时高亮自动回退）；新收集点第 5 处（collectWord 复用）
-7. **马拉松（marathon）**：选词视图第 6 个 chip；**一次打完选中范围全部词**——选区洗牌按 8 词切组（`startMarathonGame` → `startMarathonRound` 复用单人生成链路），一组配完 `advanceMarathonRound` 弹组间横幅（1.6s）自动续组；**总计时 p1Timer 全程不停表**（`startTimers` marathonMode 分支：p1Time 累计 + marathonRoundTime 单独记组时）；走单人 endGame 结算（弹窗附「N 词 M 组 · 全程错 X 次」）；**不扣心**（扣心守卫加 `!this.marathonMode`，同每日挑战）；PB 独立存 `wordpair_pb_marathon`；**胜利判定按组内实际对数**（processCardClick `winPairCount`，末组可能 <8 对）；退出路径 goHome/goSelect/navigateBack/saveResult 四处 `resetMarathon()`（停表+清横幅定时器+清 marathonMode）
+7. **抢答 PK 后的通用开关——马拉松（marathon toggle）**：见下方「马拉松开关」小节；不再是独立模式/首页按钮，选词视图 toggle chip 控制所有 PK 模式（单人/双人/抢答/例句）走马拉松赛制
 8. **每日挑战（daily）**：日期种子选词（同天同设备同词），完成记最快时间 + 连续天数，同样抽随机事件；**不扣心**（0 心走 endGame 会把未完成的挑战标记 done，属回归）
 6. **自由练习（free）**：选词范围后不计时配对
 7. **今日复习（due）**：利特纳盒子复习算法
@@ -139,17 +150,19 @@ JSON 格式：`{ "name": "单元名", "words": [{"en": "...", "zh": "..."}, ...]
 - 数据：words JSON 的 words[] 加 `example` 字段；全量 5254 词已注入（AI 生成，`example` 缺失回退 en 卡面）；生成脚本 `.agents/scripts/gen_examples.py`（幂等断点续跑，opencode-go 直连 API）
 - 探针：probe_d5.js 30 断言；高亮断言必须数据感知（`hlCount===splitFoundCount`、splitOk 三段式），别写死 8
 
-### 马拉松模式（2026-09-19）
+### 马拉松开关（2026-09-19 重构：模式 → 全模式开关）
 
-- 玩法：**一次打完选中范围全部词**——选区洗牌按 8 词切组连续开局，一组配完弹组间横幅 1.6s 自动换新组；总计时（p1Timer）全程不停表；选词视图第 6 个 chip，`startGame` 里 `gameMode==='marathon'` 提前分支到 `startMarathonGame()`
-- 方法链：`startMarathonGame`（收集选区→洗牌→切组）→ `startMarathonRound(idx)`（**完整复制单人生成链路**：发牌/重置集合/心形/事件/倒计时，`gameMode='single'` 复用全部单人逻辑）→ `advanceMarathonRound`（记组时+累计错词→横幅→续组；末组直接 `endGame('p1')`）→ `resetMarathon`（退出清理）
-- ⚠️ **胜利判定按组内实际对数**：processCardClick 用 `winPairCount = marathonMode ? dualGameWords.length : 8`——末组可能 <8 对（如 53 词→7 组余 5），写死 8 会让末组配完不开奖卡死（探针实测暴露）
-- 计时：`startTimers` 加 marathonMode 分支——p1Time 从 `marathonRoundTimes` 求和续跑 +0.1s tick 同时累加 `marathonRoundTime`（组时）；结算 time = 全程总时
-- PB 独立：`wordpair_pb_marathon`（范围可大可小，与普通单人同场比较不公平）；结算弹窗附「N 词 M 组 · 全程错 X 次」行
-- 不扣心：扣心守卫 `!this.dailyMode && !this.marathonMode`；心形 UI 隐藏，换 `.marathon-progress` 总进度标签（`p1MatchedCount + marathonRoundIndex*8` / totalWords）
-- 退出路径四处 `resetMarathon()`：goHome / goSelect / navigateBack / saveResult——停表 + 清 `_marathonBannerTimer` + 清 marathonMode（**漏一处会残留中途状态**）
-- 组间间隙：`gameOverInternal=true` 挡点击与特效；横幅走 event-banner 体系（`eventBannerName='marathon'`，绿色样式），z-index 120 不被倒计时遮
-- 探针：probe_marathon.js 70 断言（C:\Users\Dong\wordpair-probe\，仓库外）——**必须数据感知**（组数/词数/末组牌数从 Vue 状态读，别写死 16 词 2 组；选词视图默认全选 5254 词，探针要先清空再勾目标单元）
+- **形态**：选词视图独立 toggle chip「🏃 马拉松 开/关」（`toggleMarathon()`），不是独立模式——打开后**单人/双人 PK/抢答 PK/例句配对**都走马拉松赛制；首页无按钮
+- **玩法**：**一次打完选中范围全部词**——选区洗牌按 8 词切组（`prepareMarathonRounds()` 预切 `marathonRounds` 队列，data 必须显式声明 `marathonRounds: []`，否则 toggle 后未开局读 `.length` 报 undefined），一组配完 `advanceMarathon(side)` → 400ms 绿横幅（`eventBannerName='marathon'`）→ **无缝续组**：不重抽随机事件、不重新倒计时、不弹中间结算
+- **总计时不停表**：`startTimers` marathon 分支 `p1Time = p2Time = marathonTotalTime` 续跑；dual/rush 同时起 p2Timer；`advanceMarathon` 累计 `marathonTotalTime`
+- **不扣心**：扣心守卫 `!this.dailyMode && !this.marathonOn`；心形 UI 隐藏，换 `.marathon-progress` 总进度（`{{ p1MatchedCount + donePairs() }}/{{ marathonTotalWords }}`）
+- **胜负按模式分派**：single 比全程总时；dual 累计局分 `marathonP1Wins/P2Wins`（局分多者胜，平比总时）；rush 累计跨局总分 `marathonP1Score/P2Score`（结算前写回 `_p1MatchSet/_p2MatchSet` 让 endGame 原判定工作）；sentence 走 `sentenceMarathonIndex` 自累计，末局弹 `sentencePopup`
+- ⚠️ **末组不足 8 对按实际对数判定**：`processCardClick` 用 `winPairCount = (marathonOn && marathonRounds.length) ? dualGameWords.length : 8`，`processRushClick` 同理 `rushWinPairs`——写死 8 会让末组（如 53 词→7 组余 5 对）配完不开奖卡死（探针实测暴露）
+- **全量复习同步**：`marathonDoneWords` + `marathonAllErrors` 跨局累计，末局 `finishMarathon` → `buildResultAndPopup(winner, time, words, errorMap)` 统一结算进盒子
+- **PB 独立**：`wordpair_pb_marathon`（范围可大可小，与普通单人同场比较不公平）
+- **退出路径四处 `resetMarathon()`**：goHome / goSelect / navigateBack / saveResult——停表 + 清 `_marathonBannerTimer` + 清运行态（**保留 `marathonOn` 开关**，用户回选词视图还想要开着的状态；漏清理会残留中途状态）
+- 组间间隙：`gameOverInternal=true` 挡点击与特效；横幅 z-index 120 不被倒计时遮
+- 探针：`tests/probes/probe_marathon.js` 49 断言（已入库）——**必须数据感知**（组数/词数/末组牌数从 Vue 状态读，别写死 16 词 2 组；选词视图默认全选 5254 词，探针要先清空再勾目标单元）
 
 ### 触摸事件处理
 
